@@ -39,8 +39,8 @@ public class ControladorJsonCliente extends Controlador<JsonCliente>{
         if (clientes != null) {
             for (Cliente cli : clientes) {
                 Log.d(TAG, "Cliente: " + cli.getID() + " - " + cli.getClientName());
-                controladorCliente.enviarDatoRepositorio(cli);
             }
+            controladorCliente.enviarDatosRepositorio(clientes);
         }
     }
 
