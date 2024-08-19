@@ -48,7 +48,6 @@ public abstract class Controlador<T> {
     }
 
     protected void procesarDatos(T datos) {
-        repositorio.clearList();
         repositorio.setDatos(extraerDatos(datos));
     }
 
