@@ -1,5 +1,7 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import android.util.Log;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,7 +15,7 @@ public abstract class Controlador<T> {
     protected JsonApi jsonApi;
     private final String baseUrl = "https://api.bind.com.mx/api/";
     protected Repositorio<T> repositorio;
-
+    private static final String TAG = "Main4"; // Etiqueta para identificar los logs
     public Controlador(Repositorio<T> repositorio) {
         // Usa el método estático para obtener la instancia de Retrofit
         this.retrofit = Conector.solicitudHTTPS(baseUrl);
@@ -31,6 +33,7 @@ public abstract class Controlador<T> {
                     return;
                 }
                 T datos = response.body();
+                Log.d(TAG, "Response body: " + datos);
                 if (datos != null) {
                     procesarDatos(datos);
                 }

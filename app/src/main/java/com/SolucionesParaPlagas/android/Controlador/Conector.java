@@ -5,6 +5,8 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// Recordar que dependiendo del usuario el API KEY cambiara
+
 // Clase dedicada a realizar solicitudes HTTPS y uso de la librería Retrofit
 public class Conector {
 
