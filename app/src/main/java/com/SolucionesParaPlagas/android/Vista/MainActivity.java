@@ -8,10 +8,12 @@ import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
+import com.SolucionesParaPlagas.android.Controlador.ControladorRegistroCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.RegistroCliente;
 import com.example.sol.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,13 +21,23 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity"; // Etiqueta para identificar los logs
     private ControladorProducto contP = new ControladorProducto();
     private ControladorCliente contC = new ControladorCliente();
+    private ControladorRegistroCliente controladorRegistroCliente = new ControladorRegistroCliente();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        //obtenerDatos();
-        obtenerCliente();
+        // obtenerDatos();
+        // obtenerCliente();
+        registrarC();
+    }
+
+    private void registrarC(){
+        RegistroCliente cliente = new RegistroCliente();
+        cliente.setLegalName("Prueba API");
+        cliente.setCommercialName("Prueba");
+        cliente.setRFC("´PruebaRFC");
+        controladorRegistroCliente.registrarCliente(cliente);
     }
 
     private void obtenerCliente(){

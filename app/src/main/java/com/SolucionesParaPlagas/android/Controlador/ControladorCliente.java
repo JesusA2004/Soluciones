@@ -5,7 +5,7 @@ import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCliente;
 import java.util.List;
 
-public class ControladorCliente{
+public class ControladorCliente {
 
     private Repositorio<Cliente> repositorioCliente = RepositorioCliente.obtenerInstancia();
 

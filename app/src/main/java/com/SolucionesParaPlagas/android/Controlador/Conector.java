@@ -12,9 +12,14 @@ public class Conector {
 
     // Instancia única de Retrofit (Singleton)
     private static Retrofit retrofit = null;
+    private String apiAdmin = "";
+    private String apiVendedor = "";
+    private String apiCliente = "";
+    private String apiKey = "";
 
     // Constructor privado para evitar la instanciación directa
-    private Conector() {
+    private Conector(){
+
     }
 
     // Método para obtener la instancia de Retrofit
