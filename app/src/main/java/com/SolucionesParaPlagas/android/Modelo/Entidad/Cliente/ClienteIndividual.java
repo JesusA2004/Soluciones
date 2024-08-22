@@ -1,6 +1,6 @@
-package com.SolucionesParaPlagas.android.Modelo.Entidad;
+package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
-public class Cliente {
+public class ClienteIndividual {
 
     private String ID;
     private int Number;
@@ -13,11 +13,11 @@ public class Cliente {
     private String LocationID;
 
     // Constructor vacío
-    public Cliente() {
+    public ClienteIndividual() {
     }
 
     // Constructor con parámetros
-    public Cliente(String ID, int Number, String ClientName, String LegalName, String RFC, String Email, String Phone, String NextContactDate, String LocationID) {
+    public ClienteIndividual(String ID, int Number, String ClientName, String LegalName, String RFC, String Email, String Phone, String NextContactDate, String LocationID) {
         this.ID = ID;
         this.Number = Number;
         this.ClientName = ClientName;

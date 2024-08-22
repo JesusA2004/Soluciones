@@ -1,4 +1,4 @@
-package com.SolucionesParaPlagas.android.Modelo.Entidad;
+package com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 
 public class Producto {
 

@@ -1,6 +1,6 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 
 public class RepositorioJsonCliente extends Repositorio<JsonCliente> {
 

@@ -1,18 +1,18 @@
-package com.SolucionesParaPlagas.android.Modelo.Entidad;
+package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
 import java.util.List;
 
 public class JsonCliente {
 
-    private List<Cliente> value;
+    private List<ClienteIndividual> value;
     private String nextLink;
     private int count;
 
-    public List<Cliente> getValue() {
+    public List<ClienteIndividual> getValue() {
         return value;
     }
 
-    public void setValue(List<Cliente> value) {
+    public void setValue(List<ClienteIndividual> value) {
         this.value = value;
     }
 

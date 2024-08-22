@@ -1,8 +1,8 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
 import android.util.Log;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioJsonCliente;
 import java.util.List;
 import retrofit2.Call;
@@ -11,7 +11,7 @@ public class ControladorJsonCliente extends Controlador<JsonCliente>{
 
     private String EndPoint = "Clients?$filter=RFC eq ";
     private static final String TAG = "Main3"; // Etiqueta para identificar los logs
-    private ControladorCliente controladorCliente = new ControladorCliente();
+    private ControladorClienteIndividual controladorClienteIndividual = new ControladorClienteIndividual();
 
     public ControladorJsonCliente(String RFC) {
         super(RepositorioJsonCliente.obtenerInstancia());
@@ -34,13 +34,13 @@ public class ControladorJsonCliente extends Controlador<JsonCliente>{
     @Override
     protected void procesarDatos(JsonCliente datos) {
         // Suponiendo que datos.getValue() devuelve una lista de Clientes
-        List<Cliente> clientes = datos.getValue();
-        Log.d(TAG, "Clientes: " + clientes);
-        if (clientes != null) {
-            for (Cliente cli : clientes) {
+        List<ClienteIndividual> clienteIndividuals = datos.getValue();
+        Log.d(TAG, "Clientes: " + clienteIndividuals);
+        if (clienteIndividuals != null) {
+            for (ClienteIndividual cli : clienteIndividuals) {
                 Log.d(TAG, "Cliente: " + cli.getID() + " - " + cli.getClientName());
             }
-            controladorCliente.enviarDatosRepositorio(clientes);
+            controladorClienteIndividual.enviarDatosRepositorio(clienteIndividuals);
         }
     }
 

@@ -1,10 +1,11 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.DetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.RegistroCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.RespuestaClienteApi;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.RegistroCliente;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Url;
@@ -26,9 +27,8 @@ public interface JsonApi {
     @GET
     Call<DetalleCliente> obtenerCliente(@Url String url);
     @POST
-    Call<Void> registrarCliente(@Url String url, @Body RegistroCliente cliente);
+    Call<RespuestaClienteApi> registrarCliente(@Url String url, @Body RegistroCliente cliente);
     @DELETE
     Call<Void> eliminarCliente(@Url String url); // En url de eliminar ya va incluido el id a eliminar
-
 
 }

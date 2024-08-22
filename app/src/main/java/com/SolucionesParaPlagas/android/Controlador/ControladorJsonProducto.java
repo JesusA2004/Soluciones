@@ -1,7 +1,7 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioJsonProducto;
 import java.util.List;
 import retrofit2.Call;

@@ -1,6 +1,6 @@
-package com.SolucionesParaPlagas.android.Modelo.Entidad;
+package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
-public class Address {
+public class Direccion {
 
     private String StreetName;
     private String InteriorNumber;

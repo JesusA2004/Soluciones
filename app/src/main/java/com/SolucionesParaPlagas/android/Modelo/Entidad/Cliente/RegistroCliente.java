@@ -1,4 +1,4 @@
-package com.SolucionesParaPlagas.android.Modelo.Entidad;
+package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
 public class RegistroCliente {
 
@@ -9,7 +9,7 @@ public class RegistroCliente {
     private double CreditAmount;
     private String PriceListID;
     private String AccountingNumber;
-    private Address Address; // Clase Address
+    private Direccion Direccion; // Clase Address
     private Integer PaymentMethod;
     private Integer PaymentTerm;
     private String LocationID;
@@ -79,12 +79,12 @@ public class RegistroCliente {
         this.AccountingNumber = AccountingNumber;
     }
 
-    public Address getAddress() {
-        return Address;
+    public Direccion getAddress() {
+        return Direccion;
     }
 
-    public void setAddress(Address Address) {
-        this.Address = Address;
+    public void setAddress(Direccion Direccion) {
+        this.Direccion = Direccion;
     }
 
     public Integer getPaymentMethod() {

@@ -1,6 +1,6 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 
 public class RepositorioJsonProducto extends Repositorio<JsonProducto> {
 

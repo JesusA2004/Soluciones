@@ -1,4 +1,4 @@
-package com.SolucionesParaPlagas.android.Modelo.Entidad;
+package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
 import java.util.Date;
 

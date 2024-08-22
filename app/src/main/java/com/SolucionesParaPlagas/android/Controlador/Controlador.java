@@ -11,15 +11,17 @@ import java.util.List;
 
 public abstract class Controlador<T> {
 
+    // Clase que usa Generics para obtener listas de datos de la API
+    // Solo sirve para obtener datos
+
     private Retrofit retrofit;
     protected JsonApi jsonApi;
-    private final String baseUrl = "https://api.bind.com.mx/api/";
     protected Repositorio<T> repositorio;
-    private static final String TAG = "Main4"; // Etiqueta para identificar los logs
+    private static final String TAG = "Main4";
 
     public Controlador(Repositorio<T> repositorio) {
-        // Usa el método estático para obtener la instancia de Retrofit
-        this.retrofit = Conector.solicitudHTTPS(baseUrl);
+        Conector conector = new Conector("Usuario");
+        this.retrofit = conector.solicitudHTTPS();
         this.jsonApi = retrofit.create(JsonApi.class);
         this.repositorio = repositorio;
     }

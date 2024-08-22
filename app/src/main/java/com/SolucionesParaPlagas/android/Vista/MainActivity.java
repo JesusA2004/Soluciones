@@ -4,23 +4,23 @@ import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorRegistroCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.JsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.RegistroCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.RegistroCliente;
 import com.example.sol.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity"; // Etiqueta para identificar los logs
     private ControladorProducto contP = new ControladorProducto();
-    private ControladorCliente contC = new ControladorCliente();
+    private ControladorClienteIndividual contC = new ControladorClienteIndividual();
     private ControladorRegistroCliente controladorRegistroCliente = new ControladorRegistroCliente();
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         cliente.setLegalName("Prueba API");
         cliente.setCommercialName("Prueba");
         cliente.setRFC("´PruebaRFC");
-        controladorRegistroCliente.registrarCliente(cliente);
+        // controladorRegistroCliente.registrarCliente(cliente);
     }
 
     private void obtenerCliente(){
@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void imprimirC(){
-        for (Cliente cliente : contC.obtenerRepositorio()) {
+        for (ClienteIndividual clienteIndividual : contC.obtenerRepositorio()) {
             Log.d(TAG, "Cliente:");
-            Log.d(TAG, "ID: " + cliente.getID());
-            Log.d(TAG, "Nombre: " + cliente.getLegalName());
-            Log.d(TAG, "RFC: " + cliente.getRFC());
+            Log.d(TAG, "ID: " + clienteIndividual.getID());
+            Log.d(TAG, "Nombre: " + clienteIndividual.getLegalName());
+            Log.d(TAG, "RFC: " + clienteIndividual.getRFC());
             Log.d(TAG, "-------------------------");
         }
     }
