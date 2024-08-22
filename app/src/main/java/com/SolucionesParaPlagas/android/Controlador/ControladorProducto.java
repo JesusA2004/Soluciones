@@ -9,6 +9,14 @@ import java.util.List;
 public class ControladorProducto{
 
     private Repositorio<Producto> repositorioProducto = RepositorioProducto.obtenerInstancia();
+    private static ControladorProducto instancia;
+
+    public static ControladorProducto obtenerInstancia(){
+        if(instancia == null){
+            instancia = new ControladorProducto();
+        }
+        return instancia;
+    }
 
     public List<Producto> obtenerRepositorio() {
         return repositorioProducto.getDatos();

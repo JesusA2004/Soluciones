@@ -3,70 +3,70 @@ package com.SolucionesParaPlagas.android.Vista;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorRegistroCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.RegistroCliente;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.example.sol.R;
+import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity"; // Etiqueta para identificar los logs
-    private ControladorProducto contP = new ControladorProducto();
+    private ControladorProducto contP = ControladorProducto.obtenerInstancia();
     private ControladorClienteIndividual contC = new ControladorClienteIndividual();
     private ControladorRegistroCliente controladorRegistroCliente = new ControladorRegistroCliente();
+    private CountDownLatch dataLatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        // obtenerDatos();
-        // obtenerCliente();
-        registrarC();
+        // Obtén los datos y espera a que se carguen
+        obtenerDatos();
+        // Imprime los datos después de que se hayan cargado
+        imprimir();
     }
 
-    private void registrarC(){
-        RegistroCliente cliente = new RegistroCliente();
-        cliente.setLegalName("Prueba API");
-        cliente.setCommercialName("Prueba");
-        cliente.setRFC("´PruebaRFC");
-        // controladorRegistroCliente.registrarCliente(cliente);
-    }
-
-    private void obtenerCliente(){
+    /*
+    private void obtenerCliente() {
         Controlador<JsonCliente> controladorJCliente = new ControladorJsonCliente("VARM7107244Y2");
         controladorJCliente.realizarSolicitud();
-        imprimirC();
-    }
 
-    private void imprimirC(){
-        for (ClienteIndividual clienteIndividual : contC.obtenerRepositorio()) {
+        // Configura el listener para el controladorJsonCliente
+        controladorJCliente.setOnDataLoadedListener(new Controlador.OnDataLoadedListener<JsonCliente>() {
+            @Override
+            public void onDataLoaded(JsonCliente data) {
+                imprimirC();
+                dataLatch.countDown(); // Señala que se ha completado la carga de datos del cliente
+            }
+        });
+    }*/
+
+    private void imprimirC() {
+        for (ClienteIndividual cliente : contC.obtenerRepositorio()) {
             Log.d(TAG, "Cliente:");
-            Log.d(TAG, "ID: " + clienteIndividual.getID());
-            Log.d(TAG, "Nombre: " + clienteIndividual.getLegalName());
-            Log.d(TAG, "RFC: " + clienteIndividual.getRFC());
+            Log.d(TAG, "ID: " + cliente.getID());
+            Log.d(TAG, "Nombre: " + cliente.getLegalName());
+            Log.d(TAG, "RFC: " + cliente.getRFC());
             Log.d(TAG, "-------------------------");
         }
     }
 
     private void obtenerDatos() {
-        Controlador<JsonProducto> controlador = new ControladorJsonProducto() {
+        Controlador<JsonProducto> controlador = ControladorJsonProducto.obtenerInstancia();
+        ((ControladorJsonProducto) controlador).setDataLoadedListener(new ControladorJsonProducto.DataLoadedListener() {
             @Override
-            protected void procesarDatos(JsonProducto datos) {
-                super.procesarDatos(datos);
-                // Cuando no haya más links, se imprime el total
-                if (datos.getNextLink() == null) {
-                    imprimir();
-                }
+            public void onDataLoaded() {
+                dataLatch.countDown(); // Señala que se ha completado la carga de datos del producto
             }
-        };
+        });
         controlador.realizarSolicitud();
     }
 
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Weight: " + producto.getWeight());
             Log.d(TAG, "-------------------------");
         }
-        // Log.d(TAG,"Total: "+contador);
+        Log.d(TAG, "Total: " + contador);
     }
 
 }

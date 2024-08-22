@@ -2,21 +2,21 @@ package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
 public class RespuestaClienteApi {
 
-    private String response;
+    private String uuid;
 
     // Constructor
-    public RespuestaClienteApi(String response) {
-        this.response = response;
+    public RespuestaClienteApi(String uuid) {
+        this.uuid = uuid;
     }
 
     // Getter
-    public String getResponse() {
-        return response;
+    public String getuuid() {
+        return uuid;
     }
 
     // Setter
-    public void setResponse(String response) {
-        this.response = response;
+    public void setuuid(String uuid) {
+        this.uuid = uuid;
     }
 
 }

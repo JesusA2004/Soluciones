@@ -10,8 +10,8 @@ public class RegistroCliente {
     private String PriceListID;
     private String AccountingNumber;
     private Direccion Direccion; // Clase Address
-    private Integer PaymentMethod;
-    private Integer PaymentTerm;
+    private int PaymentMethod;
+    private int PaymentTerm;
     private String LocationID;
     private String SalesEmployeeID;
     private String CreditEmployeeID;
@@ -21,6 +21,28 @@ public class RegistroCliente {
     private String AccountNumber;
     private Double DefaultDiscount;
     private String Source;
+
+    public RegistroCliente(){
+        LegalName = "";
+        CommercialName = "";
+        RFC = "";
+        CreditDays = 0;
+        CreditAmount = 0;
+        PriceListID = "";
+        AccountingNumber = "";
+        Direccion = new Direccion();
+        PaymentMethod  = 0;
+        PaymentTerm = 0;
+        LocationID = "";
+        SalesEmployeeID = "";
+        CreditEmployeeID = "";
+        Comment = "";
+        Telephone = "";
+        Email = "";
+        AccountNumber = "";
+        DefaultDiscount = 0.0;
+        Source = "";
+    }
 
     // Getters y Setters
     public String getLegalName() {
@@ -87,19 +109,19 @@ public class RegistroCliente {
         this.Direccion = Direccion;
     }
 
-    public Integer getPaymentMethod() {
+    public int getPaymentMethod() {
         return PaymentMethod;
     }
 
-    public void setPaymentMethod(Integer PaymentMethod) {
+    public void setPaymentMethod(int PaymentMethod) {
         this.PaymentMethod = PaymentMethod;
     }
 
-    public Integer getPaymentTerm() {
+    public int getPaymentTerm() {
         return PaymentTerm;
     }
 
-    public void setPaymentTerm(Integer PaymentTerm) {
+    public void setPaymentTerm(int PaymentTerm) {
         this.PaymentTerm = PaymentTerm;
     }
 

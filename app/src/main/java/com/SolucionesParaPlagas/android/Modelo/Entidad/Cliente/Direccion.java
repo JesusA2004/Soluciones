@@ -12,6 +12,18 @@ public class Direccion {
     private String City;
     private String State;
 
+    public Direccion(){
+        StreetName = "";
+        InteriorNumber = "";
+        ExteriorNumber = "";
+        Colonia = "";
+        Comments = "";
+        ZipCode = "";
+        Localidad = "";
+        City = "";
+        State = "";
+    }
+
     // Getters y Setters
     public String getStreetName() {
         return StreetName;

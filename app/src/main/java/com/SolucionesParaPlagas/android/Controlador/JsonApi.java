@@ -26,8 +26,8 @@ public interface JsonApi {
     Call<JsonCliente> obtenerClientes(@Url String url);
     @GET
     Call<DetalleCliente> obtenerCliente(@Url String url);
-    @POST
-    Call<RespuestaClienteApi> registrarCliente(@Url String url, @Body RegistroCliente cliente);
+    @POST("Clients")
+    Call<RespuestaClienteApi> registrarCliente(@Body RegistroCliente cliente);
     @DELETE
     Call<Void> eliminarCliente(@Url String url); // En url de eliminar ya va incluido el id a eliminar
 

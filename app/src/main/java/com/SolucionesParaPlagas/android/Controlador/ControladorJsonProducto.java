@@ -1,5 +1,6 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import android.util.Log;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioJsonProducto;
@@ -11,46 +12,48 @@ import retrofit2.Response;
 public class ControladorJsonProducto extends Controlador<JsonProducto> {
 
     private static final String INITIAL_ENDPOINT = "products";
-    private final ControladorProducto controladorProducto;
-    private static final String TAG = "Main2"; // Etiqueta para identificar los logs
+    private static final String TAG = "ControladorJsonProducto";
+    private static ControladorJsonProducto instancia;
+
+    public static ControladorJsonProducto obtenerInstancia() {
+        if (instancia == null) {
+            instancia = new ControladorJsonProducto();
+        }
+        return instancia;
+    }
 
     public ControladorJsonProducto() {
         super(RepositorioJsonProducto.obtenerInstancia());
-        this.controladorProducto = new ControladorProducto();
     }
 
     @Override
     protected Call<JsonProducto> obtenerDatos() {
-        // Llama al método adecuado en JsonApi para obtener JsonProducto
         return getJsonApi().obtenerProductos(INITIAL_ENDPOINT);
     }
 
     @Override
     protected List<JsonProducto> extraerDatos(JsonProducto datos) {
-        // Retorna una lista con el JsonProducto para compatibilidad con el tipo de retorno
         return List.of(datos);
     }
 
     @Override
     protected void procesarDatos(JsonProducto datos) {
-        // Obtiene los productos desde JsonProducto
         List<Producto> productos = datos.getValue();
-
-        if (productos != null && !productos.isEmpty()) {
-            // Añade los productos obtenidos al repositorio
-            controladorProducto.enviarDatosRepositorio(productos);
+        if (productos != null) {
+            ControladorProducto.obtenerInstancia().enviarDatosRepositorio(productos);
         }
-
-        // Verifica si hay un nextLink para continuar con la paginación
         String nextLink = datos.getNextLink();
-        // Log.d(TAG, "Link: " + nextLink);
-        if (nextLink != null && !nextLink.isEmpty()) {
+        if (nextLink != null) {
+            Log.d(TAG, "NextLink: " + nextLink);
             realizarSolicitudPaginada(nextLink);
+        } else {
+            if (dataLoadedListener != null) {
+                dataLoadedListener.onDataLoaded();
+            }
         }
     }
 
     private void realizarSolicitudPaginada(String nextLink) {
-        // Realiza una nueva solicitud con el siguiente link de paginación
         Call<JsonProducto> call = getJsonApi().obtenerProductos(nextLink);
         call.enqueue(new Callback<JsonProducto>() {
             @Override
@@ -61,9 +64,10 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
                 }
                 JsonProducto datos = response.body();
                 if (datos != null) {
-                    procesarDatos(datos); // Llama recursivamente para manejar la siguiente página
+                    procesarDatos(datos);
                 }
             }
+
             @Override
             public void onFailure(Call<JsonProducto> call, Throwable t) {
                 manejarError(t.getMessage());
@@ -72,8 +76,18 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
     }
 
     private JsonApi getJsonApi() {
-        // Obtén la instancia de JsonApi del controlador base
         return super.jsonApi;
+    }
+
+    // Interfaz para escuchar eventos de carga de datos
+    public interface DataLoadedListener {
+        void onDataLoaded();
+    }
+
+    private DataLoadedListener dataLoadedListener;
+
+    public void setDataLoadedListener(DataLoadedListener listener) {
+        this.dataLoadedListener = listener;
     }
 
 }
