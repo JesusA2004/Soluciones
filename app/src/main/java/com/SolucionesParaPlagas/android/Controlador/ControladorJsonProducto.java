@@ -73,7 +73,7 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
 
             @Override
             public void onFailure(Call<JsonProducto> call, Throwable t) {
-                Log.e(TAG, "Excepción al procesar la siguiente pagina: " + t.getMessage());
+                Log.e(TAG, "Excepcion al procesar la siguiente pagina: " + t.getMessage());
                 manejarError(t.getMessage());
             }
         });
