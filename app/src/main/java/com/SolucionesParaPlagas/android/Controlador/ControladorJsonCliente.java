@@ -21,14 +21,13 @@ public class ControladorJsonCliente extends Controlador<JsonCliente>{
     }
 
     @Override
-    protected List<JsonCliente> extraerDatos(JsonCliente datos) {
-        // Retorna una lista con el JsonProducto para compatibilidad con el tipo de retorno
-        return List.of(datos);
+    protected Call<JsonCliente> obtenerDatos() {
+        return getJsonApi().obtenerClientes(EndPoint);
     }
 
     @Override
-    protected Call<JsonCliente> obtenerDatos() {
-        return getJsonApi().obtenerClientes(EndPoint);
+    protected boolean datosCargados() {
+        return false;
     }
 
     @Override

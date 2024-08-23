@@ -8,13 +8,13 @@ import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorRegistroCliente;
+import com.SolucionesParaPlagas.android.Controlador.HiloCargarDatos;
+import com.SolucionesParaPlagas.android.Controlador.HiloImpresiones;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.example.sol.R;
-import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,32 +22,31 @@ public class MainActivity extends AppCompatActivity {
     private ControladorProducto contP = ControladorProducto.obtenerInstancia();
     private ControladorClienteIndividual contC = new ControladorClienteIndividual();
     private ControladorRegistroCliente controladorRegistroCliente = new ControladorRegistroCliente();
-    private CountDownLatch dataLatch;
+    private Controlador<JsonProducto> controlador = new ControladorJsonProducto();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         // Obtén los datos y espera a que se carguen
-        obtenerDatos();
-        // Imprime los datos después de que se hayan cargado
-        imprimir();
+        HiloCargarDatos hiloCargarDatos = new HiloCargarDatos();
+        HiloImpresiones hiloImpresiones = new HiloImpresiones();
+        hiloCargarDatos.start();
+        try {
+            hiloCargarDatos.join();
+            if(controlador.datosCarg()){
+                hiloImpresiones.start();
+            }
+        }catch (InterruptedException e){
+            System.out.println("Error "+e.getMessage());
+        }
     }
 
-    /*
     private void obtenerCliente() {
         Controlador<JsonCliente> controladorJCliente = new ControladorJsonCliente("VARM7107244Y2");
         controladorJCliente.realizarSolicitud();
-
-        // Configura el listener para el controladorJsonCliente
-        controladorJCliente.setOnDataLoadedListener(new Controlador.OnDataLoadedListener<JsonCliente>() {
-            @Override
-            public void onDataLoaded(JsonCliente data) {
-                imprimirC();
-                dataLatch.countDown(); // Señala que se ha completado la carga de datos del cliente
-            }
-        });
-    }*/
+        imprimirC();
+    }
 
     private void imprimirC() {
         for (ClienteIndividual cliente : contC.obtenerRepositorio()) {
@@ -60,29 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void obtenerDatos() {
-        Controlador<JsonProducto> controlador = ControladorJsonProducto.obtenerInstancia();
-        ((ControladorJsonProducto) controlador).setDataLoadedListener(new ControladorJsonProducto.DataLoadedListener() {
-            @Override
-            public void onDataLoaded() {
-                dataLatch.countDown(); // Señala que se ha completado la carga de datos del producto
-            }
-        });
         controlador.realizarSolicitud();
-    }
-
-    private void imprimir() {
-        int contador = 0;
-        for (Producto producto : contP.obtenerRepositorio()) {
-            contador++;
-            Log.d(TAG, "Producto:");
-            Log.d(TAG, "Title: " + producto.getTitle());
-            Log.d(TAG, "Description: " + producto.getDescription());
-            Log.d(TAG, "Unit: " + producto.getUnit());
-            Log.d(TAG, "Type: " + producto.getType());
-            Log.d(TAG, "Weight: " + producto.getWeight());
-            Log.d(TAG, "-------------------------");
-        }
-        Log.d(TAG, "Total: " + contador);
     }
 
 }

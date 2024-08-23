@@ -1,7 +1,6 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
 import android.util.Log;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,19 +47,16 @@ public abstract class Controlador<T> {
         });
     }
 
-    public List<T> obtenerRepositorio() {
-        return repositorio.getDatos();
-    }
-
-    protected void procesarDatos(T datos) {
-        repositorio.setDatos(extraerDatos(datos));
+    public boolean datosCarg(){
+        return datosCargados();
     }
 
     protected void manejarError(Object error) {
         System.out.println("Error: " + error);
     }
 
-    protected abstract List<T> extraerDatos(T datos);
+    protected abstract void procesarDatos(T datos);
     protected abstract Call<T> obtenerDatos();
+    protected abstract boolean datosCargados();
 
 }

@@ -11,17 +11,12 @@ import retrofit2.Response;
 
 public class ControladorJsonProducto extends Controlador<JsonProducto> {
 
-    private static final String INITIAL_ENDPOINT = "products";
+    private static final String INITIAL_ENDPOINT = "Products";
     private static final String TAG = "ControladorJsonProducto";
-    private static ControladorJsonProducto instancia;
+    private ControladorProducto contP = ControladorProducto.obtenerInstancia();
+    private boolean key = false;
 
-    public static ControladorJsonProducto obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new ControladorJsonProducto();
-        }
-        return instancia;
-    }
-
+    // Constructor que hereda del controlador con Generics
     public ControladorJsonProducto() {
         super(RepositorioJsonProducto.obtenerInstancia());
     }
@@ -32,44 +27,53 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
     }
 
     @Override
-    protected List<JsonProducto> extraerDatos(JsonProducto datos) {
-        return List.of(datos);
-    }
-
-    @Override
     protected void procesarDatos(JsonProducto datos) {
+        if (datos == null) {
+            Log.e(TAG, "Datos recibidos son nulos.");
+            return;
+        }
         List<Producto> productos = datos.getValue();
         if (productos != null) {
-            ControladorProducto.obtenerInstancia().enviarDatosRepositorio(productos);
+            // Enviamos los datos al repositorio de productos
+            contP.enviarDatosRepositorio(productos);
+        } else {
+            Log.d(TAG, "Lista de productos es nula.");
         }
         String nextLink = datos.getNextLink();
         if (nextLink != null) {
             Log.d(TAG, "NextLink: " + nextLink);
-            realizarSolicitudPaginada(nextLink);
+            // Llama recursivamente para obtener la siguiente página de datos
+            procesarSiguientePagina(nextLink);
         } else {
-            if (dataLoadedListener != null) {
-                dataLoadedListener.onDataLoaded();
-            }
+            Log.d(TAG, "No hay mas paginas.");
+            contP.imprimirRepositorio();
+            key = true; // Indica que todos los datos han sido cargados
         }
     }
 
-    private void realizarSolicitudPaginada(String nextLink) {
+    private void procesarSiguientePagina(String nextLink) {
         Call<JsonProducto> call = getJsonApi().obtenerProductos(nextLink);
         call.enqueue(new Callback<JsonProducto>() {
             @Override
             public void onResponse(Call<JsonProducto> call, Response<JsonProducto> response) {
-                if (!response.isSuccessful()) {
+                if (response.isSuccessful()) {
+                    JsonProducto datos = response.body();
+                    if (datos != null) {
+                        Log.d(TAG, "Datos de la siguiente pagina recibidos: " + datos);
+                        // Procesa los datos y llama recursivamente para la siguiente página
+                        procesarDatos(datos);
+                    } else {
+                        Log.d(TAG, "Datos de la siguiente pagina son nulos.");
+                    }
+                } else {
+                    Log.e(TAG, "Error en la respuesta: " + response.code());
                     manejarError(response.code());
-                    return;
-                }
-                JsonProducto datos = response.body();
-                if (datos != null) {
-                    procesarDatos(datos);
                 }
             }
 
             @Override
             public void onFailure(Call<JsonProducto> call, Throwable t) {
+                Log.e(TAG, "Excepción al procesar la siguiente pagina: " + t.getMessage());
                 manejarError(t.getMessage());
             }
         });
@@ -79,15 +83,8 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
         return super.jsonApi;
     }
 
-    // Interfaz para escuchar eventos de carga de datos
-    public interface DataLoadedListener {
-        void onDataLoaded();
-    }
-
-    private DataLoadedListener dataLoadedListener;
-
-    public void setDataLoadedListener(DataLoadedListener listener) {
-        this.dataLoadedListener = listener;
+    public boolean datosCargados() {
+        return key;
     }
 
 }
