@@ -1,0 +1,154 @@
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/contenedor"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<RelativeLayout
+		android:id="@+id/paginaBienvenida"
+		android:layout_marginTop="0dp"
+		android:layout_marginStart="0dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+		<View
+			android:id="@+id/paginaBienvenida2"
+			android:background="@drawable/_bg__welcome_ek2_shape"
+			android:layout_marginStart="0dp"
+			android:layout_marginTop="0dp"
+			android:layout_width="411dp"
+			android:layout_height="823dp" />
+
+		<RelativeLayout
+			android:id="@+id/paginainicio"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="-117dp"
+			android:layout_marginTop="-167dp"
+			android:foregroundTint="#E91E63">
+
+			<ImageView
+				android:id="@+id/imagenFondo"
+				android:layout_width="500dp"
+				android:layout_height="550dp"
+				android:layout_marginStart="115dp"
+				android:layout_marginTop="50dp"
+				android:contentDescription="marcoimagenp"
+				android:src="@drawable/marcoimagenp" />
+
+			<ImageView
+				android:id="@+id/logoSinFondo"
+				android:layout_width="383dp"
+				android:layout_height="307dp"
+				android:layout_marginStart="131dp"
+				android:layout_marginTop="305dp"
+				android:contentDescription="textsolucionesparaplagas"
+				android:src="@drawable/textsolucionesparaplagas" />
+
+			<ImageView
+				android:id="@+id/logoConFondo"
+				android:layout_width="223dp"
+				android:layout_height="131dp"
+				android:layout_marginStart="206dp"
+				android:layout_marginTop="338dp"
+				android:contentDescription="logotipsinfondo"
+				android:src="@drawable/logotipsinfondo" />
+
+			<View
+				android:id="@+id/informacion"
+				android:layout_width="430dp"
+				android:layout_height="83dp"
+				android:layout_marginStart="98dp"
+				android:layout_marginTop="870dp"
+				android:background="@drawable/informacion_shape" />
+
+			<ImageView
+				android:id="@+id/iconodireccion"
+				android:layout_width="39dp"
+				android:layout_height="38dp"
+				android:layout_marginStart="126dp"
+				android:layout_marginTop="890dp"
+				android:contentDescription="iconodireccion"
+				android:src="@drawable/iconodireccion" />
+
+			<ImageView
+				android:id="@+id/iconopaginaweb"
+				android:layout_width="95dp"
+				android:layout_height="88dp"
+				android:layout_marginStart="320dp"
+				android:layout_marginTop="860dp"
+				android:src="@drawable/iconopaginawebrecortada_1" />
+
+			<TextView
+				android:id="@+id/txtBienvenida"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="255dp"
+				android:layout_marginTop="600dp"
+				android:fontFamily="sans-serif"
+				android:text="¡BIENVENIDO!"
+				android:textColor="#378039"
+				android:textSize="24sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/txtNombreE"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="170dp"
+				android:layout_marginTop="650dp"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:text="Soluciones para Plagas Urbanas y Agrícolas" />
+
+			<TextView
+				android:id="@+id/txtDireccion"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="165dp"
+				android:layout_marginTop="895dp"
+				android:textSize="10sp"
+				android:textStyle="bold"
+				android:text="Bajada a Chapultepec #3, Chapultepec,\n 62360, Cuernavaca, Mor" />
+
+			<TextView
+				android:id="@+id/txtPaginaWeb"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="400dp"
+				android:layout_marginTop="903dp"
+				android:textSize="10sp"
+				android:textStyle="bold"
+				android:text="solucionesparaplagas.com"
+				android:autoLink="web"
+				android:textColorLink="#3254ba"/>
+
+			<Button
+				android:id="@+id/btnInicioSesion"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="250dp"
+				android:layout_marginTop="710dp"
+				android:text="Iniciar sesión"
+				android:textColor="#FBFBFB"
+				android:textColorHighlight="#4CAF50"
+				android:backgroundTint="#1f5630"
+				android:textSize="18sp"/>
+
+			<Button
+				android:id="@+id/txtCrearCuenta"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="260dp"
+				android:layout_marginTop="770dp"
+				android:textSize="15sp"
+				android:textColor="#000000"
+				android:backgroundTint="#ffffff"
+ 				android:text="Crear Cuenta"/>
+
+		</RelativeLayout>
+
+	</RelativeLayout>
+
+</RelativeLayout>

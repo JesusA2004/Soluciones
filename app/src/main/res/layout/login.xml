@@ -1,0 +1,149 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="wrap_content" >
+
+	<ScrollView android:id="@+id/login" 
+		android:layout_width="wrap_content" 
+		android:layout_height="match_parent" >
+
+		<RelativeLayout android:id="@+id/content_container" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" >
+
+
+
+			<RelativeLayout android:id="@+id/page_login_ek1"
+				android:layout_marginTop="0dp"
+				android:layout_marginStart="0dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				>
+
+				<View
+					android:id="@+id/_bg__login_ek2"
+					android:layout_width="411dp"
+					android:layout_height="823dp"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:background="@drawable/_bg__login_ek2_shape"
+					android:backgroundTint="#FFFFFF" />
+
+
+				<RelativeLayout android:id="@+id/inicio_de_sesi_n"
+					android:layout_marginTop="0dp"
+					android:layout_marginStart="0dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					>
+
+					<View
+						android:id="@+id/contenedorinfo"
+						android:layout_width="333dp"
+						android:layout_height="429dp"
+						android:layout_marginStart="44dp"
+						android:layout_marginTop="337dp"
+						android:background="@drawable/contenedorinfo_shape"
+						android:backgroundTint="#EFEFEF" />
+
+
+					<ImageView android:id="@+id/logotipsinfondo_"
+						android:src="@drawable/logotipsinfondo_"
+						android:contentDescription="logotipsinfondo_"
+						 android:layout_marginStart="123dp"
+						android:layout_marginTop="283dp"
+						android:layout_width="157dp"
+						android:layout_height="98dp" />
+
+					<ImageView android:id="@+id/fondologin"
+						android:src="@drawable/fondologin"
+						android:contentDescription="fondologin"
+						 android:layout_marginStart="-7dp"
+						android:layout_marginTop="-38dp"
+						android:layout_width="416dp"
+						android:layout_height="321dp" />
+
+					<ImageView android:id="@+id/flecharegreso"
+						android:src="@drawable/flecharegreso"
+						android:contentDescription="flecharegreso"
+						 android:layout_marginStart="32dp"
+						android:layout_marginTop="17dp"
+						android:layout_width="39dp"
+						android:layout_height="46dp" />
+
+					<TextView
+						android:id="@+id/txtIngresarDatos"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="130dp"
+						android:layout_marginTop="400dp"
+						android:fontFamily="@font/libre_franklin_semibold"
+						android:text="Ingresa tus datos"
+						android:textSize="20sp"
+						android:textStyle="bold" />
+
+					<TextView
+						android:id="@+id/txtRFC"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="80dp"
+						android:layout_marginTop="460dp"
+						android:fontFamily="@font/manjari_thin"
+						android:text="RFC"
+						android:textColor="#000000"
+						android:textSize="20sp"
+						android:textStyle="bold" />
+
+					<EditText
+						android:id="@+id/entradaRFC"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="80dp"
+						android:layout_marginTop="490dp"
+						android:ems="13"
+						android:fontFamily="@font/manjari_thin"
+						android:inputType="text"
+						android:text="Ingresa tu RFC"
+						android:textColor="#928F8F" />
+
+					<TextView
+						android:id="@+id/txtTel"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="80dp"
+						android:layout_marginTop="550dp"
+						android:fontFamily="@font/manjari_thin"
+						android:text="Teléfono"
+						android:textColor="#000000"
+						android:textSize="20sp"
+						android:textStyle="bold" />
+
+					<EditText
+						android:id="@+id/entradaTel"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="80dp"
+						android:layout_marginTop="580dp"
+						android:ems="13"
+						android:fontFamily="@font/manjari_thin"
+						android:inputType="text"
+						android:text="Ingresa tu teléfono"
+						android:textColor="#928F8F" />
+
+					<Button
+						android:id="@+id/button"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="140dp"
+						android:layout_marginTop="670dp"
+						android:text="Iniciar sesión"
+						android:textColor="#FBFBFB"
+						android:textColorHighlight="#4CAF50"
+						android:backgroundTint="#1f5630"
+						android:textSize="18sp"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+		</RelativeLayout>
+
+	</ScrollView>
+</HorizontalScrollView>
