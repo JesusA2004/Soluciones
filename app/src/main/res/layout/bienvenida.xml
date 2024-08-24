@@ -137,15 +137,16 @@
 				android:textSize="18sp"/>
 
 			<Button
-				android:id="@+id/txtCrearCuenta"
+				android:id="@+id/btnCrearCuenta"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="260dp"
 				android:layout_marginTop="770dp"
-				android:textSize="15sp"
-				android:textColor="#000000"
 				android:backgroundTint="#ffffff"
- 				android:text="Crear Cuenta"/>
+				android:editable="false"
+				android:text="Crear Cuenta"
+				android:textColor="#000000"
+				android:textSize="15sp"/>
 
 		</RelativeLayout>
 

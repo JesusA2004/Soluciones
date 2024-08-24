@@ -8,4 +8,10 @@
 		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 
+	<!-- Spinner style -->
+	<style name="SpinnerStyle">
+		<item name="android:textColor">#FFFFFF</item> <!-- Texto blanco -->
+		<item name="android:textSize">20sp</item> <!-- Tamaño de texto pequeño -->
+	</style>
+
 </resources>

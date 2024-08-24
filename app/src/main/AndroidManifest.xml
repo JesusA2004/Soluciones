@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permiso para usar Internet -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,20 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sol"
         tools:targetApi="31">
-
+        <activity
+            android:name="com.SolucionesParaPlagas.android.Vista.RegistroDireccion"
+            android:exported="false" />
+        <activity
+            android:name="com.SolucionesParaPlagas.android.Vista.RegistroDatos"
+            android:exported="false" />
+        <activity
+            android:name="com.SolucionesParaPlagas.android.Vista.Login"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.Sol" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.PaginaInicio"
             android:exported="true"
             android:theme="@style/Theme.Sol">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>
