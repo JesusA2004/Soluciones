@@ -25,8 +25,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="-117dp"
-			android:layout_marginTop="-167dp"
-			android:foregroundTint="#E91E63">
+			android:layout_marginTop="-167dp">
 
 			<ImageView
 				android:id="@+id/imagenFondo"
@@ -87,7 +86,7 @@
 				android:layout_marginStart="255dp"
 				android:layout_marginTop="600dp"
 				android:fontFamily="sans-serif"
-				android:text="¡BIENVENIDO!"
+				android:text="@string/mensajeBienvenida"
 				android:textColor="#378039"
 				android:textSize="24sp"
 				android:textStyle="bold" />
@@ -100,7 +99,7 @@
 				android:layout_marginTop="650dp"
 				android:textSize="16sp"
 				android:textStyle="bold"
-				android:text="Soluciones para Plagas Urbanas y Agrícolas" />
+				android:text="@string/mensajePresentacion" />
 
 			<TextView
 				android:id="@+id/txtDireccion"
@@ -108,9 +107,9 @@
 				android:layout_height="wrap_content"
 				android:layout_marginStart="165dp"
 				android:layout_marginTop="895dp"
-				android:textSize="10sp"
+				android:textSize="11sp"
 				android:textStyle="bold"
-				android:text="Bajada a Chapultepec #3, Chapultepec,\n 62360, Cuernavaca, Mor" />
+				android:text="@string/direccionEmpresa" />
 
 			<TextView
 				android:id="@+id/txtPaginaWeb"
@@ -120,7 +119,7 @@
 				android:layout_marginTop="903dp"
 				android:textSize="10sp"
 				android:textStyle="bold"
-				android:text="solucionesparaplagas.com"
+				android:text="@string/paginaWeb"
 				android:autoLink="web"
 				android:textColorLink="#3254ba"/>
 
@@ -130,7 +129,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginStart="250dp"
 				android:layout_marginTop="710dp"
-				android:text="Iniciar sesión"
+				android:text="@string/labelIniciarSesion"
 				android:textColor="#FBFBFB"
 				android:textColorHighlight="#4CAF50"
 				android:backgroundTint="#1f5630"
@@ -140,11 +139,10 @@
 				android:id="@+id/btnCrearCuenta"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="260dp"
+				android:layout_marginStart="250dp"
 				android:layout_marginTop="770dp"
 				android:backgroundTint="#ffffff"
-				android:editable="false"
-				android:text="Crear Cuenta"
+				android:text="@string/crearCuenta"
 				android:textColor="#000000"
 				android:textSize="15sp"/>
 

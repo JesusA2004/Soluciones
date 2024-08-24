@@ -14,4 +14,9 @@
 		<item name="android:textSize">20sp</item> <!-- Tamaño de texto pequeño -->
 	</style>
 
+	<style name="estiloEstadoCuenta">
+		<item name="android:textColor">#015618</item> <!-- Texto blanco -->
+		<item name="android:textSize">16sp</item> <!-- Tamaño de texto pequeño -->
+	</style>
+
 </resources>

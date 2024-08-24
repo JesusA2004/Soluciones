@@ -1,18 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- welcome strings -->
 
-    <string name="app_name">Página de inicio</string>
-    <string name="ek_img_content">ExportKit Image</string>
-    <string name="label_text_string">Iniciar sesión</string>
-    <string name="soluciones_para_plagas_urbanas_y_agr_colas_string">Soluciones para Plagas Urbanas y Agrícolas</string>
-    <string name="__bienvenido__string">¡BIENVENIDO!</string>
-    <string name="bajada_a_chapultepec___3__chapultepec__62360_cuernavaca__mor__string">Bajada a Chapultepec # 3, Chapultepec, 62360 Cuernavaca, Mor.</string>
-    <string name="solucionesparaplagas_com_string">solucionesparaplagas.com</string>
-    <string name="crear_una_cuenta_string"><u>Crear una cuenta</u></string>
-    <string name="title_activity_login">Login</string>
+    <!-- Etiquetas de textos estáticos -->
+    <string name="mensajeBienvenida">¡BIENVENIDO!</string>
+    <string name="mensajePresentacion">Soluciones para Plagas Urbanas y Agrícolas</string>
+    <string name="direccionEmpresa">Bajada a Chapultepec # 3, \nChapultepec, 62360 Cuernavaca, Mor.</string>
+    <string name="paginaWeb">solucionesparaplagas.com</string>
+    <string name="txtLocalidad">Localidad</string>
+    <string name="txtColonia">Colonia</string>
+    <string name="txtCalle">Calle</string>
+    <string name="txtNoInterior">No. Interior</string>
+    <string name="txtNoExterior">No. Exterior</string>
+    <string name="txtCP">C.P.</string>
+    <string name="txtMunicipio">Municipio</string>
+    <string name="txtRFC">RFC</string>
+    <string name="txtTelefono">Teléfono</string>
+    <string name="msjIngresarDatos">Ingresa tus datos</string>
+    <string name="msjAdjuntarDoc">Adjunta el documento que\nvalide tu situación fiscal</string>
+    <string name="txtDoc">Documentos</string>
+    <string name="flechaSig">Siguiente</string>
+    <string name="flechaAtras">Atrás</string>
+    <string name="msjEstadoCuenta">¡Bienvenido a tu Estado de\nCuenta </string>
+    <string name="txtDiasCredito">Días de crédito: </string>
+    <string name="txtMontoCredito">Monto de crédito: $</string>
+    <string name="txtPorPagar">Por pagar: $</string>
+    <string name="txtVencido">Vencido: $</string>
+    <string name="txtCorriente">Corriente: $</string>
+    <string name="txtVencidoPor">Vencido: %</string>
+    <string name="txtVerProductos">Ver productos</string>
+    <string name="txtCarrito">Carrito de compra</string>
+    <string name="txtMenuPrincipal">Menú Principal</string>
+    <string name="txtCerrarSesion">Cerrar Sesión</string>
+    <string name="txtDescripcion">Descripción: </string>
+    <string name="txtCantidad">Cantidad: </string>
+    <string name="txtContenidoN">Contenido Neto</string>
+    <string name="txtPeso">Peso</string>
+    <string name="txtNombreProducto">Nombre del producto</string>
 
-    <!-- Otros recursos -->
+    <!-- Etiquetas de botones -->
+    <string name="labelIniciarSesion">Iniciar sesión</string>
+    <string name="labelAnadirCarrito">Añadir al carrito</string>
+    <string name="crearCuenta"><u>Crear una cuenta</u></string>
+    <string name="descargarEC"><u>Descargar Estado de Cuenta</u></string>
+
+    <!-- Textos para placeHolders -->
+    <string name="entradaCalle">Ingrese la calle</string>
+    <string name="entradaColonia">Ingrese la colonia</string>
+    <string name="entradaLocalidad">Ingrese la localidad</string>
+    <string name="entradaMunicipio">Ingrese el municipio</string>
+    <string name="entradaRFC">Ingrese tu RFC</string>
+    <string name="entradaTel">Ingrese tu teléfono</string>
+    <string name="mensajeNumero">#</string>
+
+    <!-- Descripciones para imágenes y elementos de interfaz -->
+    <string name="flechaRegresar">Flecha para regresar</string>
+    <string name="logoSinFondo">Logo sin fondo</string>
+    <string name="iconoSiguiente">Ícono para siguiente</string>
+    <string name="iconoAtras">Ícono para atrás</string>
+    <string name="iconoComboBox">Ícono para el combo box</string>
+    <string name="descripcionFondoLogin">Fondo de inicio de sesión</string>
+    <string name="descripcionFlechaRegreso">Flecha para regresar</string>
+    <string name="descripcionLogoSinFondo">Logo sin fondo</string>
+    <string name="descripcionIconoSiguiente">Ícono para siguiente</string>
+    <string name="descripcionIconoAtras">Ícono para atrás</string>
+    <string name="descripcionContenedorInfo">Contenedor de información</string>
+    <string name="descripcionEntradaTel">Campo para ingresar el teléfono</string>
+    <string name="descripcionBotonIniciarSesion">Botón para iniciar sesión</string>
+
+
+    <!-- Datos combobox estados -->
     <string-array name="spinner_items">
         <item>Aguascalientes</item>
         <item>Baja California</item>
@@ -31,10 +86,10 @@
         <item>Ciudad de Mexico</item>
         <item>Morelos</item>
         <item>Nayarit</item>
-        <item>Nuevo León</item>
+        <item>Nuevo Leon</item>
         <item>Oaxaca</item>
         <item>Puebla</item>
-        <item>Querétaro</item>
+        <item>Queretaro</item>
         <item>Quintana Roo</item>
         <item>San Luis Potosí</item>
         <item>Sinaloa</item>
@@ -43,7 +98,13 @@
         <item>Tamaulipas</item>
         <item>Tlaxcala</item>
         <item>Veracruz</item>
-        <item>Yucatán</item>
+        <item>Yucatan</item>
         <item>Zacatecas</item>
     </string-array>
+
+    <!-- Strings -->
+    <string name="nombreApp">Soluciones Para Plagas</string>
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="tituloActividadLogin">Login</string>
+
 </resources>

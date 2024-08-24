@@ -1,117 +1,158 @@
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent" android:layout_height="wrap_content" >
-	<!-- 
-	/*
-	 *	This content is generated from the API File Info.
-	 *	(Alt+Shift+Ctrl+I).
-	 *
-	 *	@desc 		
-	 *	@file 		registro
-	 *	@date 		Saturday 24th of August 2024 12:14:37 AM
-	 *	@title 		RegistroCliente
-	 *	@author 	
-	 *	@keywords 	
-	 *	@generator 	Export Kit v1.3.figma
-	 *
-	 */
-	-->
-	<ScrollView android:id="@+id/registro" 
-		android:layout_width="wrap_content" 
-		android:layout_height="match_parent" >
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/content_container"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
 
-		<RelativeLayout android:id="@+id/content_container" 
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content" >
+	<RelativeLayout
+		android:id="@+id/paginaregistro"
+		android:layout_marginTop="0dp"
+		android:layout_marginStart="0dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
+		<View
+			android:id="@+id/vistapagina"
+			android:layout_width="match_parent"
+			android:layout_height="823dp"
+			android:layout_marginStart="0dp"
+			android:layout_marginTop="0dp"
+			android:background="@drawable/_bg__registro_ek2_shape"
+			android:backgroundTint="#FFFFFF" />
 
+		<View
+			android:id="@+id/contenedorinfo"
+			android:layout_width="352dp"
+			android:layout_height="456dp"
+			android:layout_marginStart="30dp"
+			android:layout_marginTop="316dp"
+			android:background="@drawable/contenedorinfo_shape"
+			android:backgroundTint="#EFEFEF" />
 
-			<RelativeLayout android:id="@+id/page_registro_ek1"
-				android:layout_marginTop="0dp"
-				android:layout_marginStart="0dp"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				>
+		<ImageView
+			android:id="@+id/logotipsinfondo"
+			android:src="@drawable/logotipsinfondo"
+			android:contentDescription="logotipsinfondo"
+			android:layout_marginStart="129dp"
+			android:layout_marginTop="261dp"
+			android:layout_width="157dp"
+			android:layout_height="98dp" />
 
-				<View   android:id="@+id/_bg__registro_ek2"
-					android:background="@drawable/_bg__registro_ek2_shape"
-					 android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
-					android:layout_width="411dp"
-					android:layout_height="823dp" />
+		<ImageView
+			android:id="@+id/iconosiguiente"
+			android:src="@drawable/iconosiguiente"
+			android:contentDescription="iconosiguiente"
+			android:layout_marginStart="321dp"
+			android:layout_marginTop="702dp"
+			android:layout_width="26dp"
+			android:layout_height="27dp" />
 
-				<View   android:id="@+id/contenedorinfo"
-					android:background="@drawable/contenedorinfo_shape"
-					 android:layout_marginStart="38dp"
-					android:layout_marginTop="316dp"
-					android:layout_width="352dp"
-					android:layout_height="456dp" />
+		<ImageView
+			android:id="@+id/fondologin"
+			android:src="@drawable/fondologin"
+			android:contentDescription="fondologin"
+			android:layout_marginStart="-2dp"
+			android:layout_marginTop="-54dp"
+			android:layout_width="match_parent"
+			android:layout_height="321dp" />
 
-				<ImageView android:id="@+id/espaciocorreo"
-					android:src="@drawable/espaciocorreo"
-					android:contentDescription="espaciocorreo"
-					 android:layout_marginStart="75dp"
-					android:layout_marginTop="661dp"
-					android:layout_width="282dp"
-					android:layout_height="0dp" />
+		<TextView
+			android:id="@+id/txtRFC"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="360dp"
+			android:text="RFC"
+			android:textColor="#000000"
+			android:textSize="20sp"
+			android:textStyle="bold" />
 
-				<ImageView android:id="@+id/espaciorfc"
-					android:src="@drawable/espaciorfc"
-					android:contentDescription="espaciorfc"
-					 android:layout_marginStart="75dp"
-					android:layout_marginTop="463dp"
-					android:layout_width="282dp"
-					android:layout_height="0dp" />
+		<EditText
+			android:id="@+id/entradaRFC"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="380dp"
+			android:ems="13"
+			android:inputType="text"
+			android:text="Ingresa tu RFC"
+			android:textColor="#928F8F" />
 
-				<ImageView android:id="@+id/espaciorazons"
-					android:src="@drawable/espaciorazons"
-					android:contentDescription="espaciorazons"
-					 android:layout_marginStart="73dp"
-					android:layout_marginTop="531dp"
-					android:layout_width="282dp"
-					android:layout_height="0dp" />
+		<TextView
+			android:id="@+id/txtRazonSocial"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="440dp"
+			android:text="Razon social"
+			android:textColor="#000000"
+			android:textSize="20sp"
+			android:textStyle="bold" />
 
-				<ImageView android:id="@+id/espaciotel"
-					android:src="@drawable/espaciotel"
-					android:contentDescription="espaciotel"
-					 android:layout_marginStart="75dp"
-					android:layout_marginTop="594dp"
-					android:layout_width="282dp"
-					android:layout_height="0dp" />
+		<EditText
+			android:id="@+id/entradaRazonSocial"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="460dp"
+			android:ems="13"
+			android:inputType="text"
+			android:text="Ingresa tu razon social"
+			android:textColor="#928F8F" />
 
-				<ImageView android:id="@+id/logotipsinfondo"
-					android:src="@drawable/logotipsinfondo"
-					android:contentDescription="logotipsinfondo"
-					 android:layout_marginStart="129dp"
-					android:layout_marginTop="261dp"
-					android:layout_width="157dp"
-					android:layout_height="98dp" />
+		<TextView
+			android:id="@+id/txtTel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="520dp"
+			android:text="Teléfono"
+			android:textColor="#000000"
+			android:textSize="20sp"
+			android:textStyle="bold" />
 
-				<ImageView android:id="@+id/iconosiguiente"
-					android:src="@drawable/iconosiguiente"
-					android:contentDescription="iconosiguiente"
-					 android:layout_marginStart="321dp"
-					android:layout_marginTop="702dp"
-					android:layout_width="26dp"
-					android:layout_height="27dp" />
+		<EditText
+			android:id="@+id/entradaTel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="540dp"
+			android:ems="13"
+			android:inputType="text"
+			android:text="Ingresa tu teléfono"
+			android:textColor="#928F8F" />
 
-				<ImageView android:id="@+id/fondologin"
-					android:src="@drawable/fondologin"
-					android:contentDescription="fondologin"
-					 android:layout_marginStart="-2dp"
-					android:layout_marginTop="-54dp"
-					android:layout_width="416dp"
-					android:layout_height="321dp" />
+		<TextView
+			android:id="@+id/txtCorreo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="600dp"
+			android:text="Correo"
+			android:textColor="#000000"
+			android:textSize="20sp"
+			android:textStyle="bold" />
 
-				<ImageView android:id="@+id/flechaatras"
-					android:src="@drawable/flecharegreso"
-					android:contentDescription="flecharegreso"
-					 android:layout_marginStart="19dp"
-					android:layout_marginTop="17dp"
-					android:layout_width="39dp"
-					android:layout_height="46dp" />
+		<EditText
+			android:id="@+id/entradaCorreo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="80dp"
+			android:layout_marginTop="620dp"
+			android:ems="13"
+			android:inputType="text"
+			android:text="Ingresa tu correo"
+			android:textColor="#928F8F" />
 
-			</RelativeLayout>
-		</RelativeLayout>
+		<ImageView
+			android:id="@+id/flechaatras"
+			android:src="@drawable/flecharegreso"
+			android:contentDescription="flecharegreso"
+			android:layout_marginStart="19dp"
+			android:layout_marginTop="17dp"
+			android:layout_width="39dp"
+			android:layout_height="46dp" />
 
-	</ScrollView>
-</HorizontalScrollView>
+	</RelativeLayout>
+</RelativeLayout>

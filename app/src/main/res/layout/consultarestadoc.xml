@@ -1,135 +1,235 @@
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent" android:layout_height="wrap_content" >
-	<!-- 
-	/*
-	 *	This content is generated from the API File Info.
-	 *	(Alt+Shift+Ctrl+I).
-	 *
-	 *	@desc 		
-	 *	@file 		consultarestadoc
-	 *	@date 		Friday 23rd of August 2024 11:33:03 PM
-	 *	@title 		EstadoCuenta
-	 *	@author 	
-	 *	@keywords 	
-	 *	@generator 	Export Kit v1.3.figma
-	 *
-	 */
-	-->
-	<ScrollView android:id="@+id/consultarestadoc" 
-		android:layout_width="wrap_content" 
-		android:layout_height="match_parent" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/page_consultarestadoc_ek1"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-		<RelativeLayout android:id="@+id/content_container" 
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content" >
+	<View
+		android:id="@+id/_bg__consultarestadoc_ek2"
+		android:background="@drawable/shape_consultar_estado"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+	<ImageView
+		android:id="@+id/contenedorimagen"
+		android:src="@drawable/contenedorimagen"
+		android:contentDescription="contenedorimagen"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scaleType="centerCrop"
+		android:layout_alignParentTop="true" />
+
+	<ImageView
+		android:id="@+id/flecharegreso_1"
+		android:src="@drawable/flecharegreso_1"
+		android:contentDescription="flecharegreso_1"
+		android:layout_width="30dp"
+		android:layout_height="35dp"
+		android:layout_marginStart="25dp"
+		android:layout_marginTop="16dp"
+		android:layout_alignParentStart="true"
+		android:layout_alignParentTop="true" />
+
+	<ImageView
+		android:id="@+id/iconodescargar_1"
+		android:src="@drawable/iconodescargar_1"
+		android:contentDescription="iconodescargar_1"
+		android:layout_width="20dp"
+		android:layout_height="21dp"
+		android:layout_marginStart="53dp"
+		android:layout_marginTop="16dp"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentBottom="true" />
+
+	<ImageView
+		android:id="@+id/letraslogosinfondo_1"
+		android:src="@drawable/letraslogosinfondo_1"
+		android:contentDescription="letraslogosinfondo_1"
+		android:layout_width="136dp"
+		android:layout_height="71dp"
+		android:layout_marginStart="137dp"
+		android:layout_marginTop="105dp" />
+
+	<ImageView
+		android:id="@+id/logotipsinfondo_1"
+		android:src="@drawable/logotipsinfondo_1"
+		android:contentDescription="logotipsinfondo_1"
+		android:layout_width="90dp"
+		android:layout_height="84dp"
+		android:layout_marginStart="158dp"
+		android:layout_marginTop="21dp" />
+
+	<TextView
+		android:id="@+id/txtMsjB"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="220dp"
+		android:text="@string/msjEstadoCuenta"
+		android:textSize="20sp"
+		android:textStyle="bold"/>
+
+	<TextView
+		android:id="@+id/txtDiasCredito"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="290dp"
+		android:text="@string/txtDiasCredito"
+		android:theme="@style/estiloEstadoCuenta"/>
+
+	<TextView
+		android:id="@+id/txtMontoCredito"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="330dp"
+		android:text="@string/txtMontoCredito"
+		android:theme="@style/estiloEstadoCuenta"/>
+
+	<TextView
+		android:id="@+id/txtPorPagar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="370dp"
+		android:text="@string/txtPorPagar"
+		android:theme="@style/estiloEstadoCuenta"/>
+
+	<TextView
+		android:id="@+id/txtVencido"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="410dp"
+		android:text="@string/txtVencido"
+		android:theme="@style/estiloEstadoCuenta"/>
+
+	<TextView
+		android:id="@+id/txtCorriente"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="450dp"
+		android:text="@string/txtCorriente"
+		android:theme="@style/estiloEstadoCuenta"/>
+
+	<TextView
+		android:id="@+id/txtVencidoPor"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="490dp"
+		android:text="@string/txtVencidoPor"
+		android:theme="@style/estiloEstadoCuenta"/>
+
+	<TextView
+		android:id="@+id/btnDescargarEC"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="100dp"
+		android:layout_marginTop="540dp"
+		android:text="@string/descargarEC"
+		android:textStyle="bold"/>
+
+	<RelativeLayout
+		android:id="@+id/opciones"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true">
+
+		<View
+			android:id="@+id/iconosopciones"
+			android:background="@drawable/iconosopciones_shape"
+			android:layout_width="match_parent"
+			android:layout_height="63dp" />
 
 
+		<ImageView
+			android:id="@+id/iconomenu_1"
+			android:src="@drawable/iconomenu_1"
+			android:contentDescription="iconomenu_1"
+			android:layout_width="36dp"
+			android:layout_height="32dp"
+			android:layout_marginStart="247dp"
+			android:layout_marginTop="8dp" />
 
-			<RelativeLayout android:id="@+id/page_consultarestadoc_ek1"
-				android:layout_marginTop="0dp"
-				android:layout_marginStart="0dp"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				>
+		<ImageView
+			android:id="@+id/iconocompra_1"
+			android:src="@drawable/iconocompra_1"
+			android:contentDescription="iconocompra_1"
+			android:layout_width="38dp"
+			android:layout_height="43dp"
+			android:layout_marginStart="143dp"
+			android:layout_marginTop="2dp" />
 
-				<View   android:id="@+id/_bg__consultarestadoc_ek2"
-					android:background="@drawable/_bg__consultarestadoc_ek2_shape"
-					 android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
-					android:layout_width="411dp"
-					android:layout_height="823dp" />
+		<ImageView
+			android:id="@+id/iconocerrarsesion__1"
+			android:src="@drawable/iconocerrarsesion__1"
+			android:contentDescription="iconocerrarsesion__1"
+			android:layout_width="39dp"
+			android:layout_height="35dp"
+			android:layout_marginStart="332dp"
+			android:layout_marginTop="8dp" />
 
-				<ImageView android:id="@+id/contenedorimagen"
-					android:src="@drawable/contenedorimagen"
-					android:contentDescription="contenedorimagen"
-					 android:layout_marginStart="-9dp"
-					android:layout_marginTop="-46dp"
-					android:layout_width="425dp"
-					android:layout_height="239dp" />
+		<ImageView
+			android:id="@+id/iconolistaproductos_1"
+			android:src="@drawable/iconolistaproductos_1"
+			android:contentDescription="iconolistaproductos_1"
+			android:layout_width="31dp"
+			android:layout_height="35dp"
+			android:layout_marginStart="45dp"
+			android:layout_marginTop="5dp" />
 
-				<ImageView android:id="@+id/flecharegreso_1"
-					android:src="@drawable/flecharegreso_1"
-					android:contentDescription="flecharegreso_1"
-					 android:layout_marginStart="25dp"
-					android:layout_marginTop="16dp"
-					android:layout_width="30dp"
-					android:layout_height="35dp" />
+	</RelativeLayout>
 
-				<ImageView android:id="@+id/iconodescargar_1"
-					android:src="@drawable/iconodescargar_1"
-					android:contentDescription="iconodescargar_1"
-					 android:layout_marginStart="53dp"
-					android:layout_marginTop="576dp"
-					android:layout_width="20dp"
-					android:layout_height="21dp" />
+	<ImageView
+		android:id="@+id/imageButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="70dp"
+		android:layout_marginTop="540dp"
+		app:srcCompat="@drawable/iconodescargar_1" />
 
-				<ImageView android:id="@+id/letraslogosinfondo_1"
-					android:src="@drawable/letraslogosinfondo_1"
-					android:contentDescription="letraslogosinfondo_1"
-					 android:layout_marginStart="137dp"
-					android:layout_marginTop="105dp"
-					android:layout_width="136dp"
-					android:layout_height="71dp" />
+	<TextView
+		android:id="@+id/txtVerProductos"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="20dp"
+		android:layout_marginTop="800dp"
+		android:text="@string/txtVerProductos"
+		android:textSize="12sp"
+		android:textColor="#FFFFFF"/>
 
-				<ImageView android:id="@+id/logotipsinfondo_1"
-					android:src="@drawable/logotipsinfondo_1"
-					android:contentDescription="logotipsinfondo_1"
-					 android:layout_marginStart="158dp"
-					android:layout_marginTop="21dp"
-					android:layout_width="90dp"
-					android:layout_height="84dp" />
+	<TextView
+		android:id="@+id/txtCarrito"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="120dp"
+		android:layout_marginTop="800dp"
+		android:text="@string/txtCarrito"
+		android:textSize="12sp"
+		android:textColor="#FFFFFF"/>
 
+	<TextView
+		android:id="@+id/txtMenu"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="230dp"
+		android:layout_marginTop="800dp"
+		android:text="@string/txtMenuPrincipal"
+		android:textSize="12sp"
+		android:textColor="#FFFFFF"/>
 
-				<RelativeLayout android:id="@+id/opciones"
-					android:layout_marginTop="758dp"
-					android:layout_marginStart="0dp"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					>
+	<TextView
+		android:id="@+id/txtCerrarSesion"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="320dp"
+		android:layout_marginTop="800dp"
+		android:text="@string/txtCerrarSesion"
+		android:textSize="12sp"
+		android:textColor="#FFFFFF"/>
 
-					<View   android:id="@+id/iconosopciones"
-						android:background="@drawable/iconosopciones_shape"
-						 android:layout_marginStart="0dp"
-						android:layout_marginTop="2dp"
-						android:layout_width="411dp"
-						android:layout_height="63dp" />
-
-					<ImageView android:id="@+id/iconomenu_1"
-						android:src="@drawable/iconomenu_1"
-						android:contentDescription="iconomenu_1"
-						 android:layout_marginStart="247.18dp"
-						android:layout_marginTop="8dp"
-						android:layout_width="36.43dp"
-						android:layout_height="32dp" />
-
-					<ImageView android:id="@+id/iconocompra_1"
-						android:src="@drawable/iconocompra_1"
-						android:contentDescription="iconocompra_1"
-						 android:layout_marginStart="143.46dp"
-						android:layout_marginTop="2dp"
-						android:layout_width="38.3dp"
-						android:layout_height="43dp" />
-
-					<ImageView android:id="@+id/iconocerrarsesion__1"
-						android:src="@drawable/iconocerrarsesion__1"
-						android:contentDescription="iconocerrarsesion__1"
-						 android:layout_marginStart="332.48dp"
-						android:layout_marginTop="8dp"
-						android:layout_width="39.23dp"
-						android:layout_height="35dp" />
-
-					<ImageView android:id="@+id/iconolistaproductos_1"
-						android:src="@drawable/iconolistaproductos_1"
-						android:contentDescription="iconolistaproductos_1"
-						 android:layout_marginStart="45.56dp"
-						android:layout_marginTop="-1dp"
-						android:layout_width="31.02dp"
-						android:layout_height="41dp" />
-
-				</RelativeLayout>
-
-			</RelativeLayout>
-		</RelativeLayout>
-
-	</ScrollView>
-</HorizontalScrollView>
+</RelativeLayout>
