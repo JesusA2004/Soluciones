@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- welcome colors -->
-
 	<color name="colorPrimary">#008577</color>
 	<color name="colorPrimaryDark">#00574B</color>
 	<color name="colorAccent">#D81B60</color>
@@ -16,4 +15,21 @@
 	<color name="_bg__welcome_ek2_color">#FFFFFF</color>
 	<color name="soluciones_para_plagas_urbanas_y_agr_colas_color">#000000</color>
 	<color name="informacion_color">#D9D9D9</color>
+	<color name="_bg__registro_ek2_color">#F5F5F5</color>
+	<color name="contenedorinfo_color">#FFFFFF</color>
+	<color name="adjunta_el_documento_que_valide_tu_situaci_n_fiscal_color">#000000</color>
+	<color name="siguiente_color">#4A4646</color>
+	<color name="calle_color">#4A4646</color>
+	<color name="txttitulo_color">#000000</color>
+	<color name="rectangulocombobox_color">#D9D9D9</color>
+	<color name="_bg__infounproducto_ek2_color">#FFFFFF</color>
+	<color name="textnombrep_color">#000000</color>
+	<color name="textdescripcion_color">#353232</color>
+	<color name="textfieldcantidad_color">#D9D9D9</color>
+	<color name="_bg__consultarestadoc_ek2_color">#FFFFFF</color>
+	<color name="textporcentajeven_color">#015617</color>
+	<color name="textporpagar_ek1_color">#000000</color>
+	<color name="iconosopciones_color">#29B022</color>
+	<color name="rfc_color">#4A4646</color>
+	<color name="ingresa_tus_datos_color">#000000</color>
 </resources>

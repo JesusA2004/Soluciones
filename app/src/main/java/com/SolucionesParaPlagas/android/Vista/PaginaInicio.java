@@ -15,8 +15,8 @@ public class PaginaInicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bienvenida);
         inicializarElementos();
-        botonIniciarSesion.setOnClickListener(v -> iniciarSesion());
-        botonCrearCuenta.setOnClickListener(v -> crearCuenta());
+        // botonIniciarSesion.setOnClickListener(v -> iniciarSesion());
+        // botonCrearCuenta.setOnClickListener(v -> crearCuenta());
     }
 
     private void inicializarElementos(){
