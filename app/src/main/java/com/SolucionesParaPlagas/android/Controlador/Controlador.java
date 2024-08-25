@@ -19,7 +19,7 @@ public abstract class Controlador<T> {
     private static final String TAG = "Main4";
 
     public Controlador(Repositorio<T> repositorio) {
-        Conector conector = new Conector("Empleado");
+        Conector conector = new Conector("Admin");
         this.retrofit = conector.solicitudHTTPS();
         this.jsonApi = retrofit.create(JsonApi.class);
         this.repositorio = repositorio;
@@ -45,6 +45,10 @@ public abstract class Controlador<T> {
                 manejarError(t.getMessage());
             }
         });
+    }
+
+    public T obtenerDato(){
+        return repositorio.getDato();
     }
 
     public boolean datosCarg(){

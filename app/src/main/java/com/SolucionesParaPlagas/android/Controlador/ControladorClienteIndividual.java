@@ -21,4 +21,8 @@ public class ControladorClienteIndividual {
         repositorioCliente.setDato(clienteIndividual);
     }
 
+    public ClienteIndividual obtenerCliente(){
+        return repositorioCliente.getDato();
+    }
+
 }

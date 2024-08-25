@@ -4,12 +4,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.sol.R;
 
-public class Menu extends AppCompatActivity {
+public class Empleado extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bienvenida);
+        // setContentView(R.layout);
         inicializarElementos();
         configurarBotones();
     }

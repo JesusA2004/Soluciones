@@ -9,6 +9,16 @@ public class MostrarProducto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.infounproducto);
+        inicializarElementos();
+        configurarBotones();
+    }
+
+    private void inicializarElementos() {
+
+    }
+
+    private void configurarBotones() {
 
     }
 

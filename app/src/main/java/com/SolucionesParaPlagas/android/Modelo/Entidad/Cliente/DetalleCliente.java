@@ -1,8 +1,11 @@
 package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
+import java.util.Arrays;
 import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class DetalleCliente {
+public class DetalleCliente implements Parcelable{
 
     private String id;
     private String rfc;
@@ -31,6 +34,113 @@ public class DetalleCliente {
     private String city;
     private String state;
     private String[] addresses;
+
+    public DetalleCliente() {
+        id = "";
+        rfc = "";
+        legalName = "";
+        commercialName = "";
+        creditDays = 0;
+        creditAmount = 0.0;
+        paymentMethod = "";
+        creationDate = new Date(0); // Fecha inicializada en 1 de enero de 1970
+        status = "";
+        salesContact = "";
+        creditContact = "";
+        location = "";
+        locationID = "";
+        comments = "";
+        priceList = "";
+        priceListID = "";
+        paymentTermType = "";
+        email = "";
+        telephones = "";
+        number = 0L;
+        accountNumber = "";
+        defaultDiscount = 0.0;
+        clientSource = "";
+        account = "";
+        city = "";
+        state = "";
+        addresses = new String[0]; // Arreglo vacío
+    }
+
+    protected DetalleCliente(Parcel in) {
+        id = in.readString();
+        rfc = in.readString();
+        legalName = in.readString();
+        commercialName = in.readString();
+        creditDays = in.readInt();
+        creditAmount = in.readDouble();
+        paymentMethod = in.readString();
+        creationDate = new Date(in.readLong()); // Assuming Date is stored as timestamp
+        status = in.readString();
+        salesContact = in.readString();
+        creditContact = in.readString();
+        location = in.readString();
+        locationID = in.readString();
+        comments = in.readString();
+        priceList = in.readString();
+        priceListID = in.readString();
+        paymentTermType = in.readString();
+        email = in.readString();
+        telephones = in.readString();
+        number = in.readLong();
+        accountNumber = in.readString();
+        defaultDiscount = in.readDouble();
+        clientSource = in.readString();
+        account = in.readString();
+        city = in.readString();
+        state = in.readString();
+        addresses = in.createStringArray();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(rfc);
+        dest.writeString(legalName);
+        dest.writeString(commercialName);
+        dest.writeInt(creditDays);
+        dest.writeDouble(creditAmount);
+        dest.writeString(paymentMethod);
+        dest.writeLong(creationDate.getTime()); // Store Date as timestamp
+        dest.writeString(status);
+        dest.writeString(salesContact);
+        dest.writeString(creditContact);
+        dest.writeString(location);
+        dest.writeString(locationID);
+        dest.writeString(comments);
+        dest.writeString(priceList);
+        dest.writeString(priceListID);
+        dest.writeString(paymentTermType);
+        dest.writeString(email);
+        dest.writeString(telephones);
+        dest.writeLong(number);
+        dest.writeString(accountNumber);
+        dest.writeDouble(defaultDiscount);
+        dest.writeString(clientSource);
+        dest.writeString(account);
+        dest.writeString(city);
+        dest.writeString(state);
+        dest.writeStringArray(addresses);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<DetalleCliente> CREATOR = new Creator<DetalleCliente>() {
+        @Override
+        public DetalleCliente createFromParcel(Parcel in) {
+            return new DetalleCliente(in);
+        }
+        @Override
+        public DetalleCliente[] newArray(int size) {
+            return new DetalleCliente[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -246,6 +356,39 @@ public class DetalleCliente {
 
     public void setAddresses(String[] addresses) {
         this.addresses = addresses;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleCliente{" +
+                "account='" + account + '\'' +
+                ", id='" + id + '\'' +
+                ", rfc='" + rfc + '\'' +
+                ", legalName='" + legalName + '\'' +
+                ", commercialName='" + commercialName + '\'' +
+                ", creditDays=" + creditDays +
+                ", creditAmount=" + creditAmount +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", creationDate=" + creationDate +
+                ", status='" + status + '\'' +
+                ", salesContact='" + salesContact + '\'' +
+                ", creditContact='" + creditContact + '\'' +
+                ", location='" + location + '\'' +
+                ", locationID='" + locationID + '\'' +
+                ", comments='" + comments + '\'' +
+                ", priceList='" + priceList + '\'' +
+                ", priceListID='" + priceListID + '\'' +
+                ", paymentTermType='" + paymentTermType + '\'' +
+                ", email='" + email + '\'' +
+                ", telephones='" + telephones + '\'' +
+                ", number=" + number +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", defaultDiscount=" + defaultDiscount +
+                ", clientSource='" + clientSource + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", addresses=" + Arrays.toString(addresses) +
+                '}';
     }
 
 }

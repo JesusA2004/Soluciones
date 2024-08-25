@@ -45,8 +45,8 @@
 			android:id="@+id/fondologin"
 			android:src="@drawable/fondologin"
 			android:contentDescription="@string/descripcionFondoLogin"
-			android:layout_marginStart="-7dp"
-			android:layout_marginTop="-38dp"
+			android:layout_marginStart="0dp"
+			android:layout_marginTop="-40dp"
 			android:layout_width="416dp"
 			android:layout_height="321dp" />
 
@@ -89,7 +89,7 @@
 			android:layout_marginTop="490dp"
 			android:ems="13"
 			android:inputType="text"
-			android:text="@string/entradaRFC"
+			android:hint="@string/entradaRFC"
 			android:textColor="#757575"
 			android:autofillHints="username"/>
 
@@ -111,13 +111,13 @@
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="580dp"
 			android:ems="13"
-			android:inputType="text"
-			android:text="@string/entradaTel"
+			android:inputType="phone"
+			android:hint="@string/entradaTel"
 			android:textColor="#757575"
 			android:autofillHints="phone"/>
 
 		<Button
-			android:id="@+id/button"
+			android:id="@+id/botonIS"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="140dp"

@@ -26,20 +26,23 @@ public class ControladorJsonCliente extends Controlador<JsonCliente>{
     }
 
     @Override
-    protected boolean datosCargados() {
-        return false;
+    protected boolean datosCargados(){
+        if(controladorClienteIndividual.obtenerRepositorio().isEmpty()){
+            return false;
+        }
+        return true;
     }
 
     @Override
     protected void procesarDatos(JsonCliente datos) {
         // Suponiendo que datos.getValue() devuelve una lista de Clientes
-        List<ClienteIndividual> clienteIndividuals = datos.getValue();
-        Log.d(TAG, "Clientes: " + clienteIndividuals);
-        if (clienteIndividuals != null) {
-            for (ClienteIndividual cli : clienteIndividuals) {
+        List<ClienteIndividual> clientesIndividuales = datos.getValue();
+        Log.d(TAG, "Clientes: " + clientesIndividuales);
+        if (clientesIndividuales != null) {
+            for (ClienteIndividual cli : clientesIndividuales) {
                 Log.d(TAG, "Cliente: " + cli.getID() + " - " + cli.getClientName());
             }
-            controladorClienteIndividual.enviarDatosRepositorio(clienteIndividuals);
+            controladorClienteIndividual.enviarDatosRepositorio(clientesIndividuales);
         }
     }
 
