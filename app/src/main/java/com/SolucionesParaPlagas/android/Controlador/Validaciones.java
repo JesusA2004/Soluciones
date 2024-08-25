@@ -55,7 +55,7 @@ public class Validaciones {
      * @param campo El campo a validar.
      * @return true si el campo contiene solo números, false en caso contrario.
      */
-    private boolean validarSoloNumeros(String campo) {
+    public boolean validarSoloNumeros(String campo) {
         for (int i = 0; i < campo.length(); i++) {
             if (!Character.isDigit(campo.charAt(i))) {
                 return false;
@@ -64,7 +64,7 @@ public class Validaciones {
         return true;
     }
 
-    private boolean validarStringVacio(String campo){
+    public boolean validarStringVacio(String campo){
         if(campo.isEmpty()){
             // Si el campo está vacío, devuelve true
             return true;

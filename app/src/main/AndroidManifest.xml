@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Sol"
         tools:targetApi="31">
         <activity
+            android:name="com.SolucionesParaPlagas.android.Vista.Menu"
+            android:exported="false" />
+        <activity
             android:name="com.SolucionesParaPlagas.android.Vista.EstadoCuenta"
             android:exported="false" />
         <activity

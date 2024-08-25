@@ -3,14 +3,22 @@ package com.SolucionesParaPlagas.android.Vista;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.example.sol.R;
 
 public class RegistroDatos extends AppCompatActivity {
 
     private ImageView botonRegresar;
     private ImageView botonSiguiente;
+    private EditText usuarioRFC;
+    private EditText usuarioRazonS;
+    private EditText usuarioTelefono;
+    private EditText usuarioCorreo;
+    private Validaciones validaciones; // Objeto para realizar las validaciones
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +36,60 @@ public class RegistroDatos extends AppCompatActivity {
     private void inicializarElementos() {
         botonRegresar = findViewById(R.id.flechaatras);
         botonSiguiente = findViewById(R.id.iconosiguiente);
+        usuarioRFC = findViewById(R.id.entradaRFC);
+        usuarioRazonS = findViewById(R.id.entradaRazonSocial);
+        usuarioTelefono = findViewById(R.id.entradaTel);
+        usuarioCorreo = findViewById(R.id.entradaCorreo);
+        validaciones = new Validaciones(); // Inicializa el objeto Validaciones
     }
 
     private void configurarBotones() {
-        // Configura el listener para la ImageView
         botonRegresar.setOnClickListener(this::regresarAPaginaInicio);
         botonSiguiente.setOnClickListener(this::irARegistrarDireccion);
     }
 
     private void regresarAPaginaInicio(View v) {
-        // Acción para regresar a la pantalla anterior
         Intent intent = new Intent(RegistroDatos.this, PaginaInicio.class);
         startActivity(intent);
-        finish(); // Opcional: Finaliza la actividad actual para que no esté en el stack
+        finish();
     }
 
-    private void irARegistrarDireccion(View v){
-        Intent intent = new Intent(RegistroDatos.this, RegistroDireccion.class);
-        startActivity(intent);
-        finish();
+    private boolean validarCampos() {
+        // Validar si el RFC es correcto
+        if (validaciones.validarStringVacio(usuarioRFC.getText().toString()) ||
+                !validaciones.validarRFC(usuarioRFC.getText().toString())) {
+            Toast.makeText(this, "Por favor ingresa un RFC válido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // Validar que el campo Razon Social no esté vacío
+        if (validaciones.validarStringVacio(usuarioRazonS.getText().toString())) {
+            Toast.makeText(this, "Por favor ingresa la razón social", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // Validar que el campo Teléfono no esté vacío y contenga solo números
+        if (validaciones.validarStringVacio(usuarioTelefono.getText().toString()) ||
+                !validaciones.validarSoloNumeros(usuarioTelefono.getText().toString())) {
+            Toast.makeText(this, "Por favor ingresa un número de teléfono válido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // Validar que el campo Correo no esté vacío
+        if (validaciones.validarStringVacio(usuarioCorreo.getText().toString())) {
+            Toast.makeText(this, "Por favor ingresa un correo electrónico", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private void irARegistrarDireccion(View v) {
+        if (validarCampos()) {
+            Intent intent = new Intent(RegistroDatos.this, RegistroDireccion.class);
+            intent.putExtra("RFC", usuarioRFC.getText().toString());
+            intent.putExtra("RazonSocial", usuarioRazonS.getText().toString());
+            intent.putExtra("Telefono", usuarioTelefono.getText().toString());
+            intent.putExtra("Correo", usuarioCorreo.getText().toString());
+            startActivity(intent);
+            finish();
+        }
     }
 
 }
