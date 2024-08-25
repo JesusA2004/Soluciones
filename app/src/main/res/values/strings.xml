@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Etiquetas de textos estáticos -->
     <string name="mensajeBienvenida">¡BIENVENIDO!</string>
     <string name="mensajePresentacion">Soluciones para Plagas Urbanas y Agrícolas</string>
@@ -11,8 +10,10 @@
     <string name="txtNoInterior">No. Interior</string>
     <string name="txtNoExterior">No. Exterior</string>
     <string name="txtCP">C.P.</string>
+    <string name="txtCorreo">Correo</string>
     <string name="txtMunicipio">Municipio</string>
     <string name="txtRFC">RFC</string>
+    <string name="txtRazonS">Razon Social</string>
     <string name="txtTelefono">Teléfono</string>
     <string name="msjIngresarDatos">Ingresa tus datos</string>
     <string name="msjAdjuntarDoc">Adjunta el documento que\nvalide tu situación fiscal</string>
@@ -48,8 +49,10 @@
     <string name="entradaLocalidad">Ingrese la localidad</string>
     <string name="entradaMunicipio">Ingrese el municipio</string>
     <string name="entradaRFC">Ingrese tu RFC</string>
+    <string name="entradaRazonS">Ingrese tu razon social</string>
     <string name="entradaTel">Ingrese tu teléfono</string>
     <string name="mensajeNumero">#</string>
+    <string name="entradaCorreo">Ingresa tu correo</string>
 
     <!-- Descripciones para imágenes y elementos de interfaz -->
     <string name="flechaRegresar">Flecha para regresar</string>
@@ -65,7 +68,8 @@
     <string name="descripcionContenedorInfo">Contenedor de información</string>
     <string name="descripcionEntradaTel">Campo para ingresar el teléfono</string>
     <string name="descripcionBotonIniciarSesion">Botón para iniciar sesión</string>
-
+    <string name="descripcionLogoTipsSinFondo">Logo Tips sin fondo</string>
+    <string name="descripcionIconoSubirDocumento">Ícono para subir documento</string>
 
     <!-- Datos combobox estados -->
     <string-array name="spinner_items">

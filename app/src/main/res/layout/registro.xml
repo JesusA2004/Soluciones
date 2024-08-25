@@ -63,7 +63,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="360dp"
-			android:text="RFC"
+			android:text="@string/txtRFC"
 			android:textColor="#000000"
 			android:textSize="20sp"
 			android:textStyle="bold" />
@@ -71,12 +71,12 @@
 		<EditText
 			android:id="@+id/entradaRFC"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="48dp"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="380dp"
 			android:ems="13"
 			android:inputType="text"
-			android:text="Ingresa tu RFC"
+			android:hint="@string/entradaRFC"
 			android:textColor="#928F8F" />
 
 		<TextView
@@ -85,7 +85,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="440dp"
-			android:text="Razon social"
+			android:text="@string/txtRazonS"
 			android:textColor="#000000"
 			android:textSize="20sp"
 			android:textStyle="bold" />
@@ -93,12 +93,12 @@
 		<EditText
 			android:id="@+id/entradaRazonSocial"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="48dp"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="460dp"
 			android:ems="13"
 			android:inputType="text"
-			android:text="Ingresa tu razon social"
+			android:hint="@string/entradaRazonS"
 			android:textColor="#928F8F" />
 
 		<TextView
@@ -107,7 +107,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="520dp"
-			android:text="Teléfono"
+			android:text="@string/txtTelefono"
 			android:textColor="#000000"
 			android:textSize="20sp"
 			android:textStyle="bold" />
@@ -115,12 +115,12 @@
 		<EditText
 			android:id="@+id/entradaTel"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="48dp"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="540dp"
 			android:ems="13"
-			android:inputType="text"
-			android:text="Ingresa tu teléfono"
+			android:inputType="phone"
+			android:hint="@string/entradaTel"
 			android:textColor="#928F8F" />
 
 		<TextView
@@ -129,7 +129,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="600dp"
-			android:text="Correo"
+			android:text="@string/txtCorreo"
 			android:textColor="#000000"
 			android:textSize="20sp"
 			android:textStyle="bold" />
@@ -137,12 +137,12 @@
 		<EditText
 			android:id="@+id/entradaCorreo"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="48dp"
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="620dp"
 			android:ems="13"
 			android:inputType="text"
-			android:text="Ingresa tu correo"
+			android:hint="@string/entradaCorreo"
 			android:textColor="#928F8F" />
 
 		<ImageView
