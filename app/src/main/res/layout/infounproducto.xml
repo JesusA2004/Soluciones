@@ -172,6 +172,7 @@
 			android:contentDescription="@string/descripcionBotonIniciarSesion" />
 
 		<EditText
+			android:id="@+id/entradaCantidad"
 			android:layout_width="80dp"
 			android:layout_height="50dp"
 			android:layout_marginStart="200dp"

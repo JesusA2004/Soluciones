@@ -12,8 +12,8 @@ import android.widget.Toast;
 import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.example.sol.R;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +27,7 @@ public class Login extends AppCompatActivity {
     private ControladorJsonCliente controladorClienteJson;
     private ControladorClienteIndividual controladorClienteI = new ControladorClienteIndividual();
     private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
+    private Validaciones validar = new Validaciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,33 +57,45 @@ public class Login extends AppCompatActivity {
     }
 
     private void iniciarSesion(View v) {
-        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
-        new Thread(() -> {
-            controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
-            controladorClienteJson.realizarSolicitud();
-            // Esperar un poco para asegurarse de que el cliente se haya actualizado
-            try {
-                Thread.sleep(1500); // Ajusta el tiempo según sea necesario
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        // Primero validar que el rfc y el campo del telefono sean validos
+        if(validar.validarRFC(usuarioRFC.getText().toString().trim())){
+            if(!validar.validarSoloNumeros(usuarioTelefono.getText().toString())){
+                Toast.makeText(Login.this, "Error en el numero ingresado", Toast.LENGTH_SHORT).show();
+            }else{
+                iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
+                new Thread(() -> {
+                    controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
+                    controladorClienteJson.realizarSolicitud();
+                    // Esperar un poco para asegurarse de que el cliente se haya actualizado
+                    try {
+                        Thread.sleep(1500); // Ajusta el tiempo según sea necesario
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
+                    runOnUiThread(() -> {
+                        iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                        if (clienteIndividual != null) {
+                            Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
+                            Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
+                            irAMenu(v, clienteIndividual);
+                        } else {
+                            Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }).start();
             }
-            ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
-            runOnUiThread(() -> {
-                iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
-                if (clienteIndividual != null) {
-                    Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
-                    Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
-                    irAMenu(v, clienteIndividual);
-                } else {
-                    Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }).start();
+        }else{
+            Toast.makeText(Login.this, "Error, RFC no valido", Toast.LENGTH_SHORT).show();
+            if(validar.validarSoloNumeros(usuarioTelefono.getText().toString())){
+                Toast.makeText(Login.this, "Error en el numero ingresado", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void irAMenu(View v, ClienteIndividual clienteCompleto) {
         Intent intent = new Intent(Login.this, Menu.class);
-        // intent.putExtra("Cliente", clienteCompleto);
+        intent.putExtra("Cliente", clienteCompleto);
         startActivity(intent);
     }
 
