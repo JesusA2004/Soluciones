@@ -25,4 +25,8 @@ public class ControladorClienteIndividual {
         return repositorioCliente.getDato();
     }
 
+    public void limpiarRepositorio(){
+        repositorioCliente.clearList();
+    }
+
 }

@@ -1,9 +1,9 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import java.util.List;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioDetalleCliente;
-import java.util.List;
 
 public class ControladorDetalleCliente {
 
@@ -23,6 +23,10 @@ public class ControladorDetalleCliente {
 
     public DetalleCliente obtenerCliente(){
         return repositorioCliente.getDato();
+    }
+
+    public void limpiarRepositorio(){
+        repositorioCliente.clearList();
     }
 
 }

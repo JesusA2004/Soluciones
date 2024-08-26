@@ -2,6 +2,8 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.example.sol.R;
 import android.content.Intent;
@@ -29,14 +31,37 @@ public class MostrarProducto extends AppCompatActivity {
     private int cantidadPro;
     private String idProducto;
     private String nomProducto;
+    private ControladorImagenes controladorImagenes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infounproducto);
-        obtenerElementos();
+        // Hacemos referencia con objetos a los elementos de la interfaz
         inicializarElementos();
+        // Obtenemos el producto elegido
+        obtenerElementos();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Cargamos los datos del producto en la interfaz
+        cargarDatosProducto();
+        // Preparamos los botones para las acciones que se van a realizar
         configurarBotones();
+    }
+
+    private void cargarImagenProducto(){
+        String imageUrl = producto.getImageUrl();
+        controladorImagenes = new ControladorImagenes(this);
+        controladorImagenes.cargarImagenDesdeUrl(imageUrl, imagenProducto);
+    }
+
+    private void cargarDatosProducto(){
+        cargarImagenProducto();
+        nombreProducto.setText(producto.getTitle());
+        descripcionProducto.setText(producto.getDescription());
     }
 
     private void obtenerElementos(){

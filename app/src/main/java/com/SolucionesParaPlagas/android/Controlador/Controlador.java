@@ -1,12 +1,10 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import android.util.Log;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
-import java.util.List;
 
 public abstract class Controlador<T> {
 
@@ -16,7 +14,6 @@ public abstract class Controlador<T> {
     private Retrofit retrofit;
     protected JsonApi jsonApi;
     protected Repositorio<T> repositorio;
-    private static final String TAG = "Main4";
 
     public Controlador(Repositorio<T> repositorio) {
         Conector conector = new Conector("Admin");
@@ -35,7 +32,6 @@ public abstract class Controlador<T> {
                     return;
                 }
                 T datos = response.body();
-                Log.d(TAG, "Response body: " + datos);
                 if (datos != null) {
                     procesarDatos(datos);
                 }
@@ -49,6 +45,10 @@ public abstract class Controlador<T> {
 
     public T obtenerDato(){
         return repositorio.getDato();
+    }
+
+    public void limipiarRepositorio(){
+        repositorio.clearList();
     }
 
     public boolean datosCarg(){

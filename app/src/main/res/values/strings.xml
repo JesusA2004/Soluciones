@@ -1,4 +1,5 @@
 <resources>
+
     <!-- Etiquetas de textos estáticos -->
     <string name="mensajeBienvenida">¡BIENVENIDO!</string>
     <string name="mensajePresentacion">Soluciones para Plagas Urbanas y Agrícolas</string>

@@ -9,12 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import com.example.sol.R;
 import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-import com.example.sol.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
                     controladorClienteJson.realizarSolicitud();
                     // Esperar un poco para asegurarse de que el cliente se haya actualizado
                     try {
-                        Thread.sleep(1500); // Ajusta el tiempo según sea necesario
+                        Thread.sleep(2500); // Ajusta el tiempo según sea necesario
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -93,9 +93,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void irAMenu(View v, ClienteIndividual clienteCompleto) {
+    private void irAMenu(View v, ClienteIndividual cliente) {
         Intent intent = new Intent(Login.this, Menu.class);
-        intent.putExtra("Cliente", clienteCompleto);
+        intent.putExtra("Cliente", cliente);
         startActivity(intent);
     }
 

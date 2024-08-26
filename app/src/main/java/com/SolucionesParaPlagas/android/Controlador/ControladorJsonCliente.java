@@ -1,11 +1,13 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioJsonCliente;
-import java.util.List;
-import retrofit2.Call;
 
 public class ControladorJsonCliente extends Controlador<JsonCliente> {
 
@@ -17,6 +19,13 @@ public class ControladorJsonCliente extends Controlador<JsonCliente> {
         super(RepositorioJsonCliente.obtenerInstancia());
         // Construir el endpoint con el RFC proporcionado
         this.EndPoint = EndPoint + "'" + String.format(RFC) + "'";
+    }
+
+    // Constructor para cliente detallado
+    public ControladorJsonCliente(String id, String sobrecarga){
+        super(RepositorioJsonCliente.obtenerInstancia());
+        this.EndPoint = "Clients/" + id;
+        cargarClienteDetallado();
     }
 
     @Override
@@ -42,9 +51,25 @@ public class ControladorJsonCliente extends Controlador<JsonCliente> {
         return super.jsonApi;
     }
 
-    public interface ClienteCallback {
-        void onClienteLoaded(DetalleCliente cliente);
-        void onError(String error);
+    private void cargarClienteDetallado(){
+        Call<DetalleCliente> call = getJsonApi().obtenerCliente(EndPoint);
+        call.enqueue(new Callback<DetalleCliente>() {
+            @Override
+            public void onResponse(Call<DetalleCliente> call, Response<DetalleCliente> response) {
+                if (!response.isSuccessful()) {
+                    manejarError(response.code());
+                    return;
+                }
+                DetalleCliente datos = response.body();
+                if (datos != null) {
+                    controladorDetalleCliente.enviarDatoRepositorio(datos);
+                }
+            }
+            @Override
+            public void onFailure(Call<DetalleCliente> call, Throwable t) {
+                manejarError(t.getMessage());
+            }
+        });
     }
 
 }

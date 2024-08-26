@@ -1,229 +1,250 @@
 package com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 
-public class Producto {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    private String ID; // UUID
-    private String Code; // Código
-    private String Title; // Título
-    private String Description; // Descripción
-    private String CreationDate; // Fecha de creación (date-time en formato String)
-    private double Cost; // Costo
-    private String SKU; // SKU
-    private String Comments; // Comentarios
-    private int CostType; // Tipo de costo (integer en Java es int)
-    private String CostTypeText; // Texto del tipo de costo
-    private String Category1ID; // ID de la categoría 1 (UUID)
-    private String Category2ID; // ID de la categoría 2 (UUID)
-    private String Category3ID; // ID de la categoría 3 (UUID)
-    private double CurrentInventory; // Inventario actual (número en formato double)
-    private boolean ChargeVAT; // Cobrar IVA
-    private int Number; // Número (integer en Java es int)
-    private int PricingType; // Tipo de precio (integer en Java es int)
-    private String ImageUrl; // URL de la imagen
-    private String PricingTypeText; // Texto del tipo de precio
-    private String Unit; // Unidad
-    private String CurrencyID; // ID de la moneda (UUID)
-    private String CurrencyCode; // Código de la moneda
-    private int PurchaseType; // Tipo de compra (integer en Java es int)
-    private String PurchaseTypeText; // Texto del tipo de compra
-    private double IEPSRate; // Tasa de IEPS
-    private int Type; // Tipo (integer en Java es int)
-    private String TypeText; // Texto del tipo
-    private boolean ProductionAuto; // Producción automática
-    private double Volume; // Volumen
-    private double Weight; // Peso
+public class Producto implements Parcelable {
 
-    // Getters y Setters
-    public String getID() {
-        return ID;
+    // Campos de la clase
+    private String ID;
+    private String Code;
+    private String Title;
+    private String Description;
+    private String CreationDate;
+    private double Cost;
+    private String SKU;
+    private String Comments;
+    private int CostType;
+    private String CostTypeText;
+    private String Category1ID;
+    private String Category2ID;
+    private String Category3ID;
+    private double CurrentInventory;
+    private boolean ChargeVAT;
+    private int Number;
+    private int PricingType;
+    private String ImageUrl;
+    private String PricingTypeText;
+    private String Unit;
+    private String CurrencyID;
+    private String CurrencyCode;
+    private int PurchaseType;
+    private String PurchaseTypeText;
+    private double IEPSRate;
+    private int Type;
+    private String TypeText;
+    private boolean ProductionAuto;
+    private double Volume;
+    private double Weight;
+
+    // Constructor vacío
+    public Producto() {
+        
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    // Constructor que toma un Parcel y lee los datos en el mismo orden en que fueron escritos
+    protected Producto(Parcel in) {
+        ID = in.readString();
+        Code = in.readString();
+        Title = in.readString();
+        Description = in.readString();
+        CreationDate = in.readString();
+        Cost = in.readDouble();
+        SKU = in.readString();
+        Comments = in.readString();
+        CostType = in.readInt();
+        CostTypeText = in.readString();
+        Category1ID = in.readString();
+        Category2ID = in.readString();
+        Category3ID = in.readString();
+        CurrentInventory = in.readDouble();
+        ChargeVAT = in.readByte() != 0;
+        Number = in.readInt();
+        PricingType = in.readInt();
+        ImageUrl = in.readString();
+        PricingTypeText = in.readString();
+        Unit = in.readString();
+        CurrencyID = in.readString();
+        CurrencyCode = in.readString();
+        PurchaseType = in.readInt();
+        PurchaseTypeText = in.readString();
+        IEPSRate = in.readDouble();
+        Type = in.readInt();
+        TypeText = in.readString();
+        ProductionAuto = in.readByte() != 0;
+        Volume = in.readDouble();
+        Weight = in.readDouble();
     }
 
-    public String getCode() {
-        return Code;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(ID);
+        dest.writeString(Code);
+        dest.writeString(Title);
+        dest.writeString(Description);
+        dest.writeString(CreationDate);
+        dest.writeDouble(Cost);
+        dest.writeString(SKU);
+        dest.writeString(Comments);
+        dest.writeInt(CostType);
+        dest.writeString(CostTypeText);
+        dest.writeString(Category1ID);
+        dest.writeString(Category2ID);
+        dest.writeString(Category3ID);
+        dest.writeDouble(CurrentInventory);
+        dest.writeByte((byte) (ChargeVAT ? 1 : 0));
+        dest.writeInt(Number);
+        dest.writeInt(PricingType);
+        dest.writeString(ImageUrl);
+        dest.writeString(PricingTypeText);
+        dest.writeString(Unit);
+        dest.writeString(CurrencyID);
+        dest.writeString(CurrencyCode);
+        dest.writeInt(PurchaseType);
+        dest.writeString(PurchaseTypeText);
+        dest.writeDouble(IEPSRate);
+        dest.writeInt(Type);
+        dest.writeString(TypeText);
+        dest.writeByte((byte) (ProductionAuto ? 1 : 0));
+        dest.writeDouble(Volume);
+        dest.writeDouble(Weight);
     }
 
-    public void setCode(String Code) {
-        this.Code = Code;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public String getTitle() {
-        return Title;
+    public static final Parcelable.Creator<Producto> CREATOR = new Parcelable.Creator<Producto>() {
+        @Override
+        public Producto createFromParcel(Parcel in) {
+            return new Producto(in);
+        }
+
+        @Override
+        public Producto[] newArray(int size) {
+            return new Producto[size];
+        }
+    };
+
+    public String getCategory2ID() {
+        return Category2ID;
     }
 
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
-
-    public String getCreationDate() {
-        return CreationDate;
-    }
-
-    public void setCreationDate(String CreationDate) {
-        this.CreationDate = CreationDate;
-    }
-
-    public double getCost() {
-        return Cost;
-    }
-
-    public void setCost(double Cost) {
-        this.Cost = Cost;
-    }
-
-    public String getSKU() {
-        return SKU;
-    }
-
-    public void setSKU(String SKU) {
-        this.SKU = SKU;
-    }
-
-    public String getComments() {
-        return Comments;
-    }
-
-    public void setComments(String Comments) {
-        this.Comments = Comments;
-    }
-
-    public int getCostType() {
-        return CostType;
-    }
-
-    public void setCostType(int CostType) {
-        this.CostType = CostType;
-    }
-
-    public String getCostTypeText() {
-        return CostTypeText;
-    }
-
-    public void setCostTypeText(String CostTypeText) {
-        this.CostTypeText = CostTypeText;
+    public void setCategory2ID(String category2ID) {
+        Category2ID = category2ID;
     }
 
     public String getCategory1ID() {
         return Category1ID;
     }
 
-    public void setCategory1ID(String Category1ID) {
-        this.Category1ID = Category1ID;
-    }
-
-    public String getCategory2ID() {
-        return Category2ID;
-    }
-
-    public void setCategory2ID(String Category2ID) {
-        this.Category2ID = Category2ID;
+    public void setCategory1ID(String category1ID) {
+        Category1ID = category1ID;
     }
 
     public String getCategory3ID() {
         return Category3ID;
     }
 
-    public void setCategory3ID(String Category3ID) {
-        this.Category3ID = Category3ID;
-    }
-
-    public double getCurrentInventory() {
-        return CurrentInventory;
-    }
-
-    public void setCurrentInventory(double CurrentInventory) {
-        this.CurrentInventory = CurrentInventory;
+    public void setCategory3ID(String category3ID) {
+        Category3ID = category3ID;
     }
 
     public boolean isChargeVAT() {
         return ChargeVAT;
     }
 
-    public void setChargeVAT(boolean ChargeVAT) {
-        this.ChargeVAT = ChargeVAT;
+    public void setChargeVAT(boolean chargeVAT) {
+        ChargeVAT = chargeVAT;
     }
 
-    public int getNumber() {
-        return Number;
+    public String getCode() {
+        return Code;
     }
 
-    public void setNumber(int Number) {
-        this.Number = Number;
+    public void setCode(String code) {
+        Code = code;
     }
 
-    public int getPricingType() {
-        return PricingType;
+    public String getComments() {
+        return Comments;
     }
 
-    public void setPricingType(int PricingType) {
-        this.PricingType = PricingType;
+    public void setComments(String comments) {
+        Comments = comments;
     }
 
-    public String getImageUrl() {
-        return ImageUrl;
+    public double getCost() {
+        return Cost;
     }
 
-    public void setImageUrl(String ImageUrl) {
-        this.ImageUrl = ImageUrl;
+    public void setCost(double cost) {
+        Cost = cost;
     }
 
-    public String getPricingTypeText() {
-        return PricingTypeText;
+    public int getCostType() {
+        return CostType;
     }
 
-    public void setPricingTypeText(String PricingTypeText) {
-        this.PricingTypeText = PricingTypeText;
+    public void setCostType(int costType) {
+        CostType = costType;
     }
 
-    public String getUnit() {
-        return Unit;
+    public String getCostTypeText() {
+        return CostTypeText;
     }
 
-    public void setUnit(String Unit) {
-        this.Unit = Unit;
+    public void setCostTypeText(String costTypeText) {
+        CostTypeText = costTypeText;
     }
 
-    public String getCurrencyID() {
-        return CurrencyID;
+    public String getCreationDate() {
+        return CreationDate;
     }
 
-    public void setCurrencyID(String CurrencyID) {
-        this.CurrencyID = CurrencyID;
+    public void setCreationDate(String creationDate) {
+        CreationDate = creationDate;
     }
 
     public String getCurrencyCode() {
         return CurrencyCode;
     }
 
-    public void setCurrencyCode(String CurrencyCode) {
-        this.CurrencyCode = CurrencyCode;
+    public void setCurrencyCode(String currencyCode) {
+        CurrencyCode = currencyCode;
     }
 
-    public int getPurchaseType() {
-        return PurchaseType;
+    public double getCurrentInventory() {
+        return CurrentInventory;
     }
 
-    public void setPurchaseType(int PurchaseType) {
-        this.PurchaseType = PurchaseType;
+    public void setCurrentInventory(double currentInventory) {
+        CurrentInventory = currentInventory;
     }
 
-    public String getPurchaseTypeText() {
-        return PurchaseTypeText;
+    public String getCurrencyID() {
+        return CurrencyID;
     }
 
-    public void setPurchaseTypeText(String PurchaseTypeText) {
-        this.PurchaseTypeText = PurchaseTypeText;
+    public void setCurrencyID(String currencyID) {
+        CurrencyID = currencyID;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public double getIEPSRate() {
@@ -234,44 +255,116 @@ public class Producto {
         this.IEPSRate = IEPSRate;
     }
 
-    public int getType() {
-        return Type;
+    public String getImageUrl() {
+        return ImageUrl;
     }
 
-    public void setType(int Type) {
-        this.Type = Type;
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
     }
 
-    public String getTypeText() {
-        return TypeText;
+    public int getNumber() {
+        return Number;
     }
 
-    public void setTypeText(String TypeText) {
-        this.TypeText = TypeText;
+    public void setNumber(int number) {
+        Number = number;
+    }
+
+    public int getPricingType() {
+        return PricingType;
+    }
+
+    public void setPricingType(int pricingType) {
+        PricingType = pricingType;
+    }
+
+    public String getPricingTypeText() {
+        return PricingTypeText;
+    }
+
+    public void setPricingTypeText(String pricingTypeText) {
+        PricingTypeText = pricingTypeText;
     }
 
     public boolean isProductionAuto() {
         return ProductionAuto;
     }
 
-    public void setProductionAuto(boolean ProductionAuto) {
-        this.ProductionAuto = ProductionAuto;
+    public void setProductionAuto(boolean productionAuto) {
+        ProductionAuto = productionAuto;
+    }
+
+    public int getPurchaseType() {
+        return PurchaseType;
+    }
+
+    public void setPurchaseType(int purchaseType) {
+        PurchaseType = purchaseType;
+    }
+
+    public String getPurchaseTypeText() {
+        return PurchaseTypeText;
+    }
+
+    public void setPurchaseTypeText(String purchaseTypeText) {
+        PurchaseTypeText = purchaseTypeText;
+    }
+
+    public String getSKU() {
+        return SKU;
+    }
+
+    public void setSKU(String SKU) {
+        this.SKU = SKU;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public int getType() {
+        return Type;
+    }
+
+    public void setType(int type) {
+        Type = type;
+    }
+
+    public String getTypeText() {
+        return TypeText;
+    }
+
+    public void setTypeText(String typeText) {
+        TypeText = typeText;
+    }
+
+    public String getUnit() {
+        return Unit;
+    }
+
+    public void setUnit(String unit) {
+        Unit = unit;
     }
 
     public double getVolume() {
         return Volume;
     }
 
-    public void setVolume(double Volume) {
-        this.Volume = Volume;
+    public void setVolume(double volume) {
+        Volume = volume;
     }
 
     public double getWeight() {
         return Weight;
     }
 
-    public void setWeight(double Weight) {
-        this.Weight = Weight;
+    public void setWeight(double weight) {
+        Weight = weight;
     }
 
 }

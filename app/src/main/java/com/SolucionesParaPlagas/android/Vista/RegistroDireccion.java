@@ -59,10 +59,12 @@ public class RegistroDireccion extends AppCompatActivity {
     private void recibirDatosDeRegistroDatos() {
         // Recibe los datos enviados desde la actividad anterior
         Intent intent = getIntent();
-        rfc = intent.getStringExtra("RFC");
-        razonSocial = intent.getStringExtra("RazonSocial");
-        telefono = intent.getStringExtra("Telefono");
-        correo = intent.getStringExtra("Correo");
+        if(intent != null){
+            rfc = intent.getStringExtra("RFC");
+            razonSocial = intent.getStringExtra("RazonSocial");
+            telefono = intent.getStringExtra("Telefono");
+            correo = intent.getStringExtra("Correo");
+        }
     }
 
     private void configurarBotones() {

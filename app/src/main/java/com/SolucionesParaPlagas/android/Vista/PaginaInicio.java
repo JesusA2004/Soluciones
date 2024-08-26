@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.sol.R;
+import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 
 public class PaginaInicio extends AppCompatActivity {
 
     private Button botonIniciarSesion;
     private Button botonCrearCuenta;
+    private Controlador<JsonProducto> controladorJsonProducto = new ControladorJsonProducto();
 
     // Metodos de manipulacion de la interfaz (layout)
     @Override
@@ -24,6 +28,11 @@ public class PaginaInicio extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        cargarProductos();
+    }
+
+    private void cargarProductos(){
+        controladorJsonProducto.realizarSolicitud();
     }
 
     // Metodos para configurar los elementos dentro de los layout y que se usaran por el usuario

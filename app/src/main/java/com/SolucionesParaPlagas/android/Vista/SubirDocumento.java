@@ -108,7 +108,6 @@ public class SubirDocumento extends AppCompatActivity {
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Asunto del correo");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Mensaje del correo");
             emailIntent.putExtra(Intent.EXTRA_STREAM, archivoSeleccionado);
-
             try {
                 startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
                 return true;
