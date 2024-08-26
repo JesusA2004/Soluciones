@@ -1,47 +1,28 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioDetalleCliente;
-import retrofit2.Call;
-import android.util.Log;
+import java.util.List;
 
-public class ControladorDetalleCliente extends Controlador<DetalleCliente> {
+public class ControladorDetalleCliente {
 
-    private String endpoint;
+    private Repositorio<DetalleCliente> repositorioCliente = RepositorioDetalleCliente.obtenerInstancia();
 
-    public ControladorDetalleCliente(String idCliente) {
-        super(RepositorioDetalleCliente.obtenerInstancia());
-        // Construir el endpoint con el ID del cliente proporcionado
-        this.endpoint = "Clients/" + idCliente;
-        Log.d("Prueba",endpoint);
+    public List<DetalleCliente> obtenerRepositorio() {
+        return repositorioCliente.getDatos();
     }
 
-    @Override
-    protected void procesarDatos(DetalleCliente cliente) {
-        // Procesar el detalle del cliente y almacenar en el repositorio
-        if (cliente != null) {
-            Log.d("Cliente",""+cliente.toString());
-            repositorio.setDato(cliente);
-        }
+    public void enviarDatosRepositorio(List<DetalleCliente> listaDetalleClientes){
+        repositorioCliente.setDatos(listaDetalleClientes);
     }
 
-    @Override
-    protected Call<DetalleCliente> obtenerDatos() {
-        // Realizar la solicitud GET para obtener los detalles del cliente
-        return getJsonApi().obtenerCliente(endpoint);
+    public void enviarDatoRepositorio(DetalleCliente detalleCliente){
+        repositorioCliente.setDato(detalleCliente);
     }
 
-    @Override
-    protected boolean datosCargados() {
-        if(repositorio.getDatos().isEmpty()){
-            return false;
-        }
-        return true;
-    }
-
-    private JsonApi getJsonApi() {
-        // Obtén la instancia de JsonApi del controlador base
-        return super.jsonApi;
+    public DetalleCliente obtenerCliente(){
+        return repositorioCliente.getDato();
     }
 
 }

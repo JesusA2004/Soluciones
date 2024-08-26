@@ -102,4 +102,19 @@ public class ClienteIndividual {
         this.LocationID = LocationID;
     }
 
+    @Override
+    public String toString() {
+        return "ClienteIndividual{" +
+                "ClientName='" + ClientName + '\'' +
+                ", ID='" + ID + '\'' +
+                ", Number=" + Number +
+                ", LegalName='" + LegalName + '\'' +
+                ", RFC='" + RFC + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", NextContactDate='" + NextContactDate + '\'' +
+                ", LocationID='" + LocationID + '\'' +
+                '}';
+    }
+
 }

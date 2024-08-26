@@ -2,20 +2,20 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
-import com.example.sol.R;
-import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
+import com.example.sol.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
 
@@ -23,13 +23,10 @@ public class Login extends AppCompatActivity {
     private EditText usuarioRFC;
     private EditText usuarioTelefono;
     private Button botonIniciarSesion;
-    // Objetos para obtener los datos del cliente
-    private ClienteIndividual clienteIndividual = new ClienteIndividual();
-    private DetalleCliente clienteCompleto = new DetalleCliente();
-    // Controladores a usar
-    private Controlador<JsonCliente> controladorClienteJson;
+    private ProgressBar iconoCarga;
+    private ControladorJsonCliente controladorClienteJson;
     private ControladorClienteIndividual controladorClienteI = new ControladorClienteIndividual();
-    private Controlador<DetalleCliente> controladorClienteCompleto;
+    private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +36,13 @@ public class Login extends AppCompatActivity {
         configurarBotones();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
     private void inicializarElementos() {
         botonRegresar = findViewById(R.id.flechaatras);
         usuarioRFC = findViewById(R.id.entradaRFC);
         usuarioTelefono = findViewById(R.id.entradaTel);
         botonIniciarSesion = findViewById(R.id.botonIS);
+        iconoCarga = findViewById(R.id.progressBar);
+        iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
     }
 
     private void configurarBotones() {
@@ -57,33 +51,38 @@ public class Login extends AppCompatActivity {
     }
 
     private void regresarAPaginaInicio(View v) {
-        // Acción para regresar a la pantalla anterior
         Intent intent = new Intent(Login.this, PaginaInicio.class);
         startActivity(intent);
     }
 
-    private void iniciarSesion(View v){
-        controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
-        controladorClienteJson.realizarSolicitud();
-        // Verficar que el cliente se guardo en el repositorio
-        if(controladorClienteJson.datosCarg()){
-            clienteIndividual = controladorClienteI.obtenerCliente();
-            controladorClienteCompleto = new ControladorDetalleCliente(clienteIndividual.getID());
-            controladorClienteCompleto.realizarSolicitud();
-            if(controladorClienteCompleto.datosCarg()){
-                // Objeto a usar durante toda la app
-                clienteCompleto = controladorClienteCompleto.obtenerDato();
-                Toast.makeText(this, "El cliente ingresado es:\n"+clienteCompleto.toString(), Toast.LENGTH_SHORT).show();
-                irAMenu(v,clienteCompleto);  // Esta línea estaba fuera de las llaves del if
+    private void iniciarSesion(View v) {
+        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
+        new Thread(() -> {
+            controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
+            controladorClienteJson.realizarSolicitud();
+            // Esperar un poco para asegurarse de que el cliente se haya actualizado
+            try {
+                Thread.sleep(1500); // Ajusta el tiempo según sea necesario
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } else {
-            Toast.makeText(this, "Error, el RFC ingresado no esta registrado", Toast.LENGTH_SHORT).show();
-        }
+            ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
+            runOnUiThread(() -> {
+                iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                if (clienteIndividual != null) {
+                    Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
+                    Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
+                    irAMenu(v, clienteIndividual);
+                } else {
+                    Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
     }
 
-    private void irAMenu(View v,DetalleCliente clienteCompleto){
+    private void irAMenu(View v, ClienteIndividual clienteCompleto) {
         Intent intent = new Intent(Login.this, Menu.class);
-        intent.putExtra("Cliente",clienteCompleto);
+        // intent.putExtra("Cliente", clienteCompleto);
         startActivity(intent);
     }
 
