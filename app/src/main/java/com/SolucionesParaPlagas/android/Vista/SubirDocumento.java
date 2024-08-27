@@ -49,10 +49,8 @@ public class SubirDocumento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subirdocumento);
-
         // Recibir los datos de la actividad anterior
         recibirDatosDeRegistroDatos();
-
         // Inicializar elementos de la UI
         inicializarElementos();
         configurarBotones();

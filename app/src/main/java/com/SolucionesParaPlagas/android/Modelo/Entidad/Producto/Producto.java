@@ -2,8 +2,9 @@ package com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.io.Serializable;
 
-public class Producto implements Parcelable {
+public class Producto implements Parcelable, Serializable {
 
     // Campos de la clase
     private String ID;
@@ -39,7 +40,7 @@ public class Producto implements Parcelable {
 
     // Constructor vacío
     public Producto() {
-        
+
     }
 
     // Constructor que toma un Parcel y lee los datos en el mismo orden en que fueron escritos
@@ -127,20 +128,20 @@ public class Producto implements Parcelable {
         }
     };
 
-    public String getCategory2ID() {
-        return Category2ID;
-    }
-
-    public void setCategory2ID(String category2ID) {
-        Category2ID = category2ID;
-    }
-
     public String getCategory1ID() {
         return Category1ID;
     }
 
     public void setCategory1ID(String category1ID) {
         Category1ID = category1ID;
+    }
+
+    public String getCategory2ID() {
+        return Category2ID;
+    }
+
+    public void setCategory2ID(String category2ID) {
+        Category2ID = category2ID;
     }
 
     public String getCategory3ID() {
@@ -215,20 +216,20 @@ public class Producto implements Parcelable {
         CurrencyCode = currencyCode;
     }
 
-    public double getCurrentInventory() {
-        return CurrentInventory;
-    }
-
-    public void setCurrentInventory(double currentInventory) {
-        CurrentInventory = currentInventory;
-    }
-
     public String getCurrencyID() {
         return CurrencyID;
     }
 
     public void setCurrencyID(String currencyID) {
         CurrencyID = currencyID;
+    }
+
+    public double getCurrentInventory() {
+        return CurrentInventory;
+    }
+
+    public void setCurrentInventory(double currentInventory) {
+        CurrentInventory = currentInventory;
     }
 
     public String getDescription() {

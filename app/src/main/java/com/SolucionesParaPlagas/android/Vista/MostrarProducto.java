@@ -1,18 +1,18 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import java.util.HashMap;
 import com.example.sol.R;
-import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.Button;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class MostrarProducto extends AppCompatActivity {
 
@@ -31,6 +31,7 @@ public class MostrarProducto extends AppCompatActivity {
     private int cantidadPro;
     private String idProducto;
     private String nomProducto;
+    HashMap<String, Producto> carrito = new HashMap<>();
     private ControladorImagenes controladorImagenes;
 
     @Override
@@ -67,12 +68,17 @@ public class MostrarProducto extends AppCompatActivity {
     private void obtenerElementos(){
         // Obtener el Intent que inició esta Activity
         Intent intent = getIntent();
-        if(intent!=null){
-            producto = intent.getParcelableExtra("producto");
+        if(intent != null){
+            if(intent.hasExtra("producto")){
+                producto = intent.getParcelableExtra("producto");
+            }
+            if(intent.hasExtra("carrito")){
+                carrito = (HashMap<String, Producto>) intent.getSerializableExtra("carrito");
+            }
         }
     }
 
-    private void inicializarElementos() {
+    private void inicializarElementos(){
         imagenProducto = findViewById(R.id.imagenProducto);
         nombreProducto = findViewById(R.id.txtNombreProducto);
         cantidadProducto = findViewById(R.id.entradaCantidad);
