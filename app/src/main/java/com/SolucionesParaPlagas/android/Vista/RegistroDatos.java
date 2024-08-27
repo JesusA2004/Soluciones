@@ -88,7 +88,6 @@ public class RegistroDatos extends AppCompatActivity {
             intent.putExtra("Telefono", usuarioTelefono.getText().toString());
             intent.putExtra("Correo", usuarioCorreo.getText().toString());
             startActivity(intent);
-            finish();
         }
     }
 

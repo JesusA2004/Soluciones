@@ -1,5 +1,6 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import android.util.Log;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
@@ -35,9 +36,7 @@ public class ControladorProducto{
             Log.d(TAG, "Title: " + producto.getTitle());
             /*
             Log.d(TAG, "Description: " + producto.getDescription());
-
             Log.d(TAG, "Type: " + producto.getType());
-
             */
             Log.d(TAG, "Weight: " + producto.getWeight());
             Log.d(TAG, "Unit: " + producto.getUnit());
@@ -45,6 +44,17 @@ public class ControladorProducto{
             Log.d(TAG, "-------------------------");
         }
         Log.d(TAG, "Total: " + contador);
+    }
+
+    public List<Producto> productosPorNombre(String nombre){
+        List<Producto> productos = new ArrayList<>();
+        for(Producto producto : repositorioProducto.getDatos()){
+            // Busqueda parcial por nombre del producto
+            if(producto.getTitle().startsWith(nombre)){
+                productos.add(producto);
+            }
+        }
+        return productos;
     }
 
 }

@@ -58,7 +58,6 @@ public class Login extends AppCompatActivity {
 
     private void iniciarSesion(View v) {
         // Primero validar que el rfc y el campo del telefono sean validos
-        if(validar.validarRFC(usuarioRFC.getText().toString().trim())){
             if(!validar.validarSoloNumeros(usuarioTelefono.getText().toString())){
                 Toast.makeText(Login.this, "Error en el numero ingresado", Toast.LENGTH_SHORT).show();
             }else{
@@ -68,29 +67,37 @@ public class Login extends AppCompatActivity {
                     controladorClienteJson.realizarSolicitud();
                     // Esperar un poco para asegurarse de que el cliente se haya actualizado
                     try {
-                        Thread.sleep(2500); // Ajusta el tiempo según sea necesario
+                        Thread.sleep(4000); // Ajusta el tiempo según sea necesario
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
                     runOnUiThread(() -> {
                         iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
-                        if (clienteIndividual != null) {
-                            Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
-                            Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
-                            irAMenu(v, clienteIndividual);
-                        } else {
+                        if(clienteIndividual != null){
+                            if(clienteIndividual.getPhone() != null){
+                                if(clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())){
+                                    Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
+                                    Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
+                                    irAMenu(v, clienteIndividual);
+                                }else{
+                                    Toast.makeText(Login.this, "Error, el telefono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                if(usuarioTelefono.getText().toString().equals("7771111111")){
+                                    Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
+                                    Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
+                                    irAMenu(v, clienteIndividual);
+                                } else {
+                                    Toast.makeText(Login.this, "Error, el telefono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }else{
                             Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }).start();
             }
-        }else{
-            Toast.makeText(Login.this, "Error, RFC no valido", Toast.LENGTH_SHORT).show();
-            if(validar.validarSoloNumeros(usuarioTelefono.getText().toString())){
-                Toast.makeText(Login.this, "Error en el numero ingresado", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     private void irAMenu(View v, ClienteIndividual cliente) {

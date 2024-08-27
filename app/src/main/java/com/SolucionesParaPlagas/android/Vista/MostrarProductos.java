@@ -6,6 +6,8 @@ import com.example.sol.R;
 
 public class MostrarProductos extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

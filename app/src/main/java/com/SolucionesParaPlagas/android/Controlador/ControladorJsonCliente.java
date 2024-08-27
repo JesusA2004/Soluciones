@@ -17,12 +17,10 @@ public class ControladorJsonCliente extends Controlador<JsonCliente> {
 
     public ControladorJsonCliente(String RFC) {
         super(RepositorioJsonCliente.obtenerInstancia());
-        // Construir el endpoint con el RFC proporcionado
-        this.EndPoint = EndPoint + "'" + String.format(RFC) + "'";
-    }
+        this.EndPoint = EndPoint + "'" + String.format(RFC) + "'";    }
 
     // Constructor para cliente detallado
-    public ControladorJsonCliente(String id, String sobrecarga){
+    public ControladorJsonCliente(String id, String parametro){
         super(RepositorioJsonCliente.obtenerInstancia());
         this.EndPoint = "Clients/" + id;
         cargarClienteDetallado();

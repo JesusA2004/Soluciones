@@ -1,37 +1,80 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import com.example.sol.R;
+import android.util.Log;
+import android.view.View;
+import android.os.Bundle;
+import java.io.IOException;
+import java.io.InputStream;
+import android.widget.Toast;
+import android.content.Intent;
+import android.widget.EditText;
+import android.widget.ImageView;
+import com.itextpdf.text.pdf.PdfReader;
+import androidx.appcompat.app.AppCompatActivity;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 
 public class SubirDocumento extends AppCompatActivity {
 
-    private static final int RESPUESTA_PERMISO = 2;
-    private static final int PERMISO_ACCESO_ALMACENAMIENTO = 100;
     private ImageView botonMenu;
     private ImageView botonRegresar;
     private ImageView botonSiguiente;
     private ImageView botonSubirDocumento;
+    private EditText txt_contenido_pdf;
 
     // Variable para almacenar de manera local el archivo seleccionado y mandarlo a gmail
     private Uri archivoSeleccionado;
 
+    // Datos recibidos de la actividad anterior
+    private String rfc, razonSocial, telefono, correo, calle, colonia, localidad, noInterior, noExterior, cp, municipio, estado;
+
+    // ActivityResultLauncher para seleccionar archivos
+    private final ActivityResultLauncher<Intent> seleccionarArchivoLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri uri = result.getData().getData();
+                    Log.d("Archivo", "Archivo seleccionado: " + uri);
+                    extractTextPdfFile(uri);
+                    archivoSeleccionado = uri;
+                }
+            }
+    );
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.subirdocumento); // Asegúrate de que 'subirdocumento' sea el layout correcto
+        setContentView(R.layout.subirdocumento);
+
+        // Recibir los datos de la actividad anterior
+        recibirDatosDeRegistroDatos();
+
+        // Inicializar elementos de la UI
         inicializarElementos();
         configurarBotones();
+    }
+
+    private void recibirDatosDeRegistroDatos() {
+        // Recibe los datos enviados desde la actividad anterior
+        Intent intent = getIntent();
+        if(intent != null){
+            rfc = intent.getStringExtra("RFC");
+            razonSocial = intent.getStringExtra("RazonSocial");
+            telefono = intent.getStringExtra("Telefono");
+            correo = intent.getStringExtra("Correo");
+            calle = intent.getStringExtra("Calle");
+            colonia = intent.getStringExtra("Colonia");
+            localidad = intent.getStringExtra("Localidad");
+            noInterior = intent.getStringExtra("NoInterior");
+            noExterior = intent.getStringExtra("NoExterior");
+            cp = intent.getStringExtra("CP");
+            municipio = intent.getStringExtra("Municipio");
+            estado = intent.getStringExtra("Estado");
+        }
     }
 
     private void inicializarElementos() {
@@ -39,6 +82,7 @@ public class SubirDocumento extends AppCompatActivity {
         botonSiguiente = findViewById(R.id.iconosiguiente);
         botonRegresar = findViewById(R.id.iconoatras);
         botonSubirDocumento = findViewById(R.id.iconosubirdocumento);
+        txt_contenido_pdf = findViewById(R.id.txt_contenido_pdf);
     }
 
     private void configurarBotones() {
@@ -49,63 +93,54 @@ public class SubirDocumento extends AppCompatActivity {
     }
 
     private void subirDocumento(View v) {
-        if (ContextCompat.checkSelfPermission
-        (this, Manifest.permission.READ_EXTERNAL_STORAGE)
-        != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    PERMISO_ACCESO_ALMACENAMIENTO);
-        } else {
-            abrirExploradorDeArchivos();
+        cargarPdf();
+    }
+
+    private void extractTextPdfFile(Uri uri) {
+        InputStream inputStream = null;
+        PdfReader reader = null;
+        try {
+            inputStream = getContentResolver().openInputStream(uri);
+            reader = new PdfReader(inputStream);
+            StringBuilder builder = new StringBuilder();
+            int pages = reader.getNumberOfPages();
+            for (int i = 1; i <= pages; i++) {
+                String fileContent = PdfTextExtractor.getTextFromPage(reader, i);
+                builder.append(fileContent);
+            }
+            final String textContent = builder.toString();
+            runOnUiThread(() -> txt_contenido_pdf.setText(textContent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // Cierra el PdfReader manualmente
+            if (reader != null) {
+                reader.close();
+            }
+            // Cierra el InputStream manualmente
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    private void abrirExploradorDeArchivos() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*"); // Para permitir todo tipo de archivos
+    private void cargarPdf() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(Intent.createChooser(intent, "Seleccionar archivo"), RESPUESTA_PERMISO);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESPUESTA_PERMISO && resultCode == RESULT_OK) {
-            if (data != null && data.getData() != null) {
-                archivoSeleccionado = data.getData();
-                mostrarRutaDelArchivo(archivoSeleccionado);
-            } else {
-                Toast.makeText(this, "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void mostrarRutaDelArchivo(Uri uri) {
-        if (uri != null) {
-            Toast.makeText(this, "Archivo seleccionado: " + uri.getPath(), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "No se pudo obtener la ruta del archivo", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISO_ACCESO_ALMACENAMIENTO) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                abrirExploradorDeArchivos();
-            } else {
-                Toast.makeText(this, "Permiso denegado para leer el almacenamiento externo", Toast.LENGTH_SHORT).show();
-            }
-        }
+        intent.setType("application/pdf");
+        seleccionarArchivoLauncher.launch(intent);
     }
 
     private boolean mandarCorreo() {
         if (archivoSeleccionado != null) {
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("vnd.android.cursor.dir/email");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"destinatario@ejemplo.com"});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Asunto del correo");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Prueba");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Mensaje del correo");
             emailIntent.putExtra(Intent.EXTRA_STREAM, archivoSeleccionado);
             try {
@@ -116,7 +151,7 @@ public class SubirDocumento extends AppCompatActivity {
                 return false;
             }
         } else {
-            Toast.makeText(this, "Por favor selecciona un archivo primero.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor selecciona un archivo primero.", Toast.LENGTH_LONG).show();
             return false;
         }
     }

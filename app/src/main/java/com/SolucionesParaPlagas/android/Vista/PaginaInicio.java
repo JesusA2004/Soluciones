@@ -28,7 +28,7 @@ public class PaginaInicio extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        cargarProductos();
+        // cargarProductos();
     }
 
     private void cargarProductos(){
