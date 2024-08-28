@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
@@ -31,7 +32,7 @@ public class MostrarProducto extends AppCompatActivity {
     private int cantidadPro;
     private String idProducto;
     private String nomProducto;
-    HashMap<String, Producto> carrito = new HashMap<>();
+    HashMap<String, Integer> carrito = new HashMap<>();
     private ControladorImagenes controladorImagenes;
 
     @Override
@@ -73,7 +74,7 @@ public class MostrarProducto extends AppCompatActivity {
                 producto = intent.getParcelableExtra("producto");
             }
             if(intent.hasExtra("carrito")){
-                carrito = (HashMap<String, Producto>) intent.getSerializableExtra("carrito");
+                carrito = (HashMap<String, Integer>) intent.getSerializableExtra("carrito");
             }
         }
     }
@@ -103,22 +104,24 @@ public class MostrarProducto extends AppCompatActivity {
 
     private void regresarAProductos(View v){
         Intent intent = new Intent(MostrarProducto.this, MostrarProductos.class);
+        intent.putExtra("carrito",carrito);
         startActivity(intent);
     }
 
     private void irACarrito(View v){
-        /*
-        Intent intent = new Intent(MostrarProducto.this, .class);
+        Intent intent = new Intent(MostrarProducto.this, CarritoCompras.class);
+        intent.putExtra("carrito",carrito);
         startActivity(intent);
-        */
     }
 
     private void irAMenu(View v){
-
+        Intent intent = new Intent(MostrarProducto.this,Menu.class);
+        startActivity(intent);
     }
 
     private void irACerrarSesion(View v){
-
+        Sesion sesion = new Sesion();
+        carrito = sesion.limpiarSesion();
     }
 
     // Método para añadir el producto al carrito
@@ -126,14 +129,20 @@ public class MostrarProducto extends AppCompatActivity {
         // Obtener la cantidad ingresada
         String cantidadStr = cantidadProducto.getText().toString();
         if (cantidadStr.isEmpty()) {
-            Toast.makeText(this, "Por favor, ingrese una cantidad", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, ingrese una cantidad", Toast.LENGTH_LONG).show();
             return;
         }
         cantidadPro = Integer.parseInt(cantidadStr);
-        idProducto = producto.getID();
-        nomProducto = producto.getTitle();
+        if(carrito.containsKey(producto.getID())){
+            // Si el producto ya existe en el carrito, actualizar la cantidad
+            int cantidadActual = carrito.get(producto.getID());
+            carrito.put(producto.getID(), cantidadActual + cantidadPro);
+        }else{
+            // Si no existe en el carrito solo se agrega
+            carrito.put(producto.getID(),cantidadPro);
+        }
         // Añadir estos valores a un hashmap que sera enviado a el carrito
-        Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
     }
 
 }

@@ -2,9 +2,8 @@ package com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.io.Serializable;
 
-public class Producto implements Parcelable, Serializable {
+public class Producto implements Parcelable{
 
     // Campos de la clase
     private String ID;
@@ -121,7 +120,6 @@ public class Producto implements Parcelable, Serializable {
         public Producto createFromParcel(Parcel in) {
             return new Producto(in);
         }
-
         @Override
         public Producto[] newArray(int size) {
             return new Producto[size];
