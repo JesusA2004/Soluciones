@@ -1,0 +1,105 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="wrap_content" >
+
+	<ScrollView android:id="@+id/carritocompra" 
+		android:layout_width="wrap_content" 
+		android:layout_height="match_parent" >
+
+		<RelativeLayout android:id="@+id/content_container" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" >
+
+
+
+			<RelativeLayout android:id="@+id/page_carritocompra_ek1"
+				android:layout_marginTop="0dp"
+				android:layout_marginStart="0dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				>
+
+				<View   android:id="@+id/_bg__carritocompra_ek2"
+					android:background="@drawable/_bg__carritocompra_ek2_shape"
+					 android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_width="411dp"
+					android:layout_height="823dp" />
+
+				<ImageView
+					android:id="@+id/contenedorimagen"
+					android:layout_width="422dp"
+					android:layout_height="191dp"
+					android:layout_marginStart="-8dp"
+					android:layout_marginTop="-11dp"
+					android:contentDescription="contenedorimagen"
+					android:src="@drawable/contenedorimagen" />
+
+				<ImageView android:id="@+id/letraslogosinfondo_"
+					android:src="@drawable/letraslogosinfondo_"
+					android:contentDescription="letraslogosinfondo_"
+					 android:layout_marginStart="26dp"
+					android:layout_marginTop="94dp"
+					android:layout_width="129dp"
+					android:layout_height="55dp" />
+
+				<ImageView android:id="@+id/logotipsinfondo_"
+					android:src="@drawable/logotipsinfondo_"
+					android:contentDescription="logotipsinfondo_"
+					 android:layout_marginStart="54dp"
+					android:layout_marginTop="27dp"
+					android:layout_width="64dp"
+					android:layout_height="75dp" />
+
+
+				<RelativeLayout android:id="@+id/opciones"
+					android:layout_marginTop="770dp"
+					android:layout_marginStart="-6dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					>
+
+					<View   android:id="@+id/iconosopciones"
+						android:background="@drawable/iconosopciones_shape"
+						 android:layout_marginStart="0dp"
+						android:layout_marginTop="2dp"
+						android:layout_width="411dp"
+						android:layout_height="50.4dp" />
+
+					<ImageView
+						android:id="@+id/iconomenu_1"
+						android:layout_width="36.43dp"
+						android:layout_height="25.6dp"
+						android:layout_marginStart="200dp"
+						android:layout_marginTop="6.4dp"
+						android:contentDescription="iconomenu_1"
+						android:src="@drawable/iconomenu_1" />
+
+					<ImageView android:id="@+id/iconocerrarsesion__1"
+						android:src="@drawable/iconocerrarsesion__1"
+						android:contentDescription="iconocerrarsesion__1"
+						 android:layout_marginStart="332.48dp"
+						android:layout_marginTop="6.4dp"
+						android:layout_width="39.23dp"
+						android:layout_height="28dp" />
+
+					<ImageView android:id="@+id/iconolistaproductos_1"
+						android:src="@drawable/iconolistaproductos_1"
+						android:contentDescription="iconolistaproductos_1"
+						android:layout_marginStart="65dp"
+						android:layout_marginTop="2.4dp"
+						android:layout_width="31.02dp"
+						android:layout_height="32.8dp" />
+
+				</RelativeLayout>
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:layout_width="250dp"
+					android:layout_height="match_parent"
+					android:layout_marginStart="40dp"
+					android:layout_marginTop="350dp"/>
+
+			</RelativeLayout>
+		</RelativeLayout>
+
+	</ScrollView>
+</HorizontalScrollView>
