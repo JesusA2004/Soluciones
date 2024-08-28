@@ -17,7 +17,6 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
-
 public class SubirDocumento extends AppCompatActivity {
 
     private ImageView botonMenu;

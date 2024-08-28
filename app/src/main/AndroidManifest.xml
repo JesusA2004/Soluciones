@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Sol"
         tools:targetApi="31">
         <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.MostrarPedido"
+            android:name="com.SolucionesParaPlagas.android.Vista.MostrarPedidos"
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.EditarDatosP"

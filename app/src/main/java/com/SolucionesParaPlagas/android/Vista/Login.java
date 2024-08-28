@@ -2,7 +2,6 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,7 +77,6 @@ public class Login extends AppCompatActivity {
                             if(clienteIndividual.getPhone() != null){
                                 if(clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())){
                                     Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
-                                    Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
                                     irAMenu(v, clienteIndividual);
                                 }else{
                                     Toast.makeText(Login.this, "Error, el telefono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
@@ -86,7 +84,6 @@ public class Login extends AppCompatActivity {
                             }else{
                                 if(usuarioTelefono.getText().toString().equals("7771111111")){
                                     Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
-                                    Log.d("Exito", "El cliente es: " + clienteIndividual.toString());
                                     irAMenu(v, clienteIndividual);
                                 } else {
                                     Toast.makeText(Login.this, "Error, el telefono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();

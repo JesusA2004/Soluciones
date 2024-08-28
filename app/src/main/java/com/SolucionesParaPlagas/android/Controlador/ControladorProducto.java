@@ -57,4 +57,14 @@ public class ControladorProducto{
         return productos;
     }
 
+    public Producto obtenerProducto(String id){
+        Producto producto = new Producto();
+        for(Producto prod : repositorioProducto.getDatos()){
+            if(producto.getID().equals(id)){
+                producto = prod;
+            }
+        }
+        return producto;
+    }
+
 }
