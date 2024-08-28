@@ -29,7 +29,19 @@
 	<color name="_bg__consultarestadoc_ek2_color">#FFFFFF</color>
 	<color name="textporcentajeven_color">#015617</color>
 	<color name="textporpagar_ek1_color">#000000</color>
-	<color name="iconosopciones_color">#29B022</color>
+	<color name="iconosopciones_color">#1F5630</color>
 	<color name="rfc_color">#4A4646</color>
 	<color name="ingresa_tus_datos_color">#000000</color>
+	<!--  menuopciones colors  -->
+	<color name="_bg__menuopciones_ek2_color">#FFFFFF</color>
+	<color name="__hola__nombre___color">#000000</color>
+	<color name="textmenuprincipal_color">#FFFBFB</color>
+	<!--  infounproducto colors  -->
+
+	<color name="cuadroinfoprod_color">#90E1B3</color>
+	<color name="espaciobusqueda_color">#FDFFFD</color>
+
+	<!--  carritocompra colors  -->
+	<color name="_bg__carritocompra_ek2_color">#FFFFFF</color>
+
 </resources>
