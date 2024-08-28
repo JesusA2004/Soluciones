@@ -111,6 +111,21 @@
     <!-- Strings -->
     <string name="nombreApp">Soluciones Para Plagas</string>
     <string name="ek_img_content">ExportKit Image</string>
-    <string name="tituloActividadLogin">Login</string>
+    <string name="tituloActividadLogin">Login</string>}
+    <!--  menuopciones strings  -->
+    <string name="app_name">Menu</string>
+    <string name="__hola__nombre___string">Hola [nombre]! </string>
+    <string name="__qu__te_gustar_a_explorar_hoy__string">Qu te gustara explorar hoy?</string>
+    <string name="textmenuprincipal_string">Estado de Cuenta</string>
+    <string name="textmenuprincipal_ek1_string">Sitio Web</string>
+    <string name="textcompra_string">Ver productos</string>
+    <string name="textcerrarsesion_string">MI Perfil</string>
+
+    <!--  infounproducto strings  -->
+    <string name="textnombrep_string">Nombre del producto</string>
+    <string name="textnombrep_ek1_string">Nombre del producto</string>
+    <string name="textnombrep_ek2_string">Nombre del producto</string>
+    <string name="textnombrep_ek3_string">Nombre del producto</string>
+    <string name="textdescripcion_string">Buscar productos</string>
 
 </resources>
