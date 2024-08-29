@@ -85,17 +85,6 @@
 						android:layout_width="411dp"
 						android:layout_height="50.4dp" />
 
-					<TextView android:id="@+id/textmenuprincipal"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__datoscliente_ek2_color"
-						android:layout_marginLeft="179dp"
-						android:layout_marginTop="36dp"
-						android:layout_width="95dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textmenuprincipal_string"
-						 />
-
 					<ImageView android:id="@+id/iconomenu_1"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
@@ -111,28 +100,6 @@
 						android:layout_marginTop="6.4dp"
 						android:layout_width="39.23dp"
 						android:layout_height="28dp" />
-
-					<TextView android:id="@+id/textcompra"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__datoscliente_ek2_color"
-						android:layout_marginLeft="42dp"
-						android:layout_marginTop="36dp"
-						android:layout_width="95dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textcompra_string"
-						 />
-
-					<TextView android:id="@+id/textcerrarsesion"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__datoscliente_ek2_color"
-						android:layout_marginLeft="315.04dp"
-						android:layout_marginTop="34.4dp"
-						android:layout_width="93dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textcerrarsesion_string"
-						 />
 
 					<ImageView android:id="@+id/iconolistaproductos_1"
 						android:src="@drawable/iconolistaproductos_1"

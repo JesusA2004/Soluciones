@@ -35,6 +35,13 @@ public class CarritoCompras extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.carrtito);
+        inicializarElementos();
+        configurarBotones();
+    }
+
+    private void inicializarElementos(){
+
     }
 
     private void obtenerElementos(){
