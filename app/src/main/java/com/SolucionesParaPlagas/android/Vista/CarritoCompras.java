@@ -22,9 +22,7 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 public class CarritoCompras extends AppCompatActivity {
 
     Button btnCotizacion;
-    Button btnVerProductos;
-    Button btnMenu;
-    Button btnCerrarSesion;
+    ImageView btnVerProductos, btnMenu, btnCerrarSesion;
     private ProgressBar iconoCarga;
     //       IDP   CantidadP
     HashMap<String, Integer> carrito = new HashMap<>();
@@ -35,13 +33,17 @@ public class CarritoCompras extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.carrtito);
+        setContentView(R.layout.carritocompra);
         inicializarElementos();
         configurarBotones();
     }
 
     private void inicializarElementos(){
-
+        // btnCotizacion = findViewById(R.id.btnCotizar);
+        // btnVerProductos = findViewById(R.id.btnVerProductos);
+        // btnMenu = findViewById(R.id.btnMenu);
+        // btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        // iconoCarga = findViewById(R.id.iconoCarga);
     }
 
     private void obtenerElementos(){
@@ -99,7 +101,6 @@ public class CarritoCompras extends AppCompatActivity {
             }
         }).start();
     }
-
 
     private boolean mandarCorreo() {
         // Crear un intento para enviar el correo

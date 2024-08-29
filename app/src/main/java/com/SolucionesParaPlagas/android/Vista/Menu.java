@@ -17,19 +17,25 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 public class Menu extends AppCompatActivity {
 
     TextView bienvenida;
-    ImageView btnConsultarEC; // Estado de cuenta
-    ImageView btnConsultarPerfil; // Perfil
-    ImageView btnConsultarProductos; // Productos
-    ImageView btnCerrarSesion; // Cerrar sesión
+    ImageView btnConsultarEC;
+    ImageView btnConsultarProductos;
+
+    // Botones menu lateral
+    ImageView btnConsultarPerfil;
+    ImageView btnPedidos;
+    ImageView btnCerrarSesion;
+
     private DetalleCliente clienteCompleto = new DetalleCliente();
     private ClienteIndividual clienteIndividual = new ClienteIndividual();
     private Controlador<JsonCliente> controladorJsonCliente;
     private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
 
+    // Hacer solicutud del cliente detallado
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.menu);
+        setContentView(R.layout.menuopciones);
         inicializarElementos();
         // Obtenemos el cliente del login pero sin detalles
         recibirCliente();
