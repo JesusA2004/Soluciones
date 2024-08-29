@@ -22,7 +22,7 @@ public class MostrarProductos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout);
+        setContentView(R.layout.buscarproducto);
         inicializarElementos();
         configurarBotones();
     }

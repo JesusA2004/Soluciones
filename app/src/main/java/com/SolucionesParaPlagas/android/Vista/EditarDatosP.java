@@ -9,7 +9,17 @@ public class EditarDatosP extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.editardatocliente);
+        inicializarElementos();
+        configurarBotones();
     }
 
+    private void inicializarElementos() {
+
+    }
+
+    private void configurarBotones() {
+
+    }
 
 }
