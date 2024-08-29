@@ -43,13 +43,7 @@ public class Menu extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-        /*
-        bienvenida = findViewById(R.id.titulo);
-        btnConsultarEC = findViewById(R.id.btnConsultarEC);
-        btnConsultarPerfil = findViewById(R.id.btnConsultarPerfil);
-        btnConsultarProductos = findViewById(R.id.btnConsultarProductos);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        */
+
     }
 
     private void configurarBotones() {

@@ -66,7 +66,7 @@
 					android:layout_height="63dp" />
 
 				<ImageView
-					android:id="@+id/iconomenu_1"
+					android:id="@+id/iconomenu"
 					android:src="@drawable/iconomenu_1"
 					android:contentDescription="iconomenu_1"
 					android:layout_marginStart="205dp"
@@ -75,7 +75,7 @@
 					android:layout_height="32dp" />
 
 				<ImageView
-					android:id="@+id/iconocompra_1"
+					android:id="@+id/iconocompra"
 					android:src="@drawable/iconocompra_1"
 					android:contentDescription="iconocompra_1"
 					android:layout_marginStart="69dp"
@@ -84,7 +84,7 @@
 					android:layout_height="43dp" />
 
 				<ImageView
-					android:id="@+id/iconocerrarsesion__1"
+					android:id="@+id/iconocerrarsesion"
 					android:src="@drawable/iconocerrarsesion__1"
 					android:contentDescription="iconocerrarsesion__1"
 					android:layout_marginStart="320dp"
@@ -125,7 +125,6 @@
 					android:textSize="12sp"
 					android:fontFamily="@font/libre_franklin_semibold"/>
 
-
 			</RelativeLayout>
 
 			<!-- Logo -->
@@ -147,7 +146,22 @@
 				android:layout_width="76dp"
 				android:layout_height="36dp" />
 
-			<!-- Barra de Búsqueda -->
+			<!-- Lista de Productos -->
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/listaProductos"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="60dp"
+				android:layout_marginTop="200dp"/>
+
+			<ProgressBar
+				android:id="@+id/progressBar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:visibility="gone"
+				android:indeterminate="true"
+				android:contentDescription="@string/descripcionProgressBar"/>
 
 		</RelativeLayout>
 	</ScrollView>

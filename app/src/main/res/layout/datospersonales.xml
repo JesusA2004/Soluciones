@@ -1,20 +1,6 @@
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent" android:layout_height="wrap_content" >
-	<!-- 
-	/*
-	 *	This content is generated from the API File Info.
-	 *	(Alt+Shift+Ctrl+I).
-	 *
-	 *	@desc 		
-	 *	@file 		consultarestadoc
-	 *	@date 		Thursday 29th of August 2024 03:24:35 PM
-	 *	@title 		DatosPersonales
-	 *	@author 	
-	 *	@keywords 	
-	 *	@generator 	Export Kit v1.3.figma
-	 *
-	 */
-	-->
+
 	<ScrollView android:id="@+id/consultarestadoc" 
 		android:layout_width="wrap_content" 
 		android:layout_height="match_parent" >
@@ -22,8 +8,6 @@
 		<RelativeLayout android:id="@+id/content_container" 
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" >
-
-
 
 			<RelativeLayout android:id="@+id/page_consultarestadoc_ek1"
 				android:layout_marginTop="0dp"
@@ -120,9 +104,7 @@
 					android:layout_marginLeft="288dp"
 					android:layout_marginTop="335dp"
 					android:layout_width="57dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek3_string"
-					 />
+					android:layout_height="23.5dp"/>
 
 				<ImageView android:id="@+id/iconoflechair_1"
 					android:src="@drawable/iconoflechair_1"
@@ -253,9 +235,7 @@
 					android:layout_marginLeft="288dp"
 					android:layout_marginTop="567dp"
 					android:layout_width="57dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek25_string"
-					 />
+					android:layout_height="23.5dp"/>
 
 				<View   android:id="@+id/contenedorinfo_ek2"
 					android:background="@drawable/contenedorinfo_ek2_shape"
