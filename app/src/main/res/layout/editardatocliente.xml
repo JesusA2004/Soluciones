@@ -1,0 +1,215 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="wrap_content" >
+	<!-- 
+	/*
+	 *	This content is generated from the API File Info.
+	 *	(Alt+Shift+Ctrl+I).
+	 *
+	 *	@desc 		
+	 *	@file 		editardatocliente
+	 *	@date 		Thursday 29th of August 2024 03:34:44 PM
+	 *	@title 		EditarDatosPersonales
+	 *	@author 	
+	 *	@keywords 	
+	 *	@generator 	Export Kit v1.3.figma
+	 *
+	 */
+	-->
+	<ScrollView android:id="@+id/editardatocliente" 
+		android:layout_width="wrap_content" 
+		android:layout_height="match_parent" >
+
+		<RelativeLayout android:id="@+id/content_container" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" >
+
+
+
+			<RelativeLayout android:id="@+id/page_editardatocliente_ek1"
+				android:layout_marginTop="0dp"
+				android:layout_marginStart="0dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				>
+
+				<View   android:id="@+id/_bg__editardatocliente_ek2"
+					android:background="@drawable/_bg__editardatocliente_ek2_shape"
+					 android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_width="411dp"
+					android:layout_height="823dp" />
+
+				<ImageView android:id="@+id/fondodatosper_1"
+					android:src="@drawable/fondodatosper_1"
+					android:contentDescription="fondodatosper_1"
+					 android:layout_marginStart="-7dp"
+					android:layout_marginTop="-7dp"
+					android:layout_width="422dp"
+					android:layout_height="108dp" />
+
+				<ImageView android:id="@+id/letraslogosinfondo_"
+					android:src="@drawable/letraslogosinfondo_"
+					android:contentDescription="letraslogosinfondo_"
+					 android:layout_marginStart="92dp"
+					android:layout_marginTop="31dp"
+					android:layout_width="97dp"
+					android:layout_height="48dp" />
+
+				<ImageView android:id="@+id/logotipsinfondo_"
+					android:src="@drawable/logotipsinfondo_"
+					android:contentDescription="logotipsinfondo_"
+					 android:layout_marginStart="40dp"
+					android:layout_marginTop="21dp"
+					android:layout_width="52dp"
+					android:layout_height="53dp" />
+
+				<TextView android:id="@+id/textnombrep"
+					android:fontFamily="Libre Franklin"
+					android:textStyle="bold"
+					android:textSize="16sp"
+					android:textColor="@color/textnombrep_color"
+					android:layout_marginLeft="49dp"
+					android:layout_marginTop="168dp"
+					android:layout_width="279dp"
+					android:layout_height="30dp"
+					android:text="@string/textnombrep_string"
+					 />
+
+
+				<RelativeLayout android:id="@+id/opciones"
+					android:layout_marginTop="771dp"
+					android:layout_marginStart="-2dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					>
+
+					<View   android:id="@+id/iconosopciones"
+						android:background="@drawable/iconosopciones_shape"
+						 android:layout_marginStart="0dp"
+						android:layout_marginTop="1.6dp"
+						android:layout_width="411dp"
+						android:layout_height="50.4dp" />
+
+					<TextView android:id="@+id/textmenuprincipal"
+						android:fontFamily="Manjari"
+						android:textSize="12sp"
+						android:textColor="@color/_bg__editardatocliente_ek2_color"
+						android:layout_marginLeft="179dp"
+						android:layout_marginTop="36dp"
+						android:layout_width="95dp"
+						android:layout_height="18.4dp"
+						android:text="@string/textmenuprincipal_string"
+						 />
+
+					<ImageView android:id="@+id/iconomenu_1"
+						android:src="@drawable/iconomenu_1"
+						android:contentDescription="iconomenu_1"
+						 android:layout_marginStart="200dp"
+						android:layout_marginTop="6.4dp"
+						android:layout_width="36.43dp"
+						android:layout_height="25.6dp" />
+
+					<ImageView android:id="@+id/iconocerrarsesion__1"
+						android:src="@drawable/iconocerrarsesion__1"
+						android:contentDescription="iconocerrarsesion__1"
+						 android:layout_marginStart="332.48dp"
+						android:layout_marginTop="6.4dp"
+						android:layout_width="39.23dp"
+						android:layout_height="28dp" />
+
+					<TextView android:id="@+id/textcompra"
+						android:fontFamily="Manjari"
+						android:textSize="12sp"
+						android:textColor="@color/_bg__editardatocliente_ek2_color"
+						android:layout_marginLeft="42dp"
+						android:layout_marginTop="36dp"
+						android:layout_width="95dp"
+						android:layout_height="18.4dp"
+						android:text="@string/textcompra_string"
+						 />
+
+					<TextView android:id="@+id/textcerrarsesion"
+						android:fontFamily="Manjari"
+						android:textSize="12sp"
+						android:textColor="@color/_bg__editardatocliente_ek2_color"
+						android:layout_marginLeft="315.04dp"
+						android:layout_marginTop="34.4dp"
+						android:layout_width="93dp"
+						android:layout_height="18.4dp"
+						android:text="@string/textcerrarsesion_string"
+						 />
+
+					<ImageView android:id="@+id/iconolistaproductos_1"
+						android:src="@drawable/iconolistaproductos_1"
+						android:contentDescription="iconolistaproductos_1"
+						 android:layout_marginStart="65dp"
+						android:layout_marginTop="2.4dp"
+						android:layout_width="31.02dp"
+						android:layout_height="32.8dp" />
+
+				</RelativeLayout>
+
+				<TextView android:id="@+id/textdescripcion"
+					android:fontFamily="Manjari"
+					android:textSize="15sp"
+					android:textColor="@color/textdescripcion_color"
+					android:layout_marginLeft="49dp"
+					android:layout_marginTop="209dp"
+					android:layout_width="143.5dp"
+					android:layout_height="26.5dp"
+					android:text="@string/textdescripcion_string"
+					 />
+
+				<ImageView android:id="@+id/iconoflechair_17"
+					android:src="@drawable/iconoflechair_17"
+					android:contentDescription="iconoflechair_17"
+					 android:layout_marginStart="43dp"
+					android:layout_marginTop="138dp"
+					android:layout_width="20dp"
+					android:layout_height="16dp" />
+
+				<View   android:id="@+id/line_1"
+					android:background="@drawable/line_1_shape"
+					 android:layout_marginStart="49dp"
+					android:layout_marginTop="229dp"
+					android:layout_width="321.01dp"
+					android:layout_height="1dp" />
+
+
+				<RelativeLayout android:id="@+id/btnanadircarrito"
+					android:layout_marginTop="273dp"
+					android:layout_marginStart="118dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					>
+
+
+					<RelativeLayout android:id="@+id/state_layer"
+						android:layout_marginTop="0dp"
+						android:layout_marginStart="0dp"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						>
+
+						<TextView android:id="@+id/label_text"
+							android:fontFamily="Roboto"
+							android:layout_gravity="center_horizontal|center"
+							android:gravity="center"
+							android:textSize="14sp"
+							android:textColor="@color/_bg__editardatocliente_ek2_color"
+							android:layout_marginLeft="55dp"
+							android:layout_marginTop="13.5dp"
+							android:layout_width="76dp"
+							android:layout_height="30dp"
+							android:text="@string/label_text_string"
+							 />
+
+					</RelativeLayout>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+		</RelativeLayout>
+
+	</ScrollView>
+</HorizontalScrollView>

@@ -33,4 +33,11 @@
 		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 
+	<!--  editardatocliente styles  -->
+	<style name="TemaEditarCliente" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+
 </resources>
