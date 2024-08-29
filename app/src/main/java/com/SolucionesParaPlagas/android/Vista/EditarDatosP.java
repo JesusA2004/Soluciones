@@ -29,15 +29,13 @@ public class EditarDatosP extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-        /*
-        campo = findViewById(R.id.campo);
-        titulo = findViewById(R.id.titulo);
-        btnConfirmar = findViewById(R.id.btnConfirmar);
-        btnMenu = findViewById(R.id.btnMenu);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        btnProductos = findViewById(R.id.btnProductos);
-        btnAtras = findViewById(R.id.btnAtras);
-        */
+        /*campo = findViewById(R.id.campo);
+        titulo = findViewById(R.id.titulo);*/
+        btnConfirmar = findViewById(R.id.btnConfirmacion);
+        btnMenu = findViewById(R.id.iconoMenu);
+        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
+        btnProductos = findViewById(R.id.iconoVerProductos);
+        btnAtras = findViewById(R.id.iconoAtras);
     }
 
     private void recibirElementos(){

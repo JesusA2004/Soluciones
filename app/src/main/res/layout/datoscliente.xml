@@ -78,7 +78,7 @@
 						android:layout_height="63dp" />
 
 					<ImageView
-						android:id="@+id/iconomenu_1"
+						android:id="@+id/iconoMenu"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
 						android:layout_width="36dp"
@@ -87,7 +87,7 @@
 						android:layout_marginTop="8dp" />
 
 					<ImageView
-						android:id="@+id/iconocerrarsesion__1"
+						android:id="@+id/iconoCerrarSesion"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
 						android:layout_width="39dp"
@@ -96,7 +96,7 @@
 						android:layout_marginTop="8dp" />
 
 					<ImageView
-						android:id="@+id/iconolistaproductos_1"
+						android:id="@+id/iconoVerProductos"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
 						android:layout_width="31dp"

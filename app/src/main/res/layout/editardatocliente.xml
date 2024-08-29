@@ -15,12 +15,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				>
-				<View   android:id="@+id/_bg__editardatocliente_ek2"
-					android:background="@drawable/_bg__editardatocliente_ek2_shape"
-					 android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
+
+				<View
+					android:id="@+id/_bg__editardatocliente_ek2"
 					android:layout_width="411dp"
-					android:layout_height="823dp" />
+					android:layout_height="823dp"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:background="@drawable/_bg__editardatocliente_ek2_shape" />
 
 				<ImageView android:id="@+id/fondodatosper_1"
 					android:src="@drawable/fondodatosper_1"
@@ -60,7 +62,7 @@
 						android:layout_height="63dp" />
 
 					<ImageView
-						android:id="@+id/iconomenu_1"
+						android:id="@+id/iconoMenu"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
 						android:layout_width="36dp"
@@ -69,7 +71,7 @@
 						android:layout_marginTop="8dp" />
 
 					<ImageView
-						android:id="@+id/iconocerrarsesion__1"
+						android:id="@+id/iconoCerrarSesion"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
 						android:layout_width="39dp"
@@ -78,7 +80,7 @@
 						android:layout_marginTop="8dp" />
 
 					<ImageView
-						android:id="@+id/iconolistaproductos_1"
+						android:id="@+id/iconoVerProductos"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
 						android:layout_width="31dp"
@@ -117,10 +119,10 @@
 					android:textSize="12sp"
 					android:textColor="#FFFFFF"/>
 
-				<ImageView android:id="@+id/iconoflechair_17"
+				<ImageView android:id="@+id/iconoAtras"
 					android:src="@drawable/iconoflechair_17"
 					android:contentDescription="iconoflechair_17"
-					 android:layout_marginStart="43dp"
+					android:layout_marginStart="43dp"
 					android:layout_marginTop="138dp"
 					android:layout_width="20dp"
 					android:layout_height="16dp" />
@@ -142,6 +144,15 @@
 						/>
 
 				</RelativeLayout>
+
+				<Button
+					android:id="@+id/btnConfirmacion"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="160dp"
+					android:layout_marginTop="300dp"
+					android:text="Confirmar"
+					android:backgroundTint="#1f5630"/>
 
 			</RelativeLayout>
 		</RelativeLayout>

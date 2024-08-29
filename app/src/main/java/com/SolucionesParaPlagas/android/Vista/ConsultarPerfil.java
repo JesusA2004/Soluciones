@@ -4,12 +4,14 @@ import com.example.sol.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 
 public class ConsultarPerfil extends AppCompatActivity {
 
+    Button btnGuardarCambios;
     ImageView btnProductos, btnMenu, btnCerrarSesion;
     Sesion sesion = new Sesion();
 
@@ -22,11 +24,10 @@ public class ConsultarPerfil extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-        /*
-        btnProductos = findViewById(R.id.btnProductos);
-        btnMenu = findViewById(R.id.btnMenu);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        */
+        btnProductos = findViewById(R.id.iconoVerProductos);
+        btnMenu = findViewById(R.id.iconoMenu);
+        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
+        btnGuardarCambios = findViewById(R.id.btnSubirCambios);
     }
 
     private void configurarBotones() {
