@@ -19,4 +19,18 @@
 		<item name="android:textSize">16sp</item> <!-- Tamaño de texto pequeño -->
 	</style>
 
+	<!--  datoscliente styles  -->
+	<style name="TemaEC" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+
+	<!--  consultarestadoc styles  -->
+	<style name="TemaDP" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+
 </resources>

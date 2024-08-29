@@ -44,4 +44,11 @@
 	<!--  carritocompra colors  -->
 	<color name="_bg__carritocompra_ek2_color">#FFFFFF</color>
 
+	<!--  datoscliente colors  -->
+	<color name="_bg__datoscliente_ek2_color">#FFFFFF</color>
+
+	<!--  consultarestadoc colors  -->
+	<color name="textdescripcion_ek1_color">#B5AFAF</color>
+	<color name="contenedorinfo_ek1_color">#EFEFEF</color>
+
 </resources>
