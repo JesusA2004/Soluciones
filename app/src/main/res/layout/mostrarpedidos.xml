@@ -87,6 +87,46 @@
 
 				</RelativeLayout>
 
+				<TextView
+					android:id="@+id/txtVerProductos"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="40dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtVerProductos"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtMenu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="170dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtMenuPrincipal"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtCerrarSesion"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="310dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtCerrarSesion"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtResumen"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="40dp"
+					android:layout_marginTop="210dp"
+					android:text="Mis Pedidos"
+					android:textSize="18sp"
+					android:textStyle="bold"/>
+
 				<androidx.recyclerview.widget.RecyclerView
 					android:layout_width="250dp"
 					android:layout_height="match_parent"
