@@ -22,7 +22,9 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-
+        btnMenu = findViewById(R.id.iconoMenu);
+        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
+        btnProductos = findViewById(R.id.iconoVerProductos);
     }
 
     private void configurarBotones() {
