@@ -9,14 +9,11 @@
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" >
 
-
-
 			<RelativeLayout android:id="@+id/page_carritocompra_ek1"
 				android:layout_marginTop="0dp"
 				android:layout_marginStart="0dp"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				>
+				android:layout_height="wrap_content">
 
 				<View   android:id="@+id/_bg__carritocompra_ek2"
 					android:background="@drawable/_bg__carritocompra_ek2_shape"
@@ -50,13 +47,11 @@
 					android:layout_width="64dp"
 					android:layout_height="75dp" />
 
-
 				<RelativeLayout android:id="@+id/opciones"
 					android:layout_marginTop="770dp"
 					android:layout_marginStart="-6dp"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					>
+					android:layout_height="wrap_content">
 
 					<View   android:id="@+id/iconosopciones"
 						android:background="@drawable/iconosopciones_shape"
@@ -133,11 +128,10 @@
 					android:textStyle="bold"/>
 
 				<androidx.recyclerview.widget.RecyclerView
-					android:id="@+id/listaProductos"
 					android:layout_width="250dp"
 					android:layout_height="match_parent"
 					android:layout_marginStart="40dp"
-					android:layout_marginTop="350dp" />
+					android:layout_marginTop="350dp"/>
 
 			</RelativeLayout>
 		</RelativeLayout>

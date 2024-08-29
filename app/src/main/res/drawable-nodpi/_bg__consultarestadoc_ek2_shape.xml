@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- contenedorinfo from your XD file. -->
+<!-- _bg__consultarestadoc_ek2 from your XD file. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
 	android:shape="rectangle" >
-	<corners android:radius="32dp" />
-	<solid android:color="@color/contenedorinfo_color" />
+	<solid android:color="@color/_bg__consultarestadoc_ek2_color" />
 </shape>
 
