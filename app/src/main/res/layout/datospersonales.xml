@@ -227,14 +227,6 @@
 					android:layout_width="14dp"
 					android:layout_height="14dp" />
 
-				<ImageView android:id="@+id/iconoflechair_17"
-					android:src="@drawable/iconoflechair_17"
-					android:contentDescription="iconoflechair_17"
-					 android:layout_marginStart="342dp"
-					android:layout_marginTop="111dp"
-					android:layout_width="20dp"
-					android:layout_height="16dp" />
-
 				<ImageView android:id="@+id/iconoflechair_18"
 					android:src="@drawable/iconoflechair_18"
 					android:contentDescription="iconoflechair_18"
@@ -242,6 +234,15 @@
 					android:layout_marginTop="312dp"
 					android:layout_width="20dp"
 					android:layout_height="16dp" />
+
+				<ImageView
+					android:id="@+id/flechair"
+					android:layout_width="20dp"
+					android:layout_height="16dp"
+					android:layout_marginStart="345dp"
+					android:layout_marginTop="110dp"
+					android:contentDescription="iconoflechair_18"
+					android:src="@drawable/iconoflechair_18" />
 
 				<TextView android:id="@+id/textdescripcion_ek25"
 					android:fontFamily="Manjari"
