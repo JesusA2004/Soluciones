@@ -51,4 +51,7 @@
 	<color name="textdescripcion_ek1_color">#B5AFAF</color>
 	<color name="contenedorinfo_ek1_color">#EFEFEF</color>
 
+	<!--  editardatocliente colors  -->
+	<color name="_bg__editardatocliente_ek2_color">#FFFFFF</color>
+
 </resources>
