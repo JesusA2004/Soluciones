@@ -70,18 +70,6 @@
 					android:layout_width="52dp"
 					android:layout_height="53dp" />
 
-				<TextView android:id="@+id/textnombrep"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="15sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="69dp"
-					android:layout_marginTop="110dp"
-					android:layout_width="278.5dp"
-					android:layout_height="28.5dp"
-					android:text="@string/textnombrep_string"
-					 />
-
 
 				<RelativeLayout android:id="@+id/opciones"
 					android:layout_marginTop="771dp"
@@ -96,17 +84,6 @@
 						android:layout_marginTop="1.6dp"
 						android:layout_width="411dp"
 						android:layout_height="50.4dp" />
-
-					<TextView android:id="@+id/textmenuprincipal"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__consultarestadoc_ek2_color"
-						android:layout_marginLeft="179dp"
-						android:layout_marginTop="36dp"
-						android:layout_width="95dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textmenuprincipal_string"
-						 />
 
 					<ImageView android:id="@+id/iconomenu_1"
 						android:src="@drawable/iconomenu_1"
@@ -124,28 +101,6 @@
 						android:layout_width="39.23dp"
 						android:layout_height="28dp" />
 
-					<TextView android:id="@+id/textcompra"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__consultarestadoc_ek2_color"
-						android:layout_marginLeft="42dp"
-						android:layout_marginTop="36dp"
-						android:layout_width="95dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textcompra_string"
-						 />
-
-					<TextView android:id="@+id/textcerrarsesion"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__consultarestadoc_ek2_color"
-						android:layout_marginLeft="315.04dp"
-						android:layout_marginTop="34.4dp"
-						android:layout_width="93dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textcerrarsesion_string"
-						 />
-
 					<ImageView android:id="@+id/iconolistaproductos_1"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
@@ -155,43 +110,6 @@
 						android:layout_height="32.8dp" />
 
 				</RelativeLayout>
-
-				<TextView android:id="@+id/textdescripcion"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="152dp"
-					android:layout_width="125.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek1"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="294dp"
-					android:layout_marginTop="154dp"
-					android:layout_width="57dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek1_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek2"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="301dp"
-					android:layout_marginTop="217dp"
-					android:layout_width="51dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek2_string"
-					 />
 
 				<TextView android:id="@+id/textdescripcion_ek3"
 					android:fontFamily="Manjari"
@@ -204,63 +122,6 @@
 					android:layout_width="57dp"
 					android:layout_height="23.5dp"
 					android:text="@string/textdescripcion_ek3_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek4"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="290dp"
-					android:layout_marginTop="244dp"
-					android:layout_width="61dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek4_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek5"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="175dp"
-					android:layout_width="93.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek5_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek6"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="198dp"
-					android:layout_width="43.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek6_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek7"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="221dp"
-					android:layout_width="59.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek7_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek8"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="244dp"
-					android:layout_width="70.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek8_string"
 					 />
 
 				<ImageView android:id="@+id/iconoflechair_1"
@@ -301,110 +162,6 @@
 					android:layout_marginTop="296dp"
 					android:layout_width="333dp"
 					android:layout_height="223dp" />
-
-				<TextView android:id="@+id/textdescripcion_ek9"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="322dp"
-					android:layout_marginTop="369dp"
-					android:layout_width="32dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek9_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek10"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="314dp"
-					android:layout_marginTop="346dp"
-					android:layout_width="40dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek10_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek11"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="170dp"
-					android:layout_marginTop="371dp"
-					android:layout_width="32dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek11_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek12"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="297dp"
-					android:layout_marginTop="398dp"
-					android:layout_width="57dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek12_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek13"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="288dp"
-					android:layout_marginTop="468dp"
-					android:layout_width="67dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek13_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek14"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="301dp"
-					android:layout_marginTop="491dp"
-					android:layout_width="56dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek14_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek15"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="287dp"
-					android:layout_marginTop="445dp"
-					android:layout_width="70dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek15_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek16"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="325dp"
-					android:layout_marginTop="421dp"
-					android:layout_width="29dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek16_string"
-					 />
 
 				<ImageView android:id="@+id/iconoflechair_29"
 					android:src="@drawable/iconoflechair_29"
@@ -470,106 +227,6 @@
 					android:layout_width="14dp"
 					android:layout_height="14dp" />
 
-				<TextView android:id="@+id/textnombrep_ek1"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="15sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="72dp"
-					android:layout_marginTop="315dp"
-					android:layout_width="278.5dp"
-					android:layout_height="28.5dp"
-					android:text="@string/textnombrep_ek1_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek17"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="346dp"
-					android:layout_width="48.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek17_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek18"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="371dp"
-					android:layout_width="82.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek18_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek19"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="228dp"
-					android:layout_marginTop="371dp"
-					android:layout_width="88.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek19_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek20"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="399dp"
-					android:layout_width="63.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek20_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek21"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="422dp"
-					android:layout_width="35.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek21_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek22"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="445dp"
-					android:layout_width="76.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek22_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek23"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="69dp"
-					android:layout_marginTop="468dp"
-					android:layout_width="73.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek23_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek24"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="69dp"
-					android:layout_marginTop="491dp"
-					android:layout_width="62.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek24_string"
-					 />
-
 				<ImageView android:id="@+id/iconoflechair_17"
 					android:src="@drawable/iconoflechair_17"
 					android:contentDescription="iconoflechair_17"
@@ -605,110 +262,6 @@
 					android:layout_marginTop="528dp"
 					android:layout_width="333dp"
 					android:layout_height="223dp" />
-
-				<TextView android:id="@+id/textdescripcion_ek26"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="322dp"
-					android:layout_marginTop="601dp"
-					android:layout_width="32dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek26_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek27"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="314dp"
-					android:layout_marginTop="578dp"
-					android:layout_width="40dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek27_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek28"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="170dp"
-					android:layout_marginTop="603dp"
-					android:layout_width="32dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek28_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek29"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="297dp"
-					android:layout_marginTop="630dp"
-					android:layout_width="57dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek29_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek30"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="288dp"
-					android:layout_marginTop="700dp"
-					android:layout_width="67dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek30_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek31"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="301dp"
-					android:layout_marginTop="723dp"
-					android:layout_width="56dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek31_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek32"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="287dp"
-					android:layout_marginTop="677dp"
-					android:layout_width="70dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek32_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek33"
-					android:fontFamily="Manjari"
-					android:layout_gravity="center_vertical|end"
-					android:gravity="end"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_ek1_color"
-					android:layout_marginLeft="325dp"
-					android:layout_marginTop="653dp"
-					android:layout_width="29dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek33_string"
-					 />
 
 				<ImageView android:id="@+id/iconoflechair_30"
 					android:src="@drawable/iconoflechair_30"
@@ -773,106 +326,6 @@
 					android:layout_marginTop="601dp"
 					android:layout_width="14dp"
 					android:layout_height="14dp" />
-
-				<TextView android:id="@+id/textnombrep_ek2"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="15sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="72dp"
-					android:layout_marginTop="547dp"
-					android:layout_width="278.5dp"
-					android:layout_height="28.5dp"
-					android:text="@string/textnombrep_ek2_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek34"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="578dp"
-					android:layout_width="48.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek34_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek35"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="603dp"
-					android:layout_width="82.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek35_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek36"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="228dp"
-					android:layout_marginTop="603dp"
-					android:layout_width="88.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek36_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek37"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="631dp"
-					android:layout_width="63.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek37_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek38"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="654dp"
-					android:layout_width="35.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek38_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek39"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="71dp"
-					android:layout_marginTop="677dp"
-					android:layout_width="76.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek39_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek40"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="69dp"
-					android:layout_marginTop="700dp"
-					android:layout_width="73.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek40_string"
-					 />
-
-				<TextView android:id="@+id/textdescripcion_ek41"
-					android:fontFamily="Manjari"
-					android:textSize="13sp"
-					android:textColor="@color/textdescripcion_color"
-					android:layout_marginLeft="69dp"
-					android:layout_marginTop="723dp"
-					android:layout_width="62.5dp"
-					android:layout_height="23.5dp"
-					android:text="@string/textdescripcion_ek41_string"
-					 />
 
 				<ImageView android:id="@+id/iconoflechair_38"
 					android:src="@drawable/iconoflechair_38"
