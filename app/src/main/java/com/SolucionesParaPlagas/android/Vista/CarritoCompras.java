@@ -22,7 +22,8 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 public class CarritoCompras extends AppCompatActivity {
 
     Button btnCotizacion;
-    ImageView btnVerProductos, btnMenu, btnCerrarSesion;
+    ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMas, btnMenos;
+
     private ProgressBar iconoCarga;
     //       IDP   CantidadP
     HashMap<String, Integer> carrito = new HashMap<>();
@@ -39,11 +40,11 @@ public class CarritoCompras extends AppCompatActivity {
     }
 
     private void inicializarElementos(){
-        // btnCotizacion = findViewById(R.id.btnCotizar);
-        // btnVerProductos = findViewById(R.id.btnVerProductos);
-        // btnMenu = findViewById(R.id.btnMenu);
-        // btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        // iconoCarga = findViewById(R.id.iconoCarga);
+        btnCotizacion = findViewById(R.id.btnCotizar);
+        btnVerProductos = findViewById(R.id.iconoVerProductos);
+        btnMenu = findViewById(R.id.iconoMenu);
+        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
+        iconoCarga = findViewById(R.id.iconoCargando);
     }
 
     private void obtenerElementos(){

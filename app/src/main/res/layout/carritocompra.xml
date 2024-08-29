@@ -79,7 +79,7 @@
 
 
 					<ImageView
-						android:id="@+id/iconomenu_1"
+						android:id="@+id/iconoMenu"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
 						android:layout_width="36dp"
@@ -88,7 +88,7 @@
 						android:layout_marginTop="8dp" />
 
 					<ImageView
-						android:id="@+id/iconocerrarsesion__1"
+						android:id="@+id/iconoCerrarSesion"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
 						android:layout_width="39dp"
@@ -97,7 +97,7 @@
 						android:layout_marginTop="8dp" />
 
 					<ImageView
-						android:id="@+id/iconolistaproductos_1"
+						android:id="@+id/iconoVerProductos"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
 						android:layout_width="31dp"
@@ -161,6 +161,24 @@
 					android:ems="10"
 					android:inputType="text"
 					android:text="No." />
+
+				<ProgressBar
+					android:id="@+id/iconoCargando"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:contentDescription="@string/descripcionProgressBar"
+					android:indeterminate="true"
+					android:visibility="gone" />
+
+				<Button
+					android:id="@+id/btnCotizar"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="130dp"
+					android:layout_marginTop="580dp"
+					android:text="Solicitar cotización"
+					android:backgroundTint="#178C3C"/>
 
 			</RelativeLayout>
 		</RelativeLayout>

@@ -71,45 +71,76 @@
 					android:layout_height="53dp" />
 
 
-				<RelativeLayout android:id="@+id/opciones"
-					android:layout_marginTop="771dp"
-					android:layout_marginStart="-2dp"
-					android:layout_width="wrap_content"
+				<RelativeLayout
+					android:id="@+id/opciones"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					>
+					android:layout_alignParentBottom="true">
 
-					<View   android:id="@+id/iconosopciones"
+					<View
+						android:id="@+id/iconosopciones"
 						android:background="@drawable/iconosopciones_shape"
-						 android:layout_marginStart="0dp"
-						android:layout_marginTop="1.6dp"
-						android:layout_width="411dp"
-						android:layout_height="50.4dp" />
+						android:layout_width="match_parent"
+						android:layout_height="63dp" />
 
-					<ImageView android:id="@+id/iconomenu_1"
+					<ImageView
+						android:id="@+id/iconoMenu"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
-						 android:layout_marginStart="200dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="36.43dp"
-						android:layout_height="25.6dp" />
+						android:layout_width="36dp"
+						android:layout_height="32dp"
+						android:layout_marginStart="200dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconocerrarsesion__1"
+					<ImageView
+						android:id="@+id/iconoCerrarSesion"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
-						 android:layout_marginStart="332.48dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="39.23dp"
-						android:layout_height="28dp" />
+						android:layout_width="39dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="320dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconolistaproductos_1"
+					<ImageView
+						android:id="@+id/iconoVerProductos"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
-						 android:layout_marginStart="65dp"
-						android:layout_marginTop="2.4dp"
-						android:layout_width="31.02dp"
-						android:layout_height="32.8dp" />
+						android:layout_width="31dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="70dp"
+						android:layout_marginTop="5dp" />
 
 				</RelativeLayout>
+
+				<TextView
+					android:id="@+id/txtVerProductos"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="50dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtVerProductos"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtMenu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="180dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtMenuPrincipal"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtCerrarSesion"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="300dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtCerrarSesion"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
 				<TextView android:id="@+id/textdescripcion_ek3"
 					android:fontFamily="Manjari"
@@ -331,12 +362,10 @@
 				<ImageView android:id="@+id/iconoflechair_38"
 					android:src="@drawable/iconoflechair_38"
 					android:contentDescription="iconoflechair_38"
-					 android:layout_marginStart="345dp"
+					android:layout_marginStart="345dp"
 					android:layout_marginTop="544dp"
 					android:layout_width="20dp"
 					android:layout_height="16dp" />
-
-
 
 			</RelativeLayout>
 		</RelativeLayout>
