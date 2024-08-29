@@ -47,43 +47,44 @@
 					android:layout_width="64dp"
 					android:layout_height="75dp" />
 
-				<RelativeLayout android:id="@+id/opciones"
-					android:layout_marginTop="770dp"
-					android:layout_marginStart="-6dp"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
+				<RelativeLayout
+					android:id="@+id/opciones"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true">
 
-					<View   android:id="@+id/iconosopciones"
+					<View
+						android:id="@+id/iconosopciones"
 						android:background="@drawable/iconosopciones_shape"
-						 android:layout_marginStart="0dp"
-						android:layout_marginTop="2dp"
-						android:layout_width="411dp"
-						android:layout_height="50.4dp" />
+						android:layout_width="match_parent"
+						android:layout_height="63dp" />
 
 					<ImageView
 						android:id="@+id/iconomenu_1"
-						android:layout_width="36.43dp"
-						android:layout_height="25.6dp"
-						android:layout_marginStart="200dp"
-						android:layout_marginTop="6.4dp"
+						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
-						android:src="@drawable/iconomenu_1" />
+						android:layout_width="36dp"
+						android:layout_height="32dp"
+						android:layout_marginStart="200dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconocerrarsesion__1"
+					<ImageView
+						android:id="@+id/iconocerrarsesion__1"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
-						 android:layout_marginStart="332.48dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="39.23dp"
-						android:layout_height="28dp" />
+						android:layout_width="39dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="320dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconolistaproductos_1"
+					<ImageView
+						android:id="@+id/iconolistaproductos_1"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
-						android:layout_marginStart="65dp"
-						android:layout_marginTop="2.4dp"
-						android:layout_width="31.02dp"
-						android:layout_height="32.8dp" />
+						android:layout_width="31dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="70dp"
+						android:layout_marginTop="5dp" />
 
 				</RelativeLayout>
 

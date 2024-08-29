@@ -1,12 +1,12 @@
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent" android:layout_height="wrap_content" >
 
-	<ScrollView android:id="@+id/consultarestadoc" 
-		android:layout_width="wrap_content" 
+	<ScrollView android:id="@+id/consultarestadoc"
+		android:layout_width="wrap_content"
 		android:layout_height="match_parent" >
 
-		<RelativeLayout android:id="@+id/content_container" 
-			android:layout_width="wrap_content" 
+		<RelativeLayout android:id="@+id/content_container"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" >
 
 			<RelativeLayout android:id="@+id/page_consultarestadoc_ek1"
@@ -47,112 +47,120 @@
 					android:layout_width="64dp"
 					android:layout_height="75dp" />
 
-				<ImageView android:id="@+id/contenedorinfo"
-					android:src="@drawable/contenedorinfo"
-					android:contentDescription="contenedorinfo"
-					 android:layout_marginStart="44dp"
-					android:layout_marginTop="232dp"
-					android:layout_width="333dp"
-					android:layout_height="91dp" />
-
-				<ImageView android:id="@+id/producto3"
-					android:src="@drawable/producto3"
-					android:contentDescription="producto3"
-					 android:layout_marginStart="54dp"
-					android:layout_marginTop="240dp"
-					android:layout_width="57dp"
-					android:layout_height="74dp" />
-
-
-				<RelativeLayout android:id="@+id/opciones"
-					android:layout_marginTop="771dp"
+				<View
+					android:id="@+id/cmpCant"
+					android:layout_width="411dp"
+					android:layout_height="177dp"
 					android:layout_marginStart="-2dp"
+					android:layout_marginTop="660dp"
+					android:background="@drawable/ellipse_1_shape" />
+
+				<TextView
+					android:id="@+id/txtMsjB"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					>
+					android:layout_marginStart="170dp"
+					android:layout_marginTop="670dp"
+					android:text="Cantidad"
+					android:textSize="21sp"
+					android:textStyle="bold"/>
+
+				<RelativeLayout
+					android:id="@+id/opciones"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true">
 
 					<View
 						android:id="@+id/iconosopciones"
-						android:layout_width="411dp"
-						android:layout_height="50.4dp"
-						android:layout_marginStart="0dp"
-						android:layout_marginTop="1.6dp"
-						android:background="@drawable/iconosopciones_shape" />
+						android:background="@drawable/iconosopciones_shape"
+						android:layout_width="match_parent"
+						android:layout_height="75dp" />
 
-					<ImageView android:id="@+id/iconomenu_1"
+
+					<ImageView
+						android:id="@+id/iconomenu_1"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
-						 android:layout_marginStart="200dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="36.43dp"
-						android:layout_height="25.6dp" />
+						android:layout_width="36dp"
+						android:layout_height="32dp"
+						android:layout_marginStart="200dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconocerrarsesion__1"
+					<ImageView
+						android:id="@+id/iconocerrarsesion__1"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
-						 android:layout_marginStart="332.48dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="39.23dp"
-						android:layout_height="28dp" />
+						android:layout_width="39dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="320dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconolistaproductos_1"
+					<ImageView
+						android:id="@+id/iconolistaproductos_1"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
-						 android:layout_marginStart="65dp"
-						android:layout_marginTop="2.4dp"
-						android:layout_width="31.02dp"
-						android:layout_height="32.8dp" />
-
-					<View
-						android:id="@+id/ellipse_1"
-						android:layout_width="411dp"
-						android:layout_height="177dp"
-						android:layout_marginStart="-2dp"
-						android:layout_marginTop="682dp"
-						android:background="@drawable/ellipse_1_shape" />
+						android:layout_width="31dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="70dp"
+						android:layout_marginTop="5dp" />
 
 				</RelativeLayout>
-
-
-				<RelativeLayout android:id="@+id/btnanadircarrito"
-					android:layout_marginTop="552dp"
-					android:layout_marginStart="124dp"
+				<TextView
+					android:id="@+id/txtVerProductos"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					>
+					android:layout_marginStart="50dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtVerProductos"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
+				<TextView
+					android:id="@+id/txtMenu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="180dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtMenuPrincipal"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
-					<RelativeLayout android:id="@+id/state_layer"
-						android:layout_marginTop="0dp"
-						android:layout_marginStart="0dp"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						/>
-
-				</RelativeLayout>
+				<TextView
+					android:id="@+id/txtCerrarSesion"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="300dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtCerrarSesion"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
 				<ImageView android:id="@+id/iconomas_1"
 					android:src="@drawable/iconomas_1"
 					android:contentDescription="iconomas_1"
 					 android:layout_marginStart="306dp"
-					android:layout_marginTop="722dp"
+					android:layout_marginTop="710dp"
 					android:layout_width="32dp"
 					android:layout_height="32dp" />
 
 				<ImageView android:id="@+id/iconomenos_1"
 					android:src="@drawable/iconomenos_1"
 					android:contentDescription="iconomenos_1"
-					 android:layout_marginStart="75dp"
-					android:layout_marginTop="722dp"
+					android:layout_marginStart="75dp"
+					android:layout_marginTop="710dp"
 					android:layout_width="31dp"
 					android:layout_height="29dp" />
 
-				<View   android:id="@+id/rectangle_1"
-					android:background="@drawable/rectangle_1_shape"
-					 android:layout_marginStart="181dp"
-					android:layout_marginTop="720dp"
-					android:layout_width="49dp"
-					android:layout_height="31dp" />
+				<EditText
+					android:id="@+id/editxtCantidad"
+					android:layout_width="92dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="170dp"
+					android:layout_marginTop="700dp"
+					android:ems="10"
+					android:inputType="text"
+					android:text="No." />
 
 			</RelativeLayout>
 		</RelativeLayout>

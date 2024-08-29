@@ -32,33 +32,27 @@
 				android:layout_height="wrap_content"
 				>
 
-				<View   android:id="@+id/_bg__datoscliente_ek2"
-					android:background="@drawable/_bg__datoscliente_ek2_shape"
-					 android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
+				<View
+					android:id="@+id/_bg__datoscliente_ek2"
 					android:layout_width="411dp"
-					android:layout_height="823dp" />
+					android:layout_height="823dp"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:background="@drawable/_bg__datoscliente_ek2_shape" />
 
 				<ImageView android:id="@+id/fondodatosper_1"
 					android:src="@drawable/fondodatosper_1"
 					android:contentDescription="fondodatosper_1"
 					 android:layout_marginStart="2dp"
-					android:layout_marginTop="-8dp"
+					android:layout_marginTop="-18dp"
 					android:layout_width="411dp"
 					android:layout_height="141dp" />
-
-				<View   android:id="@+id/contenedorinfo"
-					android:background="@drawable/contenedorinfo_shape"
-					 android:layout_marginStart="48dp"
-					android:layout_marginTop="172dp"
-					android:layout_width="333dp"
-					android:layout_height="63dp" />
 
 				<ImageView android:id="@+id/letraslogosinfondo_"
 					android:src="@drawable/letraslogosinfondo_"
 					android:contentDescription="letraslogosinfondo_"
 					 android:layout_marginStart="111dp"
-					android:layout_marginTop="40dp"
+					android:layout_marginTop="30dp"
 					android:layout_width="138dp"
 					android:layout_height="62dp" />
 
@@ -66,95 +60,120 @@
 					android:src="@drawable/logotipsinfondo_"
 					android:contentDescription="logotipsinfondo_"
 					 android:layout_marginStart="32dp"
-					android:layout_marginTop="23dp"
+					android:layout_marginTop="10dp"
 					android:layout_width="94dp"
 					android:layout_height="79dp" />
 
 
-				<RelativeLayout android:id="@+id/opciones"
-					android:layout_marginTop="771dp"
-					android:layout_marginStart="-2dp"
-					android:layout_width="wrap_content"
+				<RelativeLayout
+					android:id="@+id/opciones"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					>
+					android:layout_alignParentBottom="true">
 
-					<View   android:id="@+id/iconosopciones"
+					<View
+						android:id="@+id/iconosopciones"
 						android:background="@drawable/iconosopciones_shape"
-						 android:layout_marginStart="0dp"
-						android:layout_marginTop="1.6dp"
-						android:layout_width="411dp"
-						android:layout_height="50.4dp" />
+						android:layout_width="match_parent"
+						android:layout_height="63dp" />
 
-					<ImageView android:id="@+id/iconomenu_1"
+					<ImageView
+						android:id="@+id/iconomenu_1"
 						android:src="@drawable/iconomenu_1"
 						android:contentDescription="iconomenu_1"
-						 android:layout_marginStart="200dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="36.43dp"
-						android:layout_height="25.6dp" />
+						android:layout_width="36dp"
+						android:layout_height="32dp"
+						android:layout_marginStart="200dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconocerrarsesion__1"
+					<ImageView
+						android:id="@+id/iconocerrarsesion__1"
 						android:src="@drawable/iconocerrarsesion__1"
 						android:contentDescription="iconocerrarsesion__1"
-						 android:layout_marginStart="332.48dp"
-						android:layout_marginTop="6.4dp"
-						android:layout_width="39.23dp"
-						android:layout_height="28dp" />
+						android:layout_width="39dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="320dp"
+						android:layout_marginTop="8dp" />
 
-					<ImageView android:id="@+id/iconolistaproductos_1"
+					<ImageView
+						android:id="@+id/iconolistaproductos_1"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
-						 android:layout_marginStart="65dp"
-						android:layout_marginTop="2.4dp"
-						android:layout_width="31.02dp"
-						android:layout_height="32.8dp" />
+						android:layout_width="31dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="70dp"
+						android:layout_marginTop="5dp" />
 
 				</RelativeLayout>
 
-				<ImageView android:id="@+id/iconoflechair_1"
-					android:src="@drawable/iconoflechair_1"
-					android:contentDescription="iconoflechair_1"
-					 android:layout_marginStart="335dp"
-					android:layout_marginTop="194dp"
-					android:layout_width="20dp"
-					android:layout_height="16dp" />
+				<TextView
+					android:id="@+id/txtVerProductos"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="50dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtVerProductos"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
-				<View   android:id="@+id/contenedorinfo_ek1"
-					android:background="@drawable/contenedorinfo_ek1_shape"
-					 android:layout_marginStart="48dp"
-					android:layout_marginTop="258dp"
-					android:layout_width="333dp"
-					android:layout_height="66dp" />
+				<TextView
+					android:id="@+id/txtMenu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="180dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtMenuPrincipal"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
-				<ImageView android:id="@+id/iconoflechair_2"
-					android:src="@drawable/iconoflechair_2"
-					android:contentDescription="iconoflechair_2"
-					 android:layout_marginStart="335dp"
-					android:layout_marginTop="280dp"
-					android:layout_width="20dp"
-					android:layout_height="16dp" />
-
-				<View   android:id="@+id/contenedorinfo_ek2"
-					android:background="@drawable/contenedorinfo_ek2_shape"
-					 android:layout_marginStart="48dp"
-					android:layout_marginTop="344dp"
-					android:layout_width="333dp"
-					android:layout_height="68dp" />
-
-				<ImageView android:id="@+id/iconoflechair_3"
-					android:src="@drawable/iconoflechair_3"
-					android:contentDescription="iconoflechair_3"
-					android:layout_marginStart="335dp"
-					android:layout_marginTop="366dp"
-					android:layout_width="20dp"
-					android:layout_height="16dp" />
+				<TextView
+					android:id="@+id/txtCerrarSesion"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="300dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtCerrarSesion"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
 
 				<ExpandableListView
-					android:id="@+id/expandableListView"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+					android:id="@+id/datosPersonales"
+					android:layout_width="330dp"
+					android:layout_height="64dp"
+					android:layout_marginStart="40dp"
+					android:layout_marginTop="150dp"
+					android:background="#9BD8B3"
 					android:dividerHeight="2dp"
-					android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"/>
+					android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+
+				<ExpandableListView
+					android:id="@+id/dirFiscal"
+					android:layout_width="330dp"
+					android:layout_height="64dp"
+					android:layout_marginStart="40dp"
+					android:layout_marginTop="250dp"
+					android:background="#E6E3E3"
+					android:dividerHeight="2dp"
+					android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+
+				<ExpandableListView
+					android:id="@+id/dirEnvio"
+					android:layout_width="330dp"
+					android:layout_height="64dp"
+					android:layout_marginStart="40dp"
+					android:layout_marginTop="350dp"
+					android:background="#E6E3E3"
+					android:dividerHeight="2dp"
+					android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+
+				<Button
+					android:id="@+id/btnSubirCambios"
+					android:layout_width="wrap_content"
+					android:layout_height="63dp"
+					android:layout_marginStart="130dp"
+					android:layout_marginTop="460dp"
+					android:backgroundTint="#178C3C"
+					android:text="Guardar cambios" />
 
 
 			</RelativeLayout>

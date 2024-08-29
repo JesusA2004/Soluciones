@@ -67,7 +67,7 @@
 		android:layout_marginStart="70dp"
 		android:layout_marginTop="220dp"
 		android:text="@string/msjEstadoCuenta"
-		android:textSize="20sp"
+		android:textSize="21sp"
 		android:textStyle="bold"/>
 
 	<TextView
@@ -89,39 +89,12 @@
 		android:theme="@style/estiloEstadoCuenta"/>
 
 	<TextView
-		android:id="@+id/txtPorPagar"
+		android:id="@+id/txtMetodoPago"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="70dp"
 		android:layout_marginTop="370dp"
-		android:text="@string/txtPorPagar"
-		android:theme="@style/estiloEstadoCuenta"/>
-
-	<TextView
-		android:id="@+id/txtVencido"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="70dp"
-		android:layout_marginTop="410dp"
-		android:text="@string/txtVencido"
-		android:theme="@style/estiloEstadoCuenta"/>
-
-	<TextView
-		android:id="@+id/txtCorriente"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="70dp"
-		android:layout_marginTop="450dp"
-		android:text="@string/txtCorriente"
-		android:theme="@style/estiloEstadoCuenta"/>
-
-	<TextView
-		android:id="@+id/txtVencidoPor"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="70dp"
-		android:layout_marginTop="490dp"
-		android:text="@string/txtVencidoPor"
+		android:text="Método de pago"
 		android:theme="@style/estiloEstadoCuenta"/>
 
 	<RelativeLayout
