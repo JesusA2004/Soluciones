@@ -1,20 +1,6 @@
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent" android:layout_height="wrap_content" >
-	<!-- 
-	/*
-	 *	This content is generated from the API File Info.
-	 *	(Alt+Shift+Ctrl+I).
-	 *
-	 *	@desc 		
-	 *	@file 		consultarestadoc
-	 *	@date 		Thursday 29th of August 2024 03:41:53 PM
-	 *	@title 		ModificarCantidadCP
-	 *	@author 	
-	 *	@keywords 	
-	 *	@generator 	Export Kit v1.3.figma
-	 *
-	 */
-	-->
+
 	<ScrollView android:id="@+id/consultarestadoc" 
 		android:layout_width="wrap_content" 
 		android:layout_height="match_parent" >
@@ -22,8 +8,6 @@
 		<RelativeLayout android:id="@+id/content_container" 
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" >
-
-
 
 			<RelativeLayout android:id="@+id/page_consultarestadoc_ek1"
 				android:layout_marginTop="0dp"
@@ -71,42 +55,6 @@
 					android:layout_width="333dp"
 					android:layout_height="91dp" />
 
-				<TextView android:id="@+id/textnombrep"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="12sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="131dp"
-					android:layout_marginTop="251dp"
-					android:layout_width="194dp"
-					android:layout_height="23dp"
-					android:text="@string/textnombrep_string"
-					 />
-
-				<TextView android:id="@+id/textnombrep_ek1"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="16sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="44dp"
-					android:layout_marginTop="201dp"
-					android:layout_width="279dp"
-					android:layout_height="30dp"
-					android:text="@string/textnombrep_ek1_string"
-					 />
-
-				<TextView android:id="@+id/textnombrep_ek2"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="12sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="131dp"
-					android:layout_marginTop="266dp"
-					android:layout_width="194dp"
-					android:layout_height="38dp"
-					android:text="@string/textnombrep_ek2_string"
-					 />
-
 				<ImageView android:id="@+id/producto3"
 					android:src="@drawable/producto3"
 					android:contentDescription="producto3"
@@ -114,57 +62,6 @@
 					android:layout_marginTop="240dp"
 					android:layout_width="57dp"
 					android:layout_height="74dp" />
-
-				<ImageView android:id="@+id/contenedorinfo_ek1"
-					android:src="@drawable/contenedorinfo_ek1"
-					android:contentDescription="contenedorinfo_ek1"
-					 android:layout_marginStart="44dp"
-					android:layout_marginTop="335dp"
-					android:layout_width="333dp"
-					android:layout_height="91dp" />
-
-				<TextView android:id="@+id/textnombrep_ek3"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="12sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="131dp"
-					android:layout_marginTop="354dp"
-					android:layout_width="194dp"
-					android:layout_height="23dp"
-					android:text="@string/textnombrep_ek3_string"
-					 />
-
-				<TextView android:id="@+id/textnombrep_ek4"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="12sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="131dp"
-					android:layout_marginTop="369dp"
-					android:layout_width="194dp"
-					android:layout_height="38dp"
-					android:text="@string/textnombrep_ek4_string"
-					 />
-
-				<View   android:id="@+id/ellipse_1"
-					android:background="@drawable/ellipse_1_shape"
-					 android:layout_marginStart="-2dp"
-					android:layout_marginTop="682dp"
-					android:layout_width="411dp"
-					android:layout_height="177dp" />
-
-				<TextView android:id="@+id/textnombrep_ek5"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="16sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="170dp"
-					android:layout_marginTop="693dp"
-					android:layout_width="98dp"
-					android:layout_height="30dp"
-					android:text="@string/textnombrep_ek5_string"
-					 />
 
 
 				<RelativeLayout android:id="@+id/opciones"
@@ -174,23 +71,13 @@
 					android:layout_height="wrap_content"
 					>
 
-					<View   android:id="@+id/iconosopciones"
-						android:background="@drawable/iconosopciones_shape"
-						 android:layout_marginStart="0dp"
-						android:layout_marginTop="1.6dp"
+					<View
+						android:id="@+id/iconosopciones"
 						android:layout_width="411dp"
-						android:layout_height="50.4dp" />
-
-					<TextView android:id="@+id/textmenuprincipal"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__consultarestadoc_ek2_color"
-						android:layout_marginLeft="179dp"
-						android:layout_marginTop="36dp"
-						android:layout_width="95dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textmenuprincipal_string"
-						 />
+						android:layout_height="50.4dp"
+						android:layout_marginStart="0dp"
+						android:layout_marginTop="1.6dp"
+						android:background="@drawable/iconosopciones_shape" />
 
 					<ImageView android:id="@+id/iconomenu_1"
 						android:src="@drawable/iconomenu_1"
@@ -208,28 +95,6 @@
 						android:layout_width="39.23dp"
 						android:layout_height="28dp" />
 
-					<TextView android:id="@+id/textcompra"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__consultarestadoc_ek2_color"
-						android:layout_marginLeft="42dp"
-						android:layout_marginTop="36dp"
-						android:layout_width="95dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textcompra_string"
-						 />
-
-					<TextView android:id="@+id/textcerrarsesion"
-						android:fontFamily="Manjari"
-						android:textSize="12sp"
-						android:textColor="@color/_bg__consultarestadoc_ek2_color"
-						android:layout_marginLeft="315.04dp"
-						android:layout_marginTop="34.4dp"
-						android:layout_width="93dp"
-						android:layout_height="18.4dp"
-						android:text="@string/textcerrarsesion_string"
-						 />
-
 					<ImageView android:id="@+id/iconolistaproductos_1"
 						android:src="@drawable/iconolistaproductos_1"
 						android:contentDescription="iconolistaproductos_1"
@@ -238,39 +103,15 @@
 						android:layout_width="31.02dp"
 						android:layout_height="32.8dp" />
 
+					<View
+						android:id="@+id/ellipse_1"
+						android:layout_width="411dp"
+						android:layout_height="177dp"
+						android:layout_marginStart="-2dp"
+						android:layout_marginTop="682dp"
+						android:background="@drawable/ellipse_1_shape" />
+
 				</RelativeLayout>
-
-				<ImageView android:id="@+id/contenedorinfo_ek2"
-					android:src="@drawable/contenedorinfo_ek2"
-					android:contentDescription="contenedorinfo_ek2"
-					 android:layout_marginStart="42dp"
-					android:layout_marginTop="438dp"
-					android:layout_width="333dp"
-					android:layout_height="91dp" />
-
-				<TextView android:id="@+id/textnombrep_ek6"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="12sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="129dp"
-					android:layout_marginTop="457dp"
-					android:layout_width="194dp"
-					android:layout_height="23dp"
-					android:text="@string/textnombrep_ek6_string"
-					 />
-
-				<TextView android:id="@+id/textnombrep_ek7"
-					android:fontFamily="Libre Franklin"
-					android:textStyle="bold"
-					android:textSize="12sp"
-					android:textColor="@color/textnombrep_color"
-					android:layout_marginLeft="129dp"
-					android:layout_marginTop="472dp"
-					android:layout_width="194dp"
-					android:layout_height="38dp"
-					android:text="@string/textnombrep_ek7_string"
-					 />
 
 
 				<RelativeLayout android:id="@+id/btnanadircarrito"
@@ -286,40 +127,9 @@
 						android:layout_marginStart="0dp"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						>
-
-						<TextView android:id="@+id/label_text"
-							android:fontFamily="Roboto"
-							android:layout_gravity="center_horizontal|center"
-							android:gravity="center"
-							android:textSize="14sp"
-							android:textColor="@color/_bg__consultarestadoc_ek2_color"
-							android:layout_marginLeft="26dp"
-							android:layout_marginTop="13.5dp"
-							android:layout_width="134dp"
-							android:layout_height="30dp"
-							android:text="@string/label_text_string"
-							 />
-
-					</RelativeLayout>
+						/>
 
 				</RelativeLayout>
-
-				<ImageView android:id="@+id/producto2"
-					android:src="@drawable/producto2"
-					android:contentDescription="producto2"
-					 android:layout_marginStart="42dp"
-					android:layout_marginTop="333dp"
-					android:layout_width="88dp"
-					android:layout_height="89dp" />
-
-				<ImageView android:id="@+id/producto1"
-					android:src="@drawable/producto1"
-					android:contentDescription="producto1"
-					 android:layout_marginStart="64dp"
-					android:layout_marginTop="447dp"
-					android:layout_width="58dp"
-					android:layout_height="63dp" />
 
 				<ImageView android:id="@+id/iconomas_1"
 					android:src="@drawable/iconomas_1"
