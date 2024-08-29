@@ -15,10 +15,12 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 
+import java.util.Locale;
+
 public class Menu extends AppCompatActivity {
 
     // Botones menu principal
-    TextView bienvenida;
+    TextView txtBienvenida;
     ImageView btnProductos,btnEstadoCuenta, btnSitioWeb, btnMiPerfil;
 
     // Botones menu lateral
@@ -37,13 +39,18 @@ public class Menu extends AppCompatActivity {
         inicializarElementos();
         // Obtenemos el cliente del login pero sin detalles
         recibirCliente();
+        mostrarDatos();
         // Cargamos los detalles del cliente
         cargarClienteD();
         configurarBotones();
     }
 
     private void inicializarElementos() {
-
+        btnProductos = findViewById(R.id.iconolistaproductos);
+        btnEstadoCuenta = findViewById(R.id.iconoestadocuenta);
+        btnSitioWeb = findViewById(R.id.logotipsinfondo);
+        btnMiPerfil = findViewById(R.id.iconomiperfil);
+        txtBienvenida = findViewById(R.id.bienvenidaNombre);
     }
 
     private void configurarBotones() {
@@ -101,8 +108,17 @@ public class Menu extends AppCompatActivity {
         sesion.limpiarSesion();
     }
 
-    private void mostrarDatos(){
-        bienvenida.setText("¡Hola! " + clienteIndividual.getClientName());
+    private void mostrarDatos() {
+        String nombreCliente = clienteIndividual.getClientName();
+        txtBienvenida.setText(capitalizarPrimeraLetra(nombreCliente));
     }
+
+    private String capitalizarPrimeraLetra(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+        return texto.substring(0, 1).toUpperCase(Locale.ROOT) + texto.substring(1).toLowerCase(Locale.ROOT);
+    }
+
 
 }

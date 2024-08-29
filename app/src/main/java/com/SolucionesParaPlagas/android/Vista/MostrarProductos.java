@@ -75,7 +75,7 @@ public class MostrarProductos extends AppCompatActivity {
         productos = findViewById(R.id.listaProductos);
         // Configurar el LayoutManager del RecyclerView
         productos.setLayoutManager(new LinearLayoutManager(this));
-        iconoCarga = findViewById(R.id.progressBar);
+        iconoCarga = findViewById(R.id.cargaIcono);
         iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
     }
 

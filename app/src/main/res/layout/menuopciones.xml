@@ -102,21 +102,30 @@
 				</RelativeLayout>
 
 				<TextView
-					android:id="@+id/bienvenida"
+					android:id="@+id/bienvenida2"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="70dp"
 					android:layout_marginTop="220dp"
 					android:fontFamily="@font/libre_franklin_semibold"
-					android:text="¡Hola [nombre]!"
+					android:text="¡Hola!"
 					android:textSize="20dp" />
+
+				<TextView
+					android:id="@+id/bienvenidaNombre"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="70dp"
+					android:layout_marginTop="255dp"
+					android:fontFamily="@font/libre_franklin_semibold"
+					android:textSize="17dp" />
 
 				<TextView
 					android:id="@+id/msjPresentacion"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="70dp"
-					android:layout_marginTop="250dp"
+					android:layout_marginTop="280dp"
 					android:fontFamily="@font/libre_franklin"
 					android:text="¿Qué te gustaría explorar hoy?"
 					android:textSize="16dp" />
@@ -142,7 +151,7 @@
 					android:layout_width="355dp"
 					android:layout_height="227dp"
 					android:layout_marginStart="28dp"
-					android:layout_marginTop="306dp"
+					android:layout_marginTop="350dp"
 					android:contentDescription="imagenfondomenu"
 					android:src="@drawable/imagenfondomenu" />
 
