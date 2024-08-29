@@ -1,12 +1,13 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
-import com.example.sol.R;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.content.Intent;
+import android.widget.TextView;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
@@ -16,21 +17,18 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 
 public class Menu extends AppCompatActivity {
 
+    // Botones menu principal
     TextView bienvenida;
-    ImageView btnConsultarEC;
-    ImageView btnConsultarProductos;
+    ImageView btnProductos,btnEstadoCuenta, btnSitioWeb, btnMiPerfil;
 
     // Botones menu lateral
-    ImageView btnConsultarPerfil;
-    ImageView btnPedidos;
-    ImageView btnCerrarSesion;
+    ImageView btnConsultarPerfil, btnPedidos, btnCerrarSesion;
 
     private DetalleCliente clienteCompleto = new DetalleCliente();
     private ClienteIndividual clienteIndividual = new ClienteIndividual();
     private Controlador<JsonCliente> controladorJsonCliente;
     private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
-
-    // Hacer solicutud del cliente detallado
+    Sesion sesion = new Sesion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,6 @@ public class Menu extends AppCompatActivity {
         recibirCliente();
         // Cargamos los detalles del cliente
         cargarClienteD();
-        bienvenida.setText("¡Hola! " + clienteIndividual.getClientName());
         configurarBotones();
     }
 
@@ -56,10 +53,26 @@ public class Menu extends AppCompatActivity {
     }
 
     private void configurarBotones() {
-        btnConsultarEC.setOnClickListener(this::irAConsultarEstadoCuenta);
-        btnConsultarPerfil.setOnClickListener(this::irAConsultarPerfil);
-        btnConsultarProductos.setOnClickListener(this::irAConsultarProductos);
-        btnCerrarSesion.setOnClickListener(this::cerrarSesion);
+        btnProductos.setOnClickListener(this::irAConsultarProductos);
+        btnEstadoCuenta.setOnClickListener(this::irAEc);
+        btnSitioWeb.setOnClickListener(this::irASitio);
+        btnMiPerfil.setOnClickListener(this::irAMenuLateral);
+    }
+
+    private void irASitio(View v) {
+        // Crear un Intent para abrir la URL en el navegador
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(android.net.Uri.parse("https://solucionesparaplagas.com"));
+        startActivity(intent);
+    }
+
+    private void irAMenuLateral(View v){
+        // Desplazar el menu lateral aqui
+    }
+
+    private void irAEc(View v){
+        Intent intent = new Intent(Menu.this, EstadoCuenta.class);
+        startActivity(intent);
     }
 
     private void recibirCliente(){
@@ -78,18 +91,6 @@ public class Menu extends AppCompatActivity {
         }).start();
     }
 
-    private void irAConsultarEstadoCuenta(View v){
-        Intent intent = new Intent(Menu.this, EstadoCuenta.class);
-        intent.putExtra("ClienteCompleto",clienteCompleto);
-        startActivity(intent);
-    }
-
-    private void irAConsultarPerfil(View v){
-        Intent intent = new Intent(Menu.this, ConsultarPerfil.class);
-        intent.putExtra("ClienteCompleto",clienteCompleto);
-        startActivity(intent);
-    }
-
     private void irAConsultarProductos(View v){
         Intent intent = new Intent(Menu.this, MostrarProductos.class);
         intent.putExtra("ClienteCompleto",clienteCompleto);
@@ -103,11 +104,11 @@ public class Menu extends AppCompatActivity {
     }
 
     private void limpiarSesion(){
-        clienteCompleto = new DetalleCliente();
-        clienteIndividual = new ClienteIndividual();
-        // Limpiar la lista del carrito
-        controladorDetalleCliente.limpiarRepositorio();
-        controladorJsonCliente.limipiarRepositorio();
+        sesion.limpiarSesion();
+    }
+
+    private void mostrarDatos(){
+        bienvenida.setText("¡Hola! " + clienteIndividual.getClientName());
     }
 
 }
