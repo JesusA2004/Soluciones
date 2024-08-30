@@ -46,7 +46,7 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
             procesarSiguientePagina(nextLink);
         } else {
             Log.d(TAG, "No hay mas paginas.");
-            contP.imprimirRepositorio();
+            // contP.imprimirRepositorio();
             key = true; // Indica que todos los datos han sido cargados
         }
     }

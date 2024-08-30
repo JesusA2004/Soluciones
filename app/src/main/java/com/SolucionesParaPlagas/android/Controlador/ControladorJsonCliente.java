@@ -50,7 +50,7 @@ public class ControladorJsonCliente extends Controlador<JsonCliente> {
     }
 
     private void cargarClienteDetallado(){
-        Call<DetalleCliente> call = getJsonApi().obtenerCliente(EndPoint);
+        Call<DetalleCliente> call = jsonApi.obtenerCliente(EndPoint);
         call.enqueue(new Callback<DetalleCliente>() {
             @Override
             public void onResponse(Call<DetalleCliente> call, Response<DetalleCliente> response) {

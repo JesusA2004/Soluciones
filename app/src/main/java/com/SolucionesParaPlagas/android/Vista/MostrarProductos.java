@@ -1,37 +1,38 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 import com.example.sol.R;
 import java.util.HashMap;
-import android.net.Network;
+import java.util.List;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class MostrarProductos extends AppCompatActivity {
 
-    ImageView btnCerrarSesion,btnMenu, btnCarrito;
+    ImageView btnCerrarSesion, btnMenu, btnCarrito;
     RecyclerView productos;
     HashMap<String, Integer> carrito = new HashMap<>();
     Sesion sesion = new Sesion();
     private ProgressBar iconoCarga;
+    ControladorProducto controladorProducto = new ControladorProducto();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buscarproducto);
-        cargarProductos();
         inicializarElementos();
+        cargarProductos();
         configurarBotones();
     }
 
@@ -40,32 +41,20 @@ public class MostrarProductos extends AppCompatActivity {
         iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
         new Thread(() -> {
             controladorJsonProducto.realizarSolicitud();
-            int tiempoEspera = obtenerTiempoEspera();
             try {
-                Thread.sleep(tiempoEspera); // Ajusta el tiempo según la red
+                Thread.sleep(8000); // Simular tiempo de carga
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             runOnUiThread(() -> {
                 iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                List<Producto> productosList = controladorProducto.obtenerRepositorio();
+                if (productosList != null && !productosList.isEmpty()) {
+                    AdaptadorProductos adaptador = new AdaptadorProductos(productosList);
+                    productos.setAdapter(adaptador);
+                }
             });
         }).start();
-    }
-
-    private int obtenerTiempoEspera() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        Network network = cm.getActiveNetwork();
-        if (network != null) {
-            NetworkCapabilities capabilities = cm.getNetworkCapabilities(network);
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    return 6000; // 6 segundos si está en Wi-Fi
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    return 8000; // 8 segundos si está en datos móviles
-                }
-            }
-        }
-        return 10000; // 10 segundos si no hay red o red desconocida
     }
 
     private void inicializarElementos() {
@@ -73,16 +62,15 @@ public class MostrarProductos extends AppCompatActivity {
         btnMenu = findViewById(R.id.iconomenu);
         btnCerrarSesion = findViewById(R.id.iconocerrarsesion);
         productos = findViewById(R.id.listaProductos);
-        // Configurar el LayoutManager del RecyclerView
-        productos.setLayoutManager(new LinearLayoutManager(this));
         iconoCarga = findViewById(R.id.cargaIcono);
         iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
+        productos.setLayoutManager(new LinearLayoutManager(this)); // Configura el LayoutManager
     }
 
-    private void obtenerElementos(){
+    private void obtenerElementos() {
         // Obtener el Intent que inició esta Activity
         Intent intent = getIntent();
-        if(intent != null && intent.hasExtra("carrito")){
+        if (intent != null && intent.hasExtra("carrito")) {
             carrito = (HashMap<String, Integer>) intent.getSerializableExtra("carrito");
         }
     }
@@ -93,20 +81,20 @@ public class MostrarProductos extends AppCompatActivity {
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
     }
 
-    private void irAMenu(View v){
-        Intent intent = new Intent(MostrarProductos.this,Menu.class);
+    private void irAMenu(View v) {
+        Intent intent = new Intent(MostrarProductos.this, Menu.class);
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
+    private void irACerrarSesion(View v) {
         carrito = sesion.limpiarSesion();
         Intent intent = new Intent(MostrarProductos.this, PaginaInicio.class);
         startActivity(intent);
     }
 
-    private void irACarrito(View v){
-        Intent intent = new Intent(MostrarProductos.this,CarritoCompras.class);
-        intent.putExtra("carrito",carrito);
+    private void irACarrito(View v) {
+        Intent intent = new Intent(MostrarProductos.this, CarritoCompras.class);
+        intent.putExtra("carrito", carrito);
         startActivity(intent);
     }
 
