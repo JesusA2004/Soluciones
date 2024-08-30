@@ -98,7 +98,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void irAMenu(View v, ClienteIndividual cliente) {
-        Intent intent = new Intent(Login.this, Menu.class);
+        Intent intent = new Intent(Login.this, MenuPrincipal.class);
         intent.putExtra("Cliente", cliente);
         startActivity(intent);
     }

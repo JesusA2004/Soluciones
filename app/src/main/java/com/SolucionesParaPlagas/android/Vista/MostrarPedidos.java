@@ -39,7 +39,7 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void irAMenu(View v){
-        Intent intent = new Intent(MostrarPedidos.this,Menu.class);
+        Intent intent = new Intent(MostrarPedidos.this, MenuPrincipal.class);
         startActivity(intent);
     }
 

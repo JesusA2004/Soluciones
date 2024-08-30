@@ -39,7 +39,7 @@
             android:name="com.SolucionesParaPlagas.android.Vista.Administrador"
             android:exported="false" />
         <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.Menu"
+            android:name="com.SolucionesParaPlagas.android.Vista.MenuPrincipal"
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.EstadoCuenta"

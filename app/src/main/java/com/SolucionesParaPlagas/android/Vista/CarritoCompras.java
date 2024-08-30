@@ -142,7 +142,7 @@ public class CarritoCompras extends AppCompatActivity {
     }
 
     private void irAMenu(View v){
-        Intent intent = new Intent(CarritoCompras.this,Menu.class);
+        Intent intent = new Intent(CarritoCompras.this, MenuPrincipal.class);
         startActivity(intent);
     }
 
@@ -163,7 +163,7 @@ public class CarritoCompras extends AppCompatActivity {
             .setPositiveButton("OK",new DialogInterface.OnClickListener(){
                 @Override
                 public void onClick(DialogInterface dialog, int which){
-                    Intent intent = new Intent(CarritoCompras.this,Menu.class);
+                    Intent intent = new Intent(CarritoCompras.this, MenuPrincipal.class);
                     startActivity(intent);
                 }
             })

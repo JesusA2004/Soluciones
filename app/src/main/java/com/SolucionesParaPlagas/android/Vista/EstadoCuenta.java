@@ -57,7 +57,7 @@ public class EstadoCuenta extends AppCompatActivity {
     }
 
     private void irAMenu(View v){
-        Intent intent = new Intent(EstadoCuenta.this,Menu.class);
+        Intent intent = new Intent(EstadoCuenta.this, MenuPrincipal.class);
         intent.putExtra("ClienteC", cliente);
         startActivity(intent);
     }

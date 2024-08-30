@@ -61,7 +61,7 @@ public class EditarDatosP extends AppCompatActivity {
     }
 
     private void irAMenu(View v){
-        Intent intent = new Intent(EditarDatosP.this,Menu.class);
+        Intent intent = new Intent(EditarDatosP.this, MenuPrincipal.class);
         startActivity(intent);
     }
 

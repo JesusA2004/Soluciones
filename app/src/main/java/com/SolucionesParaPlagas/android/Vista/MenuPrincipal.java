@@ -1,5 +1,7 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import java.util.Locale;
 import com.example.sol.R;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.content.Intent;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ImageView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
@@ -17,33 +21,31 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
+import com.google.android.material.navigation.NavigationView;
 
-public class Menu extends AppCompatActivity {
+public class MenuPrincipal extends AppCompatActivity {
 
     // Botones menu principal
     TextView txtBienvenida;
-    ImageView btnProductos,btnEstadoCuenta, btnSitioWeb, btnMiPerfil;
-
-    // Botones menu lateral
-    ImageView btnConsultarPerfil, btnPedidos, btnCerrarSesion;
-
+    ImageView btnProductos, btnEstadoCuenta, btnSitioWeb, btnMiPerfil, btnCerrarMenuL;
+    // Menu lateral
+    Menu menu;
     private DetalleCliente clienteCompleto = new DetalleCliente();
     private ClienteIndividual clienteIndividual = new ClienteIndividual();
     private Controlador<JsonCliente> controladorJsonCliente;
     private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
-    Sesion sesion = new Sesion();
+    private Sesion sesion = new Sesion();
     private ProgressBar iconoCarga;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuopciones);
         inicializarElementos();
-        // Obtenemos el cliente del login pero sin detalles
         recibirCliente();
-        // En caso de que venga de otro menu ya no es necesario hacer la solicitud http
         recibirClienteCompleto();
-        if(clienteCompleto==null){
+        if (clienteCompleto == null) {
             cargarClienteD();
         }
         mostrarDatos();
@@ -58,6 +60,47 @@ public class Menu extends AppCompatActivity {
         txtBienvenida = findViewById(R.id.bienvenidaNombre);
         iconoCarga = findViewById(R.id.cargaIcono);
         iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
+        drawerLayout = findViewById(R.id.menuDeslizable);
+        // Obtener la referencia del NavigationView
+        NavigationView navigationView = findViewById(R.id.menuLateral);
+        if (navigationView != null) {
+            // Inflar la cabecera
+            View headerView = navigationView.getHeaderView(0); // 0 es el índice de la cabecera
+            // Obtener la referencia al ImageView en la cabecera
+            btnCerrarMenuL = headerView.findViewById(R.id.iconoCerrar);
+            if (btnCerrarMenuL != null) {
+                btnCerrarMenuL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cerrarMenuL();
+                    }
+                });
+            } else {
+                Log.e("MenuPrincipal", "IconoCerrar no encontrado en la cabecera del menú lateral.");
+            }
+            menu = navigationView.getMenu();
+            if (menu != null) {
+                // Configura los ítems del menú lateral
+                MenuItem btnConsultarPerfil = menu.findItem(R.id.nav_profile);
+                MenuItem btnPedidos = menu.findItem(R.id.nav_orders);
+                MenuItem btnCerrarSesion = menu.findItem(R.id.nav_logout);
+                if (btnConsultarPerfil != null) {
+                    btnConsultarPerfil.setOnMenuItemClickListener(this::irAMiPerfil);
+                }
+                if (btnPedidos != null) {
+                    btnPedidos.setOnMenuItemClickListener(this::irAPedidos);
+                }
+                if (btnCerrarSesion != null) {
+                    btnCerrarSesion.setOnMenuItemClickListener(this::cerrarSesion);
+                }
+            }
+        }
+    }
+
+    private void cerrarMenuL(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.END)){
+            drawerLayout.closeDrawer(GravityCompat.END);
+        }
     }
 
     private void configurarBotones() {
@@ -65,43 +108,71 @@ public class Menu extends AppCompatActivity {
         btnEstadoCuenta.setOnClickListener(this::irAEc);
         btnSitioWeb.setOnClickListener(this::irASitio);
         btnMiPerfil.setOnClickListener(this::irAMenuLateral);
+        btnCerrarMenuL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cerrarMenuL();
+            }
+        });
     }
 
     private void irASitio(View v) {
-        // Crear un Intent para abrir la URL en el navegador
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(android.net.Uri.parse("https://solucionesparaplagas.com"));
         startActivity(intent);
     }
 
-    private void irAMenuLateral(View v){
-        // Desplazar el menu lateral aqui
+    private void irAMenuLateral(View v) {
+        if (drawerLayout != null) {
+            drawerLayout.openDrawer(GravityCompat.END);
+        }
     }
 
-    private void irAEc(View v){
-        Intent intent = new Intent(Menu.this, EstadoCuenta.class);
+    private void irAEc(View v) {
+        Intent intent = new Intent(MenuPrincipal.this, EstadoCuenta.class);
         intent.putExtra("ClienteC", clienteCompleto);
         startActivity(intent);
     }
 
-    private void recibirCliente(){
+    private boolean irAMiPerfil(MenuItem item) {
+        Intent intent = new Intent(MenuPrincipal.this, ConsultarPerfil.class);
+        startActivity(intent);
+        return true;
+    }
+
+    private boolean irAPedidos(MenuItem item) {
+        Intent intent = new Intent(MenuPrincipal.this, MostrarPedidos.class);
+        startActivity(intent);
+        return true;
+    }
+
+    private boolean cerrarSesion(MenuItem item) {
+        Intent intent = new Intent(MenuPrincipal.this, PaginaInicio.class);
+        if (sesion != null) {
+            sesion.limpiarSesion();
+        }
+        startActivity(intent);
+        return true;
+    }
+
+    private void recibirCliente() {
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             clienteIndividual = intent.getParcelableExtra("Cliente");
         }
     }
 
-    private void recibirClienteCompleto(){
+    private void recibirClienteCompleto() {
         Intent intent = getIntent();
-        if(intent != null && intent.hasExtra("ClienteC")){
+        if (intent != null && intent.hasExtra("ClienteC")) {
             clienteCompleto = intent.getParcelableExtra("ClienteC");
-        }else{
+        } else {
             clienteCompleto = null;
         }
     }
 
-    private void cargarClienteD(){
-        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
+    private void cargarClienteD() {
+        iconoCarga.setVisibility(View.VISIBLE);
         new Thread(() -> {
             controladorJsonCliente = new ControladorJsonCliente(clienteIndividual.getID(), "sobrecarga");
             try {
@@ -110,23 +181,17 @@ public class Menu extends AppCompatActivity {
                 e.printStackTrace();
             }
             runOnUiThread(() -> {
-                iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                iconoCarga.setVisibility(View.GONE);
                 clienteCompleto = controladorDetalleCliente.obtenerCliente();
-                if(clienteCompleto != null){
+                if (clienteCompleto != null) {
                     Log.d("PruebaExito", "Cliente completo: " + clienteCompleto.toString());
                 }
             });
         }).start();
     }
 
-    private void irAConsultarProductos(View v){
-        Intent intent = new Intent(Menu.this, MostrarProductos.class);
-        startActivity(intent);
-    }
-
-    private void cerrarSesion(View v){
-        Intent intent = new Intent(Menu.this, PaginaInicio.class);
-        sesion.limpiarSesion();
+    private void irAConsultarProductos(View v) {
+        Intent intent = new Intent(MenuPrincipal.this, MostrarProductos.class);
         startActivity(intent);
     }
 
@@ -141,6 +206,5 @@ public class Menu extends AppCompatActivity {
         }
         return texto.substring(0, 1).toUpperCase(Locale.ROOT) + texto.substring(1).toLowerCase(Locale.ROOT);
     }
-
 
 }

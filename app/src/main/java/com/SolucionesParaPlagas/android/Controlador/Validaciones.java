@@ -73,4 +73,8 @@ public class Validaciones {
         return false;
     }
 
+    public void validarCerrarSesion(){
+
+    }
+
 }

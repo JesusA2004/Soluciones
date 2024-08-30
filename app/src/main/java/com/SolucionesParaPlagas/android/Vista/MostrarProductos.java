@@ -82,7 +82,7 @@ public class MostrarProductos extends AppCompatActivity {
     }
 
     private void irAMenu(View v) {
-        Intent intent = new Intent(MostrarProductos.this, Menu.class);
+        Intent intent = new Intent(MostrarProductos.this, MenuPrincipal.class);
         startActivity(intent);
     }
 

@@ -42,7 +42,7 @@ public class ConsultarPerfil extends AppCompatActivity {
     }
 
     private void irAMenu(View v){
-        Intent intent = new Intent(ConsultarPerfil.this,Menu.class);
+        Intent intent = new Intent(ConsultarPerfil.this, MenuPrincipal.class);
         startActivity(intent);
     }
 

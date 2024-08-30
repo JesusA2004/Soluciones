@@ -165,7 +165,7 @@ public class SubirDocumento extends AppCompatActivity {
 
     private void irAMenu(View v) {
         if (mandarCorreo()) {
-            Intent intent = new Intent(SubirDocumento.this, Menu.class);
+            Intent intent = new Intent(SubirDocumento.this, MenuPrincipal.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.", Toast.LENGTH_SHORT).show();
