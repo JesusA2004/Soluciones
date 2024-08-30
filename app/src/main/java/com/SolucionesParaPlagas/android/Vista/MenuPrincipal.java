@@ -81,7 +81,7 @@ public class MenuPrincipal extends AppCompatActivity {
             menu = navigationView.getMenu();
             if (menu != null) {
                 // Configura los ítems del menú lateral
-                MenuItem btnConsultarPerfil = menu.findItem(R.id.nav_profile);
+                MenuItem btnConsultarPerfil = menu.findItem(R.id.iconoDatosP);
                 MenuItem btnPedidos = menu.findItem(R.id.nav_orders);
                 MenuItem btnCerrarSesion = menu.findItem(R.id.nav_logout);
                 if (btnConsultarPerfil != null) {
