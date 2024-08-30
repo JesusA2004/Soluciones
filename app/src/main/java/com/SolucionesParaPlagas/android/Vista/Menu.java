@@ -1,9 +1,12 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import java.util.Locale;
 import com.example.sol.R;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.content.Intent;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +17,6 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-
-import java.util.Locale;
 
 public class Menu extends AppCompatActivity {
 
@@ -37,12 +38,22 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuopciones);
         inicializarElementos();
+        // En caso de que venga de otro menu ya no es necesario hacer la solicitud http
+        recibirClienteCompleto();
         // Obtenemos el cliente del login pero sin detalles
         recibirCliente();
         mostrarDatos();
-        // Cargamos los detalles del cliente
-        cargarClienteD();
         configurarBotones();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Ponemos una condicional para evitar hacer solicitudes http cada que se regresse al menu
+        if(clienteIndividual == null){
+            // Cargamos los detalles del cliente
+            cargarClienteD();
+        }
     }
 
     private void inicializarElementos() {
@@ -83,11 +94,26 @@ public class Menu extends AppCompatActivity {
         }
     }
 
+    private void recibirClienteCompleto(){
+        Intent intent = getIntent();
+        if(intent != null && intent.hasExtra("ClienteC")){
+            clienteCompleto = intent.getParcelableExtra("ClienteC");
+        }
+    }
+
     private void cargarClienteD(){
         new Thread(() -> {
             controladorJsonCliente = new ControladorJsonCliente(clienteIndividual.getID(), "sobrecarga");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             runOnUiThread(() -> {
                 clienteCompleto = controladorDetalleCliente.obtenerCliente();
+                if(clienteCompleto != null){
+                    Log.d("PruebaExito", "Cliente completo: " + clienteCompleto.toString());
+                }
             });
         }).start();
     }

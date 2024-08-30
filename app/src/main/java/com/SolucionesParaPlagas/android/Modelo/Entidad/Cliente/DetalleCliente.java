@@ -7,123 +7,123 @@ import android.os.Parcelable;
 
 public class DetalleCliente implements Parcelable{
 
-    private String id;
-    private String rfc;
-    private String legalName;
-    private String commercialName;
-    private int creditDays;
-    private double creditAmount;
-    private String paymentMethod;
-    private Date creationDate;
-    private String status;
-    private String salesContact;
-    private String creditContact;
-    private String location;
-    private String locationID;
-    private String comments;
-    private String priceList;
-    private String priceListID;
-    private String paymentTermType;
-    private String email;
-    private String telephones;
-    private long number;
-    private String accountNumber;
-    private double defaultDiscount;
-    private String clientSource;
-    private String account;
-    private String city;
-    private String state;
-    private String[] addresses;
+    private String ID;
+    private String RFC;
+    private String LegalName;
+    private String CommercialName;
+    private int CreditDays;
+    private double CreditAmount;
+    private String PaymentMethod;
+    private Date CreationDate;
+    private String Status;
+    private String SalesContact;
+    private String CreditContact;
+    private String Loctaion; // Si es un error tipográfico, debería ser "Location"
+    private String LoctaionID; // Si es un error tipográfico, debería ser "LocationID"
+    private String Comments;
+    private String PriceList;
+    private String PriceListID;
+    private String PaymentTermType;
+    private String Email;
+    private String Telephones;
+    private long Number;
+    private String AccountNumber;
+    private double DefaultDiscount;
+    private String ClientSource;
+    private String Account;
+    private String City;
+    private String State;
+    private String[] Addresses;
 
     public DetalleCliente() {
-        id = "";
-        rfc = "";
-        legalName = "";
-        commercialName = "";
-        creditDays = 0;
-        creditAmount = 0.0;
-        paymentMethod = "";
-        creationDate = new Date(0); // Fecha inicializada en 1 de enero de 1970
-        status = "";
-        salesContact = "";
-        creditContact = "";
-        location = "";
-        locationID = "";
-        comments = "";
-        priceList = "";
-        priceListID = "";
-        paymentTermType = "";
-        email = "";
-        telephones = "";
-        number = 0L;
-        accountNumber = "";
-        defaultDiscount = 0.0;
-        clientSource = "";
-        account = "";
-        city = "";
-        state = "";
-        addresses = new String[0]; // Arreglo vacío
+        ID = "";
+        RFC = "";
+        LegalName = "";
+        CommercialName = "";
+        CreditDays = 0;
+        CreditAmount = 0.0;
+        PaymentMethod = "";
+        CreationDate = new Date(0); // Fecha inicializada en 1 de enero de 1970
+        Status = "";
+        SalesContact = "";
+        CreditContact = "";
+        Loctaion = ""; // Si es un error tipográfico, debería ser "Location"
+        LoctaionID = ""; // Si es un error tipográfico, debería ser "LocationID"
+        Comments = "";
+        PriceList = "";
+        PriceListID = "";
+        PaymentTermType = "";
+        Email = "";
+        Telephones = "";
+        Number = 0L;
+        AccountNumber = "";
+        DefaultDiscount = 0.0;
+        ClientSource = "";
+        Account = "";
+        City = "";
+        State = "";
+        Addresses = new String[0]; // Arreglo vacío
     }
 
     protected DetalleCliente(Parcel in) {
-        id = in.readString();
-        rfc = in.readString();
-        legalName = in.readString();
-        commercialName = in.readString();
-        creditDays = in.readInt();
-        creditAmount = in.readDouble();
-        paymentMethod = in.readString();
-        creationDate = new Date(in.readLong()); // Assuming Date is stored as timestamp
-        status = in.readString();
-        salesContact = in.readString();
-        creditContact = in.readString();
-        location = in.readString();
-        locationID = in.readString();
-        comments = in.readString();
-        priceList = in.readString();
-        priceListID = in.readString();
-        paymentTermType = in.readString();
-        email = in.readString();
-        telephones = in.readString();
-        number = in.readLong();
-        accountNumber = in.readString();
-        defaultDiscount = in.readDouble();
-        clientSource = in.readString();
-        account = in.readString();
-        city = in.readString();
-        state = in.readString();
-        addresses = in.createStringArray();
+        ID = in.readString();
+        RFC = in.readString();
+        LegalName = in.readString();
+        CommercialName = in.readString();
+        CreditDays = in.readInt();
+        CreditAmount = in.readDouble();
+        PaymentMethod = in.readString();
+        CreationDate = new Date(in.readLong()); // Assuming Date is stored as timestamp
+        Status = in.readString();
+        SalesContact = in.readString();
+        CreditContact = in.readString();
+        Loctaion = in.readString(); // Si es un error tipográfico, debería ser "Location"
+        LoctaionID = in.readString(); // Si es un error tipográfico, debería ser "LocationID"
+        Comments = in.readString();
+        PriceList = in.readString();
+        PriceListID = in.readString();
+        PaymentTermType = in.readString();
+        Email = in.readString();
+        Telephones = in.readString();
+        Number = in.readLong();
+        AccountNumber = in.readString();
+        DefaultDiscount = in.readDouble();
+        ClientSource = in.readString();
+        Account = in.readString();
+        City = in.readString();
+        State = in.readString();
+        Addresses = in.createStringArray();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(rfc);
-        dest.writeString(legalName);
-        dest.writeString(commercialName);
-        dest.writeInt(creditDays);
-        dest.writeDouble(creditAmount);
-        dest.writeString(paymentMethod);
-        dest.writeLong(creationDate.getTime()); // Store Date as timestamp
-        dest.writeString(status);
-        dest.writeString(salesContact);
-        dest.writeString(creditContact);
-        dest.writeString(location);
-        dest.writeString(locationID);
-        dest.writeString(comments);
-        dest.writeString(priceList);
-        dest.writeString(priceListID);
-        dest.writeString(paymentTermType);
-        dest.writeString(email);
-        dest.writeString(telephones);
-        dest.writeLong(number);
-        dest.writeString(accountNumber);
-        dest.writeDouble(defaultDiscount);
-        dest.writeString(clientSource);
-        dest.writeString(account);
-        dest.writeString(city);
-        dest.writeString(state);
-        dest.writeStringArray(addresses);
+        dest.writeString(ID);
+        dest.writeString(RFC);
+        dest.writeString(LegalName);
+        dest.writeString(CommercialName);
+        dest.writeInt(CreditDays);
+        dest.writeDouble(CreditAmount);
+        dest.writeString(PaymentMethod);
+        dest.writeLong(CreationDate.getTime()); // Store Date as timestamp
+        dest.writeString(Status);
+        dest.writeString(SalesContact);
+        dest.writeString(CreditContact);
+        dest.writeString(Loctaion);
+        dest.writeString(LoctaionID);
+        dest.writeString(Comments);
+        dest.writeString(PriceList);
+        dest.writeString(PriceListID);
+        dest.writeString(PaymentTermType);
+        dest.writeString(Email);
+        dest.writeString(Telephones);
+        dest.writeLong(Number);
+        dest.writeString(AccountNumber);
+        dest.writeDouble(DefaultDiscount);
+        dest.writeString(ClientSource);
+        dest.writeString(Account);
+        dest.writeString(City);
+        dest.writeString(State);
+        dest.writeStringArray(Addresses);
     }
 
     @Override
@@ -142,252 +142,252 @@ public class DetalleCliente implements Parcelable{
         }
     };
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getRfc() {
-        return rfc;
-    }
-
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
-    }
-
-    public String getLegalName() {
-        return legalName;
-    }
-
-    public void setLegalName(String legalName) {
-        this.legalName = legalName;
-    }
-
-    public String getCommercialName() {
-        return commercialName;
-    }
-
-    public void setCommercialName(String commercialName) {
-        this.commercialName = commercialName;
-    }
-
-    public int getCreditDays() {
-        return creditDays;
-    }
-
-    public void setCreditDays(int creditDays) {
-        this.creditDays = creditDays;
-    }
-
-    public double getCreditAmount() {
-        return creditAmount;
-    }
-
-    public void setCreditAmount(double creditAmount) {
-        this.creditAmount = creditAmount;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getSalesContact() {
-        return salesContact;
-    }
-
-    public void setSalesContact(String salesContact) {
-        this.salesContact = salesContact;
-    }
-
-    public String getCreditContact() {
-        return creditContact;
-    }
-
-    public void setCreditContact(String creditContact) {
-        this.creditContact = creditContact;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getLocationID() {
-        return locationID;
-    }
-
-    public void setLocationID(String locationID) {
-        this.locationID = locationID;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public String getPriceList() {
-        return priceList;
-    }
-
-    public void setPriceList(String priceList) {
-        this.priceList = priceList;
-    }
-
-    public String getPriceListID() {
-        return priceListID;
-    }
-
-    public void setPriceListID(String priceListID) {
-        this.priceListID = priceListID;
-    }
-
-    public String getPaymentTermType() {
-        return paymentTermType;
-    }
-
-    public void setPaymentTermType(String paymentTermType) {
-        this.paymentTermType = paymentTermType;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelephones() {
-        return telephones;
-    }
-
-    public void setTelephones(String telephones) {
-        this.telephones = telephones;
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public void setNumber(long number) {
-        this.number = number;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public double getDefaultDiscount() {
-        return defaultDiscount;
-    }
-
-    public void setDefaultDiscount(double defaultDiscount) {
-        this.defaultDiscount = defaultDiscount;
-    }
-
-    public String getClientSource() {
-        return clientSource;
-    }
-
-    public void setClientSource(String clientSource) {
-        this.clientSource = clientSource;
-    }
-
     public String getAccount() {
-        return account;
+        return Account;
     }
 
     public void setAccount(String account) {
-        this.account = account;
+        Account = account;
     }
 
-    public String getCity() {
-        return city;
+    public String getAccountNumber() {
+        return AccountNumber;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public void setAccountNumber(String accountNumber) {
+        AccountNumber = accountNumber;
     }
 
     public String[] getAddresses() {
-        return addresses;
+        return Addresses;
     }
 
     public void setAddresses(String[] addresses) {
-        this.addresses = addresses;
+        Addresses = addresses;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getClientSource() {
+        return ClientSource;
+    }
+
+    public void setClientSource(String clientSource) {
+        ClientSource = clientSource;
+    }
+
+    public String getComments() {
+        return Comments;
+    }
+
+    public void setComments(String comments) {
+        Comments = comments;
+    }
+
+    public String getCommercialName() {
+        return CommercialName;
+    }
+
+    public void setCommercialName(String commercialName) {
+        CommercialName = commercialName;
+    }
+
+    public Date getCreationDate() {
+        return CreationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        CreationDate = creationDate;
+    }
+
+    public double getCreditAmount() {
+        return CreditAmount;
+    }
+
+    public void setCreditAmount(double creditAmount) {
+        CreditAmount = creditAmount;
+    }
+
+    public String getCreditContact() {
+        return CreditContact;
+    }
+
+    public void setCreditContact(String creditContact) {
+        CreditContact = creditContact;
+    }
+
+    public int getCreditDays() {
+        return CreditDays;
+    }
+
+    public void setCreditDays(int creditDays) {
+        CreditDays = creditDays;
+    }
+
+    public double getDefaultDiscount() {
+        return DefaultDiscount;
+    }
+
+    public void setDefaultDiscount(double defaultDiscount) {
+        DefaultDiscount = defaultDiscount;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getLegalName() {
+        return LegalName;
+    }
+
+    public void setLegalName(String legalName) {
+        LegalName = legalName;
+    }
+
+    public String getLoctaion() {
+        return Loctaion;
+    }
+
+    public void setLoctaion(String loctaion) {
+        Loctaion = loctaion;
+    }
+
+    public String getLoctaionID() {
+        return LoctaionID;
+    }
+
+    public void setLoctaionID(String loctaionID) {
+        LoctaionID = loctaionID;
+    }
+
+    public long getNumber() {
+        return Number;
+    }
+
+    public void setNumber(long number) {
+        Number = number;
+    }
+
+    public String getPaymentMethod() {
+        return PaymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        PaymentMethod = paymentMethod;
+    }
+
+    public String getPaymentTermType() {
+        return PaymentTermType;
+    }
+
+    public void setPaymentTermType(String paymentTermType) {
+        PaymentTermType = paymentTermType;
+    }
+
+    public String getPriceList() {
+        return PriceList;
+    }
+
+    public void setPriceList(String priceList) {
+        PriceList = priceList;
+    }
+
+    public String getPriceListID() {
+        return PriceListID;
+    }
+
+    public void setPriceListID(String priceListID) {
+        PriceListID = priceListID;
+    }
+
+    public String getRFC() {
+        return RFC;
+    }
+
+    public void setRFC(String RFC) {
+        this.RFC = RFC;
+    }
+
+    public String getSalesContact() {
+        return SalesContact;
+    }
+
+    public void setSalesContact(String salesContact) {
+        SalesContact = salesContact;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    public String getTelephones() {
+        return Telephones;
+    }
+
+    public void setTelephones(String telephones) {
+        Telephones = telephones;
     }
 
     @Override
     public String toString() {
         return "DetalleCliente{" +
-                "account='" + account + '\'' +
-                ", id='" + id + '\'' +
-                ", rfc='" + rfc + '\'' +
-                ", legalName='" + legalName + '\'' +
-                ", commercialName='" + commercialName + '\'' +
-                ", creditDays=" + creditDays +
-                ", creditAmount=" + creditAmount +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", creationDate=" + creationDate +
-                ", status='" + status + '\'' +
-                ", salesContact='" + salesContact + '\'' +
-                ", creditContact='" + creditContact + '\'' +
-                ", location='" + location + '\'' +
-                ", locationID='" + locationID + '\'' +
-                ", comments='" + comments + '\'' +
-                ", priceList='" + priceList + '\'' +
-                ", priceListID='" + priceListID + '\'' +
-                ", paymentTermType='" + paymentTermType + '\'' +
-                ", email='" + email + '\'' +
-                ", telephones='" + telephones + '\'' +
-                ", number=" + number +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", defaultDiscount=" + defaultDiscount +
-                ", clientSource='" + clientSource + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", addresses=" + Arrays.toString(addresses) +
+                "Account='" + Account + '\'' +
+                ", ID='" + ID + '\'' +
+                ", RFC='" + RFC + '\'' +
+                ", LegalName='" + LegalName + '\'' +
+                ", CommercialName='" + CommercialName + '\'' +
+                ", CreditDays=" + CreditDays +
+                ", CreditAmount=" + CreditAmount +
+                ", PaymentMethod='" + PaymentMethod + '\'' +
+                ", CreationDate=" + CreationDate +
+                ", Status='" + Status + '\'' +
+                ", SalesContact='" + SalesContact + '\'' +
+                ", CreditContact='" + CreditContact + '\'' +
+                ", Loctaion='" + Loctaion + '\'' +
+                ", LoctaionID='" + LoctaionID + '\'' +
+                ", Comments='" + Comments + '\'' +
+                ", PriceList='" + PriceList + '\'' +
+                ", PriceListID='" + PriceListID + '\'' +
+                ", PaymentTermType='" + PaymentTermType + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Telephones='" + Telephones + '\'' +
+                ", Number=" + Number +
+                ", AccountNumber='" + AccountNumber + '\'' +
+                ", DefaultDiscount=" + DefaultDiscount +
+                ", ClientSource='" + ClientSource + '\'' +
+                ", City='" + City + '\'' +
+                ", State='" + State + '\'' +
+                ", Addresses=" + Arrays.toString(Addresses) +
                 '}';
     }
 
