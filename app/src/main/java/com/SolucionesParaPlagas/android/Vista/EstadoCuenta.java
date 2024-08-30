@@ -14,7 +14,7 @@ public class EstadoCuenta extends AppCompatActivity {
 
     TextView txtTitulo, txtDiasCredito, txtMontoCredito;
     TextView txtMetodoP;
-    ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
+    ImageView btnMenu, btnCerrarSesion, btnProductos;
     DetalleCliente cliente = new DetalleCliente();
     Sesion sesion = new Sesion();
 
@@ -23,6 +23,7 @@ public class EstadoCuenta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultarestadoc);
         inicializarElementos();
+        obtenerElementos();
         mostrarDatos();
         configurarBotones();
     }
@@ -31,13 +32,16 @@ public class EstadoCuenta extends AppCompatActivity {
         btnProductos = findViewById(R.id.iconoVerProductos);
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
-        btnAtras = findViewById(R.id.iconoFlechaRegreso);
+        txtTitulo = findViewById(R.id.txtMsjB);
+        txtDiasCredito = findViewById(R.id.txtDiasCredito);
+        txtMontoCredito = findViewById(R.id.txtMontoCredito);
+        txtMetodoP = findViewById(R.id.txtMetodoPago);
     }
 
     private void obtenerElementos(){
         Intent intent = getIntent();
-        if(intent != null && intent.hasExtra("cliente")){
-            cliente = (DetalleCliente) intent.getSerializableExtra("cliente");
+        if(intent.hasExtra("ClienteC")){
+            cliente = intent.getParcelableExtra("ClienteC");
         }
     }
 
@@ -54,6 +58,7 @@ public class EstadoCuenta extends AppCompatActivity {
 
     private void irAMenu(View v){
         Intent intent = new Intent(EstadoCuenta.this,Menu.class);
+        intent.putExtra("ClienteC", cliente);
         startActivity(intent);
     }
 
@@ -68,10 +73,12 @@ public class EstadoCuenta extends AppCompatActivity {
     }
 
     private void mostrarDatos(){
-        txtTitulo.setText("¡Bienvenido a tu Estado de\nCuenta "+cliente.getLegalName()+"!");
-        txtDiasCredito.setText("Días de crédito: "+cliente.getCreditDays()+"");
-        txtMontoCredito.setText("Monto de crédito: $"+cliente.getCreditAmount()+"");
-        txtMetodoP.setText("Metodo de pago: "+cliente.getPaymentMethod()+"");
+        if(cliente != null){
+            txtTitulo.setText("¡Bienvenido a tu Estado de\nCuenta "+cliente.getLegalName()+"!");
+            txtDiasCredito.setText("Días de crédito: "+cliente.getCreditDays()+"");
+            txtMontoCredito.setText("Monto de crédito: $"+cliente.getCreditAmount()+"");
+            txtMetodoP.setText("Metodo de pago: "+cliente.getPaymentMethod()+"");
+        }
     }
 
 }

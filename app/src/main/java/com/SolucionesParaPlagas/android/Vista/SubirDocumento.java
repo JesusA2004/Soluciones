@@ -79,7 +79,7 @@ public class SubirDocumento extends AppCompatActivity {
         botonSiguiente = findViewById(R.id.iconosiguiente);
         botonRegresar = findViewById(R.id.iconoatras);
         botonSubirDocumento = findViewById(R.id.iconosubirdocumento);
-        txt_contenido_pdf = findViewById(R.id.txt_contenido_pdf);
+        // txt_contenido_pdf = findViewById(R.id.txt_contenido_pdf);
     }
 
     private void configurarBotones() {
@@ -106,7 +106,7 @@ public class SubirDocumento extends AppCompatActivity {
                 builder.append(fileContent);
             }
             final String textContent = builder.toString();
-            runOnUiThread(() -> txt_contenido_pdf.setText(textContent));
+            runOnUiThread(() -> txt_contenido_pdf.setText(""));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

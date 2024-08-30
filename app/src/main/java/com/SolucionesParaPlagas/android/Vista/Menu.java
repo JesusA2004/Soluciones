@@ -32,28 +32,22 @@ public class Menu extends AppCompatActivity {
     private Controlador<JsonCliente> controladorJsonCliente;
     private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
     Sesion sesion = new Sesion();
+    private ProgressBar iconoCarga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuopciones);
         inicializarElementos();
-        // En caso de que venga de otro menu ya no es necesario hacer la solicitud http
-        recibirClienteCompleto();
         // Obtenemos el cliente del login pero sin detalles
         recibirCliente();
-        mostrarDatos();
-        configurarBotones();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Ponemos una condicional para evitar hacer solicitudes http cada que se regresse al menu
-        if(clienteIndividual == null){
-            // Cargamos los detalles del cliente
+        // En caso de que venga de otro menu ya no es necesario hacer la solicitud http
+        recibirClienteCompleto();
+        if(clienteCompleto==null){
             cargarClienteD();
         }
+        mostrarDatos();
+        configurarBotones();
     }
 
     private void inicializarElementos() {
@@ -62,6 +56,8 @@ public class Menu extends AppCompatActivity {
         btnSitioWeb = findViewById(R.id.logotipsinfondo);
         btnMiPerfil = findViewById(R.id.iconomiperfil);
         txtBienvenida = findViewById(R.id.bienvenidaNombre);
+        iconoCarga = findViewById(R.id.cargaIcono);
+        iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
     }
 
     private void configurarBotones() {
@@ -84,6 +80,7 @@ public class Menu extends AppCompatActivity {
 
     private void irAEc(View v){
         Intent intent = new Intent(Menu.this, EstadoCuenta.class);
+        intent.putExtra("ClienteC", clienteCompleto);
         startActivity(intent);
     }
 
@@ -98,10 +95,13 @@ public class Menu extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null && intent.hasExtra("ClienteC")){
             clienteCompleto = intent.getParcelableExtra("ClienteC");
+        }else{
+            clienteCompleto = null;
         }
     }
 
     private void cargarClienteD(){
+        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
         new Thread(() -> {
             controladorJsonCliente = new ControladorJsonCliente(clienteIndividual.getID(), "sobrecarga");
             try {
@@ -110,6 +110,7 @@ public class Menu extends AppCompatActivity {
                 e.printStackTrace();
             }
             runOnUiThread(() -> {
+                iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
                 clienteCompleto = controladorDetalleCliente.obtenerCliente();
                 if(clienteCompleto != null){
                     Log.d("PruebaExito", "Cliente completo: " + clienteCompleto.toString());
@@ -120,18 +121,13 @@ public class Menu extends AppCompatActivity {
 
     private void irAConsultarProductos(View v){
         Intent intent = new Intent(Menu.this, MostrarProductos.class);
-        intent.putExtra("ClienteCompleto",clienteCompleto);
         startActivity(intent);
     }
 
     private void cerrarSesion(View v){
         Intent intent = new Intent(Menu.this, PaginaInicio.class);
-        limpiarSesion();
-        startActivity(intent);
-    }
-
-    private void limpiarSesion(){
         sesion.limpiarSesion();
+        startActivity(intent);
     }
 
     private void mostrarDatos() {

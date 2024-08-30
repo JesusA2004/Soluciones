@@ -3,7 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="@drawable/fondo_item_productos"> <!-- Aplicar el drawable de fondo -->
+
+    <!-- Punto a la izquierda del nombre del producto -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="•"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="8dp" />
 
     <LinearLayout
         android:layout_width="0dp"
