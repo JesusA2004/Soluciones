@@ -1,168 +1,155 @@
-<HorizontalScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-	<ScrollView
-		android:id="@+id/buscarProducto"
-		android:layout_width="wrap_content"
-		android:layout_height="match_parent">
+    <!-- Primer Contenedor -->
+    <RelativeLayout
+        android:id="@+id/page_buscarProducto_ek1"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-		<RelativeLayout
-			android:id="@+id/content_container"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
+        <View
+            android:id="@+id/_bg__infounproducto_ek2"
+            android:layout_width="411dp"
+            android:layout_height="823dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/_bg__infounproducto_ek2_shape" />
 
-			<!-- Primer Contenedor -->
-			<RelativeLayout
-				android:id="@+id/page_buscarProducto_ek1"
-				android:layout_marginTop="0dp"
-				android:layout_marginStart="0dp"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/decoracionbusqueda"
+            android:src="@drawable/decoracionbusqueda"
+            android:contentDescription="decoracionbusqueda"
+            android:layout_marginStart="-12dp"
+            android:layout_marginTop="-4dp"
+            android:layout_width="461dp"
+            android:layout_height="144dp" />
 
-				<View
-					android:id="@+id/_bg__infounproducto_ek2"
-					android:layout_width="411dp"
-					android:layout_height="823dp"
-					android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
-					android:background="@drawable/_bg__infounproducto_ek2_shape" />
+        <SearchView
+            android:layout_width="286dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/shape_consultar_estado"
+            android:queryHint="Buscar productos" />
+    </RelativeLayout>
 
-				<ImageView
-					android:id="@+id/decoracionbusqueda"
-					android:src="@drawable/decoracionbusqueda"
-					android:contentDescription="decoracionbusqueda"
-					android:layout_marginStart="-12dp"
-					android:layout_marginTop="-4dp"
-					android:layout_width="461dp"
-					android:layout_height="144dp" />
+    <!-- Opciones -->
+    <RelativeLayout
+        android:id="@+id/opciones"
+        android:layout_marginTop="764dp"
+        android:layout_marginStart="-6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-				<SearchView
-					android:layout_width="286dp"
-					android:layout_height="37dp"
-					android:layout_marginStart="100dp"
-					android:layout_marginTop="60dp"
-					android:background="@drawable/shape_consultar_estado"
-					android:queryHint="Buscar productos" />
+        <View
+            android:id="@+id/iconosopciones"
+            android:background="@drawable/iconosopciones_shape"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="424dp"
+            android:layout_height="63dp" />
 
-			</RelativeLayout>
+        <ImageView
+            android:id="@+id/iconomenu"
+            android:src="@drawable/iconomenu_1"
+            android:contentDescription="iconomenu_1"
+            android:layout_marginStart="205dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="37.58dp"
+            android:layout_height="32dp" />
 
-			<!-- Opciones -->
-			<RelativeLayout
-				android:id="@+id/opciones"
-				android:layout_marginTop="764dp"
-				android:layout_marginStart="-6dp"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iconocompra"
+            android:src="@drawable/iconocompra_1"
+            android:contentDescription="iconocompra_1"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="0dp"
+            android:layout_width="39.51dp"
+            android:layout_height="43dp" />
 
-				<View
-					android:id="@+id/iconosopciones"
-					android:background="@drawable/iconosopciones_shape"
-					android:layout_marginStart="0dp"
-					android:layout_marginTop="2dp"
-					android:layout_width="424dp"
-					android:layout_height="63dp" />
+        <ImageView
+            android:id="@+id/iconocerrarsesion"
+            android:src="@drawable/iconocerrarsesion__1"
+            android:contentDescription="iconocerrarsesion__1"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="40.47dp"
+            android:layout_height="35dp" />
 
-				<ImageView
-					android:id="@+id/iconomenu"
-					android:src="@drawable/iconomenu_1"
-					android:contentDescription="iconomenu_1"
-					android:layout_marginStart="205dp"
-					android:layout_marginTop="8dp"
-					android:layout_width="37.58dp"
-					android:layout_height="32dp" />
+        <TextView
+            android:id="@+id/opcCarrito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="40dp"
+            android:text="Carrito de compra"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            android:fontFamily="@font/libre_franklin_semibold"/>
 
-				<ImageView
-					android:id="@+id/iconocompra"
-					android:src="@drawable/iconocompra_1"
-					android:contentDescription="iconocompra_1"
-					android:layout_marginStart="69dp"
-					android:layout_marginTop="0dp"
-					android:layout_width="39.51dp"
-					android:layout_height="43dp" />
+        <TextView
+            android:id="@+id/opcMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="40dp"
+            android:text="Menu Principal"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            android:fontFamily="@font/libre_franklin_semibold"/>
 
-				<ImageView
-					android:id="@+id/iconocerrarsesion"
-					android:src="@drawable/iconocerrarsesion__1"
-					android:contentDescription="iconocerrarsesion__1"
-					android:layout_marginStart="320dp"
-					android:layout_marginTop="10dp"
-					android:layout_width="40.47dp"
-					android:layout_height="35dp" />
+        <TextView
+            android:id="@+id/opcCerrarS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="40dp"
+            android:text="Cerrar Sesión"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            android:fontFamily="@font/libre_franklin_semibold"/>
 
-				<TextView
-					android:id="@+id/opcCarrito"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="45dp"
-					android:layout_marginTop="40dp"
-					android:text="Carrito de compra"
-					android:textColor="#FFFCFC"
-					android:textSize="12sp"
-					android:fontFamily="@font/libre_franklin_semibold"/>
+    </RelativeLayout>
 
-				<TextView
-					android:id="@+id/opcMenu"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="180dp"
-					android:layout_marginTop="40dp"
-					android:text="Menu Principal"
-					android:textColor="#FFFCFC"
-					android:textSize="12sp"
-					android:fontFamily="@font/libre_franklin_semibold"/>
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logotipsinfondo_1"
+        android:src="@drawable/logotipsinfondo_1"
+        android:contentDescription="logotipsinfondo_1"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="31dp"
+        android:layout_width="63dp"
+        android:layout_height="54dp" />
 
-				<TextView
-					android:id="@+id/opcCerrarS"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="300dp"
-					android:layout_marginTop="40dp"
-					android:text="Cerrar Sesión"
-					android:textColor="#FFFCFC"
-					android:textSize="12sp"
-					android:fontFamily="@font/libre_franklin_semibold"/>
+    <ImageView
+        android:id="@+id/letraslogosinfondo_1"
+        android:src="@drawable/letraslogosinfondo_1"
+        android:contentDescription="letraslogosinfondo_1"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="85dp"
+        android:layout_width="76dp"
+        android:layout_height="36dp" />
 
-			</RelativeLayout>
+    <!-- Lista de Productos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaProductos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="200dp"/>
 
-			<!-- Logo -->
-			<ImageView
-				android:id="@+id/logotipsinfondo_1"
-				android:src="@drawable/logotipsinfondo_1"
-				android:contentDescription="logotipsinfondo_1"
-				android:layout_marginStart="28dp"
-				android:layout_marginTop="31dp"
-				android:layout_width="63dp"
-				android:layout_height="54dp" />
+    <ProgressBar
+        android:id="@+id/cargaIcono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:contentDescription="@string/descripcionProgressBar"/>
 
-			<ImageView
-				android:id="@+id/letraslogosinfondo_1"
-				android:src="@drawable/letraslogosinfondo_1"
-				android:contentDescription="letraslogosinfondo_1"
-				android:layout_marginStart="20dp"
-				android:layout_marginTop="85dp"
-				android:layout_width="76dp"
-				android:layout_height="36dp" />
-
-			<!-- Lista de Productos -->
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/listaProductos"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="60dp"
-				android:layout_marginTop="200dp"/>
-
-			<ProgressBar
-				android:id="@+id/cargaIcono"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerInParent="true"
-				android:visibility="gone"
-				android:indeterminate="true"
-				android:contentDescription="@string/descripcionProgressBar"/>
-
-		</RelativeLayout>
-	</ScrollView>
-</HorizontalScrollView>
+</RelativeLayout>

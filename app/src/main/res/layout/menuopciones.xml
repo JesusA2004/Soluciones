@@ -1,186 +1,191 @@
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent" android:layout_height="wrap_content" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
 
-	<ScrollView android:id="@+id/menuopciones" 
-		android:layout_width="wrap_content" 
-		android:layout_height="match_parent" >
+	<RelativeLayout
+		android:id="@+id/content_container"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
 
-		<RelativeLayout android:id="@+id/content_container" 
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content" >
+		<RelativeLayout
+			android:id="@+id/page_menuopciones_ek1"
+			android:layout_marginTop="0dp"
+			android:layout_marginStart="0dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
 
-			<RelativeLayout android:id="@+id/page_menuopciones_ek1"
+			<View
+				android:id="@+id/_bg__menuopciones_ek2"
+				android:background="@drawable/_bg__menuopciones_ek2_shape"
+				android:layout_marginStart="0dp"
 				android:layout_marginTop="0dp"
+				android:layout_width="411dp"
+				android:layout_height="823dp" />
+
+			<!-- Opciones de menú -->
+			<RelativeLayout
+				android:id="@+id/opciones"
+				android:layout_marginTop="730dp"
 				android:layout_marginStart="0dp"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				>
+				android:layout_height="130dp">
 
-				<View   android:id="@+id/_bg__menuopciones_ek2"
-					android:background="@drawable/_bg__menuopciones_ek2_shape"
-					 android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
+				<View
+					android:id="@+id/iconosopciones"
 					android:layout_width="411dp"
-					android:layout_height="823dp" />
-
-
-				<RelativeLayout android:id="@+id/opciones"
-					android:layout_marginTop="730dp"
-					android:layout_marginStart="0dp"
-					android:layout_width="wrap_content"
-					android:layout_height="130dp"
-					>
-
-					<View
-						android:id="@+id/iconosopciones"
-						android:layout_width="411dp"
-						android:layout_height="120dp"
-						android:layout_marginTop="-20dp"
-						android:background="@drawable/iconosopciones_shape" />
-
-					<ImageView android:id="@+id/iconomiperfil"
-						android:src="@drawable/iconomiperfil"
-						android:contentDescription="iconomiperfil"
-						 android:layout_marginStart="322dp"
-						android:layout_marginTop="24dp"
-						android:layout_width="42dp"
-						android:layout_height="36dp" />
-
-					<ImageView
-						android:id="@+id/logotipsinfondo"
-						android:layout_width="46dp"
-						android:layout_height="53dp"
-						android:layout_marginStart="238dp"
-						android:layout_marginTop="10dp"
-						android:contentDescription="logotipsinfondo"
-						android:src="@drawable/logotipsinfondo" />
-
-					<TextView
-						android:id="@+id/opcProductos"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="25dp"
-						android:layout_marginTop="60dp"
-						android:text="Ver productos"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold"/>
-
-					<TextView
-						android:id="@+id/opcEstadoCuenta"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="120dp"
-						android:layout_marginTop="60dp"
-						android:text="Estado de Cuenta"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold"/>
-
-					<TextView
-						android:id="@+id/opcSitioWeb"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="238dp"
-						android:layout_marginTop="60dp"
-						android:text="Sitio Web"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold"/>
-
-					<TextView
-						android:id="@+id/opcMiPerfil"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="320dp"
-						android:layout_marginTop="60dp"
-						android:text="Mi Perfil"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold"/>
-
-				</RelativeLayout>
-
-				<TextView
-					android:id="@+id/bienvenida2"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="70dp"
-					android:layout_marginTop="220dp"
-					android:fontFamily="@font/libre_franklin_semibold"
-					android:text="¡Hola!"
-					android:textSize="20dp" />
-
-				<TextView
-					android:id="@+id/bienvenidaNombre"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="70dp"
-					android:layout_marginTop="255dp"
-					android:fontFamily="@font/libre_franklin_semibold"
-					android:textSize="17dp" />
-
-				<TextView
-					android:id="@+id/msjPresentacion"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="70dp"
-					android:layout_marginTop="280dp"
-					android:fontFamily="@font/libre_franklin"
-					android:text="¿Qué te gustaría explorar hoy?"
-					android:textSize="16dp" />
-
-				<ImageView android:id="@+id/iconoestadocuenta"
-					android:src="@drawable/iconoestadocuenta"
-					android:contentDescription="iconoestadocuenta"
-					 android:layout_marginStart="145dp"
-					android:layout_marginTop="751dp"
-					android:layout_width="43dp"
-					android:layout_height="37dp" />
-
-				<ImageView android:id="@+id/iconolistaproductos"
-					android:src="@drawable/iconolistaproductos"
-					android:contentDescription="iconolistaproductos"
-					 android:layout_marginStart="58dp"
-					android:layout_marginTop="751dp"
-					android:layout_width="25dp"
-					android:layout_height="35dp" />
+					android:layout_height="120dp"
+					android:layout_marginTop="-20dp"
+					android:background="@drawable/iconosopciones_shape" />
 
 				<ImageView
-					android:id="@+id/imagenfondomenu"
-					android:layout_width="355dp"
-					android:layout_height="227dp"
-					android:layout_marginStart="28dp"
-					android:layout_marginTop="350dp"
-					android:contentDescription="imagenfondomenu"
-					android:src="@drawable/imagenfondomenu" />
+					android:id="@+id/iconomiperfil"
+					android:src="@drawable/iconomiperfil"
+					android:contentDescription="iconomiperfil"
+					android:layout_marginStart="322dp"
+					android:layout_marginTop="24dp"
+					android:layout_width="42dp"
+					android:layout_height="36dp" />
 
-				<ImageView android:id="@+id/encabezadomenu"
-					android:src="@drawable/encabezadomenu"
-					android:contentDescription="encabezadomenu"
-					 android:layout_marginStart="0dp"
-					android:layout_marginTop="-7dp"
-					android:layout_width="409dp"
-					android:layout_height="194dp" />
+				<ImageView
+					android:id="@+id/logotipsinfondo"
+					android:layout_width="46dp"
+					android:layout_height="53dp"
+					android:layout_marginStart="238dp"
+					android:layout_marginTop="10dp"
+					android:contentDescription="logotipsinfondo"
+					android:src="@drawable/logotipsinfondo" />
 
-				<ImageView android:id="@+id/logotipsinfondo_ek1"
-					android:src="@drawable/logotipsinfondo_ek1"
-					android:contentDescription="logotipsinfondo_ek1"
-					 android:layout_marginStart="174dp"
-					android:layout_marginTop="49dp"
-					android:layout_width="72dp"
-					android:layout_height="82dp" />
+				<TextView
+					android:id="@+id/opcProductos"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="25dp"
+					android:layout_marginTop="60dp"
+					android:text="Ver productos"
+					android:textColor="#FFFCFC"
+					android:textSize="12sp"
+					android:fontFamily="@font/libre_franklin_semibold" />
 
-				<ImageView android:id="@+id/letraslogosinfondo"
-					android:src="@drawable/letraslogosinfondo"
-					android:contentDescription="letraslogosinfondo"
-					 android:layout_marginStart="144dp"
-					android:layout_marginTop="121dp"
-					android:layout_width="137dp"
-					android:layout_height="66dp" />
+				<TextView
+					android:id="@+id/opcEstadoCuenta"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="120dp"
+					android:layout_marginTop="60dp"
+					android:text="Estado de Cuenta"
+					android:textColor="#FFFCFC"
+					android:textSize="12sp"
+					android:fontFamily="@font/libre_franklin_semibold" />
+
+				<TextView
+					android:id="@+id/opcSitioWeb"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="238dp"
+					android:layout_marginTop="60dp"
+					android:text="Sitio Web"
+					android:textColor="#FFFCFC"
+					android:textSize="12sp"
+					android:fontFamily="@font/libre_franklin_semibold" />
+
+				<TextView
+					android:id="@+id/opcMiPerfil"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="320dp"
+					android:layout_marginTop="60dp"
+					android:text="Mi Perfil"
+					android:textColor="#FFFCFC"
+					android:textSize="12sp"
+					android:fontFamily="@font/libre_franklin_semibold" />
 
 			</RelativeLayout>
-		</RelativeLayout>
 
-	</ScrollView>
-</HorizontalScrollView>
+			<!-- Texto de bienvenida y otros elementos -->
+			<TextView
+				android:id="@+id/bienvenida2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="70dp"
+				android:layout_marginTop="220dp"
+				android:fontFamily="@font/libre_franklin_semibold"
+				android:text="¡Hola!"
+				android:textSize="20dp" />
+
+			<TextView
+				android:id="@+id/bienvenidaNombre"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="70dp"
+				android:layout_marginTop="255dp"
+				android:fontFamily="@font/libre_franklin_semibold"
+				android:textSize="17dp" />
+
+			<TextView
+				android:id="@+id/msjPresentacion"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="70dp"
+				android:layout_marginTop="280dp"
+				android:fontFamily="@font/libre_franklin"
+				android:text="¿Qué te gustaría explorar hoy?"
+				android:textSize="16dp" />
+
+			<ImageView
+				android:id="@+id/iconoestadocuenta"
+				android:src="@drawable/iconoestadocuenta"
+				android:contentDescription="iconoestadocuenta"
+				android:layout_marginStart="145dp"
+				android:layout_marginTop="751dp"
+				android:layout_width="43dp"
+				android:layout_height="37dp" />
+
+			<ImageView
+				android:id="@+id/iconolistaproductos"
+				android:src="@drawable/iconolistaproductos"
+				android:contentDescription="iconolistaproductos"
+				android:layout_marginStart="58dp"
+				android:layout_marginTop="751dp"
+				android:layout_width="25dp"
+				android:layout_height="35dp" />
+
+			<ImageView
+				android:id="@+id/imagenfondomenu"
+				android:layout_width="355dp"
+				android:layout_height="227dp"
+				android:layout_marginStart="28dp"
+				android:layout_marginTop="350dp"
+				android:contentDescription="imagenfondomenu"
+				android:src="@drawable/imagenfondomenu" />
+
+			<ImageView
+				android:id="@+id/encabezadomenu"
+				android:src="@drawable/encabezadomenu"
+				android:contentDescription="encabezadomenu"
+				android:layout_marginStart="0dp"
+				android:layout_marginTop="-7dp"
+				android:layout_width="409dp"
+				android:layout_height="194dp" />
+
+			<ImageView
+				android:id="@+id/logotipsinfondo_ek1"
+				android:src="@drawable/logotipsinfondo_ek1"
+				android:contentDescription="logotipsinfondo_ek1"
+				android:layout_marginStart="174dp"
+				android:layout_marginTop="49dp"
+				android:layout_width="72dp"
+				android:layout_height="82dp" />
+
+			<ImageView
+				android:id="@+id/letraslogosinfondo"
+				android:src="@drawable/letraslogosinfondo"
+				android:contentDescription="letraslogosinfondo"
+				android:layout_marginStart="144dp"
+				android:layout_marginTop="121dp"
+				android:layout_width="137dp"
+				android:layout_height="66dp" />
+
+		</RelativeLayout>
+	</RelativeLayout>
+</RelativeLayout>

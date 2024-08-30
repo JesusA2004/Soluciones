@@ -14,7 +14,7 @@ public class EstadoCuenta extends AppCompatActivity {
 
     TextView txtTitulo, txtDiasCredito, txtMontoCredito;
     TextView txtMetodoP;
-    ImageView btnMenu, btnCerrarSesion, btnProductos;
+    ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
     DetalleCliente cliente = new DetalleCliente();
     Sesion sesion = new Sesion();
 
@@ -28,7 +28,10 @@ public class EstadoCuenta extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-
+        btnProductos = findViewById(R.id.iconoVerProductos);
+        btnMenu = findViewById(R.id.iconoMenu);
+        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
+        btnAtras = findViewById(R.id.iconoFlechaRegreso);
     }
 
     private void obtenerElementos(){

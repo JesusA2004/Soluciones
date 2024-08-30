@@ -17,17 +17,10 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class MostrarProducto extends AppCompatActivity {
 
-    ImageView imagenProducto;
-    TextView nombreProducto;
+    ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
+    TextView nombreProducto,descripcionProducto, pesoProducto;
     EditText cantidadProducto;
-    TextView descripcionProducto;
     Button botonAnadirCarrito;
-    TextView pesoProducto;
-    ImageView botonProductos;
-    ImageView botonCarritoCompras;
-    ImageView botonMenu;
-    ImageView cerrarSesion;
-    ImageView botonRegresar;
     Producto producto = new Producto();
     private int cantidadPro;
     private String idProducto;
@@ -86,10 +79,10 @@ public class MostrarProducto extends AppCompatActivity {
         descripcionProducto = findViewById(R.id.txtDescripcion);
         botonAnadirCarrito = findViewById(R.id.btnAnadirCarrito);
         pesoProducto = findViewById(R.id.txtPeso);
-        botonProductos = findViewById(R.id.iconolistaproductos_1);
-        botonCarritoCompras = findViewById(R.id.iconocompra_1);
-        botonMenu = findViewById(R.id.iconomenu_1);
-        cerrarSesion = findViewById(R.id.iconocerrarsesion__1);
+        botonProductos = findViewById(R.id.iconoVerProductos);
+        botonCarritoCompras = findViewById(R.id.iconoCarritoCompra);
+        botonMenu = findViewById(R.id.iconoMenu);
+        cerrarSesion = findViewById(R.id.iconoCerrarSesion);
         botonRegresar = findViewById(R.id.flecharegreso_1);
     }
 
