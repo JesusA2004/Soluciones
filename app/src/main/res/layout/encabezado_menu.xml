@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2AB023"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Icono del usuario -->
+        <ImageView
+            android:id="@+id/iconoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iconomiperfil"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/iconoCerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iconox_1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-30dp"/>
+
+        <!-- Texto de Nombre cliente -->
+        <TextView
+            android:id="@+id/txtNombreCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre cliente"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:paddingTop="8dp"/>
+    </LinearLayout>
