@@ -10,10 +10,10 @@
         android:id="@+id/imagenFondo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="464dp"
+        android:layout_marginBottom="408dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/marcoimagenp" />
 
@@ -27,10 +27,9 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenFondo"
-        app:layout_constraintVertical_bias="0.734" />
+        app:layout_constraintVertical_bias="0.891" />
 
     <TextView
         android:id="@+id/btnCrearCuenta"
@@ -41,10 +40,10 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnInicioSesion"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <View
         android:id="@+id/view"
@@ -98,7 +97,7 @@
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36"
+        app:layout_constraintVertical_bias="0.399"
         app:srcCompat="@drawable/letraslogosinfondo" />
 
     <ImageView
@@ -110,7 +109,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301"
+        app:layout_constraintVertical_bias="0.338"
         app:srcCompat="@drawable/logotipsinfondo_ek1" />
 
     <TextView

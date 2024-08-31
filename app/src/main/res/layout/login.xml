@@ -1,24 +1,14 @@
-<RelativeLayout
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/content_container"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:background="@drawable/_bg__welcome_ek2_shape">
 
-	<View
-		android:id="@+id/_bg__login_ek2"
-		android:layout_width="411dp"
-		android:layout_height="823dp"
-		android:layout_marginStart="0dp"
-		android:layout_marginTop="0dp"
-		android:background="@drawable/_bg__login_ek2_shape"
-		android:backgroundTint="#FFFFFF"
-		android:contentDescription="@string/descripcionFondoLogin" />
-
-	<RelativeLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/inicio_de_sesion"
-		android:layout_marginTop="0dp"
-		android:layout_marginStart="0dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 
@@ -26,118 +16,161 @@
 			android:id="@+id/contenedorinfo"
 			android:layout_width="333dp"
 			android:layout_height="429dp"
-			android:layout_marginStart="44dp"
-			android:layout_marginTop="337dp"
+			android:layout_marginStart="34dp"
+			android:layout_marginTop="332dp"
+			android:layout_marginEnd="34dp"
 			android:background="@drawable/contenedorinfo_shape"
 			android:backgroundTint="#EFEFEF"
-			android:contentDescription="@string/descripcionContenedorInfo" />
+			android:contentDescription="@string/descripcionContenedorInfo"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<ImageView
 			android:id="@+id/logotipsinfondo_"
-			android:src="@drawable/logotipsinfondo_"
-			android:contentDescription="@string/descripcionLogoSinFondo"
-			android:layout_marginStart="123dp"
-			android:layout_marginTop="283dp"
 			android:layout_width="157dp"
-			android:layout_height="98dp" />
+			android:layout_height="98dp"
+			android:contentDescription="@string/descripcionLogoSinFondo"
+			android:src="@drawable/logotipsinfondo_"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.414" />
 
 		<ImageView
 			android:id="@+id/fondologin"
-			android:src="@drawable/fondologin"
-			android:contentDescription="@string/descripcionFondoLogin"
-			android:layout_marginStart="0dp"
-			android:layout_marginTop="-40dp"
 			android:layout_width="416dp"
-			android:layout_height="321dp" />
+			android:layout_height="321dp"
+			android:layout_marginTop="-40dp"
+			android:contentDescription="@string/descripcionFondoLogin"
+			android:src="@drawable/fondologin"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<ImageView
 			android:id="@+id/flechaatras"
-			android:src="@drawable/flecharegreso"
-			android:contentDescription="@string/descripcionFlechaRegreso"
-			android:layout_marginStart="32dp"
-			android:layout_marginTop="17dp"
 			android:layout_width="39dp"
-			android:layout_height="46dp" />
+			android:layout_height="46dp"
+			android:contentDescription="@string/descripcionFlechaRegreso"
+			android:src="@drawable/flecharegreso"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.11"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.053" />
 
 		<TextView
 			android:id="@+id/txtIngresarDatos"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="130dp"
-			android:layout_marginTop="400dp"
 			android:fontFamily="@font/libre_franklin_semibold"
 			android:text="@string/msjIngresarDatos"
+			android:textColor="@color/black"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/contenedorinfo"
+			app:layout_constraintHorizontal_bias="0.55"
+			app:layout_constraintStart_toStartOf="@+id/contenedorinfo"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.525" />
 
 		<TextView
 			android:id="@+id/txtRFC"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="80dp"
-			android:layout_marginTop="460dp"
 			android:text="@string/txtRFC"
 			android:textColor="#000000"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/contenedorinfo"
+			app:layout_constraintHorizontal_bias="0.25"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.589" />
 
 		<EditText
 			android:id="@+id/entradaRFC"
 			android:layout_width="wrap_content"
 			android:layout_height="48dp"
-			android:layout_marginStart="80dp"
-			android:layout_marginTop="490dp"
+			android:autofillHints="username"
 			android:ems="13"
-			android:inputType="text"
 			android:hint="@string/entradaRFC"
+			android:inputType="text"
 			android:textColor="#757575"
-			android:autofillHints="username"/>
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/contenedorinfo"
+			app:layout_constraintHorizontal_bias="0.833"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.645" />
 
 		<TextView
 			android:id="@+id/txtTel"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="80dp"
-			android:layout_marginTop="550dp"
 			android:text="@string/txtTelefono"
 			android:textColor="#000000"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.241"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.694" />
 
 		<EditText
 			android:id="@+id/entradaTel"
 			android:layout_width="wrap_content"
 			android:layout_height="48dp"
-			android:layout_marginStart="80dp"
-			android:layout_marginTop="580dp"
+			android:autofillHints="phone"
 			android:ems="13"
-			android:inputType="phone"
 			android:hint="@string/entradaTel"
+			android:inputType="phone"
 			android:textColor="#757575"
-			android:autofillHints="phone"/>
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.571"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/fondologin"
+			app:layout_constraintVertical_bias="0.78" />
 
 		<Button
 			android:id="@+id/botonIS"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="140dp"
-			android:layout_marginTop="670dp"
+			android:background="@drawable/bg_boton_redondo"
+			android:contentDescription="@string/descripcionBotonIniciarSesion"
 			android:text="@string/labelIniciarSesion"
 			android:textColor="#FBFBFB"
 			android:textColorHighlight="#4CAF50"
-			android:backgroundTint="#1f5630"
 			android:textSize="18sp"
-			android:contentDescription="@string/descripcionBotonIniciarSesion" />
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.519"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.889" />
 
 		<ProgressBar
 			android:id="@+id/progressBar"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_centerInParent="true"
-			android:visibility="gone"
+			android:contentDescription="@string/descripcionProgressBar"
 			android:indeterminate="true"
-			android:contentDescription="@string/descripcionProgressBar"/>
+			android:visibility="gone"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
-	</RelativeLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

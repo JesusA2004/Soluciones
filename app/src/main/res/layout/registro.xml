@@ -1,61 +1,73 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/content_container"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
-	<RelativeLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/paginaregistro"
-		android:layout_marginTop="0dp"
-		android:layout_marginStart="0dp"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_marginStart="0dp"
+		android:layout_marginTop="0dp">
 
 		<View
 			android:id="@+id/vistapagina"
 			android:layout_width="match_parent"
 			android:layout_height="823dp"
-			android:layout_marginStart="0dp"
-			android:layout_marginTop="0dp"
 			android:background="@drawable/_bg__registro_ek2_shape"
-			android:backgroundTint="#FFFFFF" />
+			android:backgroundTint="#FFFFFF"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<View
 			android:id="@+id/contenedorinfo"
 			android:layout_width="352dp"
 			android:layout_height="456dp"
-			android:layout_marginStart="30dp"
-			android:layout_marginTop="316dp"
 			android:background="@drawable/contenedorinfo_shape"
-			android:backgroundTint="#EFEFEF" />
+			android:backgroundTint="#EFEFEF"
+			app:layout_constraintBottom_toBottomOf="@+id/vistapagina"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.861" />
 
 		<ImageView
 			android:id="@+id/logotipsinfondo"
-			android:src="@drawable/logotipsinfondo"
-			android:contentDescription="logotipsinfondo"
-			android:layout_marginStart="129dp"
-			android:layout_marginTop="261dp"
 			android:layout_width="157dp"
-			android:layout_height="98dp" />
+			android:layout_height="98dp"
+			android:contentDescription="logotipsinfondo"
+			android:src="@drawable/logotipsinfondo"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.361" />
 
 		<ImageView
 			android:id="@+id/iconosiguiente"
-			android:src="@drawable/iconosiguiente"
-			android:contentDescription="iconosiguiente"
+			android:layout_width="38dp"
+			android:layout_height="33dp"
 			android:layout_marginStart="321dp"
 			android:layout_marginTop="702dp"
-			android:layout_width="26dp"
-			android:layout_height="27dp" />
+			android:contentDescription="iconosiguiente"
+			android:src="@drawable/iconosiguiente"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<ImageView
 			android:id="@+id/fondologin"
-			android:src="@drawable/fondologin"
-			android:contentDescription="fondologin"
+			android:layout_width="match_parent"
+			android:layout_height="321dp"
 			android:layout_marginStart="-2dp"
 			android:layout_marginTop="-54dp"
-			android:layout_width="match_parent"
-			android:layout_height="321dp" />
+			android:contentDescription="fondologin"
+			android:src="@drawable/fondologin"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<TextView
 			android:id="@+id/txtRFC"
@@ -66,7 +78,9 @@
 			android:text="@string/txtRFC"
 			android:textColor="#000000"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<EditText
 			android:id="@+id/entradaRFC"
@@ -75,9 +89,11 @@
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="380dp"
 			android:ems="13"
-			android:inputType="text"
 			android:hint="@string/entradaRFC"
-			android:textColor="#928F8F" />
+			android:inputType="text"
+			android:textColor="#928F8F"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<TextView
 			android:id="@+id/txtRazonSocial"
@@ -88,7 +104,9 @@
 			android:text="@string/txtRazonS"
 			android:textColor="#000000"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<EditText
 			android:id="@+id/entradaRazonSocial"
@@ -97,9 +115,11 @@
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="460dp"
 			android:ems="13"
-			android:inputType="text"
 			android:hint="@string/entradaRazonS"
-			android:textColor="#928F8F" />
+			android:inputType="text"
+			android:textColor="#928F8F"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<TextView
 			android:id="@+id/txtTel"
@@ -110,7 +130,9 @@
 			android:text="@string/txtTelefono"
 			android:textColor="#000000"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<EditText
 			android:id="@+id/entradaTel"
@@ -119,9 +141,11 @@
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="540dp"
 			android:ems="13"
-			android:inputType="phone"
 			android:hint="@string/entradaTel"
-			android:textColor="#928F8F" />
+			android:inputType="phone"
+			android:textColor="#928F8F"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<TextView
 			android:id="@+id/txtCorreo"
@@ -132,7 +156,9 @@
 			android:text="@string/txtCorreo"
 			android:textColor="#000000"
 			android:textSize="20sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<EditText
 			android:id="@+id/entradaCorreo"
@@ -141,18 +167,22 @@
 			android:layout_marginStart="80dp"
 			android:layout_marginTop="620dp"
 			android:ems="13"
-			android:inputType="text"
 			android:hint="@string/entradaCorreo"
-			android:textColor="#928F8F" />
+			android:inputType="text"
+			android:textColor="#928F8F"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<ImageView
 			android:id="@+id/flechaatras"
-			android:src="@drawable/flecharegreso"
-			android:contentDescription="flecharegreso"
-			android:layout_marginStart="19dp"
-			android:layout_marginTop="17dp"
 			android:layout_width="39dp"
-			android:layout_height="46dp" />
+			android:layout_height="46dp"
+			android:layout_marginStart="28dp"
+			android:layout_marginTop="36dp"
+			android:contentDescription="flecharegreso"
+			android:src="@drawable/flecharegreso"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
-	</RelativeLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

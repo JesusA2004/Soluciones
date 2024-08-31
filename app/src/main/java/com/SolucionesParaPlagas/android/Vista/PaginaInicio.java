@@ -19,7 +19,6 @@ public class PaginaInicio extends AppCompatActivity {
     private TextView ubicacion, botonCrearCuenta;
     private Controlador<JsonProducto> controladorJsonProducto = new ControladorJsonProducto();
 
-    // Metodos de manipulacion de la interfaz (layout)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +47,7 @@ public class PaginaInicio extends AppCompatActivity {
     }
 
     private void configurarBotones() {
-        // Configura el listener del botón Iniciar Sesión
+        // Configura el listener de los botones
         botonIniciarSesion.setOnClickListener(this::irALogin);
         botonCrearCuenta.setOnClickListener(this::irACrearCuenta);
         btnUbicacion.setOnClickListener(this::irAMaps);

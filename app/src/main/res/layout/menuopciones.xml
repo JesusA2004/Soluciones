@@ -23,15 +23,15 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent">
 
+				<!-- Opciones de menú -->
 				<View
 					android:id="@+id/_bg__menuopciones_ek2"
-					android:background="@drawable/_bg__menuopciones_ek2_shape"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
 					android:layout_marginStart="0dp"
 					android:layout_marginTop="0dp"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent" />
+					android:background="@drawable/_bg__menuopciones_ek2_shape" />
 
-				<!-- Opciones de menú -->
 				<RelativeLayout
 					android:id="@+id/opciones"
 					android:layout_marginTop="730dp"
@@ -119,7 +119,8 @@
 					android:layout_marginTop="220dp"
 					android:fontFamily="@font/libre_franklin_semibold"
 					android:text="¡Hola!"
-					android:textSize="20sp" />
+					android:textSize="20sp"
+					android:textColor="@color/black"/>
 
 				<TextView
 					android:id="@+id/bienvenidaNombre"
@@ -128,7 +129,8 @@
 					android:layout_marginStart="70dp"
 					android:layout_marginTop="255dp"
 					android:fontFamily="@font/libre_franklin_semibold"
-					android:textSize="17sp" />
+					android:textSize="17sp"
+					android:textColor="@color/black"/>
 
 				<TextView
 					android:id="@+id/msjPresentacion"
@@ -138,7 +140,8 @@
 					android:layout_marginTop="280dp"
 					android:fontFamily="@font/libre_franklin"
 					android:text="¿Qué te gustaría explorar hoy?"
-					android:textSize="16sp" />
+					android:textSize="16sp"
+					android:textColor="@color/black"/>
 
 				<ImageView
 					android:id="@+id/iconoestadocuenta"
