@@ -3,7 +3,7 @@
     <!-- Etiquetas de textos estáticos -->
     <string name="mensajeBienvenida">¡BIENVENIDO!</string>
     <string name="mensajePresentacion">Soluciones para Plagas Urbanas y Agrícolas</string>
-    <string name="direccionEmpresa">Bajada a Chapultepec # 3, \nChapultepec, 62360 Cuernavaca, Mor.</string>
+    <string name="direccionEmpresa">Bajada a Chapultepec # 3, \nChapultepec, 62360\nCuernavaca, Mor.</string>
     <string name="paginaWeb">solucionesparaplagas.com</string>
     <string name="txtLocalidad">Localidad</string>
     <string name="txtColonia">Colonia</string>
@@ -43,6 +43,7 @@
     <string name="labelAnadirCarrito">Añadir al carrito</string>
     <string name="crearCuenta"><u>Crear una cuenta</u></string>
     <string name="descargarEC"><u>Descargar Estado de Cuenta</u></string>
+    <string name="enviar_mail">Enviar correo...</string>
 
     <!-- Textos para placeHolders -->
     <string name="entradaCalle">Ingrese la calle</string>

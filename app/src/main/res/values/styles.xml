@@ -2,7 +2,7 @@
 <resources>
 	<!-- welcome styles -->
 
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
@@ -20,14 +20,14 @@
 	</style>
 
 	<!--  datoscliente styles  -->
-	<style name="TemaEC" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="TemaEC" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 
 	<!--  consultarestadoc styles  -->
-	<style name="TemaDP" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="TemaDP" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>

@@ -119,4 +119,14 @@
 		android:textSize="20sp"
 		android:textStyle="bold"/>
 
+	<EditText
+		android:id="@+id/textoPDF"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="90dp"
+		android:layout_marginTop="600dp"
+		android:ems="10"
+		android:inputType="text"
+		android:text="Name" />
+
 </RelativeLayout>

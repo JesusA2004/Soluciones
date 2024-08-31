@@ -36,6 +36,7 @@
 	<color name="_bg__menuopciones_ek2_color">#FFFFFF</color>
 	<color name="__hola__nombre___color">#000000</color>
 	<color name="textmenuprincipal_color">#FFFBFB</color>
+	<color name="colorBoton">#1f5630</color>
 	<!--  infounproducto colors  -->
 
 	<color name="cuadroinfoprod_color">#90E1B3</color>

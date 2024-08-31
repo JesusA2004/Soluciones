@@ -1,5 +1,8 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import com.example.sol.R;
 import android.util.Log;
@@ -8,7 +11,6 @@ import android.os.Bundle;
 import java.io.IOException;
 import java.io.InputStream;
 import android.widget.Toast;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.itextpdf.text.pdf.PdfReader;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class SubirDocumento extends AppCompatActivity {
 
@@ -40,6 +44,7 @@ public class SubirDocumento extends AppCompatActivity {
                     Log.d("Archivo", "Archivo seleccionado: " + uri);
                     extractTextPdfFile(uri);
                     archivoSeleccionado = uri;
+                    Log.d("ArchivoSeleccionado", "Uri del archivo: " + archivoSeleccionado.toString());
                 }
             }
     );
@@ -53,6 +58,8 @@ public class SubirDocumento extends AppCompatActivity {
         // Inicializar elementos de la UI
         inicializarElementos();
         configurarBotones();
+        // Verificar permisos para almacenamiento
+        solicitarPermisos();
     }
 
     private void recibirDatosDeRegistroDatos() {
@@ -79,13 +86,13 @@ public class SubirDocumento extends AppCompatActivity {
         botonSiguiente = findViewById(R.id.iconosiguiente);
         botonRegresar = findViewById(R.id.iconoatras);
         botonSubirDocumento = findViewById(R.id.iconosubirdocumento);
-        // txt_contenido_pdf = findViewById(R.id.txt_contenido_pdf);
+        txt_contenido_pdf = findViewById(R.id.textoPDF);
     }
 
     private void configurarBotones() {
         botonMenu.setOnClickListener(this::regresarAPaginaInicio);
         botonRegresar.setOnClickListener(this::regresarAPaginaDireccion);
-        botonSiguiente.setOnClickListener(this::irAMenu);
+        botonSiguiente.setOnClickListener(this::irAPaginaInicio);
         botonSubirDocumento.setOnClickListener(this::subirDocumento);
     }
 
@@ -106,7 +113,7 @@ public class SubirDocumento extends AppCompatActivity {
                 builder.append(fileContent);
             }
             final String textContent = builder.toString();
-            runOnUiThread(() -> txt_contenido_pdf.setText(""));
+            runOnUiThread(() -> txt_contenido_pdf.setText(textContent));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -134,17 +141,16 @@ public class SubirDocumento extends AppCompatActivity {
 
     private boolean mandarCorreo() {
         if (archivoSeleccionado != null) {
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.setType("vnd.android.cursor.dir/email");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Prueba");
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "amjo220898@upemor.edu.mx", null));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Android APP - ");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Mensaje del correo");
             emailIntent.putExtra(Intent.EXTRA_STREAM, archivoSeleccionado);
-            try {
-                startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
+            Intent chooser = Intent.createChooser(emailIntent, getString(R.string.enviar_mail));
+            if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(chooser);
                 return true;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                Toast.makeText(this, "No hay aplicaciones de correo electrónico instaladas.", Toast.LENGTH_LONG).show();
                 return false;
             }
         } else {
@@ -163,12 +169,19 @@ public class SubirDocumento extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void irAMenu(View v) {
+    private void irAPaginaInicio(View v) {
         if (mandarCorreo()) {
-            Intent intent = new Intent(SubirDocumento.this, MenuPrincipal.class);
+            Toast.makeText(this, "Correo electrónico enviado con éxito", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SubirDocumento.this, PaginaInicio.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void solicitarPermisos() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
     }
 
