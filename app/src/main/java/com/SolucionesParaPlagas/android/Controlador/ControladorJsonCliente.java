@@ -12,12 +12,13 @@ import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioJsonClient
 public class ControladorJsonCliente extends Controlador<JsonCliente> {
 
     private String EndPoint = "Clients?$filter=RFC eq ";
-    private ControladorClienteIndividual controladorClienteIndividual = new ControladorClienteIndividual();
-    private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
+    private ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
+    private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
 
     public ControladorJsonCliente(String RFC) {
         super(RepositorioJsonCliente.obtenerInstancia());
-        this.EndPoint = EndPoint + "'" + String.format(RFC) + "'";    }
+        this.EndPoint = EndPoint + "'" + String.format(RFC) + "'";
+    }
 
     // Constructor para cliente detallado
     public ControladorJsonCliente(String id, String parametro){

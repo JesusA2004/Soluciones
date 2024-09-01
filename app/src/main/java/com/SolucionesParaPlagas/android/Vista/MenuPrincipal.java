@@ -3,6 +3,8 @@ package com.SolucionesParaPlagas.android.Vista;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.Locale;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +35,7 @@ public class MenuPrincipal extends AppCompatActivity {
     private DetalleCliente clienteCompleto = new DetalleCliente();
     private ClienteIndividual clienteIndividual = new ClienteIndividual();
     private Controlador<JsonCliente> controladorJsonCliente;
-    private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
+    private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
     private Sesion sesion = new Sesion();
     private ProgressBar iconoCarga;
     private DrawerLayout drawerLayout;
@@ -49,22 +51,35 @@ public class MenuPrincipal extends AppCompatActivity {
 
     // Metodo para evitar excepciones de mostrar el cliente cuando se recibe como parametro de otra actividad
     private void segundoHilo(){
-        recibirCliente();
+        inicializarCliente();
         new Thread(() -> {
-            recibirClienteCompleto();
+            // Realizar la solicitud http en un segundo hilo para mejorar la experiencia del usuario
+            validarExistenciaClienteD();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             runOnUiThread(() -> {
-                if (clienteCompleto == null) {
-                    cargarClienteD();
-                }
                 mostrarDatos();
             });
-
         }).start();
+    }
+
+    private void inicializarCliente(){
+        // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
+        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
+        clienteIndividual = controladorClienteIndividual.obtenerCliente();
+    }
+
+    private void validarExistenciaClienteD(){
+        // Validamos si el repositorio esta vacio entonces realizamos la solicitud
+        if (controladorDetalleCliente.obtenerRepositorio().isEmpty()) {
+            cargarClienteD();
+        }else{
+            // Si el repositorio tiene datos entonces cargarlos al cliente
+            clienteCompleto = controladorDetalleCliente.obtenerCliente();
+        }
     }
 
     private void inicializarElementos() {
@@ -145,20 +160,17 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void irAEc(View v) {
         Intent intent = new Intent(MenuPrincipal.this, EstadoCuenta.class);
-        intent.putExtra("ClienteC", clienteCompleto);
         startActivity(intent);
     }
 
     private boolean irAMiPerfil(MenuItem item) {
         Intent intent = new Intent(MenuPrincipal.this, ConsultarPerfil.class);
-        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
         return true;
     }
 
     private boolean irAPedidos(MenuItem item) {
         Intent intent = new Intent(MenuPrincipal.this, MostrarPedidos.class);
-        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
         return true;
     }
@@ -172,24 +184,7 @@ public class MenuPrincipal extends AppCompatActivity {
         return true;
     }
 
-    private void recibirCliente() {
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("Cliente")) {
-            clienteIndividual = intent.getParcelableExtra("Cliente");
-        }
-    }
-
-    private void recibirClienteCompleto() {
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("ClienteC")) {
-            clienteCompleto = intent.getParcelableExtra("ClienteC");
-        } else {
-            clienteCompleto = null;
-        }
-    }
-
     private void cargarClienteD() {
-        iconoCarga.setVisibility(View.VISIBLE);
         new Thread(() -> {
             controladorJsonCliente = new ControladorJsonCliente(clienteIndividual.getID(), "sobrecarga");
             try {
@@ -198,7 +193,6 @@ public class MenuPrincipal extends AppCompatActivity {
                 e.printStackTrace();
             }
             runOnUiThread(() -> {
-                iconoCarga.setVisibility(View.GONE);
                 clienteCompleto = controladorDetalleCliente.obtenerCliente();
                 if (clienteCompleto != null) {
                     Log.d("PruebaExito", "Cliente completo: " + clienteCompleto.toString());
@@ -209,17 +203,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void irAConsultarProductos(View v) {
         Intent intent = new Intent(MenuPrincipal.this, MostrarProductos.class);
-        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
     }
 
     private void mostrarDatos() {
-        String nombreCliente = "";
-        if(clienteIndividual.getID() != null){
-            nombreCliente = clienteIndividual.getClientName();
-        }else{
-            nombreCliente = clienteCompleto.getLegalName();
-        }
+        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
+        clienteIndividual = controladorClienteIndividual.obtenerCliente();
+        String nombreCliente = clienteIndividual.getClientName();
         txtBienvenida.setText(capitalizarPrimeraLetra(nombreCliente));
     }
 

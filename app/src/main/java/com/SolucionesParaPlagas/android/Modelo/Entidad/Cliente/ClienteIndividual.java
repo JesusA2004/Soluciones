@@ -1,9 +1,6 @@
 package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class ClienteIndividual implements Parcelable {
+public class ClienteIndividual{
 
     private String ID;
     private int Number;
@@ -118,50 +115,6 @@ public class ClienteIndividual implements Parcelable {
                 ", NextContactDate='" + NextContactDate + '\'' +
                 ", LocationID='" + LocationID + '\'' +
                 '}';
-    }
-
-    // Métodos Parcelable
-
-    protected ClienteIndividual(Parcel in) {
-        ID = in.readString();
-        Number = in.readInt();
-        ClientName = in.readString();
-        LegalName = in.readString();
-        RFC = in.readString();
-        Email = in.readString();
-        Phone = in.readString();
-        NextContactDate = in.readString();
-        LocationID = in.readString();
-    }
-
-    public static final Creator<ClienteIndividual> CREATOR = new Creator<ClienteIndividual>() {
-        @Override
-        public ClienteIndividual createFromParcel(Parcel in) {
-            return new ClienteIndividual(in);
-        }
-
-        @Override
-        public ClienteIndividual[] newArray(int size) {
-            return new ClienteIndividual[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(ID);
-        dest.writeInt(Number);
-        dest.writeString(ClientName);
-        dest.writeString(LegalName);
-        dest.writeString(RFC);
-        dest.writeString(Email);
-        dest.writeString(Phone);
-        dest.writeString(NextContactDate);
-        dest.writeString(LocationID);
     }
 
 }

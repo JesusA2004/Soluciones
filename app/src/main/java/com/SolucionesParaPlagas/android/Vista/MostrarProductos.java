@@ -36,28 +36,6 @@ public class MostrarProductos extends AppCompatActivity {
         configurarBotones();
     }
 
-    /*
-    private void cargarProductos() {
-        Controlador<JsonProducto> controladorJsonProducto = new ControladorJsonProducto();
-        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
-        new Thread(() -> {
-            controladorJsonProducto.realizarSolicitud();
-            try {
-                Thread.sleep(8000); // Simular tiempo de carga
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            runOnUiThread(() -> {
-                iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
-                List<Producto> productosList = controladorProducto.obtenerRepositorio();
-                if (productosList != null && !productosList.isEmpty()) {
-                    AdaptadorProductos adaptador = new AdaptadorProductos(productosList);
-                    productos.setAdapter(adaptador);
-                }
-            });
-        }).start();
-    }*/
-
     private void cargarProductos() {
         List<Producto> productosList = controladorProducto.obtenerRepositorio();
         if (productosList != null && !productosList.isEmpty()) {

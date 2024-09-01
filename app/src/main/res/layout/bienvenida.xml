@@ -19,12 +19,12 @@
 
     <Button
         android:id="@+id/btnInicioSesion"
-        android:layout_width="153dp"
+        android:layout_width="160dp"
         android:layout_height="63dp"
         android:background="@drawable/bg_boton_redondo"
         android:text="@string/labelIniciarSesion"
         android:textColor="@color/white"
-        android:textSize="17sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

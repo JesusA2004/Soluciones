@@ -2,6 +2,9 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.example.sol.R;
 import android.widget.Button;
 import android.content.Intent;
@@ -19,6 +22,7 @@ public class EditarDatosP extends AppCompatActivity {
     Button btnConfirmar;
     ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
     Sesion sesion = new Sesion();
+    private DetalleCliente clienteCompleto = new DetalleCliente();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,12 @@ public class EditarDatosP extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         btnProductos = findViewById(R.id.iconoVerProductos);
         btnAtras = findViewById(R.id.iconoAtras);
+    }
+
+    private void inicializarCliente() {
+        // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
+        ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
+        clienteCompleto = controladorDetalleCliente.obtenerCliente();
     }
 
     private void recibirElementos(){

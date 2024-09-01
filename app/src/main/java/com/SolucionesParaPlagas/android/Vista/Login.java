@@ -24,8 +24,7 @@ public class Login extends AppCompatActivity {
     private Button botonIniciarSesion;
     private ProgressBar iconoCarga;
     private ControladorJsonCliente controladorClienteJson;
-    private ControladorClienteIndividual controladorClienteI = new ControladorClienteIndividual();
-    private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
+    private ControladorClienteIndividual controladorClienteI = ControladorClienteIndividual.obtenerInstancia();
     private Validaciones validar = new Validaciones();
 
     @Override
@@ -77,14 +76,14 @@ public class Login extends AppCompatActivity {
                             if(clienteIndividual.getPhone() != null){
                                 if(clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())){
                                     Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
-                                    irAMenu(v, clienteIndividual);
+                                    irAMenu(v);
                                 }else{
                                     Toast.makeText(Login.this, "Error, el telefono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
                                 }
                             }else{
                                 if(usuarioTelefono.getText().toString().equals("7771111111")){
                                     Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
-                                    irAMenu(v, clienteIndividual);
+                                    irAMenu(v);
                                 } else {
                                     Toast.makeText(Login.this, "Error, el telefono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();
                                 }
@@ -97,9 +96,8 @@ public class Login extends AppCompatActivity {
             }
     }
 
-    private void irAMenu(View v, ClienteIndividual cliente) {
+    private void irAMenu(View v) {
         Intent intent = new Intent(Login.this, MenuPrincipal.class);
-        intent.putExtra("Cliente", cliente);
         startActivity(intent);
     }
 

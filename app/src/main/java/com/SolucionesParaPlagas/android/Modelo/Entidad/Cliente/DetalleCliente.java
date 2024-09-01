@@ -2,10 +2,8 @@ package com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 
 import java.util.Arrays;
 import java.util.Date;
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class DetalleCliente implements Parcelable{
+public class DetalleCliente{
 
     private String ID;
     private String RFC;
@@ -64,83 +62,6 @@ public class DetalleCliente implements Parcelable{
         State = "";
         Addresses = new String[0]; // Arreglo vacío
     }
-
-    protected DetalleCliente(Parcel in) {
-        ID = in.readString();
-        RFC = in.readString();
-        LegalName = in.readString();
-        CommercialName = in.readString();
-        CreditDays = in.readInt();
-        CreditAmount = in.readDouble();
-        PaymentMethod = in.readString();
-        CreationDate = new Date(in.readLong()); // Assuming Date is stored as timestamp
-        Status = in.readString();
-        SalesContact = in.readString();
-        CreditContact = in.readString();
-        Loctaion = in.readString(); // Si es un error tipográfico, debería ser "Location"
-        LoctaionID = in.readString(); // Si es un error tipográfico, debería ser "LocationID"
-        Comments = in.readString();
-        PriceList = in.readString();
-        PriceListID = in.readString();
-        PaymentTermType = in.readString();
-        Email = in.readString();
-        Telephones = in.readString();
-        Number = in.readLong();
-        AccountNumber = in.readString();
-        DefaultDiscount = in.readDouble();
-        ClientSource = in.readString();
-        Account = in.readString();
-        City = in.readString();
-        State = in.readString();
-        Addresses = in.createStringArray();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(ID);
-        dest.writeString(RFC);
-        dest.writeString(LegalName);
-        dest.writeString(CommercialName);
-        dest.writeInt(CreditDays);
-        dest.writeDouble(CreditAmount);
-        dest.writeString(PaymentMethod);
-        dest.writeLong(CreationDate.getTime()); // Store Date as timestamp
-        dest.writeString(Status);
-        dest.writeString(SalesContact);
-        dest.writeString(CreditContact);
-        dest.writeString(Loctaion);
-        dest.writeString(LoctaionID);
-        dest.writeString(Comments);
-        dest.writeString(PriceList);
-        dest.writeString(PriceListID);
-        dest.writeString(PaymentTermType);
-        dest.writeString(Email);
-        dest.writeString(Telephones);
-        dest.writeLong(Number);
-        dest.writeString(AccountNumber);
-        dest.writeDouble(DefaultDiscount);
-        dest.writeString(ClientSource);
-        dest.writeString(Account);
-        dest.writeString(City);
-        dest.writeString(State);
-        dest.writeStringArray(Addresses);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Parcelable.Creator<DetalleCliente> CREATOR = new Creator<DetalleCliente>() {
-        @Override
-        public DetalleCliente createFromParcel(Parcel in) {
-            return new DetalleCliente(in);
-        }
-        @Override
-        public DetalleCliente[] newArray(int size) {
-            return new DetalleCliente[size];
-        }
-    };
 
     public String getAccount() {
         return Account;

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.content.DialogInterface;
@@ -23,6 +24,7 @@ public class CarritoCompras extends AppCompatActivity {
 
     Button btnCotizacion;
     ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMas, btnMenos;
+    TextView textoCargando;
 
     private ProgressBar iconoCarga;
     //       IDP   CantidadP
@@ -45,6 +47,7 @@ public class CarritoCompras extends AppCompatActivity {
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         iconoCarga = findViewById(R.id.iconoCargando);
+        textoCargando = findViewById(R.id.textoCargando);
     }
 
     private void obtenerElementos(){
@@ -75,34 +78,37 @@ public class CarritoCompras extends AppCompatActivity {
     }
 
     private void cotizacion(View v) {
-        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
+        iconoCarga.setVisibility(View.VISIBLE);  // Mostrar ProgressBar
+        textoCargando.setVisibility(View.VISIBLE); // Mostrar Texto
         new Thread(() -> {
             try {
-                // Mandar correo de la cotización
                 if (mandarCorreo()) {
                     Thread.sleep(1500); // Ajusta el tiempo según sea necesario
                     runOnUiThread(() -> {
-                        iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
-                        // Limpiamos el carrito de compras
-                        carrito.clear();
+                        iconoCarga.setVisibility(View.GONE);  // Ocultar ProgressBar
+                        textoCargando.setVisibility(View.GONE); // Ocultar Texto
+                        carrito.clear(); // Limpiamos el carrito de compras
                         notificarUsuario();
                     });
                 } else {
                     runOnUiThread(() -> {
-                        iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                        iconoCarga.setVisibility(View.GONE);  // Ocultar ProgressBar
+                        textoCargando.setVisibility(View.GONE); // Ocultar Texto
                         Toast.makeText(this, "No se pudo enviar el correo. Inténtalo de nuevo.", Toast.LENGTH_LONG).show();
                     });
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 runOnUiThread(() -> {
-                    iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                    iconoCarga.setVisibility(View.GONE);  // Ocultar ProgressBar
+                    textoCargando.setVisibility(View.GONE); // Ocultar Texto
                     Toast.makeText(this, "Ocurrió un error durante la espera. Inténtalo de nuevo.", Toast.LENGTH_LONG).show();
                 });
             }
         }).start();
     }
 
+    // Este metodo de enviar correo ya sirve
     private boolean mandarCorreo() {
         // Crear un intento para enviar el correo
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -121,11 +127,11 @@ public class CarritoCompras extends AppCompatActivity {
 
     private String construirMensaje(){
         // Construir el cuerpo del correo con la lista de productos en el carrito
-        ControladorClienteIndividual controladorClienteIndividual = new ControladorClienteIndividual();
+        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
         ClienteIndividual clienteIndividual = controladorClienteIndividual.obtenerCliente();
         StringBuilder mensajeCorreo = new StringBuilder();
-        mensajeCorreo.append("Cotizacion de: "+clienteIndividual.getClientName()+",\n\n");
-        mensajeCorreo.append("A continuación se muestra la cotización de los productos seleccionados:\n\n");
+        mensajeCorreo.append("Cotizacion para: "+clienteIndividual.getClientName()+",\n\n");
+        mensajeCorreo.append("A continuación se muestran los productos seleccionados:\n\n");
         for (String idProducto : carrito.keySet()) {
             Producto producto = controladorProducto.obtenerProducto(idProducto);  // Obtener producto por ID
             if (producto != null) {
@@ -136,8 +142,23 @@ public class CarritoCompras extends AppCompatActivity {
                     .append("-------------------------\n");
             }
         }
-        mensajeCorreo.append("\nConfirmar cotizacion al correo: "+clienteIndividual.getEmail()+
-                "\n\no al telefono: "+clienteIndividual.getPhone()+"\nSoluciones Para Plagas");
+        if(clienteIndividual.getPhone() != null && clienteIndividual.getEmail() != null){
+            // Caso para cuando no es nulo ni el correo ni el telefono
+            mensajeCorreo.append("\nConfirmar cotizacion al correo: "+clienteIndividual.getEmail()+
+                    "\n\no al telefono: "+clienteIndividual.getPhone()+"\n\nSoluciones Para Plagas");
+        }else if(clienteIndividual.getEmail() != null && clienteIndividual.getPhone() == null){
+            // Caso para cuando el correo existe pero el telefono no
+            mensajeCorreo.append("\nConfirmar cotizacion al correo: "
+                    +clienteIndividual.getEmail()+"\n\nSoluciones Para Plagas");
+        }else if(clienteIndividual.getEmail() == null && clienteIndividual.getPhone() != null){
+            // Caso para cuando existe el telefono pero el correo no
+            mensajeCorreo.append("\nConfirmar cotizacion al telefono: "
+                    +clienteIndividual.getPhone()+"\n\nSoluciones Para Plagas");
+        }else{
+            // Caso cuando el cliente no cuenta ni con telefono ni correo
+            mensajeCorreo.append("\nSe le confirmara la cotizacion al remitente de este correo: "
+                    +"\n\nSoluciones Para Plagas");
+        }
         return mensajeCorreo.toString();
     }
 
@@ -159,7 +180,7 @@ public class CarritoCompras extends AppCompatActivity {
     private void notificarUsuario(){
         new AlertDialog.Builder(this)
             .setTitle("Aviso")
-            .setMessage("¡Gracias por tu preferencia! Pronto, uno de\nnuestros asistentes te contactará con la\ncotización de tus productos solicitados.")
+            .setMessage("¡Gracias por tu preferencia! Pronto, uno de nuestros asistentes te contactará con la cotización de tus productos solicitados.")
             .setPositiveButton("OK",new DialogInterface.OnClickListener(){
                 @Override
                 public void onClick(DialogInterface dialog, int which){

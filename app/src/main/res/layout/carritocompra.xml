@@ -1,178 +1,247 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/content_container"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-	<RelativeLayout android:id="@+id/page_consultarestadoc_ek1"
-		android:layout_marginTop="0dp"
-		android:layout_marginStart="0dp"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/contenedorimagen"
+        android:layout_width="426dp"
+        android:layout_height="190dp"
+        android:layout_marginBottom="644dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/contenedorimagen" />
 
-		<View android:id="@+id/_bg__consultarestadoc_ek2"
-			android:background="@drawable/_bg__consultarestadoc_ek2_shape"
-			android:layout_marginStart="0dp"
-			android:layout_marginTop="0dp"
-			android:layout_width="411dp"
-			android:layout_height="823dp" />
+    <Button
+        android:id="@+id/btnCotizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_boton_redondo"
+        android:text="Solicitar cotización"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/vistaModificarCantidad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaCarrito"
+        app:layout_constraintVertical_bias="0.648" />
 
-		<ImageView android:id="@+id/contenedorimagen"
-			android:src="@drawable/contenedorimagen"
-			android:contentDescription="contenedorimagen"
-			android:layout_marginStart="-5dp"
-			android:layout_marginTop="-14dp"
-			android:layout_width="435dp"
-			android:layout_height="192dp" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037"
+        app:srcCompat="@drawable/logotipsinfondo_" />
 
-		<ImageView android:id="@+id/letraslogosinfondo_"
-			android:src="@drawable/letraslogosinfondo_"
-			android:contentDescription="letraslogosinfondo_"
-			android:layout_marginStart="26dp"
-			android:layout_marginTop="94dp"
-			android:layout_width="129dp"
-			android:layout_height="55dp" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.12"
+        app:srcCompat="@drawable/letraslogosinfondo" />
 
-		<ImageView android:id="@+id/logotipsinfondo_"
-			android:src="@drawable/logotipsinfondo_"
-			android:contentDescription="logotipsinfondo_"
-			android:layout_marginStart="54dp"
-			android:layout_marginTop="27dp"
-			android:layout_width="64dp"
-			android:layout_height="75dp" />
+    <View
+        android:id="@+id/vistaModificarCantidad"
+        android:layout_width="414dp"
+        android:layout_height="189dp"
+        android:background="@drawable/ellipse_1_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-		<View
-			android:id="@+id/cmpCant"
-			android:layout_width="411dp"
-			android:layout_height="177dp"
-			android:layout_marginStart="-2dp"
-			android:layout_marginTop="660dp"
-			android:background="@drawable/ellipse_1_shape" />
+    <View
+        android:id="@+id/iconosopciones"
+        android:layout_width="413dp"
+        android:layout_height="75dp"
+        android:background="@drawable/iconosopciones_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCotizar"
+        app:layout_constraintVertical_bias="1.0" />
 
-		<TextView
-			android:id="@+id/txtMsjB"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="170dp"
-			android:layout_marginTop="670dp"
-			android:text="Cantidad"
-			android:textSize="21sp"
-			android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/iconoMenu"
+        android:layout_width="41dp"
+        android:layout_height="38dp"
+        android:contentDescription="iconomenu_1"
+        android:src="@drawable/iconomenu_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iconosopciones"
+        app:layout_constraintStart_toStartOf="@+id/iconosopciones"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.971" />
 
-		<RelativeLayout
-			android:id="@+id/opciones"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true">
+    <ImageView
+        android:id="@+id/iconoCerrarSesion"
+        android:layout_width="46dp"
+        android:layout_height="40dp"
+        android:contentDescription="iconocerrarsesion__1"
+        android:src="@drawable/iconocerrarsesion__1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iconosopciones"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="@+id/iconosopciones"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973" />
 
-			<View
-				android:id="@+id/iconosopciones"
-				android:background="@drawable/iconosopciones_shape"
-				android:layout_width="match_parent"
-				android:layout_height="75dp" />
+    <ImageView
+        android:id="@+id/iconoVerProductos"
+        android:layout_width="31dp"
+        android:layout_height="35dp"
+        android:contentDescription="iconolistaproductos_1"
+        android:src="@drawable/iconolistaproductos_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="@+id/iconosopciones"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
 
-			<ImageView
-				android:id="@+id/iconoMenu"
-				android:src="@drawable/iconomenu_1"
-				android:contentDescription="iconomenu_1"
-				android:layout_width="36dp"
-				android:layout_height="32dp"
-				android:layout_marginStart="200dp"
-				android:layout_marginTop="8dp" />
+    <ImageView
+        android:id="@+id/iconomas_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868"
+        app:srcCompat="@drawable/iconomas_1" />
 
-			<ImageView
-				android:id="@+id/iconoCerrarSesion"
-				android:src="@drawable/iconocerrarsesion__1"
-				android:contentDescription="iconocerrarsesion__1"
-				android:layout_width="39dp"
-				android:layout_height="35dp"
-				android:layout_marginStart="320dp"
-				android:layout_marginTop="8dp" />
+    <ImageView
+        android:id="@+id/iconomenos_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.865"
+        app:srcCompat="@drawable/iconomenos_1" />
 
-			<ImageView
-				android:id="@+id/iconoVerProductos"
-				android:src="@drawable/iconolistaproductos_1"
-				android:contentDescription="iconolistaproductos_1"
-				android:layout_width="31dp"
-				android:layout_height="35dp"
-				android:layout_marginStart="70dp"
-				android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/txtMsjB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iconosopciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vistaModificarCantidad"
+        app:layout_constraintVertical_bias="0.152" />
 
-		</RelativeLayout>
+    <EditText
+        android:id="@+id/editxtCantidad"
+        android:layout_width="92dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="No."
+        app:layout_constraintBottom_toTopOf="@+id/iconosopciones"
+        app:layout_constraintEnd_toStartOf="@+id/iconomas_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iconomenos_1"
+        app:layout_constraintTop_toBottomOf="@+id/txtMsjB"
+        app:layout_constraintVertical_bias="0.407" />
 
-		<TextView
-			android:id="@+id/txtVerProductos"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="50dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtVerProductos"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF" />
+    <TextView
+        android:id="@+id/txtVerProductos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtVerProductos"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
 
-		<TextView
-			android:id="@+id/txtMenu"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="180dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtMenuPrincipal"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF" />
+    <TextView
+        android:id="@+id/txtMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtMenuPrincipal"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/vistaModificarCantidad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
 
-		<TextView
-			android:id="@+id/txtCerrarSesion"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="300dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtCerrarSesion"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF" />
+    <TextView
+        android:id="@+id/txtCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtCerrarSesion"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.993" />
 
-		<ImageView android:id="@+id/iconomas_1"
-			android:src="@drawable/iconomas_1"
-			android:contentDescription="iconomas_1"
-			android:layout_marginStart="306dp"
-			android:layout_marginTop="710dp"
-			android:layout_width="32dp"
-			android:layout_height="32dp" />
+    <ProgressBar
+        android:id="@+id/iconoCargando"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/descripcionProgressBar"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-		<ImageView android:id="@+id/iconomenos_1"
-			android:src="@drawable/iconomenos_1"
-			android:contentDescription="iconomenos_1"
-			android:layout_marginStart="75dp"
-			android:layout_marginTop="710dp"
-			android:layout_width="31dp"
-			android:layout_height="29dp" />
+    <TextView
+        android:id="@+id/textoCargando"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargando su carrito de compras"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_below="@id/iconoCargando"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="8dp" />
 
-		<EditText
-			android:id="@+id/editxtCantidad"
-			android:layout_width="92dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="170dp"
-			android:layout_marginTop="700dp"
-			android:ems="10"
-			android:inputType="text"
-			android:text="No." />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaCarrito"
+        android:layout_width="327dp"
+        android:layout_height="355dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCotizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorimagen"
+        app:layout_constraintVertical_bias="0.5" />
 
-		<ProgressBar
-			android:id="@+id/iconoCargando"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerInParent="true"
-			android:contentDescription="@string/descripcionProgressBar"
-			android:indeterminate="true"
-			android:visibility="gone" />
-
-		<Button
-			android:id="@+id/btnCotizar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="130dp"
-			android:layout_marginTop="580dp"
-			android:text="Solicitar cotización"
-			android:backgroundTint="#178C3C" />
-
-	</RelativeLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

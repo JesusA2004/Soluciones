@@ -8,8 +8,8 @@ public class Sesion {
     // Se crea un carrito nuevo vacio
     HashMap<String, Integer> carrito = new HashMap<>();
     private Controlador<JsonCliente> controladorJsonCliente = new ControladorJsonCliente("");
-    private ControladorDetalleCliente controladorDetalleCliente = new ControladorDetalleCliente();
-    private ControladorClienteIndividual controladorClienteIndividual = new ControladorClienteIndividual();
+    private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
+    private ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
 
     public HashMap limpiarSesion(){
         controladorDetalleCliente.limpiarRepositorio();

@@ -1,6 +1,8 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.example.sol.R;
 import android.view.View;
 import android.content.Intent;
@@ -15,7 +17,7 @@ public class EstadoCuenta extends AppCompatActivity {
     TextView txtTitulo, txtDiasCredito, txtMontoCredito;
     TextView txtMetodoP;
     ImageView btnMenu, btnCerrarSesion, btnProductos;
-    DetalleCliente cliente = new DetalleCliente();
+    DetalleCliente clienteCompleto = new DetalleCliente();
     Sesion sesion = new Sesion();
 
     @Override
@@ -23,7 +25,7 @@ public class EstadoCuenta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultarestadoc);
         inicializarElementos();
-        obtenerElementos();
+        inicializarCliente();
         mostrarDatos();
         configurarBotones();
     }
@@ -38,11 +40,10 @@ public class EstadoCuenta extends AppCompatActivity {
         txtMetodoP = findViewById(R.id.txtMetodoPago);
     }
 
-    private void obtenerElementos(){
-        Intent intent = getIntent();
-        if(intent.hasExtra("ClienteC")){
-            cliente = intent.getParcelableExtra("ClienteC");
-        }
+    private void inicializarCliente() {
+        // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
+        ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
+        clienteCompleto = controladorDetalleCliente.obtenerCliente();
     }
 
     private void configurarBotones() {
@@ -58,7 +59,6 @@ public class EstadoCuenta extends AppCompatActivity {
 
     private void irAMenu(View v){
         Intent intent = new Intent(EstadoCuenta.this, MenuPrincipal.class);
-        intent.putExtra("ClienteC", cliente);
         startActivity(intent);
     }
 
@@ -73,11 +73,11 @@ public class EstadoCuenta extends AppCompatActivity {
     }
 
     private void mostrarDatos(){
-        if(cliente != null){
-            txtTitulo.setText("¡Bienvenido a tu Estado de\nCuenta "+cliente.getLegalName()+"!");
-            txtDiasCredito.setText("Días de crédito: "+cliente.getCreditDays()+"");
-            txtMontoCredito.setText("Monto de crédito: $"+cliente.getCreditAmount()+"");
-            txtMetodoP.setText("Metodo de pago: "+cliente.getPaymentMethod()+"");
+        if(clienteCompleto != null){
+            txtTitulo.setText("¡Bienvenido a tu Estado de\nCuenta "+clienteCompleto.getLegalName()+"!");
+            txtDiasCredito.setText("Días de crédito: "+clienteCompleto.getCreditDays()+"");
+            txtMontoCredito.setText("Monto de crédito: $"+clienteCompleto.getCreditAmount()+"");
+            txtMetodoP.setText("Metodo de pago: "+clienteCompleto.getPaymentMethod()+"");
         }
     }
 
