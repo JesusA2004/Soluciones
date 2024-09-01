@@ -43,16 +43,8 @@ public abstract class Controlador<T> {
         });
     }
 
-    public T obtenerDato(){
-        return repositorio.getDato();
-    }
-
     public void limipiarRepositorio(){
         repositorio.clearList();
-    }
-
-    public boolean datosCarg(){
-        return datosCargados();
     }
 
     protected void manejarError(Object error) {
@@ -61,6 +53,5 @@ public abstract class Controlador<T> {
 
     protected abstract void procesarDatos(T datos);
     protected abstract Call<T> obtenerDatos();
-    protected abstract boolean datosCargados();
 
 }

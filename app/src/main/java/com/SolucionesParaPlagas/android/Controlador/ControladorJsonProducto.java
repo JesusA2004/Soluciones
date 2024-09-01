@@ -14,7 +14,6 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
     private static final String INITIAL_ENDPOINT = "Products";
     private static final String TAG = "ControladorJsonProducto";
     private ControladorProducto contP = ControladorProducto.obtenerInstancia();
-    private boolean key = false;
 
     // Constructor que hereda del controlador con Generics
     public ControladorJsonProducto() {
@@ -29,25 +28,18 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
     @Override
     protected void procesarDatos(JsonProducto datos) {
         if (datos == null) {
-            Log.e(TAG, "Datos recibidos son nulos.");
             return;
         }
         List<Producto> productos = datos.getValue();
         if (productos != null) {
             // Enviamos los datos al repositorio de productos
             contP.enviarDatosRepositorio(productos);
-        } else {
-            Log.d(TAG, "Lista de productos es nula.");
         }
         String nextLink = datos.getNextLink();
         if (nextLink != null) {
             Log.d(TAG, "NextLink: " + nextLink);
             // Llama recursivamente para obtener la siguiente página de datos
             procesarSiguientePagina(nextLink);
-        } else {
-            Log.d(TAG, "No hay mas paginas.");
-            // contP.imprimirRepositorio();
-            key = true; // Indica que todos los datos han sido cargados
         }
     }
 
@@ -59,7 +51,6 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
                 if (response.isSuccessful()) {
                     JsonProducto datos = response.body();
                     if (datos != null) {
-                        Log.d(TAG, "Datos de la siguiente pagina recibidos: " + datos);
                         // Procesa los datos y llama recursivamente para la siguiente página
                         procesarDatos(datos);
                     } else {
@@ -81,10 +72,6 @@ public class ControladorJsonProducto extends Controlador<JsonProducto> {
 
     private JsonApi getJsonApi() {
         return super.jsonApi;
-    }
-
-    public boolean datosCargados() {
-        return key;
     }
 
 }

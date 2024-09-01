@@ -2,129 +2,131 @@ package com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido;
 
 public class PedidoIndividual {
 
-    private String id;
-    private String clientID;
-    private String clientName;
-    private String priceListName;
-    private String priceListID;
-    private String locationName;
-    private String locationID;
-    private String warehouseID;
-    private String warehouseName;
-    private String orderDate;
-    private String comments;
-    private long number;
-    private String clientContact;
-    private String phoneNumber;
-    private String employeeName;
-    private String employeeID;
-    private String purchaseOrder;
-    private int status;
-    private String currencyName;
-    private String currencyID;
-    private double exchangeRate;
+    private String ID;
+    private String ClientID;
+    private String ClientName;
+    private String PriceListName;
+    private String PriceListID;
+    private String LocationName;
+    private String LocationID;
+    private String WarehouseID;
+    private String WarehouseName;
+    private String OrderDate;
+    private String Comments;
+    private long Number;
+    private String ClientContact;
+    private String PhoneNumber;
+    private String EmployeeName;
+    private String EmployeeID;
+    private String PurchaseOrder;
+    private int Status;
+    private String CurrencyName;
+    private String CurrencyID;
+    private double ExchangeRate;
     private String RFC;
-    private double serviceSubtotal;
-    private double productSubtotal;
-    private String serie;
-    private double discount;
+    private double ServiceSubtotal;
+    private double ProductSubtotal;
+    private String Serie;
+    private double Discount;
     private double VATRate;
     private double VAT;
-    private int discountType;
+    private int DiscountType;
     private double IEPS;
     private double IEPSRate;
     private double ISRRet;
     private double ISRRetRate;
-    private double vatRet;
-    private double vatRetRate;
-    private double total;
+    private double VatRet;
+    private double VatRetRate;
+    private double Total;
+
+    // Getters y setters
 
     public String getClientContact() {
-        return clientContact;
+        return ClientContact;
     }
 
-    public void setClientContact(String clientContact) {
-        this.clientContact = clientContact;
+    public void setClientContact(String ClientContact) {
+        this.ClientContact = ClientContact;
     }
 
     public String getClientID() {
-        return clientID;
+        return ClientID;
     }
 
-    public void setClientID(String clientID) {
-        this.clientID = clientID;
+    public void setClientID(String ClientID) {
+        this.ClientID = ClientID;
     }
 
     public String getComments() {
-        return comments;
+        return Comments;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setComments(String Comments) {
+        this.Comments = Comments;
     }
 
     public String getClientName() {
-        return clientName;
+        return ClientName;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setClientName(String ClientName) {
+        this.ClientName = ClientName;
     }
 
     public String getCurrencyID() {
-        return currencyID;
+        return CurrencyID;
     }
 
-    public void setCurrencyID(String currencyID) {
-        this.currencyID = currencyID;
+    public void setCurrencyID(String CurrencyID) {
+        this.CurrencyID = CurrencyID;
     }
 
     public String getCurrencyName() {
-        return currencyName;
+        return CurrencyName;
     }
 
-    public void setCurrencyName(String currencyName) {
-        this.currencyName = currencyName;
+    public void setCurrencyName(String CurrencyName) {
+        this.CurrencyName = CurrencyName;
     }
 
     public double getDiscount() {
-        return discount;
+        return Discount;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public void setDiscount(double Discount) {
+        this.Discount = Discount;
     }
 
     public int getDiscountType() {
-        return discountType;
+        return DiscountType;
     }
 
-    public void setDiscountType(int discountType) {
-        this.discountType = discountType;
+    public void setDiscountType(int DiscountType) {
+        this.DiscountType = DiscountType;
     }
 
     public String getEmployeeID() {
-        return employeeID;
+        return EmployeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeID(String EmployeeID) {
+        this.EmployeeID = EmployeeID;
     }
 
     public String getEmployeeName() {
-        return employeeName;
+        return EmployeeName;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setEmployeeName(String EmployeeName) {
+        this.EmployeeName = EmployeeName;
     }
 
     public double getExchangeRate() {
-        return exchangeRate;
+        return ExchangeRate;
     }
 
-    public void setExchangeRate(double exchangeRate) {
-        this.exchangeRate = exchangeRate;
+    public void setExchangeRate(double ExchangeRate) {
+        this.ExchangeRate = ExchangeRate;
     }
 
     public double getIEPS() {
@@ -135,12 +137,12 @@ public class PedidoIndividual {
         this.IEPS = IEPS;
     }
 
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public double getIEPSRate() {
@@ -168,75 +170,75 @@ public class PedidoIndividual {
     }
 
     public String getLocationID() {
-        return locationID;
+        return LocationID;
     }
 
-    public void setLocationID(String locationID) {
-        this.locationID = locationID;
+    public void setLocationID(String LocationID) {
+        this.LocationID = LocationID;
     }
 
     public String getLocationName() {
-        return locationName;
+        return LocationName;
     }
 
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
+    public void setLocationName(String LocationName) {
+        this.LocationName = LocationName;
     }
 
     public long getNumber() {
-        return number;
+        return Number;
     }
 
-    public void setNumber(long number) {
-        this.number = number;
+    public void setNumber(long Number) {
+        this.Number = Number;
     }
 
     public String getOrderDate() {
-        return orderDate;
+        return OrderDate;
     }
 
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderDate(String OrderDate) {
+        this.OrderDate = OrderDate;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return PhoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String PhoneNumber) {
+        this.PhoneNumber = PhoneNumber;
     }
 
     public String getPriceListID() {
-        return priceListID;
+        return PriceListID;
     }
 
-    public void setPriceListID(String priceListID) {
-        this.priceListID = priceListID;
+    public void setPriceListID(String PriceListID) {
+        this.PriceListID = PriceListID;
     }
 
     public double getProductSubtotal() {
-        return productSubtotal;
+        return ProductSubtotal;
     }
 
-    public void setProductSubtotal(double productSubtotal) {
-        this.productSubtotal = productSubtotal;
+    public void setProductSubtotal(double ProductSubtotal) {
+        this.ProductSubtotal = ProductSubtotal;
     }
 
     public String getPriceListName() {
-        return priceListName;
+        return PriceListName;
     }
 
-    public void setPriceListName(String priceListName) {
-        this.priceListName = priceListName;
+    public void setPriceListName(String PriceListName) {
+        this.PriceListName = PriceListName;
     }
 
     public String getPurchaseOrder() {
-        return purchaseOrder;
+        return PurchaseOrder;
     }
 
-    public void setPurchaseOrder(String purchaseOrder) {
-        this.purchaseOrder = purchaseOrder;
+    public void setPurchaseOrder(String PurchaseOrder) {
+        this.PurchaseOrder = PurchaseOrder;
     }
 
     public String getRFC() {
@@ -248,35 +250,35 @@ public class PedidoIndividual {
     }
 
     public String getSerie() {
-        return serie;
+        return Serie;
     }
 
-    public void setSerie(String serie) {
-        this.serie = serie;
+    public void setSerie(String Serie) {
+        this.Serie = Serie;
     }
 
     public double getServiceSubtotal() {
-        return serviceSubtotal;
+        return ServiceSubtotal;
     }
 
-    public void setServiceSubtotal(double serviceSubtotal) {
-        this.serviceSubtotal = serviceSubtotal;
+    public void setServiceSubtotal(double ServiceSubtotal) {
+        this.ServiceSubtotal = ServiceSubtotal;
     }
 
     public int getStatus() {
-        return status;
+        return Status;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatus(int Status) {
+        this.Status = Status;
     }
 
     public double getTotal() {
-        return total;
+        return Total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setTotal(double Total) {
+        this.Total = Total;
     }
 
     public double getVAT() {
@@ -296,76 +298,76 @@ public class PedidoIndividual {
     }
 
     public double getVatRet() {
-        return vatRet;
+        return VatRet;
     }
 
-    public void setVatRet(double vatRet) {
-        this.vatRet = vatRet;
+    public void setVatRet(double VatRet) {
+        this.VatRet = VatRet;
     }
 
     public double getVatRetRate() {
-        return vatRetRate;
+        return VatRetRate;
     }
 
-    public void setVatRetRate(double vatRetRate) {
-        this.vatRetRate = vatRetRate;
+    public void setVatRetRate(double VatRetRate) {
+        this.VatRetRate = VatRetRate;
     }
 
     public String getWarehouseID() {
-        return warehouseID;
+        return WarehouseID;
     }
 
-    public void setWarehouseID(String warehouseID) {
-        this.warehouseID = warehouseID;
+    public void setWarehouseID(String WarehouseID) {
+        this.WarehouseID = WarehouseID;
     }
 
     public String getWarehouseName() {
-        return warehouseName;
+        return WarehouseName;
     }
 
-    public void setWarehouseName(String warehouseName) {
-        this.warehouseName = warehouseName;
+    public void setWarehouseName(String WarehouseName) {
+        this.WarehouseName = WarehouseName;
     }
 
     @Override
     public String toString() {
         return "PedidoIndividual{" +
-                "clientContact='" + clientContact + '\'' +
-                ", id='" + id + '\'' +
-                ", clientID='" + clientID + '\'' +
-                ", clientName='" + clientName + '\'' +
-                ", priceListName='" + priceListName + '\'' +
-                ", priceListID='" + priceListID + '\'' +
-                ", locationName='" + locationName + '\'' +
-                ", locationID='" + locationID + '\'' +
-                ", warehouseID='" + warehouseID + '\'' +
-                ", warehouseName='" + warehouseName + '\'' +
-                ", orderDate='" + orderDate + '\'' +
-                ", comments='" + comments + '\'' +
-                ", number=" + number +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", employeeName='" + employeeName + '\'' +
-                ", employeeID='" + employeeID + '\'' +
-                ", purchaseOrder='" + purchaseOrder + '\'' +
-                ", status=" + status +
-                ", currencyName='" + currencyName + '\'' +
-                ", currencyID='" + currencyID + '\'' +
-                ", exchangeRate=" + exchangeRate +
+                "ClientContact='" + ClientContact + '\'' +
+                ", ID='" + ID + '\'' +
+                ", ClientID='" + ClientID + '\'' +
+                ", ClientName='" + ClientName + '\'' +
+                ", PriceListName='" + PriceListName + '\'' +
+                ", PriceListID='" + PriceListID + '\'' +
+                ", LocationName='" + LocationName + '\'' +
+                ", LocationID='" + LocationID + '\'' +
+                ", WarehouseID='" + WarehouseID + '\'' +
+                ", WarehouseName='" + WarehouseName + '\'' +
+                ", OrderDate='" + OrderDate + '\'' +
+                ", Comments='" + Comments + '\'' +
+                ", Number=" + Number +
+                ", PhoneNumber='" + PhoneNumber + '\'' +
+                ", EmployeeName='" + EmployeeName + '\'' +
+                ", EmployeeID='" + EmployeeID + '\'' +
+                ", PurchaseOrder='" + PurchaseOrder + '\'' +
+                ", Status=" + Status +
+                ", CurrencyName='" + CurrencyName + '\'' +
+                ", CurrencyID='" + CurrencyID + '\'' +
+                ", ExchangeRate=" + ExchangeRate +
                 ", RFC='" + RFC + '\'' +
-                ", serviceSubtotal=" + serviceSubtotal +
-                ", productSubtotal=" + productSubtotal +
-                ", serie='" + serie + '\'' +
-                ", discount=" + discount +
+                ", ServiceSubtotal=" + ServiceSubtotal +
+                ", ProductSubtotal=" + ProductSubtotal +
+                ", Serie='" + Serie + '\'' +
+                ", Discount=" + Discount +
                 ", VATRate=" + VATRate +
                 ", VAT=" + VAT +
-                ", discountType=" + discountType +
+                ", DiscountType=" + DiscountType +
                 ", IEPS=" + IEPS +
                 ", IEPSRate=" + IEPSRate +
                 ", ISRRet=" + ISRRet +
                 ", ISRRetRate=" + ISRRetRate +
-                ", vatRet=" + vatRet +
-                ", vatRetRate=" + vatRetRate +
-                ", total=" + total +
+                ", VatRet=" + VatRet +
+                ", VatRetRate=" + VatRetRate +
+                ", Total=" + Total +
                 '}';
     }
 

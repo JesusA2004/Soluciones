@@ -1,12 +1,13 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import retrofit2.Call;
 import retrofit2.http.Url;
 import retrofit2.http.GET;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.JsonPedido;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
 public interface JsonApi {
 
@@ -21,5 +22,9 @@ public interface JsonApi {
     Call<JsonCliente> obtenerClientes(@Url String url);
     @GET
     Call<DetalleCliente> obtenerCliente(@Url String url);
+
+    // Metodos para pedidos
+    @GET
+    Call<JsonPedido> obtenerPedidos(@Url String url);
 
 }
