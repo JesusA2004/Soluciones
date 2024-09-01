@@ -25,7 +25,7 @@ public class MostrarProductos extends AppCompatActivity {
     HashMap<String, Integer> carrito = new HashMap<>();
     Sesion sesion = new Sesion();
     private ProgressBar iconoCarga;
-    ControladorProducto controladorProducto = new ControladorProducto();
+    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class MostrarProductos extends AppCompatActivity {
         configurarBotones();
     }
 
+    /*
     private void cargarProductos() {
         Controlador<JsonProducto> controladorJsonProducto = new ControladorJsonProducto();
         iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
@@ -55,6 +56,14 @@ public class MostrarProductos extends AppCompatActivity {
                 }
             });
         }).start();
+    }*/
+
+    private void cargarProductos() {
+        List<Producto> productosList = controladorProducto.obtenerRepositorio();
+        if (productosList != null && !productosList.isEmpty()) {
+            AdaptadorProductos adaptador = new AdaptadorProductos(productosList);
+            productos.setAdapter(adaptador);
+        }
     }
 
     private void inicializarElementos() {

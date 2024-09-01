@@ -1,5 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.example.sol.R;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ public class ConsultarPerfil extends AppCompatActivity {
     Button btnGuardarCambios;
     ImageView btnProductos, btnMenu, btnCerrarSesion;
     Sesion sesion = new Sesion();
+    DetalleCliente clienteCompleto = new DetalleCliente();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class ConsultarPerfil extends AppCompatActivity {
         setContentView(R.layout.datoscliente);
         inicializarElementos();
         configurarBotones();
+        recibirCliente();
     }
 
     private void inicializarElementos() {
@@ -28,6 +31,13 @@ public class ConsultarPerfil extends AppCompatActivity {
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         btnGuardarCambios = findViewById(R.id.btnSubirCambios);
+    }
+
+    private void recibirCliente(){
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("ClienteC")) {
+            clienteCompleto = intent.getParcelableExtra("ClienteC");
+        }
     }
 
     private void configurarBotones() {
@@ -43,6 +53,7 @@ public class ConsultarPerfil extends AppCompatActivity {
 
     private void irAMenu(View v){
         Intent intent = new Intent(ConsultarPerfil.this, MenuPrincipal.class);
+        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
     }
 

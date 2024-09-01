@@ -1,5 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class PaginaInicio extends AppCompatActivity {
     private ImageView btnUbicacion, btnSitioWeb;
     private TextView ubicacion, botonCrearCuenta;
     private Controlador<JsonProducto> controladorJsonProducto = new ControladorJsonProducto();
+    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,10 @@ public class PaginaInicio extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        cargarProductos();
+        // Para casos que se cierra sesion o similar no es necesario cargar los productos una vez mas
+        if(controladorProducto.obtenerRepositorio().isEmpty()){
+            cargarProductos();
+        }
     }
 
     private void cargarProductos(){

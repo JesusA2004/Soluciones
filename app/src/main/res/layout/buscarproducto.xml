@@ -1,42 +1,92 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android/tools"
+    xmlns:tools2="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <!-- Primer Contenedor -->
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/page_buscarProducto_ek1"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
 
         <View
             android:id="@+id/_bg__infounproducto_ek2"
-            android:layout_width="411dp"
-            android:layout_height="823dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/_bg__infounproducto_ek2_shape" />
 
         <ImageView
             android:id="@+id/decoracionbusqueda"
-            android:src="@drawable/decoracionbusqueda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="decoracionbusqueda"
-            android:layout_marginStart="-12dp"
-            android:layout_marginTop="-4dp"
-            android:layout_width="461dp"
-            android:layout_height="144dp" />
+            android:src="@drawable/decoracionbusqueda"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <SearchView
-            android:layout_width="286dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="100dp"
+            android:id="@+id/searchView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:background="@drawable/shape_consultar_estado"
-            android:queryHint="Buscar productos" />
-    </RelativeLayout>
+            android:queryHint="Buscar productos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/decoracionbusqueda"
+            app:layout_constraintHorizontal_bias="0.898"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="decoracionbusqueda" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaProductos"
+            android:layout_width="320dp"
+            android:layout_height="500dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.554" />
+
+        <ImageView
+            android:id="@+id/logotipsinfondo_1"
+            android:layout_width="63dp"
+            android:layout_height="54dp"
+            android:contentDescription="logotipsinfondo_1"
+            android:src="@drawable/logotipsinfondo_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintStart_toStartOf="@+id/decoracionbusqueda"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.04" />
+
+        <ImageView
+            android:id="@+id/letraslogosinfondo_1"
+            android:layout_width="76dp"
+            android:layout_height="36dp"
+            android:contentDescription="letraslogosinfondo_1"
+            android:src="@drawable/letraslogosinfondo_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.023"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.108" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Opciones -->
     <RelativeLayout
@@ -117,31 +167,8 @@
     </RelativeLayout>
 
     <!-- Logo -->
-    <ImageView
-        android:id="@+id/logotipsinfondo_1"
-        android:src="@drawable/logotipsinfondo_1"
-        android:contentDescription="logotipsinfondo_1"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="31dp"
-        android:layout_width="63dp"
-        android:layout_height="54dp" />
-
-    <ImageView
-        android:id="@+id/letraslogosinfondo_1"
-        android:src="@drawable/letraslogosinfondo_1"
-        android:contentDescription="letraslogosinfondo_1"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="85dp"
-        android:layout_width="76dp"
-        android:layout_height="36dp" />
 
     <!-- Lista de Productos -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaProductos"
-        android:layout_width="320dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"/>
 
     <ProgressBar
         android:id="@+id/cargaIcono"

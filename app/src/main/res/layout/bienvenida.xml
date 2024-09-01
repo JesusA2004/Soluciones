@@ -10,10 +10,10 @@
         android:id="@+id/imagenFondo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="408dp"
+        android:layout_marginBottom="396dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/marcoimagenp" />
 
@@ -21,15 +21,16 @@
         android:id="@+id/btnInicioSesion"
         android:layout_width="153dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="160dp"
         android:background="@drawable/bg_boton_redondo"
         android:text="@string/labelIniciarSesion"
         android:textColor="@color/white"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagenFondo"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.765" />
 
     <TextView
         android:id="@+id/btnCrearCuenta"
@@ -37,7 +38,8 @@
         android:layout_height="wrap_content"
         android:text="@string/crearCuenta"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -97,7 +99,7 @@
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399"
+        app:layout_constraintVertical_bias="0.435"
         app:srcCompat="@drawable/letraslogosinfondo" />
 
     <ImageView
@@ -109,7 +111,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338"
+        app:layout_constraintVertical_bias="0.372"
         app:srcCompat="@drawable/logotipsinfondo_ek1" />
 
     <TextView

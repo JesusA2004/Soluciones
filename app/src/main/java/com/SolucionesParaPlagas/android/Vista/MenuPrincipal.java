@@ -43,13 +43,28 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuopciones);
         inicializarElementos();
-        recibirCliente();
-        recibirClienteCompleto();
-        if (clienteCompleto == null) {
-            cargarClienteD();
-        }
-        mostrarDatos();
         configurarBotones();
+        segundoHilo();
+    }
+
+    // Metodo para evitar excepciones de mostrar el cliente cuando se recibe como parametro de otra actividad
+    private void segundoHilo(){
+        recibirCliente();
+        new Thread(() -> {
+            recibirClienteCompleto();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            runOnUiThread(() -> {
+                if (clienteCompleto == null) {
+                    cargarClienteD();
+                }
+                mostrarDatos();
+            });
+
+        }).start();
     }
 
     private void inicializarElementos() {
@@ -136,12 +151,14 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private boolean irAMiPerfil(MenuItem item) {
         Intent intent = new Intent(MenuPrincipal.this, ConsultarPerfil.class);
+        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
         return true;
     }
 
     private boolean irAPedidos(MenuItem item) {
         Intent intent = new Intent(MenuPrincipal.this, MostrarPedidos.class);
+        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
         return true;
     }
@@ -157,7 +174,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void recibirCliente() {
         Intent intent = getIntent();
-        if (intent != null) {
+        if (intent != null && intent.hasExtra("Cliente")) {
             clienteIndividual = intent.getParcelableExtra("Cliente");
         }
     }
@@ -192,11 +209,17 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void irAConsultarProductos(View v) {
         Intent intent = new Intent(MenuPrincipal.this, MostrarProductos.class);
+        intent.putExtra("ClienteC",clienteCompleto);
         startActivity(intent);
     }
 
     private void mostrarDatos() {
-        String nombreCliente = clienteIndividual.getClientName();
+        String nombreCliente = "";
+        if(clienteIndividual.getID() != null){
+            nombreCliente = clienteIndividual.getClientName();
+        }else{
+            nombreCliente = clienteCompleto.getLegalName();
+        }
         txtBienvenida.setText(capitalizarPrimeraLetra(nombreCliente));
     }
 

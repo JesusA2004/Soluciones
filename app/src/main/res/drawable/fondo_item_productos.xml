@@ -4,5 +4,5 @@
     <stroke
         android:width="2dp"
         android:color="#90E2B3"/> <!-- Color del borde verde oscuro -->
-    <corners android:radius="27dp"/> <!-- Bordes redondeados -->
+    <corners android:radius="0dp"/> <!-- Bordes redondeados -->
 </shape>
