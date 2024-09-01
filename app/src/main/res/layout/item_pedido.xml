@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@drawable/fondo_item_carrito"> <!-- Fondo del recuadro -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Imagen del producto -->
+        <ImageView
+            android:id="@+id/imagenPedido"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/iconopedido"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID Pedido: "
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"/> <!-- Texto blanco -->
+
+            <TextView
+                android:id="@+id/fechaPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha: dd/mm/nnnn"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/totalPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monto $"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

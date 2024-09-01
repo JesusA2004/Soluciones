@@ -1,7 +1,7 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
+import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
 import com.example.sol.R;
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class MostrarProductos extends AppCompatActivity {
@@ -24,7 +22,6 @@ public class MostrarProductos extends AppCompatActivity {
     RecyclerView productos;
     HashMap<String, Integer> carrito = new HashMap<>();
     Sesion sesion = new Sesion();
-    private ProgressBar iconoCarga;
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
 
     @Override
@@ -33,13 +30,14 @@ public class MostrarProductos extends AppCompatActivity {
         setContentView(R.layout.buscarproducto);
         inicializarElementos();
         cargarProductos();
+        obtenerElementos();
         configurarBotones();
     }
 
     private void cargarProductos() {
-        List<Producto> productosList = controladorProducto.obtenerRepositorio();
-        if (productosList != null && !productosList.isEmpty()) {
-            AdaptadorProductos adaptador = new AdaptadorProductos(productosList);
+        List<Producto> listaProductos = controladorProducto.obtenerRepositorio();
+        if (listaProductos != null && !listaProductos.isEmpty()) {
+            AdaptadorProductos adaptador = new AdaptadorProductos(listaProductos);
             productos.setAdapter(adaptador);
         }
     }
@@ -49,8 +47,6 @@ public class MostrarProductos extends AppCompatActivity {
         btnMenu = findViewById(R.id.iconomenu);
         btnCerrarSesion = findViewById(R.id.iconocerrarsesion);
         productos = findViewById(R.id.listaProductos);
-        iconoCarga = findViewById(R.id.cargaIcono);
-        iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
         productos.setLayoutManager(new LinearLayoutManager(this)); // Configura el LayoutManager
     }
 

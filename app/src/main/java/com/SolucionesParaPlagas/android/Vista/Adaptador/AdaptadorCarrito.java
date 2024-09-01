@@ -1,20 +1,23 @@
-package com.SolucionesParaPlagas.android.Vista;
+package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
-import java.util.List;
-import com.example.sol.R;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import android.view.LayoutInflater;
-import androidx.recyclerview.widget.RecyclerView;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
-public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.ProductoViewHolder> {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import com.example.sol.R;
+
+import java.util.List;
+
+public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.ProductoViewHolder> {
 
     private List<Producto> listaProductos;
 
-    public AdaptadorProductos(List<Producto> listaProductos) {
+    public AdaptadorCarrito(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
     }
 

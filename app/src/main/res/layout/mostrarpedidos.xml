@@ -127,11 +127,21 @@
 			android:textSize="18sp"
 			android:textStyle="bold" />
 
+		<ProgressBar
+			android:id="@+id/iconoCarga"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/descripcionProgressBar"
+			android:indeterminate="true"
+			android:visibility="gone" />
+
+
 		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/listaPedidos"
 			android:layout_width="250dp"
-			android:layout_height="match_parent"
+			android:layout_height="450dp"
 			android:layout_marginStart="40dp"
-			android:layout_marginTop="350dp" />
+			android:layout_marginTop="250dp" />
 
 	</RelativeLayout>
 
