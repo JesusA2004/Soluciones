@@ -13,9 +13,11 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.ProductoViewHolder> {
 
     private List<Producto> listaProductos;
+    private OnProductoClickListener listener;
 
-    public AdaptadorProductos(List<Producto> listaProductos) {
+    public AdaptadorProductos(List<Producto> listaProductos, OnProductoClickListener listener) {
         this.listaProductos = listaProductos;
+        this.listener = listener;
     }
 
     @NonNull
@@ -31,6 +33,9 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
         // Vincular los datos con la vista
         Producto producto = listaProductos.get(position);
         holder.nombreProducto.setText(producto.getTitle());
+
+        // Manejo de clics en el ítem
+        holder.itemView.setOnClickListener(v -> listener.onProductoClick(producto));
     }
 
     @Override
@@ -41,11 +46,15 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
     public static class ProductoViewHolder extends RecyclerView.ViewHolder {
         // Referencias a los elementos de la vista
         TextView nombreProducto;
+
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombreProducto = itemView.findViewById(R.id.nombreProducto);
         }
     }
 
-}
+    public interface OnProductoClickListener {
+        void onProductoClick(Producto producto);
+    }
 
+}

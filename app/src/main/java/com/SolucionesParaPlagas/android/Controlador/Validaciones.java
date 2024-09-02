@@ -73,6 +73,14 @@ public class Validaciones {
         return false;
     }
 
+    public boolean validarStringNull(String campo){
+        if(campo == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public String capitalizarLetras(String texto) {
         if (texto == null || texto.isEmpty()) {
             return texto;

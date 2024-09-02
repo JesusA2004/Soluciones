@@ -35,14 +35,4 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnVerMas"
-        android:layout_width="105dp"
-        android:layout_height="35dp"
-        android:text="Ver más"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_boton_redondo"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="8dp" />
-
 </LinearLayout>
