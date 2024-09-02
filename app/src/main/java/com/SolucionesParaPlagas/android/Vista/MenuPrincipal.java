@@ -1,34 +1,33 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import java.util.Locale;
-
-import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
-import com.example.sol.R;
-import android.os.Bundle;
 import android.util.Log;
+import android.os.Bundle;
+import android.view.Menu;
+import com.example.sol.R;
 import android.view.View;
+import android.view.MenuItem;
 import android.content.Intent;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
+import com.google.android.material.navigation.NavigationView;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-import com.google.android.material.navigation.NavigationView;
+import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 
 public class MenuPrincipal extends AppCompatActivity {
 
     // Botones menu principal
-    TextView txtBienvenida;
+    TextView txtBienvenida,txtPerfil;
     ImageView btnProductos, btnEstadoCuenta, btnSitioWeb, btnMiPerfil, btnCerrarMenuL;
     // Menu lateral
     Menu menu;
@@ -98,6 +97,7 @@ public class MenuPrincipal extends AppCompatActivity {
             View headerView = navigationView.getHeaderView(0); // 0 es el índice de la cabecera
             // Obtener la referencia al ImageView en la cabecera
             btnCerrarMenuL = headerView.findViewById(R.id.iconoCerrar);
+            txtPerfil = headerView.findViewById(R.id.txtNombreCliente);
             if (btnCerrarMenuL != null) {
                 btnCerrarMenuL.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -114,6 +114,7 @@ public class MenuPrincipal extends AppCompatActivity {
                 MenuItem btnConsultarPerfil = menu.findItem(R.id.iconoDatosP);
                 MenuItem btnPedidos = menu.findItem(R.id.nav_orders);
                 MenuItem btnCerrarSesion = menu.findItem(R.id.nav_logout);
+                txtPerfil.setText(clienteIndividual.getClientName());
                 if (btnConsultarPerfil != null) {
                     btnConsultarPerfil.setOnMenuItemClickListener(this::irAMiPerfil);
                 }
@@ -194,9 +195,6 @@ public class MenuPrincipal extends AppCompatActivity {
             }
             runOnUiThread(() -> {
                 clienteCompleto = controladorDetalleCliente.obtenerCliente();
-                if (clienteCompleto != null) {
-                    Log.d("PruebaExito", "Cliente completo: " + clienteCompleto.toString());
-                }
             });
         }).start();
     }
@@ -211,6 +209,7 @@ public class MenuPrincipal extends AppCompatActivity {
         clienteIndividual = controladorClienteIndividual.obtenerCliente();
         String nombreCliente = clienteIndividual.getClientName();
         txtBienvenida.setText(capitalizarPrimeraLetra(nombreCliente));
+
     }
 
     private String capitalizarPrimeraLetra(String texto) {
