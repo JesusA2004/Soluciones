@@ -1,248 +1,264 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/content_container"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-	<RelativeLayout
-		android:id="@+id/page_infounproducto_ek1"
-		android:layout_marginTop="0dp"
-		android:layout_marginStart="0dp"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/decoracionelipse2"
+        android:layout_width="644dp"
+        android:layout_height="250dp"
+        android:contentDescription="decoracionelipse"
+        android:src="@drawable/decoracionelipse"
+        tools:layout_editor_absoluteX="-117dp"
+        tools:layout_editor_absoluteY="560dp" />
 
-		<View
-			android:id="@+id/_bg__infounproducto_ek2"
-			android:layout_width="411dp"
-			android:layout_height="823dp"
-			android:layout_marginStart="0dp"
-			android:layout_marginTop="0dp"
-			android:background="@drawable/_bg__infounproducto_ek2_shape" />
+    <View
+        android:id="@+id/iconosopciones3"
+        android:layout_width="417dp"
+        android:layout_height="66dp"
+        android:background="@drawable/iconosopciones_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-		<ImageView
-			android:id="@+id/logocompletosinfondo"
-			android:layout_width="161dp"
-			android:layout_height="90dp"
-			android:layout_marginStart="139dp"
-			android:layout_marginTop="50dp"
-			android:contentDescription="logocompletosinfondo"
-			android:src="@drawable/logocompletosinfondo" />
+    <ImageView
+        android:id="@+id/iconoMenu"
+        android:layout_width="42dp"
+        android:layout_height="36dp"
+        android:contentDescription="iconomenu_1"
+        android:src="@drawable/iconomenu_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.685"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962" />
 
-		<ImageView
-			android:id="@+id/imagenProducto"
-			android:layout_width="169dp"
-			android:layout_height="174dp"
-			android:layout_marginStart="121dp"
-			android:layout_marginTop="160dp"
-			android:contentDescription="imagenproducto"
-			android:src="@drawable/imagenproducto" />
+    <ImageView
+        android:id="@+id/iconoCarritoCompra"
+        android:layout_width="39.51dp"
+        android:layout_height="43dp"
+        android:contentDescription="iconocompra_1"
+        android:src="@drawable/iconocompra_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962" />
 
-		<RelativeLayout
-			android:id="@+id/detalleproducto"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="627dp"
-			android:layout_marginStart="-34dp">
+    <ImageView
+        android:id="@+id/iconoCerrarSesion"
+        android:layout_width="40.47dp"
+        android:layout_height="35dp"
+        android:contentDescription="iconocerrarsesion__1"
+        android:src="@drawable/iconocerrarsesion__1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.964" />
 
-			<ImageView
-				android:id="@+id/decoracionelipse"
-				android:layout_width="800dp"
-				android:layout_height="400dp"
-				android:layout_marginStart="33dp"
-				android:layout_marginTop="0dp"
-				android:contentDescription="decoracionelipse"
-				android:src="@drawable/decoracionelipse" />
+    <ImageView
+        android:id="@+id/iconoVerProductos"
+        android:layout_width="32dp"
+        android:layout_height="41dp"
+        android:contentDescription="iconolistaproductos_1"
+        android:src="@drawable/iconolistaproductos_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.966" />
 
-		</RelativeLayout>
+    <TextView
+        android:id="@+id/txtPeso2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtPeso"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827" />
 
-		<TextView
-			android:id="@+id/txtNombreProducto"
-			android:layout_width="220dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="110dp"
-			android:layout_marginTop="360dp"
-			android:text="@string/txtNombreProducto"
-			android:textSize="18sp"
-			android:textColor="#353232"
-			android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txtContenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtContenidoN"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iconoVerProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.899" />
 
-		<TextView
-			android:id="@+id/txtCantidad"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="70dp"
-			android:layout_marginTop="430dp"
-			android:text="@string/txtCantidad"
-			android:textSize="14sp"
-			android:textColor="#353232"/>
+    <Button
+        android:id="@+id/btnAnadirCarrito2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_boton_redondo"
+        android:contentDescription="@string/descripcionBotonIniciarSesion"
+        android:text="@string/labelAnadirCarrito"
+        android:textColor="#FBFBFB"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
 
-		<TextView
-			android:id="@+id/txtDescripcion"
-			android:layout_width="280dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="70dp"
-			android:layout_marginTop="470dp"
-			android:text="@string/txtDescripcion"
-			android:textSize="14sp"
-			android:textColor="#353232"/>
+    <TextView
+        android:id="@+id/txtDescripcion2"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtDescripcion"
+        android:textColor="#353232"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.644" />
 
-		<TextView
-			android:id="@+id/txtPeso"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="60dp"
-			android:layout_marginTop="660dp"
-			android:text="@string/txtPeso"
-			android:textSize="30sp"
-			android:textColor="#FFFFFF"/>
+    <EditText
+        android:id="@+id/entradaCantidad2"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
 
-		<TextView
-			android:id="@+id/txtContenido"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="60dp"
-			android:layout_marginTop="700dp"
-			android:text="@string/txtContenidoN"
-			android:textSize="18sp"
-			android:textColor="#FFFFFF"/>
+    <TextView
+        android:id="@+id/txtCantidad2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtCantidad"
+        android:textColor="#353232"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/entradaCantidad2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
 
-		<RelativeLayout
-			android:id="@+id/opciones"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="764dp"
-			android:layout_marginStart="-6dp">
+    <TextView
+        android:id="@+id/txtNombreProducto2"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/txtNombreProducto"
+        android:textColor="#353232"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458" />
 
-			<View
-				android:id="@+id/iconosopciones"
-				android:layout_width="424dp"
-				android:layout_height="63dp"
-				android:layout_marginStart="0dp"
-				android:layout_marginTop="2dp"
-				android:background="@drawable/iconosopciones_shape" />
+    <ImageView
+        android:id="@+id/imagenProducto2"
+        android:layout_width="169dp"
+        android:layout_height="174dp"
+        android:contentDescription="imagenproducto"
+        android:src="@drawable/imagenproducto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logocompletosinfondo"
+        app:layout_constraintVertical_bias="0.044" />
 
-			<ImageView
-				android:id="@+id/iconoMenu"
-				android:layout_width="37.58dp"
-				android:layout_height="32dp"
-				android:layout_marginStart="255dp"
-				android:layout_marginTop="8dp"
-				android:contentDescription="iconomenu_1"
-				android:src="@drawable/iconomenu_1" />
+    <ImageView
+        android:id="@+id/logocompletosinfondo"
+        android:layout_width="161dp"
+        android:layout_height="90dp"
+        android:contentDescription="logocompletosinfondo"
+        android:src="@drawable/logocompletosinfondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
 
-			<ImageView
-				android:id="@+id/iconoCarritoCompra"
-				android:layout_width="39.51dp"
-				android:layout_height="43dp"
-				android:layout_marginStart="148dp"
-				android:layout_marginTop="2dp"
-				android:contentDescription="iconocompra_1"
-				android:src="@drawable/iconocompra_1" />
+    <TextView
+        android:id="@+id/txtVerProductos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtVerProductos"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
 
-			<ImageView
-				android:id="@+id/iconoCerrarSesion"
-				android:layout_width="40.47dp"
-				android:layout_height="35dp"
-				android:layout_marginStart="343dp"
-				android:layout_marginTop="8dp"
-				android:contentDescription="iconocerrarsesion__1"
-				android:src="@drawable/iconocerrarsesion__1" />
+    <TextView
+        android:id="@+id/txtCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtCarrito"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.373"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
 
-			<ImageView
-				android:id="@+id/iconoVerProductos"
-				android:layout_width="32dp"
-				android:layout_height="41dp"
-				android:layout_marginStart="47dp"
-				android:layout_marginTop="-1dp"
-				android:contentDescription="iconolistaproductos_1"
-				android:src="@drawable/iconolistaproductos_1" />
+    <TextView
+        android:id="@+id/txtMenu"
+        android:layout_width="83dp"
+        android:layout_height="23dp"
+        android:text="@string/txtMenuPrincipal"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.721"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-		</RelativeLayout>
-
-		<Button
-			android:id="@+id/btnAnadirCarrito"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="125dp"
-			android:layout_marginTop="570dp"
-			android:text="@string/labelAnadirCarrito"
-			android:textColor="#FBFBFB"
-			android:backgroundTint="#178C3C"
-			android:textSize="18sp"
-			android:contentDescription="@string/descripcionBotonIniciarSesion" />
-
-		<EditText
-			android:id="@+id/entradaCantidad"
-			android:layout_width="80dp"
-			android:layout_height="50dp"
-			android:layout_marginStart="140dp"
-			android:layout_marginTop="405dp"
-			android:inputType="number"/>
-
-		<RelativeLayout
-			android:id="@+id/btnanadircarrito"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="566dp"
-			android:layout_marginStart="122dp">
-
-			<RelativeLayout
-				android:id="@+id/state_layer"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="0dp"
-				android:layout_marginStart="0dp" />
-
-		</RelativeLayout>
-
-		<ImageView
-			android:id="@+id/flecharegreso_1"
-			android:layout_width="40dp"
-			android:layout_height="43dp"
-			android:layout_marginStart="41dp"
-			android:layout_marginTop="47dp"
-			android:contentDescription="flecharegreso_1"
-			android:src="@drawable/flecharegreso_1" />
-
-		<TextView
-			android:id="@+id/txtVerProductos"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtVerProductos"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF"/>
-
-		<TextView
-			android:id="@+id/txtCarrito"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="120dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtCarrito"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF"/>
-
-		<TextView
-			android:id="@+id/txtMenu"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="230dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtMenuPrincipal"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF"/>
-
-		<TextView
-			android:id="@+id/txtCerrarSesion"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="320dp"
-			android:layout_marginTop="800dp"
-			android:text="@string/txtCerrarSesion"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF"/>
-
-	</RelativeLayout>
-</RelativeLayout>
+    <TextView
+        android:id="@+id/txtCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtCerrarSesion"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
+</androidx.constraintlayout.widget.ConstraintLayout>
