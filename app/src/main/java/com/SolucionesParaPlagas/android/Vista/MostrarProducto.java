@@ -2,6 +2,8 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import java.util.HashMap;
+
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.example.sol.R;
 import android.view.View;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ public class MostrarProducto extends AppCompatActivity {
     private String nomProducto;
     HashMap<String, Integer> carrito = new HashMap<>();
     private ControladorImagenes controladorImagenes;
+    private Validaciones validaciones = new Validaciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,16 @@ public class MostrarProducto extends AppCompatActivity {
     private void cargarDatosProducto(){
         cargarImagenProducto();
         nombreProducto.setText(producto.getTitle());
-        descripcionProducto.setText(producto.getDescription());
+        if(validaciones.validarStringNull(producto.getDescription())){
+            descripcionProducto.setText("Sin información adicional del producto.000");
+        }else{
+            descripcionProducto.setText("Descripcion: "+producto.getDescription());
+        }
+        if(validaciones.validarStringNull(""+producto.getWeight())){
+            pesoProducto.setText("");
+        }else{
+            pesoProducto.setText(""+producto.getWeight()+" "+producto.getUnit());
+        }
     }
 
     private void obtenerElementos(){
