@@ -73,8 +73,24 @@ public class Validaciones {
         return false;
     }
 
-    public void validarCerrarSesion(){
-
+    public String capitalizarLetras(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+        StringBuilder resultado = new StringBuilder();
+        boolean capitalizar = true;
+        for (char c : texto.toCharArray()) {
+            if (Character.isWhitespace(c)) {
+                capitalizar = true;
+                resultado.append(c);
+            } else if (capitalizar) {
+                resultado.append(Character.toUpperCase(c));
+                capitalizar = false;
+            } else {
+                resultado.append(Character.toLowerCase(c));
+            }
+        }
+        return resultado.toString();
     }
 
 }

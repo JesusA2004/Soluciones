@@ -1,7 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.example.sol.R;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 
 public class EstadoCuenta extends AppCompatActivity {
 
@@ -19,6 +19,7 @@ public class EstadoCuenta extends AppCompatActivity {
     ImageView btnMenu, btnCerrarSesion, btnProductos;
     DetalleCliente clienteCompleto = new DetalleCliente();
     Sesion sesion = new Sesion();
+    Validaciones validaciones = new Validaciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class EstadoCuenta extends AppCompatActivity {
 
     private void mostrarDatos(){
         if(clienteCompleto != null){
-            txtTitulo.setText("¡Bienvenido a tu Estado de\nCuenta "+clienteCompleto.getLegalName()+"!");
+            txtTitulo.setText("¡Bienvenido a tu Estado de\nCuenta "+validaciones.capitalizarLetras(clienteCompleto.getCommercialName())+"!");
             txtDiasCredito.setText("Días de crédito: "+clienteCompleto.getCreditDays()+"");
             txtMontoCredito.setText("Monto de crédito: $"+clienteCompleto.getCreditAmount()+"");
             txtMetodoP.setText("Metodo de pago: "+clienteCompleto.getPaymentMethod()+"");

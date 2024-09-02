@@ -24,6 +24,7 @@
 				android:layout_height="match_parent">
 
 				<!-- Opciones de menú -->
+
 				<View
 					android:id="@+id/_bg__menuopciones_ek2"
 					android:layout_width="match_parent"
@@ -110,37 +111,14 @@
 
 				</RelativeLayout>
 
-				<!-- Texto de bienvenida y otros elementos -->
-				<TextView
-					android:id="@+id/bienvenida2"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="70dp"
-					android:layout_marginTop="220dp"
-					android:fontFamily="@font/libre_franklin_semibold"
-					android:text="¡Hola!"
-					android:textSize="20sp"
-					android:textColor="@color/black"/>
-
 				<TextView
 					android:id="@+id/bienvenidaNombre"
-					android:layout_width="wrap_content"
+					android:layout_width="280dp"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="70dp"
-					android:layout_marginTop="255dp"
+					android:layout_marginTop="200dp"
 					android:fontFamily="@font/libre_franklin_semibold"
-					android:textSize="17sp"
-					android:textColor="@color/black"/>
-
-				<TextView
-					android:id="@+id/msjPresentacion"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="70dp"
-					android:layout_marginTop="280dp"
-					android:fontFamily="@font/libre_franklin"
-					android:text="¿Qué te gustaría explorar hoy?"
-					android:textSize="16sp"
+					android:textSize="15sp"
 					android:textColor="@color/black"/>
 
 				<ImageView
@@ -216,6 +194,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_gravity="end"
+		android:background="#2AB023"
 		app:headerLayout="@layout/encabezado_menu"
 		app:menu="@menu/item_menu" />
 

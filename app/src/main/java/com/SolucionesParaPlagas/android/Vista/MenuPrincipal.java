@@ -1,9 +1,16 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import java.util.Locale;
+
+import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
+
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.example.sol.R;
 import android.view.View;
 import android.view.MenuItem;
@@ -38,6 +45,7 @@ public class MenuPrincipal extends AppCompatActivity {
     private Sesion sesion = new Sesion();
     private ProgressBar iconoCarga;
     private DrawerLayout drawerLayout;
+    Validaciones validaciones = new Validaciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +122,6 @@ public class MenuPrincipal extends AppCompatActivity {
                 MenuItem btnConsultarPerfil = menu.findItem(R.id.iconoDatosP);
                 MenuItem btnPedidos = menu.findItem(R.id.nav_orders);
                 MenuItem btnCerrarSesion = menu.findItem(R.id.nav_logout);
-                txtPerfil.setText(clienteIndividual.getClientName());
                 if (btnConsultarPerfil != null) {
                     btnConsultarPerfil.setOnMenuItemClickListener(this::irAMiPerfil);
                 }
@@ -207,16 +214,18 @@ public class MenuPrincipal extends AppCompatActivity {
     private void mostrarDatos() {
         ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
         clienteIndividual = controladorClienteIndividual.obtenerCliente();
+        txtPerfil.setText(validaciones.capitalizarLetras(clienteIndividual.getClientName()));
         String nombreCliente = clienteIndividual.getClientName();
-        txtBienvenida.setText(capitalizarPrimeraLetra(nombreCliente));
-
-    }
-
-    private String capitalizarPrimeraLetra(String texto) {
-        if (texto == null || texto.isEmpty()) {
-            return texto;
-        }
-        return texto.substring(0, 1).toUpperCase(Locale.ROOT) + texto.substring(1).toLowerCase(Locale.ROOT);
+        // Texto principal
+        String textoBienvenida = "¡Hola " + validaciones.capitalizarLetras(nombreCliente) + "!\n\n";
+        String textoExplorar = "¿Qué te gustaría explorar hoy?";
+        // Crear SpannableString para manejar diferentes estilos
+        SpannableString spannableString = new SpannableString(textoBienvenida + textoExplorar);
+        // Aplicar negritas al texto de bienvenida
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, textoBienvenida.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.NORMAL), textoBienvenida.length(), textoBienvenida.length() + textoExplorar.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // Establecer el texto en el TextView
+        txtBienvenida.setText(spannableString);
     }
 
 }
