@@ -67,7 +67,7 @@ public class MostrarPedidos extends AppCompatActivity {
         new Thread(() -> {
             controladorJsonPedido.realizarSolicitud();
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

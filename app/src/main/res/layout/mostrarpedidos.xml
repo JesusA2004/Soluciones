@@ -124,21 +124,23 @@
 			android:layout_marginStart="40dp"
 			android:layout_marginTop="210dp"
 			android:text="Mis Pedidos"
+			android:textColor="@color/black"
 			android:textSize="18sp"
 			android:textStyle="bold" />
 
 		<ProgressBar
 			android:id="@+id/iconoCarga"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="323dp"
+			android:layout_height="412dp"
+			android:layout_marginStart="3500dp"
+			android:layout_marginTop="400dp"
 			android:contentDescription="@string/descripcionProgressBar"
 			android:indeterminate="true"
 			android:visibility="gone" />
 
-
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/listaPedidos"
-			android:layout_width="250dp"
+			android:layout_width="325dp"
 			android:layout_height="450dp"
 			android:layout_marginStart="40dp"
 			android:layout_marginTop="250dp" />

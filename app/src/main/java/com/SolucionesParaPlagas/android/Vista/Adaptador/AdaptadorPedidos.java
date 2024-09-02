@@ -30,9 +30,10 @@ public class AdaptadorPedidos extends RecyclerView.Adapter<AdaptadorPedidos.Pedi
     public void onBindViewHolder(@NonNull PedidoViewHolder holder, int position) {
         // Vincular los datos con la vista
         PedidoIndividual pedido = listaPedidos.get(position);
-        holder.idPedido.setText(pedido.getID());
-        holder.fechaPedido.setText(pedido.getOrderDate());
-        holder.totalPedido.setText(""+pedido.getTotal());
+        holder.idPedido.setText("ID Pedido: "+pedido.getID());
+        String fecha = pedido.getOrderDate().substring(0,10);
+        holder.fechaPedido.setText("Fecha: "+fecha);
+        holder.totalPedido.setText("Monto total del pedido $"+pedido.getTotal());
     }
 
     @Override

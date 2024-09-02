@@ -1,5 +1,7 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import android.util.Log;
+
 import retrofit2.Call;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.JsonPedido;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.PedidoIndividual;
@@ -15,7 +17,8 @@ public class ControladorJsonPedido extends Controlador<JsonPedido> {
     // Constructor para obtener pedidos por ID del cliente
     public ControladorJsonPedido(String clientID) {
         super(RepositorioJsonPedido.obtenerInstancia());
-        this.EndPoint = "Orders?$filter=ClientID eq '" + clientID + "'";
+        Log.d("ID",""+clientID);
+        this.EndPoint = "Orders?$filter=ClientID eq guid'" + clientID + "'";
     }
 
     @Override
