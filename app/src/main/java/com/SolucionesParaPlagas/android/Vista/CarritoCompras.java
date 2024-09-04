@@ -1,8 +1,13 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import com.example.sol.R;
+
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -58,7 +63,7 @@ public class CarritoCompras extends AppCompatActivity {
 
     private void obtenerElementos(){
         Intent intent = getIntent();
-        if(intent != null && intent.hasExtra("carrito")){
+        if(intent.hasExtra("carrito")){
             carrito = (HashMap<String, Integer>) intent.getSerializableExtra("carrito");
         }
     }
@@ -177,16 +182,16 @@ public class CarritoCompras extends AppCompatActivity {
 
     private void notificarUsuario(){
         new AlertDialog.Builder(this)
-                .setTitle("Aviso")
-                .setMessage("¡Gracias por tu preferencia! Pronto, uno de nuestros asistentes te contactará con la cotización de tus productos solicitados.")
-                .setPositiveButton("OK",new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which){
-                        Intent intent = new Intent(CarritoCompras.this, MenuPrincipal.class);
-                        startActivity(intent);
-                    }
-                })
-                .show();
+            .setTitle("Aviso")
+            .setMessage("¡Gracias por tu preferencia! Pronto, uno de nuestros asistentes te contactará con la cotización de tus productos solicitados.")
+            .setPositiveButton("OK",new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                Intent intent = new Intent(CarritoCompras.this, MenuPrincipal.class);
+                startActivity(intent);
+            }
+            })
+            .show();
     }
 
 }

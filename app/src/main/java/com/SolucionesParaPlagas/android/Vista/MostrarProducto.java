@@ -2,9 +2,10 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import java.util.HashMap;
-
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.example.sol.R;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -60,7 +61,7 @@ public class MostrarProducto extends AppCompatActivity {
         cargarImagenProducto();
         nombreProducto.setText(producto.getTitle());
         if(validaciones.validarStringNull(producto.getDescription())){
-            descripcionProducto.setText("Sin información adicional del producto.000");
+            descripcionProducto.setText("Sin información adicional del producto.");
         }else{
             descripcionProducto.setText("Descripcion: "+producto.getDescription());
         }
@@ -95,7 +96,7 @@ public class MostrarProducto extends AppCompatActivity {
         botonCarritoCompras = findViewById(R.id.iconoCarritoCompra);
         botonMenu = findViewById(R.id.iconoMenu);
         cerrarSesion = findViewById(R.id.iconoCerrarSesion);
-        botonRegresar = findViewById(R.id.flecharegreso_1);
+        botonRegresar = findViewById(R.id.flechaatras);
     }
 
     private void configurarBotones() {
@@ -142,12 +143,33 @@ public class MostrarProducto extends AppCompatActivity {
             // Si el producto ya existe en el carrito, actualizar la cantidad
             int cantidadActual = carrito.get(producto.getID());
             carrito.put(producto.getID(), cantidadActual + cantidadPro);
+
         }else{
             // Si no existe en el carrito solo se agrega
             carrito.put(producto.getID(),cantidadPro);
         }
         // Añadir estos valores a un hashmap que sera enviado a el carrito
+        imprimirCarrito();
         Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
+    }
+
+    private void imprimirCarrito() {
+        if (carrito.isEmpty()) {
+            Toast.makeText(this, "El carrito está vacío.", Toast.LENGTH_LONG).show();
+        } else {
+            StringBuilder contenidoCarrito = new StringBuilder();
+            for (HashMap.Entry<String, Integer> entry : carrito.entrySet()) {
+                String idProducto = entry.getKey();
+                int cantidad = entry.getValue();
+                contenidoCarrito.append("ID Producto: ").append(idProducto)
+                        .append(" - Cantidad: ").append(cantidad)
+                        .append("\n");
+            }
+            // Mostrar el contenido del carrito en un Toast o Log
+            Toast.makeText(this, contenidoCarrito.toString(), Toast.LENGTH_LONG).show();
+            // También puedes usar Log para registros más detallados
+            Log.d("Carrito", contenidoCarrito.toString());
+        }
     }
 
 }

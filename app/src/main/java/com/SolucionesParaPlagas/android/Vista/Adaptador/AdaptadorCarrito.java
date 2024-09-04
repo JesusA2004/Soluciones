@@ -1,13 +1,20 @@
 package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
 import com.example.sol.R;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
@@ -36,8 +43,10 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Carr
     @Override
     public void onBindViewHolder(@NonNull CarritoViewHolder holder, int position) {
         // Obtener el ID del producto a partir de la posición
-        String idProducto = (String) carrito.keySet().toArray()[position];
+        List<String> keysList = new ArrayList<>(carrito.keySet());
+        String idProducto = keysList.get(position).trim();
         // Obtener la cantidad correspondiente al producto
+
         int cantidad = carrito.get(idProducto);
         // Obtener el producto usando el ID
         Producto producto = controladorProducto.obtenerProducto(idProducto);

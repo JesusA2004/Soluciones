@@ -3,19 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
-        android:id="@+id/decoracionelipse2"
+        android:id="@+id/flechaatras"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
+        android:contentDescription="@string/descripcionFlechaRegreso"
+        android:src="@drawable/flecharegreso"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <ImageView
+        android:id="@+id/decoracionelipse"
         android:layout_width="644dp"
         android:layout_height="250dp"
+        android:layout_marginTop="580dp"
         android:contentDescription="decoracionelipse"
         android:src="@drawable/decoracionelipse"
-        tools:layout_editor_absoluteX="-117dp"
-        tools:layout_editor_absoluteY="560dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/iconosopciones3"
+        android:id="@+id/iconosopciones"
         android:layout_width="417dp"
         android:layout_height="66dp"
         android:background="@drawable/iconosopciones_shape"
@@ -79,7 +96,7 @@
         app:layout_constraintVertical_bias="0.966" />
 
     <TextView
-        android:id="@+id/txtPeso2"
+        android:id="@+id/txtPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txtPeso"
@@ -87,10 +104,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintVertical_bias="0.796" />
 
     <TextView
         android:id="@+id/txtContenido"
@@ -101,72 +118,74 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/iconoVerProductos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintVertical_bias="0.878" />
 
     <Button
-        android:id="@+id/btnAnadirCarrito2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnAnadirCarrito"
+        android:layout_width="185dp"
+        android:layout_height="53dp"
         android:background="@drawable/bg_boton_redondo"
         android:contentDescription="@string/descripcionBotonIniciarSesion"
         android:text="@string/labelAnadirCarrito"
         android:textColor="#FBFBFB"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.749" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <TextView
-        android:id="@+id/txtDescripcion2"
-        android:layout_width="280dp"
+        android:id="@+id/txtDescripcion"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/txtDescripcion"
         android:textColor="#353232"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.562" />
 
     <EditText
-        android:id="@+id/entradaCantidad2"
+        android:id="@+id/entradaCantidad"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:hint="Numero"
         android:inputType="number"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <TextView
-        android:id="@+id/txtCantidad2"
+        android:id="@+id/txtCantidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:text="@string/txtCantidad"
         android:textColor="#353232"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/entradaCantidad2"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/entradaCantidad"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtNombreProducto2"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/txtNombreProducto"
+        android:layout_width="305dp"
+        android:layout_height="26dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:text="@string/txtNombreProducto"
@@ -175,23 +194,21 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.422" />
 
     <ImageView
-        android:id="@+id/imagenProducto2"
+        android:id="@+id/imagenProducto"
         android:layout_width="169dp"
         android:layout_height="174dp"
         android:contentDescription="imagenproducto"
         android:src="@drawable/imagenproducto"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txtNombreProducto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logocompletosinfondo"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.518" />
 
     <ImageView
         android:id="@+id/logocompletosinfondo"
