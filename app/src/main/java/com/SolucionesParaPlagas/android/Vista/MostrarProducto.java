@@ -1,11 +1,7 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-import java.util.HashMap;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.example.sol.R;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -15,22 +11,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class MostrarProducto extends AppCompatActivity {
 
-    ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
-    TextView nombreProducto,descripcionProducto, pesoProducto;
-    EditText cantidadProducto;
-    Button botonAnadirCarrito;
-    Producto producto = new Producto();
+    private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
+    private TextView nombreProducto,descripcionProducto, pesoProducto;
+    private EditText cantidadProducto;
+    private Sesion sesion = new Sesion();
+    private Button botonAnadirCarrito;
+    private Producto producto = new Producto();
     private int cantidadPro;
-    private String idProducto;
-    private String nomProducto;
-    HashMap<String, Integer> carrito = new HashMap<>();
     private ControladorImagenes controladorImagenes;
     private Validaciones validaciones = new Validaciones();
+    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +76,6 @@ public class MostrarProducto extends AppCompatActivity {
             if(intent.hasExtra("producto")){
                 producto = intent.getParcelableExtra("producto");
             }
-            if(intent.hasExtra("carrito")){
-                carrito = (HashMap<String, Integer>) intent.getSerializableExtra("carrito");
-            }
         }
     }
 
@@ -110,13 +104,11 @@ public class MostrarProducto extends AppCompatActivity {
 
     private void regresarAProductos(View v){
         Intent intent = new Intent(MostrarProducto.this, MostrarProductos.class);
-        intent.putExtra("carrito",carrito);
         startActivity(intent);
     }
 
     private void irACarrito(View v){
         Intent intent = new Intent(MostrarProducto.this, CarritoCompras.class);
-        intent.putExtra("carrito",carrito);
         startActivity(intent);
     }
 
@@ -126,8 +118,7 @@ public class MostrarProducto extends AppCompatActivity {
     }
 
     private void irACerrarSesion(View v){
-        Sesion sesion = new Sesion();
-        carrito = sesion.limpiarSesion();
+        sesion.limpiarSesion();
     }
 
     // Método para añadir el producto al carrito
@@ -139,20 +130,20 @@ public class MostrarProducto extends AppCompatActivity {
             return;
         }
         cantidadPro = Integer.parseInt(cantidadStr);
-        if(carrito.containsKey(producto.getID())){
+        if(controladorCarrito.existeEnCarrito(producto.getID())){
             // Si el producto ya existe en el carrito, actualizar la cantidad
-            int cantidadActual = carrito.get(producto.getID());
-            carrito.put(producto.getID(), cantidadActual + cantidadPro);
-
+            int cantidadActual = controladorCarrito.obtenerCantidadProducto(producto.getID());
+            controladorCarrito.actualizarCantidad(producto.getID(), cantidadActual + cantidadPro);
         }else{
             // Si no existe en el carrito solo se agrega
-            carrito.put(producto.getID(),cantidadPro);
+            controladorCarrito.agregarProducto(producto.getID(),cantidadPro);
         }
         // Añadir estos valores a un hashmap que sera enviado a el carrito
-        imprimirCarrito();
+        // imprimirCarrito();
         Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
     }
 
+    /*
     private void imprimirCarrito() {
         if (carrito.isEmpty()) {
             Toast.makeText(this, "El carrito está vacío.", Toast.LENGTH_LONG).show();
@@ -170,6 +161,6 @@ public class MostrarProducto extends AppCompatActivity {
             // También puedes usar Log para registros más detallados
             Log.d("Carrito", contenidoCarrito.toString());
         }
-    }
+    }*/
 
 }

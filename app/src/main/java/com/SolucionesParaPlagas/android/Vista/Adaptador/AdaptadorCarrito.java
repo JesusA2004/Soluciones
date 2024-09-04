@@ -46,14 +46,13 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Carr
         List<String> keysList = new ArrayList<>(carrito.keySet());
         String idProducto = keysList.get(position).trim();
         // Obtener la cantidad correspondiente al producto
-
         int cantidad = carrito.get(idProducto);
         // Obtener el producto usando el ID
         Producto producto = controladorProducto.obtenerProducto(idProducto);
         // Vincular los datos con la vista
         holder.nombreProducto.setText(producto.getTitle());
-        holder.cantidadProducto.setText(String.valueOf(cantidad));
-        holder.pesoProducto.setText(""+producto.getWeight());
+        holder.cantidadProducto.setText("Cantidad: "+String.valueOf(cantidad));
+        holder.pesoProducto.setText("Peso: "+producto.getWeight()+" "+producto.getUnit());
         String imageUrl = producto.getImageUrl();
         ControladorImagenes controladorImagenes = new ControladorImagenes(context);
         controladorImagenes.cargarImagenDesdeUrl(imageUrl, holder.imagenCarrito);

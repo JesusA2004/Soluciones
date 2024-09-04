@@ -1,13 +1,8 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import com.example.sol.R;
-
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -21,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorCarrito;
@@ -30,23 +26,22 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 
 public class CarritoCompras extends AppCompatActivity {
 
-    Button btnCotizacion;
-    ImageView btnVerProductos, btnMenu, btnCerrarSesion;
-    TextView textoCargando;
+    private Button btnCotizacion;
+    private ImageView btnVerProductos, btnMenu, btnCerrarSesion;
+    private TextView textoCargando;
     private ProgressBar iconoCarga;
-    HashMap<String, Integer> carrito = new HashMap<>();
     private ControladorImagenes controladorImagenes;
-    ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
-    Sesion sesion = new Sesion();
+    private Sesion sesion = new Sesion();
     private RecyclerView recyclerViewCarrito;
     private AdaptadorCarrito adaptadorCarrito;
+    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
+    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.carritocompra);
         inicializarElementos();
-        obtenerElementos();
         configurarBotones();
         configurarRecyclerView();
     }
@@ -61,13 +56,6 @@ public class CarritoCompras extends AppCompatActivity {
         recyclerViewCarrito = findViewById(R.id.listaCarrito);
     }
 
-    private void obtenerElementos(){
-        Intent intent = getIntent();
-        if(intent.hasExtra("carrito")){
-            carrito = (HashMap<String, Integer>) intent.getSerializableExtra("carrito");
-        }
-    }
-
     private void configurarBotones() {
         btnVerProductos.setOnClickListener(this::regresarAProductos);
         btnMenu.setOnClickListener(this::irAMenu);
@@ -76,14 +64,13 @@ public class CarritoCompras extends AppCompatActivity {
     }
 
     private void configurarRecyclerView() {
-        adaptadorCarrito = new AdaptadorCarrito(carrito, this);
+        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerCarrito(), this);
         recyclerViewCarrito.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewCarrito.setAdapter(adaptadorCarrito);
     }
 
     private void regresarAProductos(View v){
         Intent intent = new Intent(CarritoCompras.this, MostrarProductos.class);
-        intent.putExtra("carrito", carrito);
         startActivity(intent);
     }
 
@@ -97,7 +84,7 @@ public class CarritoCompras extends AppCompatActivity {
                     runOnUiThread(() -> {
                         iconoCarga.setVisibility(View.GONE);
                         textoCargando.setVisibility(View.GONE);
-                        carrito.clear();
+                        controladorCarrito.vaciarCarrito();
                         notificarUsuario();
                     });
                 } else {
@@ -139,6 +126,7 @@ public class CarritoCompras extends AppCompatActivity {
         StringBuilder mensajeCorreo = new StringBuilder();
         mensajeCorreo.append("Cotizacion para: "+clienteIndividual.getClientName()+",\n\n");
         mensajeCorreo.append("A continuación se muestran los productos seleccionados:\n\n");
+        HashMap<String, Integer> carrito = controladorCarrito.obtenerCarrito();
         for (String idProducto : carrito.keySet()) {
             Producto producto = controladorProducto.obtenerProducto(idProducto);
             if (producto != null) {
@@ -177,7 +165,7 @@ public class CarritoCompras extends AppCompatActivity {
     }
 
     private void limpiarSesion(){
-        carrito = sesion.limpiarSesion();
+        sesion.limpiarSesion();
     }
 
     private void notificarUsuario(){

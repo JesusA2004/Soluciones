@@ -1,6 +1,5 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 

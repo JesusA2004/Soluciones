@@ -1,29 +1,26 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import java.util.Locale;
-
-import android.graphics.Typeface;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
-
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.example.sol.R;
 import android.view.View;
+import android.text.Spanned;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.graphics.Typeface;
 import android.widget.ProgressBar;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.google.android.material.navigation.NavigationView;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;

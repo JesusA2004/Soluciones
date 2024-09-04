@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
+    android:layout_marginBottom="16dp"
     android:background="@drawable/fondo_item_productos"
     android:clickable="true"
     android:focusable="true"> <!-- Asegúrate de que el ítem sea clickeable -->

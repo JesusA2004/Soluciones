@@ -4,13 +4,13 @@ import java.util.List;
 import android.os.Bundle;
 import android.view.View;
 import com.example.sol.R;
-import java.util.HashMap;
 import android.content.Intent;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
@@ -19,9 +19,9 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
 
     ImageView btnCerrarSesion, btnMenu, btnCarrito;
     RecyclerView productos;
-    HashMap<String, Integer> carrito = new HashMap<>();
     Sesion sesion = new Sesion();
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
+    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,6 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         setContentView(R.layout.buscarproducto);
         inicializarElementos();
         cargarProductos();
-        obtenerElementos();
         configurarBotones();
     }
 
@@ -49,14 +48,6 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         productos.setLayoutManager(new LinearLayoutManager(this)); // Configura el LayoutManager
     }
 
-    private void obtenerElementos() {
-        // Obtener el Intent que inició esta Activity
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("carrito")) {
-            carrito = (HashMap<String, Integer>) intent.getSerializableExtra("carrito");
-        }
-    }
-
     private void configurarBotones() {
         btnCarrito.setOnClickListener(this::irACarrito);
         btnMenu.setOnClickListener(this::irAMenu);
@@ -69,20 +60,18 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     }
 
     private void irACerrarSesion(View v) {
-        carrito = sesion.limpiarSesion();
+        sesion.limpiarSesion();
         Intent intent = new Intent(MostrarProductos.this, PaginaInicio.class);
         startActivity(intent);
     }
 
     private void irACarrito(View v) {
         Intent intent = new Intent(MostrarProductos.this, CarritoCompras.class);
-        intent.putExtra("carrito", carrito);
         startActivity(intent);
     }
 
     private void irAProducto(View v, Producto producto){
         Intent intent = new Intent(MostrarProductos.this, MostrarProducto.class);
-        intent.putExtra("carrito", carrito);
         intent.putExtra("producto", producto);
         startActivity(intent);
     }
