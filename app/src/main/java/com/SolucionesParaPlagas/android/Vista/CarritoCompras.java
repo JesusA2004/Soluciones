@@ -13,15 +13,15 @@ import android.widget.ProgressBar;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
+import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorCarrito;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorCarrito;
 
 public class CarritoCompras extends AppCompatActivity {
 
