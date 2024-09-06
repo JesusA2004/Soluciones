@@ -8,6 +8,7 @@ import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.content.DialogInterface;
@@ -27,8 +28,10 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 public class CarritoCompras extends AppCompatActivity {
 
     private Button btnCotizacion;
-    private ImageView btnVerProductos, btnMenu, btnCerrarSesion;
-    private TextView textoCargando;
+    private EditText txtCantidad;
+    private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas;
+    private TextView textoCargando, txtMsjB;
+    private View modificarCantidad;
     private ProgressBar iconoCarga;
     private ControladorImagenes controladorImagenes;
     private Sesion sesion = new Sesion();
@@ -54,6 +57,17 @@ public class CarritoCompras extends AppCompatActivity {
         iconoCarga = findViewById(R.id.iconoCargando);
         textoCargando = findViewById(R.id.textoCargando);
         recyclerViewCarrito = findViewById(R.id.listaCarrito);
+        modificarCantidad = findViewById(R.id.vistaModificarCantidad);
+        btnMenos = findViewById(R.id.iconomenos_1);
+        btnMas = findViewById(R.id.iconomas_1);
+        txtMsjB = findViewById(R.id.txtMsjB);
+        txtCantidad = findViewById(R.id.editxtCantidad);
+        // Objetos que despertaremos cuando se toque un objeto del carrito
+        modificarCantidad.setVisibility(View.GONE);
+        btnMenos.setVisibility(View.GONE);
+        btnMas.setVisibility(View.GONE);
+        txtMsjB.setVisibility(View.GONE);
+        txtCantidad.setVisibility(View.GONE);
     }
 
     private void configurarBotones() {
@@ -181,5 +195,44 @@ public class CarritoCompras extends AppCompatActivity {
             })
             .show();
     }
+
+    /*
+    @Override
+    public void onProductoClick(int cantidadProducto) {
+        modificarCantidad.setVisibility(View.VISIBLE);
+        btnMenos.setVisibility(View.VISIBLE);
+        btnMas.setVisibility(View.VISIBLE);
+        txtMsjB.setVisibility(View.VISIBLE);
+        txtCantidad.setVisibility(View.VISIBLE);
+        txtCantidad.setText(String.valueOf(cantidadProducto));
+        btnMenos.setOnClickListener(v -> {
+            int nuevaCantidad = obtenerNuevaCantidad(Integer.parseInt(txtCantidad.getText().toString()) - 1);
+            if (nuevaCantidad > 0) {
+                txtCantidad.setText(String.valueOf(nuevaCantidad));
+                actualizarCarrito(nuevaCantidad);
+            } else {
+                Toast.makeText(this, "La cantidad no puede ser menor a 1.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnMas.setOnClickListener(v -> {
+            int nuevaCantidad = obtenerNuevaCantidad(Integer.parseInt(txtCantidad.getText().toString()) + 1);
+            txtCantidad.setText(String.valueOf(nuevaCantidad));
+            actualizarCarrito(nuevaCantidad);
+        });
+    }
+    */
+
+    private int obtenerNuevaCantidad(int cantidad) {
+        return Math.max(cantidad, 1); // Para evitar que la cantidad sea menor que 1
+    }
+
+    private void actualizarCarrito(int nuevaCantidad) {
+        int posicionAdapatador = adaptadorCarrito.getItemCount();
+        String idProducto = controladorCarrito.obtenerIdProducto(posicionAdapatador);
+        controladorCarrito.actualizarCantidad(idProducto, nuevaCantidad);
+        adaptadorCarrito.notifyDataSetChanged();
+        Toast.makeText(this, "Cantidad actualizada en el carrito.", Toast.LENGTH_SHORT).show();
+    }
+
 
 }

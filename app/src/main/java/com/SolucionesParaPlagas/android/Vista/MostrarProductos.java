@@ -21,7 +21,6 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     RecyclerView productos;
     Sesion sesion = new Sesion();
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
-    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,11 +24,12 @@
         android:background="@drawable/bg_boton_redondo"
         android:text="Solicitar cotización"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/vistaModificarCantidad"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listaCarrito"
-        app:layout_constraintVertical_bias="0.648" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.735" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -36,10 +37,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logotipsinfondo_" />
 
     <ImageView
@@ -51,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12"
+        app:layout_constraintVertical_bias="0.099"
         app:srcCompat="@drawable/letraslogosinfondo" />
 
     <View
@@ -64,6 +65,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/iconomenos_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.865"
+        app:srcCompat="@drawable/iconomenos_1" />
 
     <View
         android:id="@+id/iconosopciones"
@@ -115,30 +128,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.97" />
 
-    <ImageView
-        android:id="@+id/iconomas_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.765"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868"
-        app:srcCompat="@drawable/iconomas_1" />
-
-    <ImageView
-        android:id="@+id/iconomenos_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.26"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865"
-        app:srcCompat="@drawable/iconomenos_1" />
-
     <TextView
         android:id="@+id/txtMsjB"
         android:layout_width="wrap_content"
@@ -158,14 +147,26 @@
         android:layout_width="92dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="No."
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/iconosopciones"
         app:layout_constraintEnd_toStartOf="@+id/iconomas_1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/iconomenos_1"
         app:layout_constraintTop_toBottomOf="@+id/txtMsjB"
         app:layout_constraintVertical_bias="0.407" />
+
+    <ImageView
+        android:id="@+id/iconomas_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868"
+        app:srcCompat="@drawable/iconomas_1" />
 
     <TextView
         android:id="@+id/txtVerProductos"
@@ -225,21 +226,21 @@
         android:id="@+id/textoCargando"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/iconoCargando"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:text="Cargando su carrito de compras"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        android:layout_below="@id/iconoCargando"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:layout_marginTop="8dp" />
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaCarrito"
         android:layout_width="327dp"
         android:layout_height="355dp"
+        android:clipToPadding="false"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:clipToPadding="false"
         app:layout_constraintBottom_toTopOf="@+id/btnCotizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.547"

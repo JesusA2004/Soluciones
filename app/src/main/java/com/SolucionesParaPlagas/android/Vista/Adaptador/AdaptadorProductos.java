@@ -46,7 +46,6 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
     public static class ProductoViewHolder extends RecyclerView.ViewHolder {
         // Referencias a los elementos de la vista
         TextView nombreProducto;
-
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombreProducto = itemView.findViewById(R.id.nombreProducto);
