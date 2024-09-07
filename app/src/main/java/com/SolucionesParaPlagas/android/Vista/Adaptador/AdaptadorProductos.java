@@ -2,6 +2,8 @@ package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
 import java.util.List;
 import com.example.sol.R;
+
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,7 +15,7 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.ProductoViewHolder> {
 
     private List<Producto> listaProductos;
-    private OnProductoClickListener listener;
+    private final OnProductoClickListener listener;
 
     public AdaptadorProductos(List<Producto> listaProductos, OnProductoClickListener listener) {
         this.listaProductos = listaProductos;
@@ -35,11 +37,6 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
         holder.nombreProducto.setText(producto.getTitle());
         // Manejo de clics en el ítem
         holder.itemView.setOnClickListener(v -> listener.onProductoClick(producto));
-    }
-
-    public void actualizarLista(List<Producto> nuevaLista){
-        listaProductos = nuevaLista;
-        notifyDataSetChanged();
     }
 
     @Override

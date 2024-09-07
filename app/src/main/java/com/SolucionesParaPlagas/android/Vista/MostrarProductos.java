@@ -2,6 +2,7 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import java.util.List;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import com.example.sol.R;
 import android.content.Intent;
@@ -79,7 +80,9 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         // Utiliza el método productosParcial del controlador para realizar la búsqueda
         List<Producto> listaFiltrada = controladorProducto.productosParcial(query);
         // Actualiza el adaptador con los productos filtrados
-        adaptador.actualizarLista(listaFiltrada);
+        Log.d("a","Tamaño: "+listaFiltrada.size());
+        adaptador = new AdaptadorProductos(listaFiltrada, this);
+        productos.setAdapter(adaptador);
     }
 
     private void irAMenu(View v) {

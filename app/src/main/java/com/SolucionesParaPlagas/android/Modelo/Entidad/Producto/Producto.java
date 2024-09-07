@@ -366,4 +366,39 @@ public class Producto implements Parcelable{
         Weight = weight;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "ID='" + ID + '\'' +
+                ", Code='" + Code + '\'' +
+                ", Title='" + Title + '\'' +
+                ", Description='" + Description + '\'' +
+                ", CreationDate='" + CreationDate + '\'' +
+                ", Cost=" + Cost +
+                ", SKU='" + SKU + '\'' +
+                ", Comments='" + Comments + '\'' +
+                ", CostType=" + CostType +
+                ", CostTypeText='" + CostTypeText + '\'' +
+                ", Category1ID='" + Category1ID + '\'' +
+                ", Category2ID='" + Category2ID + '\'' +
+                ", Category3ID='" + Category3ID + '\'' +
+                ", CurrentInventory=" + CurrentInventory +
+                ", ChargeVAT=" + ChargeVAT +
+                ", Number=" + Number +
+                ", PricingType=" + PricingType +
+                ", ImageUrl='" + ImageUrl + '\'' +
+                ", PricingTypeText='" + PricingTypeText + '\'' +
+                ", Unit='" + Unit + '\'' +
+                ", CurrencyID='" + CurrencyID + '\'' +
+                ", CurrencyCode='" + CurrencyCode + '\'' +
+                ", PurchaseType=" + PurchaseType +
+                ", PurchaseTypeText='" + PurchaseTypeText + '\'' +
+                ", IEPSRate=" + IEPSRate +
+                ", Type=" + Type +
+                ", TypeText='" + TypeText + '\'' +
+                ", ProductionAuto=" + ProductionAuto +
+                ", Volume=" + Volume +
+                ", Weight=" + Weight +
+                '}';
+    }
 }
