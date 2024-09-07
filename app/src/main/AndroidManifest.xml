@@ -30,13 +30,7 @@
             android:name="com.SolucionesParaPlagas.android.Vista.ConsultarPerfil"
             android:exported="false" />
         <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.Empleado"
-            android:exported="false" />
-        <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarProductos"
-            android:exported="false" />
-        <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.Administrador"
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MenuPrincipal"
