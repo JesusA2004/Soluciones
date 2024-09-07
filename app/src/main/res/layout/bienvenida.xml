@@ -119,7 +119,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/direccionEmpresa"
-        android:textColor="@color/black"
+        android:textColorLink="#3254ba"
         android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view"

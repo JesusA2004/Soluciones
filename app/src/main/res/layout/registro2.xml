@@ -116,6 +116,7 @@
 			android:hint="@string/entradaCalle"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,6 +143,7 @@
 			android:hint="@string/entradaColonia"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -168,6 +170,7 @@
 			android:hint="@string/entradaLocalidad"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -194,6 +197,7 @@
 			android:hint="@string/mensajeNumero"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,6 +224,7 @@
 			android:hint="@string/mensajeNumero"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -246,6 +251,7 @@
 			android:hint="@string/mensajeNumero"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -272,6 +278,7 @@
 			android:hint="@string/entradaMunicipio"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 

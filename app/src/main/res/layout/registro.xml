@@ -92,6 +92,7 @@
 			android:hint="@string/entradaRFC"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,6 +119,7 @@
 			android:hint="@string/entradaRazonS"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,6 +146,7 @@
 			android:hint="@string/entradaTel"
 			android:inputType="phone"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -170,6 +173,7 @@
 			android:hint="@string/entradaCorreo"
 			android:inputType="text"
 			android:textColor="#928F8F"
+			android:textColorHint="#757575"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 

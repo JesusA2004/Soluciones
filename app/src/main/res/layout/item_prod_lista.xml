@@ -7,24 +7,15 @@
     android:layout_marginBottom="16dp"
     android:background="@drawable/fondo_item_productos"
     android:clickable="true"
-    android:focusable="true"> <!-- Asegúrate de que el ítem sea clickeable -->
-
-    <!-- Punto a la izquierda del nombre del producto -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="•"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="8dp" />
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/nombreProducto"
@@ -32,7 +23,8 @@
             android:layout_height="wrap_content"
             android:text="Nombre del Producto"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/libre_franklin"/>
 
     </LinearLayout>
 
