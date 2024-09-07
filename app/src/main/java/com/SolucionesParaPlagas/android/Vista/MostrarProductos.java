@@ -6,20 +6,23 @@ import android.view.View;
 import com.example.sol.R;
 import android.content.Intent;
 import android.widget.ImageView;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
 
 public class MostrarProductos extends AppCompatActivity implements AdaptadorProductos.OnProductoClickListener {
 
-    ImageView btnCerrarSesion, btnMenu, btnCarrito;
     RecyclerView productos;
     Sesion sesion = new Sesion();
+    private SearchView searchView;
+    private AdaptadorProductos adaptador;
+    ImageView btnCerrarSesion, btnMenu, btnCarrito;
+    private List<Producto> listaProductosOriginal;
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
 
     @Override
@@ -29,12 +32,13 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         inicializarElementos();
         cargarProductos();
         configurarBotones();
+        configurarSearchView();
     }
 
     private void cargarProductos() {
-        List<Producto> listaProductos = controladorProducto.obtenerRepositorio();
-        if (listaProductos != null && !listaProductos.isEmpty()) {
-            AdaptadorProductos adaptador = new AdaptadorProductos(listaProductos, this);
+        listaProductosOriginal = controladorProducto.obtenerRepositorio();
+        if (listaProductosOriginal != null && !listaProductosOriginal.isEmpty()) {
+            adaptador = new AdaptadorProductos(listaProductosOriginal, this);
             productos.setAdapter(adaptador);
         }
     }
@@ -45,12 +49,37 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         btnCerrarSesion = findViewById(R.id.iconocerrarsesion);
         productos = findViewById(R.id.listaProductos);
         productos.setLayoutManager(new LinearLayoutManager(this)); // Configura el LayoutManager
+        searchView = findViewById(R.id.searchView3); // Referencia al SearchView
     }
 
     private void configurarBotones() {
         btnCarrito.setOnClickListener(this::irACarrito);
         btnMenu.setOnClickListener(this::irAMenu);
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
+    }
+
+    private void configurarSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Realiza la búsqueda cuando el usuario presione "buscar" en el teclado
+                filtrarProductos(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Filtra los productos a medida que el usuario escribe
+                filtrarProductos(newText);
+                return false;
+            }
+        });
+    }
+
+    private void filtrarProductos(String query) {
+        // Utiliza el método productosParcial del controlador para realizar la búsqueda
+        List<Producto> listaFiltrada = controladorProducto.productosParcial(query);
+        // Actualiza el adaptador con los productos filtrados
+        adaptador.actualizarLista(listaFiltrada);
     }
 
     private void irAMenu(View v) {
@@ -69,7 +98,7 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         startActivity(intent);
     }
 
-    private void irAProducto(View v, Producto producto){
+    private void irAProducto(View v, Producto producto) {
         Intent intent = new Intent(MostrarProductos.this, MostrarProducto.class);
         intent.putExtra("producto", producto);
         startActivity(intent);
@@ -77,7 +106,7 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
 
     @Override
     public void onProductoClick(Producto producto) {
-        irAProducto(null,producto);
+        irAProducto(null, producto);
     }
 
 }
