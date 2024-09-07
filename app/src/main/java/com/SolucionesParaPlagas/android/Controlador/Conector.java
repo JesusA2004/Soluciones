@@ -66,7 +66,6 @@ public class Conector {
                     }
                 })
                 .create();
-
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)

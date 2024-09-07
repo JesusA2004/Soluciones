@@ -18,7 +18,9 @@
             android:id="@+id/_bg__infounproducto_ek2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/_bg__infounproducto_ek2_shape" />
+            android:background="@drawable/_bg__infounproducto_ek2_shape"
+            tools2:layout_editor_absoluteX="0dp"
+            tools2:layout_editor_absoluteY="0dp" />
 
         <ImageView
             android:id="@+id/decoracionbusqueda"
@@ -32,17 +34,17 @@
 
         <SearchView
             android:id="@+id/searchView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="286dp"
+            android:layout_height="45dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/shape_consultar_estado"
             android:queryHint="Buscar productos"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/decoracionbusqueda"
-            app:layout_constraintHorizontal_bias="0.898"
+            app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.002" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group"
