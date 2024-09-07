@@ -33,9 +33,13 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
         // Vincular los datos con la vista
         Producto producto = listaProductos.get(position);
         holder.nombreProducto.setText(producto.getTitle());
-
         // Manejo de clics en el ítem
         holder.itemView.setOnClickListener(v -> listener.onProductoClick(producto));
+    }
+
+    public void actualizarLista(List<Producto> nuevaLista){
+        listaProductos = nuevaLista;
+        notifyDataSetChanged();
     }
 
     @Override
