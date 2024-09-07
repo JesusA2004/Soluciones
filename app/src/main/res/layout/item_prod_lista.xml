@@ -9,6 +9,15 @@
     android:clickable="true"
     android:focusable="true">
 
+    <!-- ImageView para la imagen del producto -->
+    <ImageView
+        android:id="@+id/imagenProducto"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="imagenroducto" /> <!-- Proporciona una descripción accesible -->
+
+    <!-- Contenedor vertical para el nombre del producto -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,10 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre del Producto"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="@font/libre_franklin"/>
-
     </LinearLayout>
 
 </LinearLayout>

@@ -2,7 +2,6 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import java.util.List;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import com.example.sol.R;
 import android.content.Intent;
@@ -22,7 +21,7 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     Sesion sesion = new Sesion();
     private SearchView searchView;
     private AdaptadorProductos adaptador;
-    ImageView btnCerrarSesion, btnMenu, btnCarrito;
+    private ImageView btnCerrarSesion, btnMenu, btnCarrito;
     private List<Producto> listaProductosOriginal;
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
 
@@ -32,14 +31,14 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         setContentView(R.layout.buscarproducto);
         inicializarElementos();
         cargarProductos();
-        configurarBotones();
         configurarSearchView();
+        configurarBotones();
     }
 
     private void cargarProductos() {
         listaProductosOriginal = controladorProducto.obtenerRepositorio();
         if (listaProductosOriginal != null && !listaProductosOriginal.isEmpty()) {
-            adaptador = new AdaptadorProductos(listaProductosOriginal, this);
+            adaptador = new AdaptadorProductos(listaProductosOriginal, this,this);
             productos.setAdapter(adaptador);
         }
     }
@@ -51,6 +50,8 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
         productos = findViewById(R.id.listaProductos);
         productos.setLayoutManager(new LinearLayoutManager(this)); // Configura el LayoutManager
         searchView = findViewById(R.id.searchView3); // Referencia al SearchView
+        searchView.setQueryHint("Buscar producto");
+        searchView.setIconified(false);
     }
 
     private void configurarBotones() {
@@ -79,9 +80,7 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     private void filtrarProductos(String query) {
         // Utiliza el método productosParcial del controlador para realizar la búsqueda
         List<Producto> listaFiltrada = controladorProducto.productosParcial(query);
-        // Actualiza el adaptador con los productos filtrados
-        Log.d("a","Tamaño: "+listaFiltrada.size());
-        adaptador = new AdaptadorProductos(listaFiltrada, this);
+        adaptador = new AdaptadorProductos(listaFiltrada, this,this);
         productos.setAdapter(adaptador);
     }
 

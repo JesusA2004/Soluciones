@@ -8,14 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaProductos"
-        android:layout_width="306dp"
-        android:layout_height="466dp"
-        app:layout_constraintBottom_toTopOf="@+id/iconosopciones"
+        android:layout_width="304dp"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/decoracionbusqueda3"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView3"
+        app:layout_constraintVertical_bias="0.364" />
 
     <ImageView
         android:id="@+id/decoracionbusqueda3"
@@ -36,12 +36,12 @@
         android:layout_height="54dp"
         android:contentDescription="logotipsinfondo_1"
         android:src="@drawable/logotipsinfondo_1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/decoracionbusqueda3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.337" />
 
     <ImageView
         android:id="@+id/letraslogosinfondo_2"
@@ -49,24 +49,25 @@
         android:layout_height="36dp"
         android:contentDescription="letraslogosinfondo_1"
         android:src="@drawable/letraslogosinfondo_1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/decoracionbusqueda3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintVertical_bias="0.798" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView3"
-        android:layout_width="286dp"
-        android:layout_height="48dp"
+        android:layout_width="268dp"
+        android:layout_height="49dp"
+        android:gravity="center"
         android:queryHint="Buscar productos"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/decoracionbusqueda3"
         app:layout_constraintEnd_toEndOf="@+id/decoracionbusqueda3"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/logotipsinfondo_2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.478" />
 
     <View
         android:id="@+id/iconosopciones"
@@ -75,10 +76,8 @@
         android:background="@drawable/iconosopciones_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/decoracionbusqueda3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iconomenu"
@@ -89,10 +88,10 @@
         android:src="@drawable/iconomenu_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/decoracionbusqueda3"
-        app:layout_constraintVertical_bias="0.896" />
+        app:layout_constraintVertical_bias="0.886" />
 
     <ImageView
         android:id="@+id/iconocompra"

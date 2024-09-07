@@ -1,11 +1,15 @@
 package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
 import java.util.List;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.example.sol.R;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -16,10 +20,12 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
 
     private List<Producto> listaProductos;
     private final OnProductoClickListener listener;
+    private Context context;
 
-    public AdaptadorProductos(List<Producto> listaProductos, OnProductoClickListener listener) {
+    public AdaptadorProductos(List<Producto> listaProductos, OnProductoClickListener listener, Context context) {
         this.listaProductos = listaProductos;
         this.listener = listener;
+        this.context = context;
     }
 
     @NonNull
@@ -35,6 +41,9 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
         // Vincular los datos con la vista
         Producto producto = listaProductos.get(position);
         holder.nombreProducto.setText(producto.getTitle());
+        String imageUrl = producto.getImageUrl();
+        ControladorImagenes controladorImagenes = new ControladorImagenes(context);
+        controladorImagenes.cargarImagenDesdeUrl(imageUrl, holder.imagenProducto);
         // Manejo de clics en el ítem
         holder.itemView.setOnClickListener(v -> listener.onProductoClick(producto));
     }
@@ -47,9 +56,11 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
     public static class ProductoViewHolder extends RecyclerView.ViewHolder {
         // Referencias a los elementos de la vista
         TextView nombreProducto;
+        ImageView imagenProducto;
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombreProducto = itemView.findViewById(R.id.nombreProducto);
+            imagenProducto = itemView.findViewById(R.id.imagenProducto);
         }
     }
 

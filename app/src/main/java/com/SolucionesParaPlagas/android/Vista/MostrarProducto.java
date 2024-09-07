@@ -2,6 +2,8 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import com.example.sol.R;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -117,8 +119,13 @@ public class MostrarProducto extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
-        sesion.limpiarSesion();
+    private boolean irACerrarSesion(View v) {
+        Intent intent = new Intent(MostrarProducto.this, PaginaInicio.class);
+        if (sesion != null) {
+            sesion.limpiarSesion();
+        }
+        startActivity(intent);
+        return true;
     }
 
     // Método para añadir el producto al carrito
