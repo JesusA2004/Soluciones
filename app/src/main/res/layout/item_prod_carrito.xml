@@ -51,8 +51,19 @@
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="2dp" />
-
         </LinearLayout>
+
+        <!-- Imagen para eliminar producto (X) -->
+        <ImageView
+            android:id="@+id/eliminarProducto"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/iconox_1"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Eliminar producto"
+            android:layout_marginStart="8dp"/>
     </LinearLayout>
 
 </FrameLayout>

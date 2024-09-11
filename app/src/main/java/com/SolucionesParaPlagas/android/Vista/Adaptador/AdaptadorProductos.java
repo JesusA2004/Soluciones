@@ -1,19 +1,16 @@
 package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
 import java.util.List;
-
-import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
-import com.example.sol.R;
-
-import android.content.Context;
-import android.util.Log;
 import android.view.View;
+import com.example.sol.R;
+import android.content.Context;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
+import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.ProductoViewHolder> {

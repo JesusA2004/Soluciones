@@ -1,21 +1,16 @@
 package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
-import com.example.sol.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import android.content.Context;
-import android.util.Log;
+import com.example.sol.R;
+import java.util.HashMap;
 import android.view.View;
+import java.util.ArrayList;
+import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.LayoutInflater;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
+import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
@@ -23,13 +18,15 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.CarritoViewHolder> {
 
-    HashMap<String, Integer> carrito = new HashMap<>();
-    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
     private Context context;
+    private final OnProductoCarritoClickListener listener;
+    private HashMap<String, Integer> carrito = new HashMap<>();
+    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
 
-    public AdaptadorCarrito(HashMap<String, Integer> carrito,Context context) {
+    public AdaptadorCarrito(HashMap<String, Integer> carrito, Context context, AdaptadorCarrito.OnProductoCarritoClickListener listener) {
         this.carrito = carrito;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -56,6 +53,17 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Carr
         String imageUrl = producto.getImageUrl();
         ControladorImagenes controladorImagenes = new ControladorImagenes(context);
         controladorImagenes.cargarImagenDesdeUrl(imageUrl, holder.imagenCarrito);
+        holder.itemView.setOnClickListener(v -> listener.onProductoClick(producto));
+        // Manejar clic en el icono de eliminar para eliminar el producto del carrito
+        holder.iconoEliminar.setOnClickListener(v -> {
+            // Llamar al listener para eliminar el producto
+            listener.onProductoEliminarClick(idProducto);
+        });
+    }
+
+    public interface OnProductoCarritoClickListener {
+        void onProductoClick(Producto producto);
+        void onProductoEliminarClick(String idProducto);
     }
 
     @Override
@@ -66,17 +74,16 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Carr
     public static class CarritoViewHolder extends RecyclerView.ViewHolder {
         // Referencias a los elementos de la vista
         TextView nombreProducto, cantidadProducto, pesoProducto;
-        ImageView imagenCarrito;
+        ImageView imagenCarrito, iconoEliminar;
         public CarritoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombreProducto = itemView.findViewById(R.id.nombreProducto);
             cantidadProducto = itemView.findViewById(R.id.cantidadProducto);
             pesoProducto = itemView.findViewById(R.id.pesoProducto);
             imagenCarrito = itemView.findViewById(R.id.imagenProducto);
+            iconoEliminar = itemView.findViewById(R.id.eliminarProducto);
         }
     }
-
-
 
 }
 
