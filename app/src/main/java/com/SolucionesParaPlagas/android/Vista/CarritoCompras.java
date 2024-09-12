@@ -1,16 +1,13 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
 import com.example.sol.R;
 import java.util.HashMap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
@@ -29,6 +26,7 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrito.OnProductoCarritoClickListener{
 
     private Button btnCotizacion;
+    private Producto productoSeleccionado = new Producto();
     private TextView txtCantidad;
     private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas;
     private TextView textoCargando, txtMsjB;
@@ -74,26 +72,12 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         btnMenu.setOnClickListener(this::irAMenu);
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
         btnCotizacion.setOnClickListener(this::cotizacion);
-        btnMas.setOnClickListener(this::incrementarCantidad);
-        btnMenos.setOnClickListener(this::decrementarCantidad);
     }
 
     private void configurarRecyclerView() {
         adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerCarrito(), this,this);
         recyclerViewCarrito.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewCarrito.setAdapter(adaptadorCarrito);
-    }
-
-    private void incrementarCantidad(View v){
-        int cantidad = Integer.parseInt(txtCantidad.getText().toString());
-        cantidad += 1;
-        txtCantidad.setText(String.valueOf(cantidad));
-    }
-
-    private void decrementarCantidad(View v){
-        int cantidad = Integer.parseInt(txtCantidad.getText().toString());
-        cantidad -= 1;
-        txtCantidad.setText(String.valueOf(cantidad));
     }
 
     private void regresarAProductos(View v){
@@ -206,12 +190,36 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
 
     @Override
     public void onProductoClick(Producto producto){
+        productoSeleccionado = producto;
         modificarCantidad.setVisibility(View.VISIBLE);
         btnMenos.setVisibility(View.VISIBLE);
         btnMas.setVisibility(View.VISIBLE);
         txtMsjB.setVisibility(View.VISIBLE);
         txtCantidad.setVisibility(View.VISIBLE);
         txtCantidad.setText(String.valueOf(controladorCarrito.obtenerCantidadProducto(producto.getID())));
+        // Listener para modificar cantidad
+        btnMas.setOnClickListener(this::incrementarCantidad);
+        btnMenos.setOnClickListener(this::decrementarCantidad);
+    }
+
+    private void incrementarCantidad(View v){
+        int cantidad = Integer.parseInt(txtCantidad.getText().toString());
+        cantidad += 1;
+        txtCantidad.setText(String.valueOf(cantidad));
+        modificarCantidad(productoSeleccionado.getID(), cantidad);
+    }
+
+    private void decrementarCantidad(View v){
+        int cantidad = Integer.parseInt(txtCantidad.getText().toString());
+        cantidad -= 1;
+        txtCantidad.setText(String.valueOf(cantidad));
+        modificarCantidad(productoSeleccionado.getID(), cantidad);
+    }
+
+    private void modificarCantidad(String idProducto, int nuevaCantidad){
+        controladorCarrito.actualizarCantidad(idProducto, nuevaCantidad);
+        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerCarrito(), this,this);
+        recyclerViewCarrito.setAdapter(adaptadorCarrito);
     }
 
     @Override
