@@ -75,14 +75,12 @@ public class Login extends AppCompatActivity {
                         if(clienteIndividual != null){
                             if(clienteIndividual.getPhone() != null){
                                 if(clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())){
-                                    Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
                                     irAMenu(v);
                                 }else{
                                     Toast.makeText(Login.this, "Error, el telefono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
                                 }
                             }else{
                                 if(usuarioTelefono.getText().toString().equals("7771111111")){
-                                    Toast.makeText(Login.this, "El cliente ingresado es:\n" + clienteIndividual.toString(), Toast.LENGTH_SHORT).show();
                                     irAMenu(v);
                                 } else {
                                     Toast.makeText(Login.this, "Error, el telefono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();

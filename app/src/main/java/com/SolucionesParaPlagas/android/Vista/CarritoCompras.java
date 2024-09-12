@@ -27,9 +27,8 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
 
     private Button btnCotizacion;
     private Producto productoSeleccionado = new Producto();
-    private TextView txtCantidad;
-    private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas;
-    private TextView textoCargando, txtMsjB;
+    private TextView txtCantidad, txtMsjB;
+    private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private View modificarCantidad;
     private ControladorImagenes controladorImagenes;
     private Sesion sesion = new Sesion();
@@ -52,19 +51,15 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         btnVerProductos = findViewById(R.id.iconoVerProductos);
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
-        textoCargando = findViewById(R.id.textoCargando);
         recyclerViewCarrito = findViewById(R.id.listaCarrito);
         modificarCantidad = findViewById(R.id.vistaModificarCantidad);
         btnMenos = findViewById(R.id.iconomenos_1);
         btnMas = findViewById(R.id.iconomas_1);
         txtMsjB = findViewById(R.id.txtMsjB);
         txtCantidad = findViewById(R.id.editxtCantidad);
+        btnBajarCantidad = findViewById(R.id.flechaAbajo);
         // Objetos que despertaremos cuando se toque un objeto del carrito
-        modificarCantidad.setVisibility(View.GONE);
-        btnMenos.setVisibility(View.GONE);
-        btnMas.setVisibility(View.GONE);
-        txtMsjB.setVisibility(View.GONE);
-        txtCantidad.setVisibility(View.GONE);
+        ocultarVistaCantidad();
     }
 
     private void configurarBotones() {
@@ -86,13 +81,11 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void cotizacion(View v) {
-        textoCargando.setVisibility(View.VISIBLE);
         new Thread(() -> {
             try {
                 if (mandarCorreo()) {
                     Thread.sleep(1500);
                     runOnUiThread(() -> {
-                        textoCargando.setVisibility(View.GONE);
                         controladorCarrito.vaciarCarrito();
                         notificarUsuario();
                     });
@@ -104,7 +97,6 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 runOnUiThread(() -> {
-                    textoCargando.setVisibility(View.GONE);
                     Toast.makeText(this, "Ocurrió un error durante la espera. Inténtalo de nuevo.", Toast.LENGTH_LONG).show();
                 });
             }
@@ -200,20 +192,40 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         // Listener para modificar cantidad
         btnMas.setOnClickListener(this::incrementarCantidad);
         btnMenos.setOnClickListener(this::decrementarCantidad);
+        btnBajarCantidad.setOnClickListener(this::ocultarModificarCantidad);
+    }
+
+    private void ocultarModificarCantidad(View v){
+        ocultarVistaCantidad();
+    }
+
+    private void ocultarVistaCantidad(){
+        modificarCantidad.setVisibility(View.GONE);
+        btnMenos.setVisibility(View.GONE);
+        btnMas.setVisibility(View.GONE);
+        txtMsjB.setVisibility(View.GONE);
+        txtCantidad.setVisibility(View.GONE);
+        btnBajarCantidad.setVisibility(View.GONE);
     }
 
     private void incrementarCantidad(View v){
         int cantidad = Integer.parseInt(txtCantidad.getText().toString());
         cantidad += 1;
-        txtCantidad.setText(String.valueOf(cantidad));
-        modificarCantidad(productoSeleccionado.getID(), cantidad);
+        if(cantidad < 10000){
+            txtCantidad.setText(String.valueOf(cantidad));
+            modificarCantidad(productoSeleccionado.getID(), cantidad);
+        }else{
+            Toast.makeText(getApplicationContext(), "No puedes agregar más productos al carrito", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void decrementarCantidad(View v){
         int cantidad = Integer.parseInt(txtCantidad.getText().toString());
         cantidad -= 1;
-        txtCantidad.setText(String.valueOf(cantidad));
-        modificarCantidad(productoSeleccionado.getID(), cantidad);
+        if(cantidad >= 1){
+            txtCantidad.setText(String.valueOf(cantidad));
+            modificarCantidad(productoSeleccionado.getID(), cantidad);
+        }
     }
 
     private void modificarCantidad(String idProducto, int nuevaCantidad){

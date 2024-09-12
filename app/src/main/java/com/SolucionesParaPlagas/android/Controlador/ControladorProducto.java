@@ -1,7 +1,7 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioProducto;
@@ -27,10 +27,11 @@ public class ControladorProducto{
     }
 
     public List<Producto> productosParcial(String nombre){
+        nombre = nombre.toLowerCase();
         List<Producto> productos = new ArrayList<>();
         for(Producto producto : repositorioProducto.getDatos()){
             // Busqueda parcial por nombre del producto
-            if(producto.getTitle().startsWith(nombre)){
+            if(producto.getTitle().toLowerCase().contains(nombre)){
                 productos.add(producto);
             }
         }
