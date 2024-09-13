@@ -88,10 +88,10 @@
         android:src="@drawable/iconomenu_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/decoracionbusqueda3"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/iconocompra"
@@ -144,10 +144,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintVertical_bias="0.98" />
 
     <TextView
         android:id="@+id/opcCerrarS"

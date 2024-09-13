@@ -48,17 +48,6 @@
 			app:layout_constraintTop_toTopOf="parent" />
 
 		<ImageView
-			android:id="@+id/flechaatras"
-			android:layout_width="39dp"
-			android:layout_height="46dp"
-			android:layout_marginStart="24dp"
-			android:layout_marginTop="28dp"
-			android:contentDescription="@string/flechaRegresar"
-			android:src="@drawable/flecharegreso"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-
-		<ImageView
 			android:id="@+id/logotipsinfondo"
 			android:layout_width="157dp"
 			android:layout_height="98dp"
@@ -72,22 +61,11 @@
 			app:layout_constraintVertical_bias="0.264" />
 
 		<ImageView
-			android:id="@+id/iconosiguiente"
-			android:layout_width="33dp"
-			android:layout_height="37dp"
-			android:layout_marginStart="316dp"
-			android:layout_marginTop="733dp"
-			android:contentDescription="@string/iconoSiguiente"
-			android:src="@drawable/iconosiguiente"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-
-		<ImageView
 			android:id="@+id/iconoatras"
-			android:layout_width="33dp"
-			android:layout_height="37dp"
-			android:layout_marginStart="66dp"
-			android:layout_marginTop="733dp"
+			android:layout_width="35dp"
+			android:layout_height="41dp"
+			android:layout_marginStart="28dp"
+			android:layout_marginTop="24dp"
 			android:contentDescription="@string/iconoAtras"
 			android:src="@drawable/iconoatras"
 			app:layout_constraintStart_toStartOf="parent"
@@ -305,6 +283,20 @@
 			android:src="@drawable/comboboxt"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
+
+		<Button
+			android:id="@+id/btnSubir"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/bg_boton_redondo"
+			android:text="Registrarme"
+			android:textColor="@color/white"
+			app:layout_constraintBottom_toBottomOf="@+id/frame"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.541"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/frame"
+			app:layout_constraintVertical_bias="0.948" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 

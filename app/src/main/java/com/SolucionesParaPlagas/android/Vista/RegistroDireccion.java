@@ -1,29 +1,26 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.content.Intent;
+import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import android.widget.Spinner;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.example.sol.R;
+import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 
 public class RegistroDireccion extends AppCompatActivity {
 
-    private ImageView botonMenu;
     private ImageView botonRegresar;
-    private ImageView botonSiguiente;
-    private EditText usuarioCalle;
-    private EditText usuarioColonia;
-    private EditText usuarioLocalidad;
-    private EditText usuarioNoInterior;
-    private EditText usuarioNoExterior;
-    private EditText usuarioCP;
-    private EditText usuarioMunicipio;
+    private EditText usuarioCalle, usuarioColonia, usuarioLocalidad, usuarioNoInterior, usuarioNoExterior, usuarioCP, usuarioMunicipio;
     private Spinner usuarioEstado;
+    private Button btnRegistrar;
 
     // Datos recibidos de la actividad anterior
     private String rfc, razonSocial, telefono, correo;
@@ -43,9 +40,8 @@ public class RegistroDireccion extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-        botonMenu = findViewById(R.id.flechaatras);
         botonRegresar = findViewById(R.id.iconoatras);
-        botonSiguiente = findViewById(R.id.iconosiguiente); // Añadimos el botón para ir a la siguiente actividad
+        btnRegistrar = findViewById(R.id.btnSubir);
         usuarioCalle = findViewById(R.id.entradaCalle);
         usuarioColonia = findViewById(R.id.entradaColonia);
         usuarioLocalidad = findViewById(R.id.entradaLocalidad);
@@ -69,8 +65,7 @@ public class RegistroDireccion extends AppCompatActivity {
 
     private void configurarBotones() {
         botonRegresar.setOnClickListener(this::regresarRegistrarDatos);
-        botonSiguiente.setOnClickListener(this::irASubirDocumento);
-        botonMenu.setOnClickListener(this::regresarAPaginaInicio);
+        btnRegistrar.setOnClickListener(this::mandarRegistro);
     }
 
     private void regresarRegistrarDatos(View v){
@@ -107,26 +102,57 @@ public class RegistroDireccion extends AppCompatActivity {
         return true;
     }
 
-    private void irASubirDocumento(View v) {
+    private void mandarRegistro(View v){
         if (validarCampos()) {
-            Intent intent = new Intent(RegistroDireccion.this, SubirDocumento.class);
-            // Pasamos los datos de RegistroDatos a la siguiente actividad
-            intent.putExtra("RFC", rfc);
-            intent.putExtra("RazonSocial", razonSocial);
-            intent.putExtra("Telefono", telefono);
-            intent.putExtra("Correo", correo);
-            // Pasamos los datos ingresados en RegistroDireccion
-            intent.putExtra("Calle", usuarioCalle.getText().toString());
-            intent.putExtra("Colonia", usuarioColonia.getText().toString());
-            intent.putExtra("Localidad", usuarioLocalidad.getText().toString());
-            intent.putExtra("NoInterior", usuarioNoInterior.getText().toString());
-            intent.putExtra("NoExterior", usuarioNoExterior.getText().toString());
-            intent.putExtra("CP", usuarioCP.getText().toString());
-            intent.putExtra("Municipio", usuarioMunicipio.getText().toString());
-            intent.putExtra("Estado", usuarioEstado.getSelectedItem().toString());
-            startActivity(intent);
-            finish();
+            notificarUsuario();
+            if (mandarCorreo()) {
+                regresarAPaginaInicio(v);
+            }
         }
     }
-    
+
+    private boolean mandarCorreo(){
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Registro de Cliente en la APP");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, construirMensaje());
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
+            return true;
+        } catch (Exception e) {
+            Toast.makeText(this, "Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
+    private void notificarUsuario(){
+        new AlertDialog.Builder(this)
+                .setTitle("Nota")
+                .setMessage("Te solicitamos confirmar tus datos perosnales y adjuntes en el correo electronico el documento que valide tu situación fiscal para completar tu registro con nosotros.¡Gracias!.")
+                .setPositiveButton("OK", null)
+                .show();
+    }
+
+    private String construirMensaje(){
+        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
+        ClienteIndividual clienteIndividual = controladorClienteIndividual.obtenerCliente();
+        StringBuilder mensajeCorreo = new StringBuilder();
+        mensajeCorreo.append("Nombre cliente: " + razonSocial+",\n\n");
+        mensajeCorreo.append("RFC: " + rfc+",\n\n");
+        mensajeCorreo.append("Telefono: " + telefono+",\n\n");
+        mensajeCorreo.append("Correo: " + correo+",\n\n");
+        mensajeCorreo.append("------------------------------------------"+"\n\n");
+        mensajeCorreo.append("Dirección del cliente: " + "\n\n");
+        mensajeCorreo.append("Calle: " + usuarioCalle+",\n\n");
+        mensajeCorreo.append("Colonia: " + usuarioColonia+",\n\n");
+        mensajeCorreo.append("Localidad: " + usuarioLocalidad+",\n\n");
+        mensajeCorreo.append("No. Interior: " + usuarioNoInterior+",\n\n");
+        mensajeCorreo.append("No. Exterior: " + usuarioNoExterior+",\n\n");
+        mensajeCorreo.append("Codigo Postal: " + usuarioCP+",\n\n");
+        mensajeCorreo.append("Municipio: " + usuarioMunicipio+",\n\n");
+        mensajeCorreo.append("Estado: " + usuarioEstado.getSelectedItem().toString()+",\n\n");
+        return mensajeCorreo.toString();
+    }
+
 }
