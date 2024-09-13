@@ -9,11 +9,10 @@ import android.widget.Spinner;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
 
 public class RegistroDireccion extends AppCompatActivity {
 
@@ -105,20 +104,27 @@ public class RegistroDireccion extends AppCompatActivity {
     private void mandarRegistro(View v){
         if (validarCampos()) {
             notificarUsuario();
-            if (mandarCorreo()) {
-                regresarAPaginaInicio(v);
-            }
         }
     }
 
-    private boolean mandarCorreo(){
+    private boolean mandarCorreo(View v){
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Registro de Cliente en la APP");
         emailIntent.putExtra(Intent.EXTRA_TEXT, construirMensaje());
         try {
-            startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
+            new Thread(() -> {
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                runOnUiThread(() -> {
+                    regresarAPaginaInicio(v);
+                });
+            }).start();
             return true;
         } catch (Exception e) {
             Toast.makeText(this, "Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
@@ -130,13 +136,16 @@ public class RegistroDireccion extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Nota")
                 .setMessage("Te solicitamos confirmar tus datos perosnales y adjuntes en el correo electronico el documento que valide tu situación fiscal para completar tu registro con nosotros.¡Gracias!.")
-                .setPositiveButton("OK", null)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mandarCorreo(null);
+                    }
+                })
                 .show();
     }
 
     private String construirMensaje(){
-        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
-        ClienteIndividual clienteIndividual = controladorClienteIndividual.obtenerCliente();
         StringBuilder mensajeCorreo = new StringBuilder();
         mensajeCorreo.append("Nombre cliente: " + razonSocial+",\n\n");
         mensajeCorreo.append("RFC: " + rfc+",\n\n");
@@ -144,13 +153,13 @@ public class RegistroDireccion extends AppCompatActivity {
         mensajeCorreo.append("Correo: " + correo+",\n\n");
         mensajeCorreo.append("------------------------------------------"+"\n\n");
         mensajeCorreo.append("Dirección del cliente: " + "\n\n");
-        mensajeCorreo.append("Calle: " + usuarioCalle+",\n\n");
-        mensajeCorreo.append("Colonia: " + usuarioColonia+",\n\n");
-        mensajeCorreo.append("Localidad: " + usuarioLocalidad+",\n\n");
-        mensajeCorreo.append("No. Interior: " + usuarioNoInterior+",\n\n");
-        mensajeCorreo.append("No. Exterior: " + usuarioNoExterior+",\n\n");
-        mensajeCorreo.append("Codigo Postal: " + usuarioCP+",\n\n");
-        mensajeCorreo.append("Municipio: " + usuarioMunicipio+",\n\n");
+        mensajeCorreo.append("Calle: " + usuarioCalle.getText().toString()+",\n\n");
+        mensajeCorreo.append("Colonia: " + usuarioColonia.getText().toString()+",\n\n");
+        mensajeCorreo.append("Localidad: " + usuarioLocalidad.getText().toString()+",\n\n");
+        mensajeCorreo.append("No. Interior: " + usuarioNoInterior.getText().toString()+",\n\n");
+        mensajeCorreo.append("No. Exterior: " + usuarioNoExterior.getText().toString()+",\n\n");
+        mensajeCorreo.append("Codigo Postal: " + usuarioCP.getText().toString()+",\n\n");
+        mensajeCorreo.append("Municipio: " + usuarioMunicipio.getText().toString()+",\n\n");
         mensajeCorreo.append("Estado: " + usuarioEstado.getSelectedItem().toString()+",\n\n");
         return mensajeCorreo.toString();
     }
