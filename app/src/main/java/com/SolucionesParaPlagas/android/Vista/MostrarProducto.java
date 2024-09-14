@@ -2,8 +2,6 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import com.example.sol.R;
-
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -23,7 +21,6 @@ public class MostrarProducto extends AppCompatActivity {
     private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
     private TextView nombreProducto,descripcionProducto, pesoProducto;
     private EditText cantidadProducto;
-    private Sesion sesion = new Sesion();
     private Button botonAnadirCarrito;
     private Producto producto = new Producto();
     private int cantidadPro;
@@ -119,13 +116,9 @@ public class MostrarProducto extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean irACerrarSesion(View v) {
-        Intent intent = new Intent(MostrarProducto.this, PaginaInicio.class);
-        if (sesion != null) {
-            sesion.limpiarSesion();
-        }
-        startActivity(intent);
-        return true;
+    private void irACerrarSesion(View v) {
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
     // Método para añadir el producto al carrito
@@ -149,25 +142,5 @@ public class MostrarProducto extends AppCompatActivity {
         // imprimirCarrito();
         Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
     }
-
-    /*
-    private void imprimirCarrito() {
-        if (carrito.isEmpty()) {
-            Toast.makeText(this, "El carrito está vacío.", Toast.LENGTH_LONG).show();
-        } else {
-            StringBuilder contenidoCarrito = new StringBuilder();
-            for (HashMap.Entry<String, Integer> entry : carrito.entrySet()) {
-                String idProducto = entry.getKey();
-                int cantidad = entry.getValue();
-                contenidoCarrito.append("ID Producto: ").append(idProducto)
-                        .append(" - Cantidad: ").append(cantidad)
-                        .append("\n");
-            }
-            // Mostrar el contenido del carrito en un Toast o Log
-            Toast.makeText(this, contenidoCarrito.toString(), Toast.LENGTH_LONG).show();
-            // También puedes usar Log para registros más detallados
-            Log.d("Carrito", contenidoCarrito.toString());
-        }
-    }*/
 
 }

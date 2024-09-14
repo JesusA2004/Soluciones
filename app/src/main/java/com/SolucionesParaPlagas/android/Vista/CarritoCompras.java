@@ -31,7 +31,6 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private View modificarCantidad;
     private ControladorImagenes controladorImagenes;
-    private Sesion sesion = new Sesion();
     private RecyclerView recyclerViewCarrito;
     private AdaptadorCarrito adaptadorCarrito;
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
@@ -181,14 +180,9 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
-        limpiarSesion();
-        Intent intent = new Intent(CarritoCompras.this, PaginaInicio.class);
-        startActivity(intent);
-    }
-
-    private void limpiarSesion(){
-        sesion.limpiarSesion();
+    private void irACerrarSesion(View v) {
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
     private void notificarUsuario(){

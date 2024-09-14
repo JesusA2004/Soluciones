@@ -18,7 +18,6 @@ import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
 public class MostrarProductos extends AppCompatActivity implements AdaptadorProductos.OnProductoClickListener {
 
     RecyclerView productos;
-    Sesion sesion = new Sesion();
     private SearchView searchView;
     private AdaptadorProductos adaptador;
     private ImageView btnCerrarSesion, btnMenu, btnCarrito;
@@ -90,9 +89,8 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     }
 
     private void irACerrarSesion(View v) {
-        sesion.limpiarSesion();
-        Intent intent = new Intent(MostrarProductos.this, PaginaInicio.class);
-        startActivity(intent);
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
     private void irACarrito(View v) {

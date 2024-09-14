@@ -181,11 +181,8 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private boolean cerrarSesion(MenuItem item) {
-        Intent intent = new Intent(MenuPrincipal.this, PaginaInicio.class);
-        if (sesion != null) {
-            sesion.limpiarSesion();
-        }
-        startActivity(intent);
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
         return true;
     }
 

@@ -102,14 +102,9 @@ public class MostrarPedidos extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
-        limpiarSesion();
-        Intent intent = new Intent(MostrarPedidos.this, PaginaInicio.class);
-        startActivity(intent);
-    }
-
-    private void limpiarSesion(){
-        sesion.limpiarSesion();
+    private void irACerrarSesion(View v) {
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
 }

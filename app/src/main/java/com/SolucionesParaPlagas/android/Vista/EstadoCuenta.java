@@ -1,7 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.example.sol.R;
 import android.view.View;
 import android.content.Intent;
@@ -9,8 +8,9 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 
 public class EstadoCuenta extends AppCompatActivity {
 
@@ -18,7 +18,6 @@ public class EstadoCuenta extends AppCompatActivity {
     TextView txtMetodoP;
     ImageView btnMenu, btnCerrarSesion, btnProductos;
     DetalleCliente clienteCompleto = new DetalleCliente();
-    Sesion sesion = new Sesion();
     Validaciones validaciones = new Validaciones();
 
     @Override
@@ -63,14 +62,9 @@ public class EstadoCuenta extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
-        limpiarSesion();
-        Intent intent = new Intent(EstadoCuenta.this, PaginaInicio.class);
-        startActivity(intent);
-    }
-
-    private void limpiarSesion(){
-        sesion.limpiarSesion();
+    private void irACerrarSesion(View v) {
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
     private void mostrarDatos(){

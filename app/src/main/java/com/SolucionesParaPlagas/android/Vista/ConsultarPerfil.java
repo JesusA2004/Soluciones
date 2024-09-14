@@ -1,22 +1,20 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.example.sol.R;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.content.Intent;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
+import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
 public class ConsultarPerfil extends AppCompatActivity {
 
     Button btnGuardarCambios;
     ImageView btnProductos, btnMenu, btnCerrarSesion;
-    Sesion sesion = new Sesion();
     DetalleCliente clienteCompleto = new DetalleCliente();
 
     @Override
@@ -57,14 +55,9 @@ public class ConsultarPerfil extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
-        limpiarSesion();
-        Intent intent = new Intent(ConsultarPerfil.this, PaginaInicio.class);
-        startActivity(intent);
-    }
-
-    private void limpiarSesion(){
-        sesion.limpiarSesion();
+    private void irACerrarSesion(View v) {
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
 }

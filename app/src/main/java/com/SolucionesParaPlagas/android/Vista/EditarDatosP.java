@@ -2,9 +2,6 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import android.view.View;
-
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.example.sol.R;
 import android.widget.Button;
 import android.content.Intent;
@@ -13,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
+import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
 public class EditarDatosP extends AppCompatActivity {
 
@@ -21,7 +20,6 @@ public class EditarDatosP extends AppCompatActivity {
     TextView tit;
     Button btnConfirmar;
     ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
-    Sesion sesion = new Sesion();
     private DetalleCliente clienteCompleto = new DetalleCliente();
 
     @Override
@@ -75,14 +73,9 @@ public class EditarDatosP extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void irACerrarSesion(View v){
-        limpiarSesion();
-        Intent intent = new Intent(EditarDatosP.this, PaginaInicio.class);
-        startActivity(intent);
-    }
-
-    private void limpiarSesion(){
-        sesion.limpiarSesion();
+    private void irACerrarSesion(View v) {
+        Sesion sesion = new Sesion();
+        sesion.confirmarCerrarSesion(this);
     }
 
     private void regresarAEditarPerfil(View v){
