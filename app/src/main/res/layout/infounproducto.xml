@@ -51,10 +51,10 @@
         android:src="@drawable/iconomenu_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.685"
+        app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.97" />
 
     <ImageView
         android:id="@+id/iconoCarritoCompra"
@@ -64,10 +64,10 @@
         android:src="@drawable/iconocompra_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.975" />
 
     <ImageView
         android:id="@+id/iconoCerrarSesion"
@@ -77,10 +77,10 @@
         android:src="@drawable/iconocerrarsesion__1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.964" />
+        app:layout_constraintVertical_bias="0.97" />
 
     <ImageView
         android:id="@+id/iconoVerProductos"
@@ -90,10 +90,10 @@
         android:src="@drawable/iconolistaproductos_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.966" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <TextView
         android:id="@+id/txtPeso"
@@ -139,19 +139,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
 
-    <TextView
-        android:id="@+id/txtDescripcion"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/txtDescripcion"
-        android:textColor="#353232"
-        android:textSize="14sp"
+    <ScrollView
+        android:layout_width="296dp"
+        android:layout_height="74dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintVertical_bias="0.598">
+
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="@string/txtDescripcion"
+            android:textColor="#353232"
+            android:textSize="14sp" />
+    </ScrollView>
 
     <EditText
         android:id="@+id/entradaCantidad"

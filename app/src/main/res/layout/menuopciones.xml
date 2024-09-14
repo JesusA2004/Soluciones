@@ -118,8 +118,8 @@
 					android:layout_marginStart="70dp"
 					android:layout_marginTop="200dp"
 					android:fontFamily="@font/libre_franklin_semibold"
-					android:textSize="15sp"
-					android:textColor="@color/black"/>
+					android:textColor="@color/black"
+					android:textSize="15sp" />
 
 				<ImageView
 					android:id="@+id/iconoestadocuenta"
@@ -159,21 +159,30 @@
 
 				<ImageView
 					android:id="@+id/logotipsinfondo_ek1"
-					android:src="@drawable/logotipsinfondo_ek1"
+					android:layout_width="92dp"
+					android:layout_height="95dp"
+					android:layout_alignParentStart="true"
+					android:layout_alignParentTop="true"
+					android:layout_alignParentEnd="true"
+					android:layout_alignParentBottom="true"
+					android:layout_marginStart="161dp"
+					android:layout_marginTop="31dp"
+					android:layout_marginEnd="158dp"
+					android:layout_marginBottom="697dp"
 					android:contentDescription="logotipsinfondo_ek1"
-					android:layout_marginStart="174dp"
-					android:layout_marginTop="49dp"
-					android:layout_width="72dp"
-					android:layout_height="82dp" />
+					android:src="@drawable/logotipsinfondo_ek1" />
 
 				<ImageView
 					android:id="@+id/letraslogosinfondo"
-					android:src="@drawable/letraslogosinfondo"
-					android:contentDescription="letraslogosinfondo"
-					android:layout_marginStart="144dp"
+					android:layout_width="133dp"
+					android:layout_height="79dp"
+					android:layout_alignParentStart="true"
+					android:layout_alignParentEnd="true"
+					android:layout_marginStart="141dp"
 					android:layout_marginTop="121dp"
-					android:layout_width="137dp"
-					android:layout_height="66dp" />
+					android:layout_marginEnd="137dp"
+					android:contentDescription="letraslogosinfondo"
+					android:src="@drawable/letraslogosinfondo" />
 
 				<ProgressBar
 					android:id="@+id/cargaIcono"

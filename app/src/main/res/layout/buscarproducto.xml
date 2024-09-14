@@ -8,14 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaProductos"
-        android:layout_width="304dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="313dp"
+        android:layout_height="551dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconocompra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView3"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintTop_toBottomOf="@+id/decoracionbusqueda3"
+        app:layout_constraintVertical_bias="0.5" />
 
     <ImageView
         android:id="@+id/decoracionbusqueda3"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="decoracionbusqueda"
         android:src="@drawable/decoracionbusqueda"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/iconosopciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,8 +76,10 @@
         android:background="@drawable/iconosopciones_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/iconomenu"
@@ -88,10 +90,10 @@
         android:src="@drawable/iconomenu_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/decoracionbusqueda3"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintVertical_bias="0.914" />
 
     <ImageView
         android:id="@+id/iconocompra"
@@ -101,10 +103,10 @@
         android:src="@drawable/iconocompra_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.174"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintTop_toTopOf="@+id/iconosopciones"
+        app:layout_constraintVertical_bias="0.176" />
 
     <ImageView
         android:id="@+id/iconocerrarsesion"
@@ -114,10 +116,10 @@
         android:src="@drawable/iconocerrarsesion__1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.867"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951" />
+        app:layout_constraintVertical_bias="0.958" />
 
     <TextView
         android:id="@+id/opcCarrito"
@@ -129,10 +131,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintTop_toTopOf="@+id/iconosopciones"
+        app:layout_constraintVertical_bias="0.683" />
 
     <TextView
         android:id="@+id/opcMenu"
@@ -147,7 +149,7 @@
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <TextView
         android:id="@+id/opcCerrarS"
@@ -159,9 +161,9 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

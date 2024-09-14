@@ -25,9 +25,9 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual
 
 public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrito.OnProductoCarritoClickListener{
 
-    private Button btnCotizacion;
+    private Button btnCotizacion, btnCatalogo;
     private Producto productoSeleccionado = new Producto();
-    private TextView txtCantidad, txtMsjB;
+    private TextView txtCantidad, txtMsjB, txtCarritoV;
     private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private View modificarCantidad;
     private ControladorImagenes controladorImagenes;
@@ -58,8 +58,32 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         txtMsjB = findViewById(R.id.txtMsjB);
         txtCantidad = findViewById(R.id.editxtCantidad);
         btnBajarCantidad = findViewById(R.id.flechaAbajo);
+        btnCatalogo = findViewById(R.id.btnPedido);
+        txtCarritoV = findViewById(R.id.txtCarritoVacio);
+        despertarElementos();
         // Objetos que despertaremos cuando se toque un objeto del carrito
         ocultarVistaCantidad();
+    }
+
+    private void despertarElementos(){
+        if(controladorCarrito.obtenerCarrito().isEmpty()){
+            btnCotizacion.setVisibility(View.GONE);
+        }else{
+            btnCatalogo.setVisibility(View.GONE);
+            txtCarritoV.setVisibility(View.GONE);
+        }
+    }
+
+    private void actualizarBotones(){
+        if(controladorCarrito.obtenerCarrito().isEmpty()){
+            btnCotizacion.setVisibility(View.GONE);
+            btnCatalogo.setVisibility(View.VISIBLE);
+            txtCarritoV.setVisibility(View.VISIBLE);
+        }else{
+            btnCatalogo.setVisibility(View.GONE);
+            txtCarritoV.setVisibility(View.GONE);
+            btnCotizacion.setVisibility(View.VISIBLE);
+        }
     }
 
     private void configurarBotones() {
@@ -67,6 +91,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         btnMenu.setOnClickListener(this::irAMenu);
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
         btnCotizacion.setOnClickListener(this::cotizacion);
+        btnCatalogo.setOnClickListener(this::regresarAProductos);
     }
 
     private void configurarRecyclerView() {
@@ -188,6 +213,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         btnMas.setVisibility(View.VISIBLE);
         txtMsjB.setVisibility(View.VISIBLE);
         txtCantidad.setVisibility(View.VISIBLE);
+        btnBajarCantidad.setVisibility(View.VISIBLE);
         txtCantidad.setText(String.valueOf(controladorCarrito.obtenerCantidadProducto(producto.getID())));
         // Listener para modificar cantidad
         btnMas.setOnClickListener(this::incrementarCantidad);
@@ -245,6 +271,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         btnMas.setVisibility(View.GONE);
         txtMsjB.setVisibility(View.GONE);
         txtCantidad.setVisibility(View.GONE);
+        actualizarBotones();
     }
 
 }

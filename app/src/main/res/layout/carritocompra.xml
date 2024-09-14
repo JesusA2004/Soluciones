@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <Button
+        android:id="@+id/btnPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:background="@drawable/bg_boton_redondo"
+        android:text="Ir al catálogo de productos"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.572" />
+
     <ImageView
         android:id="@+id/contenedorimagen"
         android:layout_width="426dp"
@@ -26,10 +39,9 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.721" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -211,30 +223,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.993" />
 
-    <ProgressBar
-        android:id="@+id/iconoCargando"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/descripcionProgressBar"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textoCargando"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iconoCargando"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="Cargando su carrito de compras"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:visibility="gone" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaCarrito"
         android:layout_width="327dp"
@@ -247,7 +235,7 @@
         app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contenedorimagen"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.48" />
 
     <ImageView
         android:id="@+id/flechaAbajo"
@@ -260,5 +248,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.908"
         app:srcCompat="@drawable/flechaabajo" />
+
+    <TextView
+        android:id="@+id/txtCarritoVacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu carrito esta vacío"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/vistaModificarCantidad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

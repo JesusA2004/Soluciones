@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Permisos de la app -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permiso para usar el almacenamiento del dispositivo -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +29,7 @@
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarProductos"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MenuPrincipal"
@@ -40,9 +39,7 @@
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarProducto"
-            android:exported="false" />
-        <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.SubirDocumento"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.RegistroDireccion"
@@ -61,11 +58,9 @@
             android:theme="@style/Theme.Sol">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
