@@ -1,33 +1,30 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.PedidoIndividual;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
-import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPedidos;
-import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
+import java.util.List;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorPedido;
+import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPedidos;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.JsonPedido;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonPedido;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-
-import java.util.List;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.PedidoIndividual;
 
 public class MostrarPedidos extends AppCompatActivity {
 
     ImageView btnMenu, btnProductos, btnCerrarSesion;
+    TextView txtMsjCargando;
     Sesion sesion = new Sesion();
     private ProgressBar iconoCarga;
     RecyclerView pedidos;
@@ -51,6 +48,7 @@ public class MostrarPedidos extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         btnProductos = findViewById(R.id.iconoVerProductos);
         iconoCarga = findViewById(R.id.iconoCarga);
+        txtMsjCargando = findViewById(R.id.txtMensajeEspera);
         pedidos = findViewById(R.id.listaPedidos);
         pedidos.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -64,6 +62,7 @@ public class MostrarPedidos extends AppCompatActivity {
     private void cargarPedidos(String idCliente){
         controladorJsonPedido = new ControladorJsonPedido(idCliente);
         iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
+        txtMsjCargando.setVisibility(View.VISIBLE);
         new Thread(() -> {
             controladorJsonPedido.realizarSolicitud();
             try {
@@ -73,6 +72,7 @@ public class MostrarPedidos extends AppCompatActivity {
             }
             runOnUiThread(() -> {
                 iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
+                txtMsjCargando.setVisibility(View.GONE);
                 cargarLista();
             });
         }).start();
