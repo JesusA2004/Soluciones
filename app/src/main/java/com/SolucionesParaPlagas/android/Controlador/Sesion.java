@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import com.SolucionesParaPlagas.android.Vista.Login;
+import com.SolucionesParaPlagas.android.Vista.PaginaInicio;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
 
 public class Sesion {
@@ -22,9 +22,8 @@ public class Sesion {
         controladorCarrito.vaciarCarrito();
     }
 
-    private boolean cerrarSesion() {
+    private void cerrarSesion() {
         limpiarSesion();
-        return true;
     }
 
     // Método para mostrar un cuadro de diálogo y confirmar si el usuario quiere cerrar la sesión
@@ -52,7 +51,7 @@ public class Sesion {
 
     // Redirigir al login
     private void irALogin(Context context) {
-        Intent intent = new Intent(context, Login.class);
+        Intent intent = new Intent(context, PaginaInicio.class);
         context.startActivity(intent);
     }
 

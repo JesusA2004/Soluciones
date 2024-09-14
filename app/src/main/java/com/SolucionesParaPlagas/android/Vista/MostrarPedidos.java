@@ -5,6 +5,7 @@ import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -23,11 +24,11 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.PedidoIndividual;
 
 public class MostrarPedidos extends AppCompatActivity {
 
-    ImageView btnMenu, btnProductos, btnCerrarSesion;
-    TextView txtMsjCargando;
-    Sesion sesion = new Sesion();
+    private ImageView btnMenu, btnProductos, btnCerrarSesion;
+    private TextView txtMsjCargando, txtPedidosV;
+    private Button btnCatalogo;
     private ProgressBar iconoCarga;
-    RecyclerView pedidos;
+    private RecyclerView pedidos;
     private DetalleCliente clienteCompleto = new DetalleCliente();
     private Controlador<JsonPedido> controladorJsonPedido;
     private ControladorPedido controladorPedido = ControladorPedido.obtenerInstancia();
@@ -49,8 +50,19 @@ public class MostrarPedidos extends AppCompatActivity {
         btnProductos = findViewById(R.id.iconoVerProductos);
         iconoCarga = findViewById(R.id.iconoCarga);
         txtMsjCargando = findViewById(R.id.txtMensajeEspera);
+        btnCatalogo = findViewById(R.id.btnPedido);
+        txtPedidosV = findViewById(R.id.txtPedidosV);
+        btnCatalogo.setVisibility(View.GONE);
+        txtPedidosV.setVisibility(View.GONE);
         pedidos = findViewById(R.id.listaPedidos);
         pedidos.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void despertarElementos(){
+        if(controladorPedido.obtenerRepositorio().isEmpty()){
+            btnCatalogo.setVisibility(View.VISIBLE);
+            txtPedidosV.setVisibility(View.VISIBLE);
+        }
     }
 
     private void inicializarCliente(){
@@ -74,6 +86,7 @@ public class MostrarPedidos extends AppCompatActivity {
                 iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
                 txtMsjCargando.setVisibility(View.GONE);
                 cargarLista();
+                despertarElementos();
             });
         }).start();
     }
@@ -90,6 +103,7 @@ public class MostrarPedidos extends AppCompatActivity {
         btnProductos.setOnClickListener(this::regresarAProductos);
         btnMenu.setOnClickListener(this::irAMenu);
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
+        btnCatalogo.setOnClickListener(this::regresarAProductos);
     }
 
     private void regresarAProductos(View v){
