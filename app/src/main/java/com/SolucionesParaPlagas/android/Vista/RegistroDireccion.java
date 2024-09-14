@@ -1,5 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import android.net.Uri;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
@@ -107,16 +108,30 @@ public class RegistroDireccion extends AppCompatActivity {
         }
     }
 
-    private boolean mandarCorreo(View v){
+    private boolean mandarCorreoOWhatsapp(View v) {
+        // Construye el mensaje que se enviará por correo y WhatsApp
+        String mensaje = construirMensaje();
+        // Configura el Intent para enviar un correo electrónico
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Registro de Cliente en la APP");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, construirMensaje());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+        // Configura el Intent para enviar un mensaje por WhatsApp
+        Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+        whatsappIntent.setPackage("com.whatsapp");
+        // Número de teléfono en formato internacional sin el "+"
+        String phoneNumber = "7774931305";
+        whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(mensaje)));
         try {
+            // Crea un Intent chooser para permitir al usuario elegir entre correo electrónico y WhatsApp
+            Intent chooserIntent = Intent.createChooser(emailIntent, "Enviar registro...");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{whatsappIntent});
+            startActivity(chooserIntent);
+            // Ejecuta el código después de que el usuario haya elegido una opción
             new Thread(() -> {
                 try {
-                    startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
+                    // Espera un momento para asegurar que la acción se complete
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -127,10 +142,11 @@ public class RegistroDireccion extends AppCompatActivity {
             }).start();
             return true;
         } catch (Exception e) {
-            Toast.makeText(this, "Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ocurrió un error al enviar los datos. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
             return false;
         }
     }
+
 
     private void notificarUsuario(){
         new AlertDialog.Builder(this)
@@ -139,7 +155,7 @@ public class RegistroDireccion extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mandarCorreo(null);
+                        mandarCorreoOWhatsapp(null);
                     }
                 })
                 .show();
@@ -147,6 +163,7 @@ public class RegistroDireccion extends AppCompatActivity {
 
     private String construirMensaje(){
         StringBuilder mensajeCorreo = new StringBuilder();
+        mensajeCorreo.append("REGISTRO DE CLIENTE EN LA APP"+"\n\n\n");
         mensajeCorreo.append("Nombre cliente: " + razonSocial+",\n\n");
         mensajeCorreo.append("RFC: " + rfc+",\n\n");
         mensajeCorreo.append("Telefono: " + telefono+",\n\n");
