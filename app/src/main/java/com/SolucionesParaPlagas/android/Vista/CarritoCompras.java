@@ -137,7 +137,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
         whatsappIntent.setPackage("com.whatsapp");
         // Número de teléfono en formato internacional sin el "+"
-        String phoneNumber = "7774931305";
+        String phoneNumber = "7774428209";
         String message = construirMensaje();
         whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message)));
         try {

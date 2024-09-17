@@ -66,7 +66,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="70dp"
-		android:layout_marginTop="290dp"
+		android:layout_marginTop="340dp"
 		android:text="@string/txtDiasCredito"
 		android:theme="@style/estiloEstadoCuenta"/>
 
@@ -75,7 +75,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="70dp"
-		android:layout_marginTop="330dp"
+		android:layout_marginTop="460dp"
 		android:text="@string/txtMontoCredito"
 		android:theme="@style/estiloEstadoCuenta"/>
 
@@ -84,7 +84,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="70dp"
-		android:layout_marginTop="370dp"
+		android:layout_marginTop="400dp"
 		android:text="Método de pago"
 		android:theme="@style/estiloEstadoCuenta"/>
 

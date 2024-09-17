@@ -92,13 +92,12 @@
 
 			</RelativeLayout>
 
-			<!-- Textos para Opciones del Menú -->
 			<TextView
 				android:id="@+id/txtVerProductos"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="50dp"
-				android:layout_marginTop="800dp"
+				android:layout_marginTop="705dp"
 				android:text="@string/txtVerProductos"
 				android:textSize="12sp"
 				android:textColor="#FFFFFF" />
@@ -108,7 +107,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="180dp"
-				android:layout_marginTop="800dp"
+				android:layout_marginTop="705dp"
 				android:text="@string/txtMenuPrincipal"
 				android:textSize="12sp"
 				android:textColor="#FFFFFF" />
@@ -118,7 +117,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="300dp"
-				android:layout_marginTop="800dp"
+				android:layout_marginTop="705dp"
 				android:text="@string/txtCerrarSesion"
 				android:textSize="12sp"
 				android:textColor="#FFFFFF" />

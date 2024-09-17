@@ -23,11 +23,11 @@
         android:id="@+id/decoracionelipse"
         android:layout_width="644dp"
         android:layout_height="250dp"
-        android:layout_marginTop="596dp"
+        android:layout_marginTop="552dp"
         android:contentDescription="decoracionelipse"
         android:src="@drawable/decoracionelipse"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintHorizontal_bias="0.377"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,10 +134,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.735" />
 
     <ScrollView
         android:layout_width="296dp"

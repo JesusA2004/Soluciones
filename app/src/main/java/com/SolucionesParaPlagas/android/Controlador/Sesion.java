@@ -14,12 +14,14 @@ public class Sesion {
     private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
     private ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
     private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
+    private ControladorPedido controladorPedido = ControladorPedido.obtenerInstancia();
 
     private void limpiarSesion() {
         controladorDetalleCliente.limpiarRepositorio();
         controladorJsonCliente.limipiarRepositorio();
         controladorClienteIndividual.limpiarRepositorio();
         controladorCarrito.vaciarCarrito();
+        controladorPedido.limpiarRepositorio();
     }
 
     private void cerrarSesion() {

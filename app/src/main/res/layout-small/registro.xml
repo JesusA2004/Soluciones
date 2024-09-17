@@ -24,16 +24,16 @@
 
 		<View
 			android:id="@+id/contenedorinfo"
-			android:layout_width="352dp"
-			android:layout_height="456dp"
+			android:layout_width="344dp"
+			android:layout_height="423dp"
 			android:background="@drawable/contenedorinfo_shape"
 			android:backgroundTint="#EFEFEF"
 			app:layout_constraintBottom_toBottomOf="@+id/vistapagina"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintHorizontal_bias="0.492"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintVertical_bias="0.861" />
+			app:layout_constraintVertical_bias="0.697" />
 
 		<ImageView
 			android:id="@+id/logotipsinfondo"
@@ -51,8 +51,8 @@
 			android:id="@+id/iconosiguiente"
 			android:layout_width="38dp"
 			android:layout_height="33dp"
-			android:layout_marginStart="321dp"
-			android:layout_marginTop="702dp"
+			android:layout_marginStart="324dp"
+			android:layout_marginTop="668dp"
 			android:contentDescription="iconosiguiente"
 			android:src="@drawable/iconosiguiente"
 			app:layout_constraintStart_toStartOf="parent"
