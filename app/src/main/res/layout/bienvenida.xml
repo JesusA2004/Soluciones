@@ -24,6 +24,7 @@
         android:background="@drawable/bg_boton_redondo"
         android:text="@string/labelIniciarSesion"
         android:textColor="@color/white"
+        android:backgroundTint="@color/colorBoton"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

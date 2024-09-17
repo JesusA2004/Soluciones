@@ -59,4 +59,8 @@
 	<color name="ellipse_1_color">#D9D9D9</color>
 	<color name="rectangle_1_color">#FEFCFC</color>
 
-</resources>
+	<color name="dialogBackgroundColor">#FFEBEE</color> <!-- Fondo del diálogo (rosado claro, por ejemplo) -->
+	<color name="dialogTextColor">#000000</color>       <!-- Texto principal (negro) -->
+	<color name="dialogButtonColor">#FF5722</color>
+
+	</resources>
