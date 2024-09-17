@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaProductos"
+        android:layout_width="305dp"
+        android:layout_height="455dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconocompra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decoracionbusqueda3"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@+id/decoracionbusqueda3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="decoracionbusqueda"
+        android:src="@drawable/decoracionbusqueda"
+        app:layout_constraintBottom_toTopOf="@+id/iconosopciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/logotipsinfondo_2"
+        android:layout_width="63dp"
+        android:layout_height="54dp"
+        android:contentDescription="logotipsinfondo_1"
+        android:src="@drawable/logotipsinfondo_1"
+        app:layout_constraintBottom_toBottomOf="@+id/decoracionbusqueda3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337" />
+
+    <ImageView
+        android:id="@+id/letraslogosinfondo_2"
+        android:layout_width="76dp"
+        android:layout_height="36dp"
+        android:contentDescription="letraslogosinfondo_1"
+        android:src="@drawable/letraslogosinfondo_1"
+        app:layout_constraintBottom_toBottomOf="@+id/decoracionbusqueda3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.798" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView3"
+        android:layout_width="268dp"
+        android:layout_height="49dp"
+        android:gravity="center"
+        android:queryHint="Buscar productos"
+        app:layout_constraintBottom_toBottomOf="@+id/decoracionbusqueda3"
+        app:layout_constraintEnd_toEndOf="@+id/decoracionbusqueda3"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toEndOf="@+id/logotipsinfondo_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
+
+    <View
+        android:id="@+id/iconosopciones"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:background="@drawable/iconosopciones_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/iconomenu"
+        android:layout_width="37.58dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="372dp"
+        android:contentDescription="iconomenu_1"
+        android:src="@drawable/iconomenu_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/decoracionbusqueda3"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <ImageView
+        android:id="@+id/iconocompra"
+        android:layout_width="39.51dp"
+        android:layout_height="43dp"
+        android:contentDescription="iconocompra_1"
+        android:src="@drawable/iconocompra_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iconosopciones"
+        app:layout_constraintVertical_bias="0.176" />
+
+    <ImageView
+        android:id="@+id/iconocerrarsesion"
+        android:layout_width="40.47dp"
+        android:layout_height="35dp"
+        android:contentDescription="iconocerrarsesion__1"
+        android:src="@drawable/iconocerrarsesion__1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.958" />
+
+    <TextView
+        android:id="@+id/opcCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_franklin_semibold"
+        android:text="Carrito de compra"
+        android:textColor="#FFFCFC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iconosopciones"
+        app:layout_constraintVertical_bias="0.683" />
+
+    <TextView
+        android:id="@+id/opcMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_franklin_semibold"
+        android:text="Menu Principal"
+        android:textColor="#FFFCFC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <TextView
+        android:id="@+id/opcCerrarS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_franklin_semibold"
+        android:text="Cerrar Sesión"
+        android:textColor="#FFFCFC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,354 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="wrap_content" >
+
+	<ScrollView android:id="@+id/consultarestadoc" 
+		android:layout_width="wrap_content" 
+		android:layout_height="match_parent" >
+
+		<RelativeLayout android:id="@+id/content_container" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" >
+
+			<RelativeLayout android:id="@+id/page_consultarestadoc_ek1"
+				android:layout_marginTop="0dp"
+				android:layout_marginStart="0dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				>
+
+				<View   android:id="@+id/_bg__consultarestadoc_ek2"
+					android:background="@drawable/_bg__consultarestadoc_ek2_shape"
+					 android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_width="411dp"
+					android:layout_height="823dp" />
+
+				<ImageView android:id="@+id/fondodatosper_1"
+					android:src="@drawable/fondodatosper_1"
+					android:contentDescription="fondodatosper_1"
+					 android:layout_marginStart="-6dp"
+					android:layout_marginTop="-7dp"
+					android:layout_width="422dp"
+					android:layout_height="93dp" />
+
+				<View   android:id="@+id/contenedorinfo"
+					android:background="@drawable/contenedorinfo_shape"
+					 android:layout_marginStart="45dp"
+					android:layout_marginTop="95dp"
+					android:layout_width="333dp"
+					android:layout_height="192dp" />
+
+				<ImageView android:id="@+id/letraslogosinfondo_"
+					android:src="@drawable/letraslogosinfondo_"
+					android:contentDescription="letraslogosinfondo_"
+					 android:layout_marginStart="91dp"
+					android:layout_marginTop="25dp"
+					android:layout_width="85dp"
+					android:layout_height="39dp" />
+
+				<ImageView android:id="@+id/logotipsinfondo_"
+					android:src="@drawable/logotipsinfondo_"
+					android:contentDescription="logotipsinfondo_"
+					 android:layout_marginStart="41dp"
+					android:layout_marginTop="11dp"
+					android:layout_width="52dp"
+					android:layout_height="53dp" />
+
+
+				<RelativeLayout
+					android:id="@+id/opciones"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true">
+
+					<View
+						android:id="@+id/iconosopciones"
+						android:background="@drawable/iconosopciones_shape"
+						android:layout_width="match_parent"
+						android:layout_height="63dp" />
+
+					<ImageView
+						android:id="@+id/iconoMenu"
+						android:src="@drawable/iconomenu_1"
+						android:contentDescription="iconomenu_1"
+						android:layout_width="36dp"
+						android:layout_height="32dp"
+						android:layout_marginStart="200dp"
+						android:layout_marginTop="8dp" />
+
+					<ImageView
+						android:id="@+id/iconoCerrarSesion"
+						android:src="@drawable/iconocerrarsesion__1"
+						android:contentDescription="iconocerrarsesion__1"
+						android:layout_width="39dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="320dp"
+						android:layout_marginTop="8dp" />
+
+					<ImageView
+						android:id="@+id/iconoVerProductos"
+						android:src="@drawable/iconolistaproductos_1"
+						android:contentDescription="iconolistaproductos_1"
+						android:layout_width="31dp"
+						android:layout_height="35dp"
+						android:layout_marginStart="70dp"
+						android:layout_marginTop="5dp" />
+
+				</RelativeLayout>
+
+				<TextView
+					android:id="@+id/txtVerProductos"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="50dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtVerProductos"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtMenu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="180dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtMenuPrincipal"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:id="@+id/txtCerrarSesion"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="300dp"
+					android:layout_marginTop="800dp"
+					android:text="@string/txtCerrarSesion"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView android:id="@+id/textdescripcion_ek3"
+					android:fontFamily="Manjari"
+					android:layout_gravity="center_vertical|end"
+					android:gravity="end"
+					android:textSize="13sp"
+					android:textColor="@color/textdescripcion_ek1_color"
+					android:layout_marginLeft="288dp"
+					android:layout_marginTop="335dp"
+					android:layout_width="57dp"
+					android:layout_height="23.5dp"/>
+
+				<ImageView android:id="@+id/iconoflechair_1"
+					android:src="@drawable/iconoflechair_1"
+					android:contentDescription="iconoflechair_1"
+					 android:layout_marginStart="347dp"
+					android:layout_marginTop="152dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_21"
+					android:src="@drawable/iconoflechair_21"
+					android:contentDescription="iconoflechair_21"
+					 android:layout_marginStart="347dp"
+					android:layout_marginTop="152dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_39"
+					android:src="@drawable/iconoflechair_39"
+					android:contentDescription="iconoflechair_39"
+					 android:layout_marginStart="344dp"
+					android:layout_marginTop="212dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_20"
+					android:src="@drawable/iconoflechair_20"
+					android:contentDescription="iconoflechair_20"
+					 android:layout_marginStart="344dp"
+					android:layout_marginTop="244dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<View   android:id="@+id/contenedorinfo_ek1"
+					android:background="@drawable/contenedorinfo_ek1_shape"
+					 android:layout_marginStart="45dp"
+					android:layout_marginTop="296dp"
+					android:layout_width="333dp"
+					android:layout_height="223dp" />
+
+				<ImageView android:id="@+id/iconoflechair_29"
+					android:src="@drawable/iconoflechair_29"
+					android:contentDescription="iconoflechair_29"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="491dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_25"
+					android:src="@drawable/iconoflechair_25"
+					android:contentDescription="iconoflechair_25"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="399dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_22"
+					android:src="@drawable/iconoflechair_22"
+					android:contentDescription="iconoflechair_22"
+					 android:layout_marginStart="351dp"
+					android:layout_marginTop="346dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_23"
+					android:src="@drawable/iconoflechair_23"
+					android:contentDescription="iconoflechair_23"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="371dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_28"
+					android:src="@drawable/iconoflechair_28"
+					android:contentDescription="iconoflechair_28"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="468dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_27"
+					android:src="@drawable/iconoflechair_27"
+					android:contentDescription="iconoflechair_27"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="443dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_26"
+					android:src="@drawable/iconoflechair_26"
+					android:contentDescription="iconoflechair_26"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="422dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_24"
+					android:src="@drawable/iconoflechair_24"
+					android:contentDescription="iconoflechair_24"
+					 android:layout_marginStart="198dp"
+					android:layout_marginTop="369dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_18"
+					android:src="@drawable/iconoflechair_18"
+					android:contentDescription="iconoflechair_18"
+					 android:layout_marginStart="345dp"
+					android:layout_marginTop="312dp"
+					android:layout_width="20dp"
+					android:layout_height="16dp" />
+
+				<ImageView
+					android:id="@+id/flechair"
+					android:layout_width="20dp"
+					android:layout_height="16dp"
+					android:layout_marginStart="345dp"
+					android:layout_marginTop="110dp"
+					android:contentDescription="iconoflechair_18"
+					android:src="@drawable/iconoflechair_18" />
+
+				<TextView android:id="@+id/textdescripcion_ek25"
+					android:fontFamily="Manjari"
+					android:layout_gravity="center_vertical|end"
+					android:gravity="end"
+					android:textSize="13sp"
+					android:textColor="@color/textdescripcion_ek1_color"
+					android:layout_marginLeft="288dp"
+					android:layout_marginTop="567dp"
+					android:layout_width="57dp"
+					android:layout_height="23.5dp"/>
+
+				<View   android:id="@+id/contenedorinfo_ek2"
+					android:background="@drawable/contenedorinfo_ek2_shape"
+					 android:layout_marginStart="45dp"
+					android:layout_marginTop="528dp"
+					android:layout_width="333dp"
+					android:layout_height="223dp" />
+
+				<ImageView android:id="@+id/iconoflechair_30"
+					android:src="@drawable/iconoflechair_30"
+					android:contentDescription="iconoflechair_30"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="723dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_31"
+					android:src="@drawable/iconoflechair_31"
+					android:contentDescription="iconoflechair_31"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="631dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_32"
+					android:src="@drawable/iconoflechair_32"
+					android:contentDescription="iconoflechair_32"
+					 android:layout_marginStart="351dp"
+					android:layout_marginTop="578dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_33"
+					android:src="@drawable/iconoflechair_33"
+					android:contentDescription="iconoflechair_33"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="603dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_34"
+					android:src="@drawable/iconoflechair_34"
+					android:contentDescription="iconoflechair_34"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="700dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_35"
+					android:src="@drawable/iconoflechair_35"
+					android:contentDescription="iconoflechair_35"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="675dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_36"
+					android:src="@drawable/iconoflechair_36"
+					android:contentDescription="iconoflechair_36"
+					 android:layout_marginStart="350dp"
+					android:layout_marginTop="654dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_37"
+					android:src="@drawable/iconoflechair_37"
+					android:contentDescription="iconoflechair_37"
+					 android:layout_marginStart="198dp"
+					android:layout_marginTop="601dp"
+					android:layout_width="14dp"
+					android:layout_height="14dp" />
+
+				<ImageView android:id="@+id/iconoflechair_38"
+					android:src="@drawable/iconoflechair_38"
+					android:contentDescription="iconoflechair_38"
+					android:layout_marginStart="345dp"
+					android:layout_marginTop="544dp"
+					android:layout_width="20dp"
+					android:layout_height="16dp" />
+
+			</RelativeLayout>
+		</RelativeLayout>
+
+	</ScrollView>
+</HorizontalScrollView>

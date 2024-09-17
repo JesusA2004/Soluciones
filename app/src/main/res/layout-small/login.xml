@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/_bg__welcome_ek2_shape">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/layoutLogin"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+		<View
+			android:id="@+id/contenedorinfo"
+			android:layout_width="333dp"
+			android:layout_height="429dp"
+			android:layout_marginStart="34dp"
+			android:layout_marginTop="332dp"
+			android:layout_marginEnd="34dp"
+			android:background="@drawable/contenedorinfo_shape"
+			android:backgroundTint="#EFEFEF"
+			android:contentDescription="@string/descripcionContenedorInfo"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<ImageView
+			android:id="@+id/logotipsinfondo_"
+			android:layout_width="157dp"
+			android:layout_height="98dp"
+			android:contentDescription="@string/descripcionLogoSinFondo"
+			android:src="@drawable/logotipsinfondo_"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.414" />
+
+		<ImageView
+			android:id="@+id/fondologin"
+			android:layout_width="416dp"
+			android:layout_height="321dp"
+			android:layout_marginTop="-40dp"
+			android:contentDescription="@string/descripcionFondoLogin"
+			android:src="@drawable/fondologin"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<ImageView
+			android:id="@+id/flechaatras"
+			android:layout_width="39dp"
+			android:layout_height="46dp"
+			android:contentDescription="@string/descripcionFlechaRegreso"
+			android:src="@drawable/flecharegreso"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.11"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.053" />
+
+		<TextView
+			android:id="@+id/txtIngresarDatos"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/libre_franklin_semibold"
+			android:text="@string/msjIngresarDatos"
+			android:textColor="@color/black"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/contenedorinfo"
+			app:layout_constraintHorizontal_bias="0.55"
+			app:layout_constraintStart_toStartOf="@+id/contenedorinfo"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.525" />
+
+		<TextView
+			android:id="@+id/txtRFC"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/txtRFC"
+			android:textColor="#000000"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/contenedorinfo"
+			app:layout_constraintHorizontal_bias="0.25"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.589" />
+
+		<EditText
+			android:id="@+id/entradaRFC"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:autofillHints="username"
+			android:ems="13"
+			android:hint="@string/entradaRFC"
+			android:inputType="text"
+			android:textColor="#757575"
+			android:textColorHint="#757575"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/contenedorinfo"
+			app:layout_constraintHorizontal_bias="0.833"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.645" />
+
+		<TextView
+			android:id="@+id/txtTel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/txtTelefono"
+			android:textColor="#000000"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.241"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.694" />
+
+		<EditText
+			android:id="@+id/entradaTel"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:autofillHints="phone"
+			android:ems="13"
+			android:hint="@string/entradaTel"
+			android:inputType="phone"
+			android:textColor="#757575"
+			android:textColorHint="#757575"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.571"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/fondologin"
+			app:layout_constraintVertical_bias="0.78" />
+
+		<Button
+			android:id="@+id/botonIS"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/bg_boton_redondo"
+			android:contentDescription="@string/descripcionBotonIniciarSesion"
+			android:text="@string/labelIniciarSesion"
+			android:textColor="#FBFBFB"
+			android:textColorHighlight="#4CAF50"
+			android:textSize="18sp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.519"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.889" />
+
+		<ProgressBar
+			android:id="@+id/progressBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/descripcionProgressBar"
+			android:indeterminate="true"
+			android:visibility="gone"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<TextView
+			android:id="@+id/txtMensajeEspera"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Espere un momento, por favor"
+			android:textSize="16sp"
+			android:textColor="@color/black"
+			android:visibility="gone"
+			app:layout_constraintTop_toBottomOf="@+id/progressBar"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintVertical_bias="0.62" />
+
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
