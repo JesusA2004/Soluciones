@@ -114,14 +114,14 @@ public class RegistroDireccion extends AppCompatActivity {
         // Configura el Intent para enviar un correo electrónico
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@solucionesparaplagas.com"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Registro de Cliente en la APP");
         emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
         // Configura el Intent para enviar un mensaje por WhatsApp
         Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
         whatsappIntent.setPackage("com.whatsapp");
         // Número de teléfono en formato internacional sin el "+"
-        String phoneNumber = "7774931305";
+        String phoneNumber = "7771308184";
         whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(mensaje)));
         try {
             // Crea un Intent chooser para permitir al usuario elegir entre correo electrónico y WhatsApp
@@ -151,7 +151,7 @@ public class RegistroDireccion extends AppCompatActivity {
     private void notificarUsuario(){
         new AlertDialog.Builder(this)
                 .setTitle("Nota")
-                .setMessage("Te solicitamos confirmar tus datos perosnales y adjuntes en el correo electronico el documento que valide tu situación fiscal para completar tu registro con nosotros.¡Gracias!.")
+                .setMessage("Te solicitamos confirmar tus datos personales y adjuntes en el correo electronico o WhatsApp el documento que valide tu situación fiscal para completar tu registro con nosotros.¡Gracias!.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -177,7 +177,7 @@ public class RegistroDireccion extends AppCompatActivity {
         mensajeCorreo.append("No. Exterior: " + usuarioNoExterior.getText().toString()+",\n\n");
         mensajeCorreo.append("Codigo Postal: " + usuarioCP.getText().toString()+",\n\n");
         mensajeCorreo.append("Municipio: " + usuarioMunicipio.getText().toString()+",\n\n");
-        mensajeCorreo.append("Estado: " + usuarioEstado.getSelectedItem().toString()+",\n\n");
+        mensajeCorreo.append("Estado: " + usuarioEstado.getSelectedItem().toString());
         return mensajeCorreo.toString();
     }
 
