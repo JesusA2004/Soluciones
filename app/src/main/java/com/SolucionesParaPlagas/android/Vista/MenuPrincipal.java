@@ -114,6 +114,7 @@ public class MenuPrincipal extends AppCompatActivity {
             if (menu != null) {
                 // Configura los ítems del menú lateral
                 MenuItem btnConsultarPerfil = menu.findItem(R.id.iconoDatosP);
+                MenuItem btnDirecciones = menu.findItem(R.id.direcciones);
                 MenuItem btnPedidos = menu.findItem(R.id.nav_orders);
                 MenuItem btnCerrarSesion = menu.findItem(R.id.nav_logout);
                 if (btnConsultarPerfil != null) {
@@ -125,8 +126,17 @@ public class MenuPrincipal extends AppCompatActivity {
                 if (btnCerrarSesion != null) {
                     btnCerrarSesion.setOnMenuItemClickListener(this::cerrarSesion);
                 }
+                if (btnDirecciones != null) {
+                    btnDirecciones.setOnMenuItemClickListener(this::irADirecciones);
+                }
             }
         }
+    }
+
+    private boolean irADirecciones(MenuItem item){
+        Intent intent = new Intent(MenuPrincipal.this, EditarDirecciones.class);
+        startActivity(intent);
+        return true;
     }
 
     private void cerrarMenuL(){

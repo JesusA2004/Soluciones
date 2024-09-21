@@ -5,6 +5,10 @@
         android:icon="@drawable/iconodatospersonales_1"
         android:title="Datos Personales" />
     <item
+        android:id="@+id/direcciones"
+        android:icon="@drawable/iconodatospersonales_1"
+        android:title="Mis Direcciones" />
+    <item
         android:id="@+id/nav_orders"
         android:icon="@drawable/iconomispedidos_1"
         android:title="Mis Pedidos" />

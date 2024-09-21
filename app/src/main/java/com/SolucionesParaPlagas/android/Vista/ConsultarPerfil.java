@@ -78,23 +78,21 @@ public class ConsultarPerfil extends AppCompatActivity {
         List<String> datosPersonalesTitles = new ArrayList<>();
         HashMap<String, List<String>> datosPersonalesData = new HashMap<>();
         // Ejemplo de datos
-        datosPersonalesTitles.add("Información Básica");
+        datosPersonalesTitles.add("Datos personales");
         List<String> basicInfo = new ArrayList<>();
-        basicInfo.add("Nombre: " + clienteCompleto.getCommercialName());
+        basicInfo.add("Nombre Comercial: " + clienteCompleto.getCommercialName());
+        basicInfo.add("Nombre Legal: " + clienteCompleto.getLegalName());
         basicInfo.add("Email: " + clienteCompleto.getEmail());
+        basicInfo.add("RFC: " + clienteCompleto.getRFC());
+        if(clienteCompleto.getTelephones() != null){
+            basicInfo.add("Telefono: " + clienteCompleto.getTelephones());
+        }else{
+            basicInfo.add("Telefono: Añadir telefono");
+        }
         datosPersonalesData.put(datosPersonalesTitles.get(0), basicInfo);
         // Configurar el primer ExpandableListView
         AdaptadorPerfil adaptadorDatosPersonales = new AdaptadorPerfil(this, datosPersonalesTitles, datosPersonalesData);
         datosPersonales.setAdapter(adaptadorDatosPersonales);
-
-        // Datos para el ExpandableListView de dirección fiscal
-        List<String> dirFiscalTitles = new ArrayList<>();
-        HashMap<String, List<String>> dirFiscalData = new HashMap<>();
-        dirFiscalTitles.add("Dirección Fiscal");
-        List<String> fiscalInfo = new ArrayList<>();
-        fiscalInfo.add("Calle: " + clienteCompleto.getAddresses());
-        dirFiscalData.put(dirFiscalTitles.get(0), fiscalInfo);
-
     }
 
 }
