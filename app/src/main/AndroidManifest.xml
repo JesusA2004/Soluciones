@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Sol"
         tools:targetApi="31">
         <activity
+            android:name="com.SolucionesParaPlagas.android.Vista.EditarDirecciones"
+            android:exported="false" />
+        <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarPedidos"
             android:exported="false" />
         <activity
@@ -29,8 +32,8 @@
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarProductos"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MenuPrincipal"
             android:exported="false" />
@@ -39,8 +42,8 @@
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarProducto"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.RegistroDireccion"
             android:exported="false" />
@@ -58,9 +61,11 @@
             android:theme="@style/Theme.Sol">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

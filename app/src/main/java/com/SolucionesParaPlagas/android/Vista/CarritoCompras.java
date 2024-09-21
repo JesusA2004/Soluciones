@@ -131,26 +131,31 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private boolean mandarCorreoOWhatsapp() {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"amjo220898@upemor.edu.mx"});
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@solucionesparaplagas.com"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Cotización de Productos");
         emailIntent.putExtra(Intent.EXTRA_TEXT, construirMensaje());
-        Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
-        whatsappIntent.setPackage("com.whatsapp");
-        // Número de teléfono en formato internacional sin el "+"
-        String phoneNumber = "7774428209";
-        String message = construirMensaje();
-        whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message)));
-        try {
-            Intent chooserIntent = Intent.createChooser(emailIntent, "Enviar cotización...");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{whatsappIntent});
-            startActivity(chooserIntent);
-            return true;
-        } catch (Exception e) {
-            Toast.makeText(this, "Ocurrió un error al enviar la cotización. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-    }
 
+        // Números de teléfono en formato internacional sin el "+"
+        String[] phoneNumbers = {"7771308184", "7775647486"}; // Reemplaza con el segundo número deseado
+        String message = construirMensaje();
+
+        // Crear un Intent para enviar a ambos números
+        for (String phoneNumber : phoneNumbers) {
+            Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+            whatsappIntent.setPackage("com.whatsapp");
+            whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message)));
+            try {
+                Intent chooserIntent = Intent.createChooser(emailIntent, "Enviar cotización...");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{whatsappIntent});
+                startActivity(chooserIntent);
+                return true;
+            } catch (Exception e) {
+                Toast.makeText(this, "Ocurrió un error al enviar la cotización. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+        return false; // En caso de que no se pueda enviar a ningún número
+    }
 
     private String construirMensaje(){
         ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();

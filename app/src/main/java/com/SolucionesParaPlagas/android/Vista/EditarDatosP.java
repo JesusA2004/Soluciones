@@ -15,11 +15,11 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
 public class EditarDatosP extends AppCompatActivity {
 
-    EditText campo;
-    String dato,titulo;
-    TextView tit;
-    Button btnConfirmar;
-    ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
+    private EditText campo;
+    private String dato,titulo;
+    private TextView tit;
+    private Button btnConfirmar;
+    private ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
     private DetalleCliente clienteCompleto = new DetalleCliente();
 
     @Override
@@ -31,8 +31,6 @@ public class EditarDatosP extends AppCompatActivity {
     }
 
     private void inicializarElementos() {
-        /*campo = findViewById(R.id.campo);
-        titulo = findViewById(R.id.titulo);*/
         btnConfirmar = findViewById(R.id.btnConfirmacion);
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);

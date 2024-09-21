@@ -1,210 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/menuDeslizable"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menuDeslizable"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<!-- Contenido principal -->
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+    <!-- Menu de navegación -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-		<RelativeLayout
-			android:id="@+id/content_container"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/encabezadomenu"
+            android:layout_width="420dp"
+            android:layout_height="280dp"
+            android:layout_marginBottom="628dp"
+            android:contentDescription="encabezadomenu"
+            android:src="@drawable/encabezadomenu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent" />
 
-			<RelativeLayout
-				android:id="@+id/page_menuopciones_ek1"
-				android:layout_marginTop="0dp"
-				android:layout_marginStart="0dp"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/bienvenidaNombre"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/libre_franklin_semibold"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.312" />
 
-				<!-- Opciones de menú -->
+        <ImageView
+            android:id="@+id/logotipsinfondo_ek1"
+            android:layout_width="92dp"
+            android:layout_height="95dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:contentDescription="logotipsinfondo_ek1"
+            android:src="@drawable/logotipsinfondo_ek1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/encabezadomenu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06" />
 
-				<View
-					android:id="@+id/_bg__menuopciones_ek2"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_marginStart="0dp"
-					android:layout_marginTop="0dp"
-					android:background="@drawable/_bg__menuopciones_ek2_shape" />
+        <ImageView
+            android:id="@+id/letraslogosinfondo"
+            android:layout_width="133dp"
+            android:layout_height="79dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="letraslogosinfondo"
+            android:src="@drawable/letraslogosinfondo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/encabezadomenu"
+            app:layout_constraintVertical_bias="0.254" />
 
-				<RelativeLayout
-					android:id="@+id/opciones"
-					android:layout_marginTop="730dp"
-					android:layout_marginStart="0dp"
-					android:layout_width="match_parent"
-					android:layout_height="130dp">
+        <ImageView
+            android:id="@+id/imagenfondomenu"
+            android:layout_width="355dp"
+            android:layout_height="227dp"
+            android:contentDescription="imagenfondomenu"
+            android:src="@drawable/imagenfondomenu"
+            app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.59" />
 
-					<View
-						android:id="@+id/iconosopciones"
-						android:layout_width="match_parent"
-						android:layout_height="120dp"
-						android:layout_marginTop="-20dp"
-						android:background="@drawable/iconosopciones_shape" />
+        <View
+            android:id="@+id/iconosopciones"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/iconosopciones_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-					<ImageView
-						android:id="@+id/iconomiperfil"
-						android:src="@drawable/iconomiperfil"
-						android:contentDescription="iconomiperfil"
-						android:layout_marginStart="322dp"
-						android:layout_marginTop="24dp"
-						android:layout_width="42dp"
-						android:layout_height="36dp" />
+        <ImageView
+            android:id="@+id/iconomiperfil"
+            android:layout_width="42dp"
+            android:layout_height="36dp"
+            android:contentDescription="iconomiperfil"
+            android:src="@drawable/iconomiperfil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.910"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.955" />
 
-					<ImageView
-						android:id="@+id/logotipsinfondo"
-						android:layout_width="46dp"
-						android:layout_height="53dp"
-						android:layout_marginStart="238dp"
-						android:layout_marginTop="10dp"
-						android:contentDescription="logotipsinfondo"
-						android:src="@drawable/logotipsinfondo" />
+        <ImageView
+            android:id="@+id/iconoestadocuenta"
+            android:layout_width="43dp"
+            android:layout_height="37dp"
+            android:contentDescription="iconoestadocuenta"
+            android:src="@drawable/iconoestadocuenta"
+            app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.418"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.956" />
 
-					<TextView
-						android:id="@+id/opcProductos"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="25dp"
-						android:layout_marginTop="60dp"
-						android:text="Ver productos"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold" />
+        <ImageView
+            android:id="@+id/iconolistaproductos"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:contentDescription="iconolistaproductos"
+            android:src="@drawable/iconolistaproductos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.960" />
 
-					<TextView
-						android:id="@+id/opcEstadoCuenta"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="120dp"
-						android:layout_marginTop="60dp"
-						android:text="Estado de Cuenta"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold" />
+        <ImageView
+            android:id="@+id/logotipsinfondo"
+            android:layout_width="46dp"
+            android:layout_height="55dp"
+            android:contentDescription="logotipsinfondo"
+            android:src="@drawable/logotipsinfondo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.680"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.960" />
 
-					<TextView
-						android:id="@+id/opcSitioWeb"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="238dp"
-						android:layout_marginTop="60dp"
-						android:text="Sitio Web"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold" />
+        <TextView
+            android:id="@+id/opcProductos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/libre_franklin_semibold"
+            android:text="Ver productos"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.084"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/encabezadomenu"
+            app:layout_constraintVertical_bias="0.98" />
 
-					<TextView
-						android:id="@+id/opcMiPerfil"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="320dp"
-						android:layout_marginTop="60dp"
-						android:text="Mi Perfil"
-						android:textColor="#FFFCFC"
-						android:textSize="12sp"
-						android:fontFamily="@font/libre_franklin_semibold" />
+        <TextView
+            android:id="@+id/opcEstadoCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/libre_franklin_semibold"
+            android:text="Estado de Cuenta"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toStartOf="@+id/iconosopciones"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.98" />
 
-				</RelativeLayout>
+        <TextView
+            android:id="@+id/opcSitioWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/libre_franklin_semibold"
+            android:text="Sitio Web"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.704"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.98" />
 
-				<TextView
-					android:id="@+id/bienvenidaNombre"
-					android:layout_width="280dp"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="70dp"
-					android:layout_marginTop="200dp"
-					android:fontFamily="@font/libre_franklin_semibold"
-					android:textColor="@color/black"
-					android:textSize="15sp" />
+        <TextView
+            android:id="@+id/opcMiPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/libre_franklin_semibold"
+            android:text="Mi Perfil"
+            android:textColor="#FFFCFC"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.922"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.98" />
 
-				<ImageView
-					android:id="@+id/iconoestadocuenta"
-					android:src="@drawable/iconoestadocuenta"
-					android:contentDescription="iconoestadocuenta"
-					android:layout_marginStart="145dp"
-					android:layout_marginTop="751dp"
-					android:layout_width="43dp"
-					android:layout_height="37dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-				<ImageView
-					android:id="@+id/iconolistaproductos"
-					android:src="@drawable/iconolistaproductos"
-					android:contentDescription="iconolistaproductos"
-					android:layout_marginStart="58dp"
-					android:layout_marginTop="751dp"
-					android:layout_width="25dp"
-					android:layout_height="35dp" />
-
-				<ImageView
-					android:id="@+id/imagenfondomenu"
-					android:layout_width="355dp"
-					android:layout_height="227dp"
-					android:layout_marginStart="28dp"
-					android:layout_marginTop="350dp"
-					android:contentDescription="imagenfondomenu"
-					android:src="@drawable/imagenfondomenu" />
-
-				<ImageView
-					android:id="@+id/encabezadomenu"
-					android:src="@drawable/encabezadomenu"
-					android:contentDescription="encabezadomenu"
-					android:layout_marginStart="0dp"
-					android:layout_marginTop="-7dp"
-					android:layout_width="409dp"
-					android:layout_height="194dp" />
-
-				<ImageView
-					android:id="@+id/logotipsinfondo_ek1"
-					android:layout_width="92dp"
-					android:layout_height="95dp"
-					android:layout_alignParentStart="true"
-					android:layout_alignParentTop="true"
-					android:layout_alignParentEnd="true"
-					android:layout_alignParentBottom="true"
-					android:layout_marginStart="161dp"
-					android:layout_marginTop="31dp"
-					android:layout_marginEnd="158dp"
-					android:layout_marginBottom="697dp"
-					android:contentDescription="logotipsinfondo_ek1"
-					android:src="@drawable/logotipsinfondo_ek1" />
-
-				<ImageView
-					android:id="@+id/letraslogosinfondo"
-					android:layout_width="133dp"
-					android:layout_height="79dp"
-					android:layout_alignParentStart="true"
-					android:layout_alignParentEnd="true"
-					android:layout_marginStart="141dp"
-					android:layout_marginTop="121dp"
-					android:layout_marginEnd="137dp"
-					android:contentDescription="letraslogosinfondo"
-					android:src="@drawable/letraslogosinfondo" />
-
-				<ProgressBar
-					android:id="@+id/cargaIcono"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_centerInParent="true"
-					android:visibility="gone"
-					android:indeterminate="true"
-					android:contentDescription="@string/descripcionProgressBar"/>
-
-			</RelativeLayout>
-		</RelativeLayout>
-	</RelativeLayout>
-
-	<!-- Menu de navegación -->
-	<com.google.android.material.navigation.NavigationView
-		android:id="@+id/menuLateral"
-		android:layout_width="wrap_content"
-		android:layout_height="match_parent"
-		android:layout_gravity="end"
-		android:background="#2AB023"
-		app:headerLayout="@layout/encabezado_menu"
-		app:menu="@menu/item_menu" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/menuLateral"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="#2AB023"
+        app:headerLayout="@layout/encabezado_menu"
+        app:menu="@menu/item_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

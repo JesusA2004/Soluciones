@@ -1,10 +1,10 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import java.util.List;
-import java.util.HashMap;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
+import java.util.HashMap;
 import java.util.ArrayList;
 import android.widget.Button;
 import android.content.Intent;
@@ -13,32 +13,32 @@ import android.widget.ExpandableListView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
-public class ConsultarPerfil extends AppCompatActivity {
+public class EditarDirecciones extends AppCompatActivity {
 
     private Button btnGuardarCambios;
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
     private DetalleCliente clienteCompleto = new DetalleCliente();
-    private ExpandableListView datosPersonales;
+    private ExpandableListView direccionFiscal, direccionEnvio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.datoscliente);
+        setContentView(R.layout.direccioncliente);
         inicializarElementos();
-        configurarBotones();
         inicializarCliente();
         configurarExpandableListViews();
     }
 
-    private void inicializarElementos() {
+    private void inicializarElementos(){
         btnProductos = findViewById(R.id.iconoVerProductos);
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         btnGuardarCambios = findViewById(R.id.btnSubirCambios);
-        datosPersonales = findViewById(R.id.datosPersonales);
+        direccionFiscal = findViewById(R.id.direccionFiscal);
+        direccionEnvio = findViewById(R.id.direccionEnvio);
     }
 
     private void inicializarCliente(){
@@ -55,12 +55,12 @@ public class ConsultarPerfil extends AppCompatActivity {
     }
 
     private void regresarAProductos(View v){
-        Intent intent = new Intent(ConsultarPerfil.this, MostrarProductos.class);
+        Intent intent = new Intent(EditarDirecciones.this, MostrarProductos.class);
         startActivity(intent);
     }
 
     private void irAMenu(View v){
-        Intent intent = new Intent(ConsultarPerfil.this, MenuPrincipal.class);
+        Intent intent = new Intent(EditarDirecciones.this, MenuPrincipal.class);
         startActivity(intent);
     }
 
@@ -84,8 +84,10 @@ public class ConsultarPerfil extends AppCompatActivity {
         basicInfo.add("Email: " + clienteCompleto.getEmail());
         datosPersonalesData.put(datosPersonalesTitles.get(0), basicInfo);
         // Configurar el primer ExpandableListView
-        AdaptadorPerfil adaptadorDatosPersonales = new AdaptadorPerfil(this, datosPersonalesTitles, datosPersonalesData);
-        datosPersonales.setAdapter(adaptadorDatosPersonales);
+        AdaptadorPerfil adaptadorFiscal = new AdaptadorPerfil(this, datosPersonalesTitles, datosPersonalesData);
+        direccionFiscal.setAdapter(adaptadorFiscal);
+        AdaptadorPerfil adaptadorEnvio = new AdaptadorPerfil(this, datosPersonalesTitles, datosPersonalesData);
+        direccionEnvio.setAdapter(adaptadorEnvio);
 
         // Datos para el ExpandableListView de dirección fiscal
         List<String> dirFiscalTitles = new ArrayList<>();

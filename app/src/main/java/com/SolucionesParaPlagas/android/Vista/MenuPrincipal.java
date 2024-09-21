@@ -40,7 +40,6 @@ public class MenuPrincipal extends AppCompatActivity {
     private Controlador<JsonCliente> controladorJsonCliente;
     private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
     private Sesion sesion = new Sesion();
-    private ProgressBar iconoCarga;
     private DrawerLayout drawerLayout;
     Validaciones validaciones = new Validaciones();
 
@@ -92,8 +91,6 @@ public class MenuPrincipal extends AppCompatActivity {
         btnSitioWeb = findViewById(R.id.logotipsinfondo);
         btnMiPerfil = findViewById(R.id.iconomiperfil);
         txtBienvenida = findViewById(R.id.bienvenidaNombre);
-        iconoCarga = findViewById(R.id.cargaIcono);
-        iconoCarga.setVisibility(View.GONE); // Inicialmente oculto
         drawerLayout = findViewById(R.id.menuDeslizable);
         // Obtener la referencia del NavigationView
         NavigationView navigationView = findViewById(R.id.menuLateral);
@@ -206,8 +203,6 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void mostrarDatos() {
-        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
-        clienteIndividual = controladorClienteIndividual.obtenerCliente();
         txtPerfil.setText(validaciones.capitalizarLetras(clienteIndividual.getClientName()));
         String nombreCliente = clienteIndividual.getClientName();
         // Texto principal
