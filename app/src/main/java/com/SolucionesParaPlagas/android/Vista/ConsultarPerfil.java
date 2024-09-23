@@ -177,48 +177,60 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
 
     private String construirMensaje(){
         StringBuilder mensajeCorreo = new StringBuilder();
-        mensajeCorreo.append("El cliente: "+clienteCompleto.getCommercialName()+" y RFC: "+clienteCompleto.getRFC());
-        mensajeCorreo.append("\nha realizado los siguientes cambios en sus datos\n");
+        mensajeCorreo.append("El cliente: "+clienteCompleto.getCommercialName()+" con RFC: "+clienteCompleto.getRFC());
+        mensajeCorreo.append(" solicita realizar cambios en sus datos\n");
         mensajeCorreo.append("------------------------------------------\n\n");
-        mensajeCorreo.append("El cual quiere realizar los siguientes cambios: \n");
+        mensajeCorreo.append("Quiere realizar los siguientes cambios:\n\n");
         boolean key = false;
+
         if(!clienteCambios.getCommercialName().equals(clienteCompleto.getCommercialName())){
             mensajeCorreo.append("El anterior nombre comercial era: "+clienteCompleto.getCommercialName()+"\n");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getCommercialName()+"\n");
+            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getCommercialName()+"\n\n");
             key = true;
         }
-        if(!clienteCambios.getLegalName().equals(clienteCompleto.getLegalName())){
-            if(clienteCambios.getLegalName() == null){
-                mensajeCorreo.append("El cliente no contaba con un nombre legal");
-            }else{
+
+        if(clienteCompleto.getLegalName() != null){
+            if(!clienteCambios.getLegalName().equals(clienteCompleto.getLegalName())){
                 mensajeCorreo.append("El anterior nombre legal era: "+clienteCompleto.getLegalName()+"\n");
+                mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getLegalName()+"\n\n");
+                key = true;
             }
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getLegalName()+"\n");
+        }else if(clienteCambios.getLegalName() != null){
+            mensajeCorreo.append("El cliente no contaba con un nombre legal");
+            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getLegalName()+"\n\n");
             key = true;
         }
-        if(!clienteCambios.getEmail().equals(clienteCompleto.getEmail())){
-            if(clienteCambios.getEmail() == null){
-                mensajeCorreo.append("El cliente no contaba con un email");
-            }else{
+
+        if(clienteCompleto.getEmail() != null){
+            if(!clienteCambios.getEmail().equals(clienteCompleto.getEmail())){
                 mensajeCorreo.append("El anterior email era: "+clienteCompleto.getEmail()+"\n");
+                mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getEmail()+"\n\n");
+                key = true;
             }
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getEmail()+"\n");
+        }else if(clienteCambios.getEmail() != null){
+            mensajeCorreo.append("El cliente no contaba con un email");
+            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getEmail()+"\n\n");
             key = true;
         }
+
         if(!clienteCambios.getRFC().equals(clienteCompleto.getRFC())) {
             mensajeCorreo.append("El anterior RFC era: "+clienteCompleto.getRFC()+"\n");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getRFC()+"\n");
+            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getRFC()+"\n\n");
             key = true;
         }
-        if(!clienteCambios.getTelephones().equals(clienteCompleto.getTelephones())){
-            if(clienteCompleto.getTelephones() == null){
-                mensajeCorreo.append("El cliente no contaba con un teléfono");
-            }else{
+
+        if(clienteCompleto.getTelephones() != null){
+            if(!clienteCambios.getTelephones().equals(clienteCompleto.getTelephones())){
                 mensajeCorreo.append("El anterior telefono era: "+clienteCompleto.getTelephones()+"\n");
+                mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getTelephones()+"\n\n");
+                key = true;
             }
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getTelephones()+"\n");
+        }else if(clienteCambios.getTelephones() != null){
+            mensajeCorreo.append("El cliente no contaba con un teléfono");
+            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getTelephones()+"\n\n");
             key = true;
         }
+
         if(key){
             return mensajeCorreo.toString();
         }
@@ -250,6 +262,11 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
 
     @Override
     public void onChildClick(int groupPosition, int childPosition) {
+        // Si el repositorio ya tiene el cliente con cambios, lo limpiamos
+        if(controladorDetalleCliente.obtenerRepositorio().size() == 2) {
+            controladorDetalleCliente.limpiarCliente();
+        }
+        controladorDetalleCliente.enviarDatoRepositorio(clienteCambios);
         // Define las acciones para los clics en los hijos
         if (groupPosition == 0) { // Datos personales
             Intent intent = new Intent(ConsultarPerfil.this, EditarDatosP.class);

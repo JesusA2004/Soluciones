@@ -15,11 +15,12 @@ import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
-public class EditarDirecciones extends AppCompatActivity implements AdaptadorPerfil.OnChildClickListener {
+public class EditarDirecciones extends AppCompatActivity {
 
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
     private DetalleCliente clienteCompleto = new DetalleCliente();
     private ExpandableListView direccionFiscal, direccionEnvio;
+    private AdaptadorPerfil adaptadorFiscal, adaptadorEnvio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +82,15 @@ public class EditarDirecciones extends AppCompatActivity implements AdaptadorPer
         basicInfo.add("Agregar dirección para el envío de su pedido");
         direccionEnvioData.put(direccionEnvioTitles.get(0), basicInfo);
 
-        // Configurar el segundo ExpandableListView
-        AdaptadorPerfil adaptadorEnvio = new AdaptadorPerfil(this, direccionEnvioTitles, direccionEnvioData, this);
+        // Configurar el segundo ExpandableListView con el listener personalizado
+        adaptadorEnvio = new AdaptadorPerfil(this, direccionEnvioTitles, direccionEnvioData, new AdaptadorPerfil.OnChildClickListener() {
+            @Override
+            public void onChildClick(int groupPosition, int childPosition) {
+                if (childPosition == 0) {
+                    agregarDireccionEnvio();
+                }
+            }
+        });
         direccionEnvio.setAdapter(adaptadorEnvio);
     }
 
@@ -98,36 +106,30 @@ public class EditarDirecciones extends AppCompatActivity implements AdaptadorPer
         basicInfo.add("Agregar datos de la dirección fiscal");
         direccionFiscalData.put(direccionFiscalTitles.get(0), basicInfo);
 
-        // Configurar el primer ExpandableListView
-        AdaptadorPerfil adaptadorFiscal = new AdaptadorPerfil(this, direccionFiscalTitles, direccionFiscalData, this);
+        // Configurar el primer ExpandableListView con el listener personalizado
+        adaptadorFiscal = new AdaptadorPerfil(this, direccionFiscalTitles, direccionFiscalData, new AdaptadorPerfil.OnChildClickListener() {
+            @Override
+            public void onChildClick(int groupPosition, int childPosition) {
+                if (childPosition == 2) {
+                    agregarDireccionFiscal();
+                }
+            }
+        });
         direccionFiscal.setAdapter(adaptadorFiscal);
     }
 
-    @Override
-    public void onChildClick(int groupPosition, int childPosition) {
-        // Manejo de clics en los hijos
-        if (groupPosition == 0) { // Dirección Fiscal
-            // Aquí puedes manejar acciones específicas para cada elemento
-            Intent intent = new Intent(EditarDirecciones.this, EditarDatosP.class);
-            switch (childPosition) {
-                case 0:
-                    // Acción para "Agregar datos de la dirección fiscal"
-                    intent.putExtra("tipoDireccion", "fiscal");
-                    startActivity(intent);
-                    break;
-                // Agrega más casos según sea necesario
-            }
-        } else if (groupPosition == 1) { // Dirección de Envío
-            Intent intent = new Intent(EditarDirecciones.this, EditarDatosP.class);
-            switch (childPosition) {
-                case 0:
-                    // Acción para "Agregar dirección para el envío"
-                    intent.putExtra("tipoDireccion", "envio");
-                    startActivity(intent);
-                    break;
-                // Agrega más casos según sea necesario
-            }
-        }
+    // Acción para "Agregar dirección fiscal"
+    private void agregarDireccionFiscal() {
+        Intent intent = new Intent(EditarDirecciones.this, AgregarDireccion.class);
+        intent.putExtra("tipoDireccion", "fiscal");
+        startActivity(intent);
+    }
+
+    // Acción para "Agregar dirección de envío"
+    private void agregarDireccionEnvio() {
+        Intent intent = new Intent(EditarDirecciones.this, AgregarDireccion.class);
+        intent.putExtra("tipoDireccion", "envio");
+        startActivity(intent);
     }
 
 }

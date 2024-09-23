@@ -49,4 +49,8 @@ public class ControladorDetalleCliente {
         repositorioCliente.clearList();
     }
 
+    public void limpiarCliente() {
+        repositorioCliente.clearDato();
+    }
+
 }

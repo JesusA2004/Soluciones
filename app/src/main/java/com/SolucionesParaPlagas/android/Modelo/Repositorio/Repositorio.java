@@ -41,4 +41,8 @@ public abstract class Repositorio<Tipo> {
         listaDatos.clear();
     }
 
+    public void clearDato() {
+        listaDatos.remove(1);
+    }
+
 }
