@@ -1,7 +1,7 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Repositorio<Tipo> {
 
@@ -18,6 +18,13 @@ public abstract class Repositorio<Tipo> {
     public Tipo getDato() {
         if (!listaDatos.isEmpty()) {
             return listaDatos.get(0);
+        }
+        return null;
+    }
+
+    public Tipo getDato(int index) {
+        if (index >= 0 && index < listaDatos.size() && !listaDatos.isEmpty()) {
+            return listaDatos.get(index);
         }
         return null;
     }

@@ -15,7 +15,7 @@ import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
-public class EditarDirecciones extends AppCompatActivity {
+public class EditarDirecciones extends AppCompatActivity implements AdaptadorPerfil.OnChildClickListener {
 
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
     private DetalleCliente clienteCompleto = new DetalleCliente();
@@ -31,7 +31,7 @@ public class EditarDirecciones extends AppCompatActivity {
         configurarExpandableListViews();
     }
 
-    private void inicializarElementos(){
+    private void inicializarElementos() {
         btnProductos = findViewById(R.id.iconoVerProductos);
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
@@ -39,8 +39,8 @@ public class EditarDirecciones extends AppCompatActivity {
         direccionEnvio = findViewById(R.id.direccionEnvio);
     }
 
-    private void inicializarCliente(){
-        // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
+    private void inicializarCliente() {
+        // Obtenemos el cliente ya que es el único en el repositorio
         ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
         clienteCompleto = controladorDetalleCliente.obtenerCliente();
     }
@@ -51,12 +51,12 @@ public class EditarDirecciones extends AppCompatActivity {
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
     }
 
-    private void regresarAProductos(View v){
+    private void regresarAProductos(View v) {
         Intent intent = new Intent(EditarDirecciones.this, MostrarProductos.class);
         startActivity(intent);
     }
 
-    private void irAMenu(View v){
+    private void irAMenu(View v) {
         Intent intent = new Intent(EditarDirecciones.this, MenuPrincipal.class);
         startActivity(intent);
     }
@@ -71,39 +71,63 @@ public class EditarDirecciones extends AppCompatActivity {
         configurarEnvio();
     }
 
-    private void configurarEnvio(){
-        // Datos para el ExpandableListView de direccion de Envio
+    private void configurarEnvio() {
+        // Datos para el ExpandableListView de dirección de Envío
         List<String> direccionEnvioTitles = new ArrayList<>();
         HashMap<String, List<String>> direccionEnvioData = new HashMap<>();
 
-        // Ejemplo de datos
-        direccionEnvioTitles.add("Direccion de Envio");
+        direccionEnvioTitles.add("Dirección de Envío");
         List<String> basicInfo = new ArrayList<>();
-        basicInfo.add("Agregar direccion para el envio de su pedido");
+        basicInfo.add("Agregar dirección para el envío de su pedido");
         direccionEnvioData.put(direccionEnvioTitles.get(0), basicInfo);
 
         // Configurar el segundo ExpandableListView
-        AdaptadorPerfil adaptadorEnvio = new AdaptadorPerfil(this, direccionEnvioTitles,direccionEnvioData);
+        AdaptadorPerfil adaptadorEnvio = new AdaptadorPerfil(this, direccionEnvioTitles, direccionEnvioData, this);
         direccionEnvio.setAdapter(adaptadorEnvio);
     }
 
     private void configurarFiscal() {
-        // Datos para el ExpandableListView de direccion Fiscal
+        // Datos para el ExpandableListView de dirección Fiscal
         List<String> direccionFiscalTitles = new ArrayList<>();
         HashMap<String, List<String>> direccionFiscalData = new HashMap<>();
-        // Título para la dirección fiscal
-        direccionFiscalTitles.add("Direccion Fiscal");
-        // Lista que contendrá la información básica de la dirección fiscal
+
+        direccionFiscalTitles.add("Dirección Fiscal");
         List<String> basicInfo = new ArrayList<>();
-        // Agregar más información relacionada con la dirección fiscal
         basicInfo.add("Estado: " + clienteCompleto.getState());
         basicInfo.add("Ciudad: " + clienteCompleto.getCity());
         basicInfo.add("Agregar datos de la dirección fiscal");
-        // Asociar los datos con el título
         direccionFiscalData.put(direccionFiscalTitles.get(0), basicInfo);
+
         // Configurar el primer ExpandableListView
-        AdaptadorPerfil adaptadorFiscal = new AdaptadorPerfil(this, direccionFiscalTitles, direccionFiscalData);
+        AdaptadorPerfil adaptadorFiscal = new AdaptadorPerfil(this, direccionFiscalTitles, direccionFiscalData, this);
         direccionFiscal.setAdapter(adaptadorFiscal);
+    }
+
+    @Override
+    public void onChildClick(int groupPosition, int childPosition) {
+        // Manejo de clics en los hijos
+        if (groupPosition == 0) { // Dirección Fiscal
+            // Aquí puedes manejar acciones específicas para cada elemento
+            Intent intent = new Intent(EditarDirecciones.this, EditarDatosP.class);
+            switch (childPosition) {
+                case 0:
+                    // Acción para "Agregar datos de la dirección fiscal"
+                    intent.putExtra("tipoDireccion", "fiscal");
+                    startActivity(intent);
+                    break;
+                // Agrega más casos según sea necesario
+            }
+        } else if (groupPosition == 1) { // Dirección de Envío
+            Intent intent = new Intent(EditarDirecciones.this, EditarDatosP.class);
+            switch (childPosition) {
+                case 0:
+                    // Acción para "Agregar dirección para el envío"
+                    intent.putExtra("tipoDireccion", "envio");
+                    startActivity(intent);
+                    break;
+                // Agrega más casos según sea necesario
+            }
+        }
     }
 
 }

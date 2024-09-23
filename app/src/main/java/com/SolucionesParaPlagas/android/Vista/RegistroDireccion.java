@@ -147,7 +147,6 @@ public class RegistroDireccion extends AppCompatActivity {
         }
     }
 
-
     private void notificarUsuario(){
         new AlertDialog.Builder(this)
                 .setTitle("Nota")

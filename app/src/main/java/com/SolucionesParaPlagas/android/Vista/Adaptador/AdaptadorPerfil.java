@@ -15,11 +15,13 @@ public class AdaptadorPerfil extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listGroupTitles;
     private HashMap<String, List<String>> listChildData;
+    private OnChildClickListener onChildClickListener; // Listener para los clics
 
-    public AdaptadorPerfil(Context context, List<String> listGroupTitles, HashMap<String, List<String>> listChildData) {
+    public AdaptadorPerfil(Context context, List<String> listGroupTitles, HashMap<String, List<String>> listChildData, OnChildClickListener listener) {
         this.context = context;
         this.listGroupTitles = listGroupTitles;
         this.listChildData = listChildData;
+        this.onChildClickListener = listener; // Inicializa el listener
     }
 
     @Override
@@ -78,12 +80,27 @@ public class AdaptadorPerfil extends BaseExpandableListAdapter {
         }
         TextView expandedListTextView = convertView.findViewById(R.id.expandedListItem);
         expandedListTextView.setText(childText);
+
+        // Configura el listener para el clic
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onChildClickListener != null) {
+                    onChildClickListener.onChildClick(groupPosition, childPosition);
+                }
+            }
+        });
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    // Interfaz para el listener de clics
+    public interface OnChildClickListener {
+        void onChildClick(int groupPosition, int childPosition);
     }
 
 }

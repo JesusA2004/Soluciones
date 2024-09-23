@@ -10,23 +10,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 
 public class EditarDatosP extends AppCompatActivity {
 
     private EditText campo;
-    private String dato,titulo;
+    private String dato, titulo;
     private TextView tit;
     private Button btnConfirmar;
     private ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
-    private DetalleCliente clienteCompleto = new DetalleCliente();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editardatocliente);
         inicializarElementos();
+        recibirElementos(); // Llamar para recibir datos
         configurarBotones();
     }
 
@@ -36,37 +34,42 @@ public class EditarDatosP extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         btnProductos = findViewById(R.id.iconoVerProductos);
         btnAtras = findViewById(R.id.iconoAtras);
+        campo = findViewById(R.id.entrada);
+        tit = findViewById(R.id.textView);
     }
 
-    private void inicializarCliente() {
-        // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
-        ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
-        clienteCompleto = controladorDetalleCliente.obtenerCliente();
-    }
-
-    private void recibirElementos(){
+    private void recibirElementos() {
         Intent intent = getIntent();
-        if(intent != null){
-            dato = intent.getStringExtra("campo");
-            titulo = intent.getStringExtra("titulo");
+        if (intent != null) {
+            dato = intent.getStringExtra("dato");
+            titulo = intent.getStringExtra("campo"); // Cambia esto si es necesario
             campo.setText(dato);
-            tit.setText(titulo);
+            // campo.setTextColor(Color.parseColor("#000000"));
+            tit.setText(titulo+": ");
         }
     }
 
     private void configurarBotones() {
+        btnConfirmar.setOnClickListener(this::guardarCambios);
         btnProductos.setOnClickListener(this::regresarAProductos);
         btnMenu.setOnClickListener(this::irAMenu);
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
         btnAtras.setOnClickListener(this::regresarAEditarPerfil);
     }
 
-    private void regresarAProductos(View v){
+    private void guardarCambios(View v) {
+        Intent intent = new Intent(EditarDatosP.this, ConsultarPerfil.class);
+        intent.putExtra("campo", campo.getText().toString());
+        intent.putExtra("titulo", titulo);
+        startActivity(intent);
+    }
+
+    private void regresarAProductos(View v) {
         Intent intent = new Intent(EditarDatosP.this, MostrarProductos.class);
         startActivity(intent);
     }
 
-    private void irAMenu(View v){
+    private void irAMenu(View v) {
         Intent intent = new Intent(EditarDatosP.this, MenuPrincipal.class);
         startActivity(intent);
     }
@@ -76,9 +79,9 @@ public class EditarDatosP extends AppCompatActivity {
         sesion.confirmarCerrarSesion(this);
     }
 
-    private void regresarAEditarPerfil(View v){
+    private void regresarAEditarPerfil(View v) {
         Intent intent = new Intent(EditarDatosP.this, ConsultarPerfil.class);
-        intent.putExtra("campo", dato);
+        intent.putExtra("campo", campo.getText().toString());
         intent.putExtra("titulo", tit.getText().toString());
         startActivity(intent);
     }

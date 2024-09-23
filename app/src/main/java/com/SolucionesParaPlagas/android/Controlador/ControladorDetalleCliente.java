@@ -41,6 +41,10 @@ public class ControladorDetalleCliente {
         return repositorioCliente.getDato();
     }
 
+    public DetalleCliente obtenerCliente(int indice){
+        return repositorioCliente.getDato(indice);
+    }
+
     public void limpiarRepositorio() {
         repositorioCliente.clearList();
     }

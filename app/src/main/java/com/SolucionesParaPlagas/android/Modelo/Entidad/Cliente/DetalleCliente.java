@@ -281,35 +281,11 @@ public class DetalleCliente{
 
     @Override
     public String toString() {
-        return "DetalleCliente{" +
-                "Account='" + Account + '\'' +
-                ", ID='" + ID + '\'' +
-                ", RFC='" + RFC + '\'' +
-                ", LegalName='" + LegalName + '\'' +
-                ", CommercialName='" + CommercialName + '\'' +
-                ", CreditDays=" + CreditDays +
-                ", CreditAmount=" + CreditAmount +
-                ", PaymentMethod='" + PaymentMethod + '\'' +
-                ", CreationDate=" + CreationDate +
-                ", Status='" + Status + '\'' +
-                ", SalesContact='" + SalesContact + '\'' +
-                ", CreditContact='" + CreditContact + '\'' +
-                ", Loctaion='" + Loctaion + '\'' +
-                ", LoctaionID='" + LoctaionID + '\'' +
-                ", Comments='" + Comments + '\'' +
-                ", PriceList='" + PriceList + '\'' +
-                ", PriceListID='" + PriceListID + '\'' +
-                ", PaymentTermType='" + PaymentTermType + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Telephones='" + Telephones + '\'' +
-                ", Number=" + Number +
-                ", AccountNumber='" + AccountNumber + '\'' +
-                ", DefaultDiscount=" + DefaultDiscount +
-                ", ClientSource='" + ClientSource + '\'' +
-                ", City='" + City + '\'' +
-                ", State='" + State + '\'' +
-                ", Addresses=" + Arrays.toString(Addresses) +
-                '}';
+        return  "RFC: " + RFC + "\n" +
+                "Nombre Legal: " + LegalName + "\n" +
+                "Nombre Comercial: " + CommercialName + "\n" +
+                "Email: " + Email + "\n" +
+                "Teléfono: " + Telephones + "\n";
     }
 
 }
