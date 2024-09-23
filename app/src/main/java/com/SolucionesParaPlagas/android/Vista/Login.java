@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Context;
+import android.net.NetworkInfo;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.net.ConnectivityManager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
 import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
@@ -111,39 +114,46 @@ public class Login extends AppCompatActivity {
     }
 
     private void iniciarSesion(View v) {
-        // Validar que el RFC y el campo del teléfono sean válidos
-        if (validarCampos()) {
-            mostrarPantallaCarga(); // Mostrar pantalla de carga
-            new Thread(() -> {
-                controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
-                controladorClienteJson.realizarSolicitud();
-                try {
-                    Thread.sleep(4000); // Simulación del tiempo de espera
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
-                runOnUiThread(() -> {
-                    ocultarPantallaCarga(); // Ocultar pantalla de carga
-                    if (clienteIndividual != null) {
-                        if (clienteIndividual.getPhone() != null) {
-                            if (clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())) {
-                                irAMenu(v);
+        // Verificar que el dispositivo cuenta con internet
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Validar que el RFC y el campo del teléfono sean válidos
+            if (validarCampos()) {
+                mostrarPantallaCarga(); // Mostrar pantalla de carga
+                new Thread(() -> {
+                    controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
+                    controladorClienteJson.realizarSolicitud();
+                    try {
+                        Thread.sleep(4000); // Simulación del tiempo de espera
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
+                    runOnUiThread(() -> {
+                        ocultarPantallaCarga(); // Ocultar pantalla de carga
+                        if (clienteIndividual != null) {
+                            if (clienteIndividual.getPhone() != null) {
+                                if (clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())) {
+                                    irAMenu(v);
+                                } else {
+                                    Toast.makeText(Login.this, "Error, el teléfono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-                                Toast.makeText(Login.this, "Error, el teléfono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
+                                if (usuarioTelefono.getText().toString().equals("7771111111")) {
+                                    irAMenu(v);
+                                } else {
+                                    Toast.makeText(Login.this, "Error, el teléfono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         } else {
-                            if (usuarioTelefono.getText().toString().equals("7771111111")) {
-                                irAMenu(v);
-                            } else {
-                                Toast.makeText(Login.this, "Error, el teléfono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }).start();
+                    });
+                }).start();
+            }
+        } else {
+            Toast.makeText(Login.this, "No tienes conexión a internet", Toast.LENGTH_SHORT).show();
         }
     }
 

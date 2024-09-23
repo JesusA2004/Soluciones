@@ -1,21 +1,22 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import com.example.sol.R;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.Validaciones;
+import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-import com.example.sol.R;
+
 
 public class AgregarDireccion extends AppCompatActivity {
 
