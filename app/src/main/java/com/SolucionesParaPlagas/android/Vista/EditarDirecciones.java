@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.ExpandableListView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
+
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;

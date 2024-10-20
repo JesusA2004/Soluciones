@@ -8,18 +8,16 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
+import com.SolucionesParaPlagas.android.Controlador.ControladorListas;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
-import com.SolucionesParaPlagas.android.Controlador.ControladorJsonProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.JsonProducto;
 
 public class PaginaInicio extends AppCompatActivity {
 
     private Button botonIniciarSesion;
     private ImageView btnUbicacion, btnSitioWeb;
     private TextView ubicacion, botonCrearCuenta;
-    private Controlador<JsonProducto> controladorJsonProducto = new ControladorJsonProducto();
-    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
+    private ControladorListas<Producto> controladorProducto = ControladorProducto.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class PaginaInicio extends AppCompatActivity {
     }
 
     private void cargarProductos(){
-        controladorJsonProducto.realizarSolicitud();
+        controladorProducto.obtenerLista();
     }
 
     // Metodos para configurar los elementos dentro de los layout y que se usaran por el usuario

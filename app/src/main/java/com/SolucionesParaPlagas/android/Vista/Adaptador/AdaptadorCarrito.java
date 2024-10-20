@@ -1,6 +1,8 @@
 package com.SolucionesParaPlagas.android.Vista.Adaptador;
 
 import java.util.List;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.example.sol.R;
 import java.util.HashMap;
 import android.view.View;
@@ -12,16 +14,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Carrito;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.CarritoViewHolder> {
 
     private Context context;
     private final OnProductoCarritoClickListener listener;
-    private HashMap<String, Integer> carrito = new HashMap<>();
-    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
+    private Carrito carrito = new Carrito();
+    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia(this);
+    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia(this);
 
     public AdaptadorCarrito(HashMap<String, Integer> carrito, Context context, AdaptadorCarrito.OnProductoCarritoClickListener listener) {
         this.carrito = carrito;
@@ -41,16 +45,16 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Carr
     public void onBindViewHolder(@NonNull CarritoViewHolder holder, int position) {
         // Obtener el ID del producto a partir de la posición
         List<String> keysList = new ArrayList<>(carrito.keySet());
-        String idProducto = keysList.get(position).trim();
+        int idProducto = keysList.get(position).trim();
         // Obtener la cantidad correspondiente al producto
         int cantidad = carrito.get(idProducto);
         // Obtener el producto usando el ID
-        Producto producto = controladorProducto.obtenerProducto(idProducto);
+        Producto producto = controladorProducto.obtenerObjeto(idProducto);
         // Vincular los datos con la vista
-        holder.nombreProducto.setText(producto.getTitle());
+        holder.nombreProducto.setText(producto.getNombreProd());
         holder.cantidadProducto.setText("Cantidad: "+String.valueOf(cantidad));
-        holder.pesoProducto.setText("Peso: "+producto.getWeight()+" "+producto.getUnit());
-        String imageUrl = producto.getImageUrl();
+        holder.pesoProducto.setText("Peso: "+producto.getPeso()+" "+producto.getUnidadM());
+        String imageUrl = producto.getUrlImagen();
         ControladorImagenes controladorImagenes = new ControladorImagenes(context);
         controladorImagenes.cargarImagenDesdeUrl(imageUrl, holder.imagenCarrito);
         holder.itemView.setOnClickListener(v -> listener.onProductoClick(producto));

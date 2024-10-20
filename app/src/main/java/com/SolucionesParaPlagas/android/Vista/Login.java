@@ -1,5 +1,7 @@
 package com.SolucionesParaPlagas.android.Vista;
 
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
@@ -14,10 +16,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.net.ConnectivityManager;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 
 public class Login extends AppCompatActivity {
 
@@ -26,9 +26,8 @@ public class Login extends AppCompatActivity {
     private TextView txtMsjCargando, txtTitutlo, txtRFC, txtTelefono;
     private Button botonIniciarSesion;
     private ProgressBar iconoCarga;
-    private ControladorJsonCliente controladorClienteJson;
-    private ControladorClienteIndividual controladorClienteI = ControladorClienteIndividual.obtenerInstancia();
-    private Validaciones validar = new Validaciones();
+    private Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(this);
+    private ControladorValidaciones validar = new ControladorValidaciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,19 +121,18 @@ public class Login extends AppCompatActivity {
             if (validarCampos()) {
                 mostrarPantallaCarga(); // Mostrar pantalla de carga
                 new Thread(() -> {
-                    controladorClienteJson = new ControladorJsonCliente(usuarioRFC.getText().toString().trim());
-                    controladorClienteJson.realizarSolicitud();
+                    controladorCliente.objetoToRepositorio(usuarioRFC.getText().toString(), usuarioTelefono.getText().toString());
                     try {
-                        Thread.sleep(4000); // Simulación del tiempo de espera
+                        Thread.sleep(3000); // Simulación del tiempo de espera
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    ClienteIndividual clienteIndividual = controladorClienteI.obtenerCliente();
+                    Cliente cliente = controladorCliente.obtenerObjeto();
                     runOnUiThread(() -> {
                         ocultarPantallaCarga(); // Ocultar pantalla de carga
-                        if (clienteIndividual != null) {
-                            if (clienteIndividual.getPhone() != null) {
-                                if (clienteIndividual.getPhone().equals(usuarioTelefono.getText().toString())) {
+                        if (cliente != null) {
+                            if (!cliente.getTelefonoC().isEmpty()) {
+                                if (cliente.getTelefonoC().equals(usuarioTelefono.getText().toString())) {
                                     irAMenu(v);
                                 } else {
                                     Toast.makeText(Login.this, "Error, el teléfono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();

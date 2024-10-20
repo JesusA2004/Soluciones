@@ -15,7 +15,7 @@ import android.content.DialogInterface;
 import android.widget.ExpandableListView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
+
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;

@@ -10,9 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
+
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 

@@ -1,53 +1,90 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import java.sql.SQLException;
+import android.content.Context;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Carrito;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCarrito;
 
-import java.util.HashMap;
+public class ControladorCarrito extends Controlador<Carrito>{
 
-public class ControladorCarrito{
+    public ControladorCarrito(Context contexto){
+        super(RepositorioCarrito.obtenerInstancia(),contexto);
+        nameTable = "notaVenta";
+    }
 
-    RepositorioCarrito repositorioCarrito = RepositorioCarrito.obtenerInstancia();
+    // Metodo para insertar un carrito en la base de datos pero el objeto ya debe tener valores
+    @Override
+    protected boolean insertObject(Carrito carrito) {
+        String query = "INSERT INTO " + nameTable + " VALUES ("
+                + "0, "
+                + "'" + obtenerFecha() + "', "
+                + carrito.getSubtotal() + ", "
+                + carrito.getIva() + ", "
+                + carrito.getTotal() + ", "
+                + carrito.getIdCliente() + ","
+                + "1" + ");"; // 1 indica que la venta la realiza un cliente (compra)
+        return ejecutarActualizacion(query);
+    }
 
-    // Implementación Singleton
-    private static ControladorCarrito instancia;
+    @Override
+    protected boolean deleteObject(int id) {
+        String query = "DELETE FROM " + nameTable + " WHERE idCarrito = " + id + ";";
+        return ejecutarActualizacion(query);
+    }
 
-    public static ControladorCarrito obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new ControladorCarrito();
+    // No se le permitira actualizar los siguientes atributos:
+    // idNotaVenta, noCliente, noEmpleado
+    @Override
+    protected boolean updateObject(Carrito carrito) {
+        String query = "UPDATE " + nameTable + " SET "
+                + "fecha = '" + obtenerFecha() + "', "
+                + "subtotal = " + carrito.getSubtotal() + ", "
+                + "iva = " + carrito.getIva() + ", "
+                + "pagoTotal = " + carrito.getTotal() + " "
+                + "WHERE idCarrito = " + carrito.getIdCarrito() + ";";
+        return ejecutarActualizacion(query);
+    }
+
+    @Override
+    protected Carrito getObject(int id) {
+        String query = "SELECT * FROM " + nameTable + " WHERE idCarrito = " + id + ";";
+        conector.registro = ejecutarConsulta(query);
+        return BDToObject(conector);
+    }
+
+    @Override
+    protected Carrito getObject(String campo) {
+        limpiarRepositorio();
+        String query = "SELECT * FROM " + nameTable + " WHERE fechaApartado = '" + campo + "';";
+        conector.registro = ejecutarConsulta(query);
+        repositorio.setObjeto(BDToObject(conector));
+        return repositorio.getObjeto();
+    }
+
+    @Override
+    protected Carrito getObject(String parametro, String campo) {
+        return null;
+    }
+
+    @Override
+    protected Carrito BDToObject(Conector conector) {
+        if (conector.registro != null) {
+            try {
+                if (conector.registro.next()) {
+                    Carrito carrito = new Carrito();
+                    carrito.setIdCarrito(conector.registro.getInt("idNotaVenta"));
+                    carrito.setFechaCarrito(conector.registro.getDate("fecha"));
+                    carrito.setSubtotal(conector.registro.getFloat("subtotal"));
+                    carrito.setIva(conector.registro.getFloat("iva"));
+                    carrito.setTotal(conector.registro.getFloat("pagoTotal"));
+                    carrito.setIdCliente(conector.registro.getInt("noCliente"));
+                    return carrito;
+                }
+            } catch (SQLException ex) {
+                manejarExcepcion(ex);
+            }
         }
-        return instancia;
-    }
-
-    public void vaciarCarrito(){
-        repositorioCarrito.vaciarCarrito();
-    }
-
-    public HashMap<String, Integer> obtenerCarrito(){
-        return repositorioCarrito.obtenerCarrito();
-    }
-
-    public String obtenerIdProducto(int posicion){
-        return repositorioCarrito.obtenerIdProducto(posicion);
-    }
-
-    public int obtenerCantidadProducto(String idProducto){
-        return repositorioCarrito.obtenerCantidadProducto(idProducto);
-    }
-
-    public void agregarProducto(String idProducto, int cantidad) {
-        repositorioCarrito.agregarProducto(idProducto, cantidad);
-    }
-
-    public void eliminarProducto(String idProducto) {
-        repositorioCarrito.eliminarProducto(idProducto);
-    }
-
-    public void actualizarCantidad(String idProducto, int nuevaCantidad) {
-        repositorioCarrito.actualizarCantidad(idProducto, nuevaCantidad);
-    }
-
-    public boolean existeEnCarrito(String idProducto){
-        return repositorioCarrito.existeEnCarrito(idProducto);
+        return null;
     }
 
 }

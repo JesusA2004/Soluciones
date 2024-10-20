@@ -12,15 +12,12 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.ControladorPedido;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCompras;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPedidos;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.JsonPedido;
-import com.SolucionesParaPlagas.android.Controlador.ControladorJsonPedido;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.PedidoIndividual;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class MostrarPedidos extends AppCompatActivity {
 
@@ -29,9 +26,8 @@ public class MostrarPedidos extends AppCompatActivity {
     private Button btnCatalogo;
     private ProgressBar iconoCarga;
     private RecyclerView pedidos;
-    private DetalleCliente clienteCompleto = new DetalleCliente();
-    private Controlador<JsonPedido> controladorJsonPedido;
-    private ControladorPedido controladorPedido = ControladorPedido.obtenerInstancia();
+    private Cliente cliente = new Cliente();
+    private ControladorCompras controladorCompras = ControladorCompras.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +36,7 @@ public class MostrarPedidos extends AppCompatActivity {
         inicializarElementos();
         // Primero obtenemos los datos del repositorio de nuestro cliente para despues solicitar sus pedidos
         inicializarCliente();
-        cargarPedidos(clienteCompleto.getID());
+        cargarPedidos(cliente.getNoCliente());
         configurarBotones();
     }
 
@@ -59,7 +55,7 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void despertarElementos(){
-        if(controladorPedido.obtenerRepositorio().isEmpty()){
+        if(controladorCompras.obtenerRepositorio().isEmpty()){
             btnCatalogo.setVisibility(View.VISIBLE);
             txtPedidosV.setVisibility(View.VISIBLE);
         }
@@ -67,16 +63,15 @@ public class MostrarPedidos extends AppCompatActivity {
 
     private void inicializarCliente(){
         // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
-        ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
-        clienteCompleto = controladorDetalleCliente.obtenerCliente();
+        ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(this);
+        cliente = controladorCliente.obtenerObjeto();
     }
 
-    private void cargarPedidos(String idCliente){
-        controladorJsonPedido = new ControladorJsonPedido(idCliente);
+    private void cargarPedidos(int idCliente){
         iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
         txtMsjCargando.setVisibility(View.VISIBLE);
         new Thread(() -> {
-            controladorJsonPedido.realizarSolicitud();
+            controladorCompras.obtenerLista("noCliente",idCliente);
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -92,7 +87,7 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void cargarLista(){
-        List<PedidoIndividual> listaPedidos = controladorPedido.obtenerRepositorio();
+        List<Compras> listaPedidos = controladorCompras.obtenerRepositorio();
         if (listaPedidos != null && !listaPedidos.isEmpty()) {
             AdaptadorPedidos adaptador = new AdaptadorPedidos(listaPedidos);
             pedidos.setAdapter(adaptador);
@@ -117,7 +112,7 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void irACerrarSesion(View v) {
-        Sesion sesion = new Sesion();
+        ControladorValidaciones sesion = new ControladorValidaciones();
         sesion.confirmarCerrarSesion(this);
     }
 

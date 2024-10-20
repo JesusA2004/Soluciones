@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
 
 public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.ProductoViewHolder> {
 
@@ -37,8 +37,8 @@ public class AdaptadorProductos extends RecyclerView.Adapter<AdaptadorProductos.
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         // Vincular los datos con la vista
         Producto producto = listaProductos.get(position);
-        holder.nombreProducto.setText(producto.getTitle());
-        String imageUrl = producto.getImageUrl();
+        holder.nombreProducto.setText(producto.getNombreProd());
+        String imageUrl = producto.getUrlImagen();
         ControladorImagenes controladorImagenes = new ControladorImagenes(context);
         controladorImagenes.cargarImagenDesdeUrl(imageUrl, holder.imagenProducto);
         // Manejo de clics en el ítem

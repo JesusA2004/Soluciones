@@ -1,13 +1,13 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 
-public class RepositorioProducto extends Repositorio<Producto> {
+public class RepositorioProducto extends RepositorioLista<Producto> {
 
     // Implementación Singleton
-    private static Repositorio<Producto> instancia;
+    private static RepositorioLista<Producto> instancia;
 
-    public static Repositorio<Producto> obtenerInstancia() {
+    public static RepositorioLista<Producto> obtenerInstancia() {
         if (instancia == null) {
             instancia = new RepositorioProducto();
         }

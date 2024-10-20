@@ -1,6 +1,5 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
 import com.example.sol.R;
@@ -11,37 +10,26 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.graphics.Typeface;
-import android.widget.ProgressBar;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
 import com.google.android.material.navigation.NavigationView;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.SolucionesParaPlagas.android.Controlador.ControladorJsonCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.JsonCliente;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.ClienteIndividual;
-import com.SolucionesParaPlagas.android.Controlador.ControladorClienteIndividual;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-    // Botones menu principal
-    TextView txtBienvenida,txtPerfil;
-    ImageView btnProductos, btnEstadoCuenta, btnSitioWeb, btnMiPerfil, btnCerrarMenuL;
     // Menu lateral
-    Menu menu;
-    private DetalleCliente clienteCompleto = new DetalleCliente();
-    private ClienteIndividual clienteIndividual = new ClienteIndividual();
-    private Controlador<JsonCliente> controladorJsonCliente;
-    private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
-    private Sesion sesion = new Sesion();
+    private Menu menu;
     private DrawerLayout drawerLayout;
-    Validaciones validaciones = new Validaciones();
+    private Cliente cliente = new Cliente();
+    private TextView txtBienvenida,txtPerfil;
+    private ControladorValidaciones validaciones = new ControladorValidaciones();
+    private ImageView btnProductos, btnEstadoCuenta, btnSitioWeb, btnMiPerfil, btnCerrarMenuL;
+    private ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,40 +37,13 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.menuopciones);
         inicializarElementos();
         configurarBotones();
-        segundoHilo();
+        cargarDatos();
     }
 
     // Metodo para evitar excepciones de mostrar el cliente cuando se recibe como parametro de otra actividad
-    private void segundoHilo(){
-        inicializarCliente();
-        new Thread(() -> {
-            // Realizar la solicitud http en un segundo hilo para mejorar la experiencia del usuario
-            validarExistenciaClienteD();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            runOnUiThread(() -> {
-                mostrarDatos();
-            });
-        }).start();
-    }
-
-    private void inicializarCliente(){
-        // Obtenemos el cliente ya que es el unico que es el unico en el repositorio
-        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
-        clienteIndividual = controladorClienteIndividual.obtenerCliente();
-    }
-
-    private void validarExistenciaClienteD(){
-        // Validamos si el repositorio esta vacio entonces realizamos la solicitud
-        if (controladorDetalleCliente.obtenerRepositorio().isEmpty()) {
-            cargarClienteD();
-        }else{
-            // Si el repositorio tiene datos entonces cargarlos al cliente
-            clienteCompleto = controladorDetalleCliente.obtenerCliente();
-        }
+    private void cargarDatos(){
+        cliente = controladorCliente.obtenerObjeto();
+        mostrarDatos();
     }
 
     private void inicializarElementos() {
@@ -107,8 +68,6 @@ public class MenuPrincipal extends AppCompatActivity {
                         cerrarMenuL();
                     }
                 });
-            } else {
-                Log.e("MenuPrincipal", "IconoCerrar no encontrado en la cabecera del menú lateral.");
             }
             menu = navigationView.getMenu();
             if (menu != null) {
@@ -188,23 +147,8 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private boolean cerrarSesion(MenuItem item) {
-        Sesion sesion = new Sesion();
-        sesion.confirmarCerrarSesion(this);
+        validaciones.confirmarCerrarSesion(this);
         return true;
-    }
-
-    private void cargarClienteD() {
-        new Thread(() -> {
-            controladorJsonCliente = new ControladorJsonCliente(clienteIndividual.getID(), "sobrecarga");
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            runOnUiThread(() -> {
-                clienteCompleto = controladorDetalleCliente.obtenerCliente();
-            });
-        }).start();
     }
 
     private void irAConsultarProductos(View v) {
@@ -213,8 +157,8 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void mostrarDatos() {
-        txtPerfil.setText(validaciones.capitalizarLetras(clienteIndividual.getClientName()));
-        String nombreCliente = clienteIndividual.getClientName();
+        txtPerfil.setText(validaciones.capitalizarLetras(cliente.getNombreC()));
+        String nombreCliente = cliente.getNombreC();
         // Texto principal
         String textoBienvenida = "¡Hola " + validaciones.capitalizarLetras(nombreCliente) + "!\n\n";
         String textoExplorar = "¿Qué te gustaría explorar hoy?";

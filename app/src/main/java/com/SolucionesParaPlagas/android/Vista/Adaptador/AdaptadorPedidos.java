@@ -8,13 +8,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Pedido.PedidoIndividual;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
 
 public class AdaptadorPedidos extends RecyclerView.Adapter<AdaptadorPedidos.PedidoViewHolder> {
 
-    private List<PedidoIndividual> listaPedidos;
+    private List<Compras> listaPedidos;
 
-    public AdaptadorPedidos(List<PedidoIndividual> listaPedidos) {
+    public AdaptadorPedidos(List<Compras> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
 
@@ -29,9 +29,9 @@ public class AdaptadorPedidos extends RecyclerView.Adapter<AdaptadorPedidos.Pedi
     @Override
     public void onBindViewHolder(@NonNull PedidoViewHolder holder, int position) {
         // Vincular los datos con la vista
-        PedidoIndividual pedido = listaPedidos.get(position);
-        holder.idPedido.setText("ID Pedido: "+pedido.getID());
-        String fecha = pedido.getOrderDate().substring(0,10);
+        Compras pedido = listaPedidos.get(position);
+        holder.idPedido.setText("ID Pedido: "+pedido.getIdCompra());
+        String fecha = pedido.getFechaCompra().toString();
         holder.fechaPedido.setText("Fecha: "+fecha);
         holder.totalPedido.setText("Monto total del pedido $"+pedido.getTotal());
     }

@@ -1,14 +1,14 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.content.Intent;
+import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.example.sol.R;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class RegistroDatos extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class RegistroDatos extends AppCompatActivity {
     private EditText usuarioRazonS;
     private EditText usuarioTelefono;
     private EditText usuarioCorreo;
-    private Validaciones validaciones; // Objeto para realizar las validaciones
+    private ControladorValidaciones validaciones; // Objeto para realizar las validaciones
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class RegistroDatos extends AppCompatActivity {
         usuarioRazonS = findViewById(R.id.entradaRazonSocial);
         usuarioTelefono = findViewById(R.id.entradaTel);
         usuarioCorreo = findViewById(R.id.entradaCorreo);
-        validaciones = new Validaciones(); // Inicializa el objeto Validaciones
+        validaciones = new ControladorValidaciones(); // Inicializa el objeto Validaciones
     }
 
     private void configurarBotones() {

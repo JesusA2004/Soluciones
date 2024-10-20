@@ -7,8 +7,7 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
+
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 

@@ -13,18 +13,16 @@ import android.widget.ImageView;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 
 public class AgregarDireccion extends AppCompatActivity {
 
+    private Button btnRegistrar;
+    private Spinner usuarioEstado;
+    private String tipoEnvio = "";
     private ImageView botonRegresar;
     private EditText usuarioCalle, usuarioColonia, usuarioLocalidad, usuarioNoInterior, usuarioNoExterior, usuarioCP, usuarioMunicipio;
-    private Spinner usuarioEstado;
-    private Button btnRegistrar;
-    private String tipoEnvio = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Sesion;
 
 public class EditarDatosP extends AppCompatActivity {
 

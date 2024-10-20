@@ -13,15 +13,14 @@ import android.widget.ImageView;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Controlador.Validaciones;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class RegistroDireccion extends AppCompatActivity {
 
+    private Button btnRegistrar;
+    private Spinner usuarioEstado;
     private ImageView botonRegresar;
     private EditText usuarioCalle, usuarioColonia, usuarioLocalidad, usuarioNoInterior, usuarioNoExterior, usuarioCP, usuarioMunicipio;
-    private Spinner usuarioEstado;
-    private Button btnRegistrar;
-
     // Datos recibidos de la actividad anterior
     private String rfc, razonSocial, telefono, correo;
 
@@ -82,7 +81,7 @@ public class RegistroDireccion extends AppCompatActivity {
     }
 
     private boolean validarCampos() {
-        Validaciones validaciones = new Validaciones();
+        ControladorValidaciones validaciones = new ControladorValidaciones();
         // Validar que los campos no estén vacíos
         if (validaciones.validarStringVacio(usuarioCalle.getText().toString()) ||
                 validaciones.validarStringVacio(usuarioColonia.getText().toString()) ||

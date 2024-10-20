@@ -1,57 +1,101 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import android.widget.Toast;
+import java.sql.SQLException;
+import android.content.Context;
+import java.time.format.DateTimeFormatter;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 
-public abstract class Controlador<T> {
+public abstract class Controlador<Tipo>{
 
-    // Clase que usa Generics para obtener listas de datos de la API
-    // Solo sirve para obtener datos
+    protected String nameTable = "";
+    protected Context contexto;
+    protected Conector conector;
+    protected Repositorio<Tipo> repositorio;
 
-    private Retrofit retrofit;
-    protected JsonApi jsonApi;
-    protected Repositorio<T> repositorio;
-
-    public Controlador(Repositorio<T> repositorio) {
-        Conector conector = new Conector("Admin");
-        this.retrofit = conector.solicitudHTTPS();
-        this.jsonApi = retrofit.create(JsonApi.class);
+    public Controlador(Repositorio<Tipo> repositorio, Context context){
         this.repositorio = repositorio;
+        contexto = context;
+        conector = new Conector(contexto);
     }
 
-    public void realizarSolicitud() {
-        Call<T> call = obtenerDatos();
-        call.enqueue(new Callback<T>() {
-            @Override
-            public void onResponse(Call<T> call, Response<T> response) {
-                if (!response.isSuccessful()) {
-                    manejarError(response.code());
-                    return;
-                }
-                T datos = response.body();
-                if (datos != null) {
-                    procesarDatos(datos);
-                }
-            }
-            @Override
-            public void onFailure(Call<T> call, Throwable t) {
-                manejarError(t.getMessage());
-            }
-        });
+    // Constructor para el controlador sin repositorio
+    public Controlador(Context context){
+        contexto = context;
+        conector = new Conector(contexto);
     }
 
-    public void limipiarRepositorio(){
-        repositorio.clearList();
+    public void objetoToRepositorio(String RFC, String telefono){
+        repositorio.setObjeto(getObject(RFC, telefono));
     }
 
-    protected void manejarError(Object error) {
-        System.out.println("Error: " + error);
+    public void limpiarRepositorio(){
+        repositorio.clearObjeto();
     }
 
-    protected abstract void procesarDatos(T datos);
-    protected abstract Call<T> obtenerDatos();
+    public void avisoUsuario(String mensaje){
+        Toast.makeText(contexto, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void obtenerConexionSQL(){
+        conector.conexion = conector.JavaToMySQL();
+    }
+
+    protected void manejarExcepcion(SQLException ex) {
+        Toast.makeText(contexto, "Error en la base de datos", Toast.LENGTH_SHORT).show();
+    }
+
+    public Tipo obtenerObjeto(){
+        return repositorio.getObjeto();
+    }
+
+    protected String obtenerFecha(){
+        // Obtén la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+        // Define el formato de fecha para SQL
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // Formatea la fecha
+        String fechaFormateada = fechaActual.format(formatter);
+        return fechaFormateada;
+    }
+
+    protected boolean ejecutarActualizacion(String query) {
+        try{
+            obtenerConexionSQL();
+            conector.comando = conector.conexion.createStatement();
+            conector.comando.executeUpdate(query);
+            return true;
+        } catch (SQLException ex) {
+            manejarExcepcion(ex);
+            return false;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+    protected ResultSet ejecutarConsulta(String query) {
+        try {
+            obtenerConexionSQL();
+            conector.comando = conector.conexion.createStatement();
+            conector.registro = conector.comando.executeQuery(query);
+            return conector.registro;
+        } catch (SQLException ex) {
+            manejarExcepcion(ex);
+            return null;
+        }
+    }
+
+    // Métodos abstractos para manejar CRUD
+    protected abstract boolean insertObject(Tipo objeto);
+    protected abstract boolean deleteObject(int id);
+    protected abstract boolean updateObject(Tipo objeto);
+    protected abstract Tipo getObject(int id);
+    protected abstract Tipo getObject(String campo);
+    protected abstract Tipo getObject(String RFC, String telefono);
+
+    // Metodos para convertir Base de Datos a Objetos de Java
+    protected abstract Tipo BDToObject(Conector conector);
 
 }
