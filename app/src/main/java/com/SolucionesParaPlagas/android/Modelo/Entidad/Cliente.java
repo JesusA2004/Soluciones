@@ -24,8 +24,5 @@ public class Cliente {
     private String municipio;     // municipio: varchar(50)
     private String estado;        // estado: varchar(50)
     private int clienteCP;        // clienteCP: int
-    private int diasCredito;      // diasCredito: int
-    private float montoCredito;   // montoCredito: float
-    private String urlFotoPerfil; // urlFotoPerfil: varchar(100)
 
 }

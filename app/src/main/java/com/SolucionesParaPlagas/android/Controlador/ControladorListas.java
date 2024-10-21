@@ -11,17 +11,20 @@ import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioLista;
 
 public abstract class ControladorListas<Tipo> {
 
-    // Elementos que herdean las clases que extiendan de esta 
+    // Elementos que heredarán las clases que extiendan de 'ControladorListas'
     protected String nameTable = "";
     protected Conector conector;
+    // Contexto para identificar en que interfaz se encuentra el usuario
     protected Context contexto;
     protected RepositorioLista<Tipo> repositorioLista;
 
+    // Constructor que no usará un repositorio de datos
     public ControladorListas(Context context){
         contexto = context;
         conector = new Conector(contexto);
     }
 
+    // Constructor que usara un repositorio de datos local
     public ControladorListas(RepositorioLista<Tipo> repositorioLista, Context context){
         this.repositorioLista = repositorioLista;
         conector = new Conector(context);
@@ -49,6 +52,7 @@ public abstract class ControladorListas<Tipo> {
         return getList(parametro,campo);
     }
 
+    // Metodo para obtener un reporte o consulta distinta a un objeto declarado
     public List<Object[]> obtenerDatosGrafica(){
         return getListGraph();
     }
@@ -63,10 +67,14 @@ public abstract class ControladorListas<Tipo> {
         conector.conexion = conector.JavaToMySQL();
     }
 
-    protected void manejarExcepcion(SQLException ex) {
-        Toast.makeText(contexto, "Error en la base de datos", Toast.LENGTH_SHORT).show();
+    protected void manejarExcepcionSQL(SQLException ex) {
+        avisoUsuario("Error en la base de datos: "+ex.getMessage());
         // Habilitar en caso de querer seguir un registro de los errores producidos por la base de datos
         //Logger.getLogger(ControladorListas.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    protected void manejarExcepcion(Exception e) {
+        avisoUsuario("Error: "+e.getMessage());
     }
 
     protected String obtenerFecha(){
@@ -83,6 +91,7 @@ public abstract class ControladorListas<Tipo> {
         return getObjeto(id);
     }
 
+    // Metodo para ejecutar querys complejos
     protected boolean ejecutarActualizacion(String query) {
         try{
             obtenerConexionSQL();
@@ -90,13 +99,15 @@ public abstract class ControladorListas<Tipo> {
             conector.comando.executeUpdate(query);
             return true;
         } catch (SQLException ex) {
-            manejarExcepcion(ex);
+            manejarExcepcionSQL(ex);
             return false;
         }catch(Exception e){
+            manejarExcepcion(e);
             return false;
         }
     }
 
+    // Metodo para ejecutar solo consultas
     protected ResultSet ejecutarConsulta(String query) {
         try {
             obtenerConexionSQL();
@@ -105,6 +116,9 @@ public abstract class ControladorListas<Tipo> {
             return conector.registro;
         } catch (SQLException ex) {
             manejarExcepcion(ex);
+            return null;
+        }catch(Exception e){
+            manejarExcepcion(e);
             return null;
         }
     }

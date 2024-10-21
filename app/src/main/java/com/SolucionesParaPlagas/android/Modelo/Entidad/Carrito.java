@@ -13,12 +13,15 @@ import lombok.AllArgsConstructor;
 
 public class Carrito {
 
-    private int idCarrito;
-    private Date fechaCarrito;
+    private int idNotaVenta;
+    private Date fecha;
     private float subtotal;
     private float iva;
-    private float total;
-    private int idCliente;
+    private float pagoTotal;
+    private String estatus;
     private int noCliente;
+    private int noEmpleado;
+
+    // Como es una compra el id del empleado sera 1 por defecto
 
 }

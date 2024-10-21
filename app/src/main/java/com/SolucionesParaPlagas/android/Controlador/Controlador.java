@@ -11,10 +11,13 @@ import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 public abstract class Controlador<Tipo>{
 
     protected String nameTable = "";
+    // Contexto de la interfaz donde se presentan los datos
     protected Context contexto;
     protected Conector conector;
+    // Repositorio para manejar solo un objeto a la vez
     protected Repositorio<Tipo> repositorio;
 
+    // Constructor para casos que se usa el repositorio
     public Controlador(Repositorio<Tipo> repositorio, Context context){
         this.repositorio = repositorio;
         contexto = context;
@@ -28,13 +31,22 @@ public abstract class Controlador<Tipo>{
     }
 
     public void objetoToRepositorio(String RFC, String telefono){
-        repositorio.setObjeto(getObject(RFC, telefono));
+        // Importante validar que exista en la base de datos
+        // Caso contrario dar aviso para evitar valores nulos en el repositorio
+        Tipo objeto = getObject(RFC, telefono);
+        if(objeto != null){
+            repositorio.setObjeto(objeto);
+        }else {
+            avisoUsuario("Error, datos no encontrados");
+        }
     }
 
+    // Si se cierran sesiones es necesario limpiar el repositorio local
     public void limpiarRepositorio(){
         repositorio.clearObjeto();
     }
 
+    // Metodo para comodidad del programador para mandar avisos en pantallas
     public void avisoUsuario(String mensaje){
         Toast.makeText(contexto, mensaje, Toast.LENGTH_SHORT).show();
     }
@@ -43,14 +55,19 @@ public abstract class Controlador<Tipo>{
         conector.conexion = conector.JavaToMySQL();
     }
 
-    protected void manejarExcepcion(SQLException ex) {
-        Toast.makeText(contexto, "Error en la base de datos", Toast.LENGTH_SHORT).show();
+    protected void manejarExcepcionSQL(SQLException ex) {
+        avisoUsuario("Error en la base de datos: "+ex.getMessage());
+    }
+
+    protected void manejarExcepcion(Exception e) {
+        avisoUsuario("Error: "+e.getMessage());
     }
 
     public Tipo obtenerObjeto(){
         return repositorio.getObjeto();
     }
 
+    // Metodo para obtener fechas automaticas
     protected String obtenerFecha(){
         // Obtén la fecha actual
         LocalDate fechaActual = LocalDate.now();
@@ -61,6 +78,7 @@ public abstract class Controlador<Tipo>{
         return fechaFormateada;
     }
 
+    // Metodo para querys complejos (update, call... etc)
     protected boolean ejecutarActualizacion(String query) {
         try{
             obtenerConexionSQL();
@@ -68,13 +86,15 @@ public abstract class Controlador<Tipo>{
             conector.comando.executeUpdate(query);
             return true;
         } catch (SQLException ex) {
-            manejarExcepcion(ex);
+            manejarExcepcionSQL(ex);
             return false;
         }catch(Exception e){
+            manejarExcepcion(e);
             return false;
         }
     }
 
+    // Metodo para querys de solo consultas
     protected ResultSet ejecutarConsulta(String query) {
         try {
             obtenerConexionSQL();
@@ -83,6 +103,9 @@ public abstract class Controlador<Tipo>{
             return conector.registro;
         } catch (SQLException ex) {
             manejarExcepcion(ex);
+            return null;
+        }catch (Exception e){
+            manejarExcepcion(e);
             return null;
         }
     }

@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class VentaProducto {
 
@@ -16,6 +16,6 @@ public class VentaProducto {
     private int cantidad;
     private float total;
     private int folio;
-    private int idCarrito;
+    private int idNotaVenta;
 
 }

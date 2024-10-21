@@ -1,8 +1,8 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.sql.SQLException;
 import android.content.Context;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
@@ -56,7 +56,6 @@ public class ControladorProducto extends ControladorListas<Producto> {
                     producto.setDescripcion(conector.registro.getString(7));
                     producto.setPrecio(conector.registro.getFloat(8));
                     producto.setUrlImagen(conector.registro.getString(9));
-                    producto.setIdProveedor(conector.registro.getInt(10));
                     lista.add(producto);
                 }
             } catch (SQLException ex) {
@@ -88,7 +87,7 @@ public class ControladorProducto extends ControladorListas<Producto> {
         return Collections.emptyList();
     }
 
-    // Modificar este metodo para obtener una grafica
+    // Modificar este metodo para obtener un reporte o grafica
     @Override
     protected List<Object[]> getListGraph() {
         List<Object[]> listaProductos = new ArrayList<>();

@@ -35,10 +35,7 @@ public class ControladorCliente extends Controlador<Cliente>{
                 + "'" + cliente.getLocalidad() + "', "
                 + "'" + cliente.getMunicipio() + "', "
                 + "'" + cliente.getEstado() + "', "
-                + cliente.getClienteCP() + ", "
-                + cliente.getDiasCredito() + ", "
-                + cliente.getMontoCredito() + ", "
-                + "'" + cliente.getUrlFotoPerfil() + "');";
+                + cliente.getClienteCP() + "');";
         return ejecutarActualizacion(query);
     }
 
@@ -61,10 +58,7 @@ public class ControladorCliente extends Controlador<Cliente>{
                 + "localidad = '" + cliente.getLocalidad() + "', "
                 + "municipio = '" + cliente.getMunicipio() + "', "
                 + "estado = '" + cliente.getEstado() + "', "
-                + "clienteCP = " + cliente.getClienteCP() + ", "
-                + "diasCredito = " + cliente.getDiasCredito() + ", "
-                + "montoCredito = " + cliente.getMontoCredito() + ", "
-                + "urlFotoPerfil = '" + cliente.getUrlFotoPerfil() + "' "
+                + "clienteCP = " + cliente.getClienteCP()
                 + "WHERE noCliente = " + cliente.getNoCliente() + ";";
         return ejecutarActualizacion(query);
     }
@@ -76,10 +70,12 @@ public class ControladorCliente extends Controlador<Cliente>{
         return BDToObject(conector);
     }
 
-    // Metodo no usable
+    // Metodo para obtener un cliente por un campo especifio
     @Override
     protected Cliente getObject(String campo) {
-        return null;
+        String query = "SELECT * FROM " + nameTable + " WHERE clienteRFC = " + campo + ";";
+        conector.registro = ejecutarConsulta(query);
+        return BDToObject(conector);
     }
 
     @Override
@@ -109,9 +105,6 @@ public class ControladorCliente extends Controlador<Cliente>{
                     cliente.setMunicipio(conector.registro.getString("municipio"));
                     cliente.setEstado(conector.registro.getString("estado"));
                     cliente.setClienteCP(conector.registro.getInt("clienteCP"));
-                    cliente.setDiasCredito(conector.registro.getInt("diasCredito"));
-                    cliente.setMontoCredito(conector.registro.getFloat("montoCredito"));
-                    cliente.setUrlFotoPerfil(conector.registro.getString("urlFotoPerfil"));
                     return cliente;
                 }
             } catch (SQLException ex) {

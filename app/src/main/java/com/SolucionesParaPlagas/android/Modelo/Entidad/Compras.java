@@ -12,6 +12,9 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
+// Clase para mostrar las compras hechas
+// Su unico uso es 'Read'
+
 public class Compras {
 
     private int idCompra;

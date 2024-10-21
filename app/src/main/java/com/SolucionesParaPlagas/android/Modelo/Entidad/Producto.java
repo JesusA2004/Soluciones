@@ -8,8 +8,10 @@ import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+
+// Implementar una interfaz para cuando se solicita la info detallada del producto
 
 public class Producto implements Serializable {
 
@@ -23,6 +25,5 @@ public class Producto implements Serializable {
     private String descripcion;     // descripcion: text
     private float precio;          // precio: float
     private String urlImagen;      // urlImagen: varchar(100)
-    private Integer idProveedor;   // idProveedor: int unsigned (usamos Integer para manejar null)
 
 }

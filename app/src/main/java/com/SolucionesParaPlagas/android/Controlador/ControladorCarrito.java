@@ -5,10 +5,18 @@ import android.content.Context;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Carrito;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCarrito;
 
+/*
+* Esta clase esta destinada a:
+* Insertar en la base de datos una nota de venta
+* Actualizar la nota de venta en la bd
+* Eliminar la nota de venta (carrito actual)
+*/
+
 public class ControladorCarrito extends Controlador<Carrito>{
 
+    // No es necesario el uso de un repositorio local
     public ControladorCarrito(Context contexto){
-        super(RepositorioCarrito.obtenerInstancia(),contexto);
+        super(contexto);
         nameTable = "notaVenta";
     }
 

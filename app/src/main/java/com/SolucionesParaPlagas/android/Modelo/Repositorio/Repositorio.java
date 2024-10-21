@@ -1,11 +1,13 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
+//Repositorio que guarda un solo objeto
+
 public class Repositorio <Tipo>{
 
     private Tipo objeto;
 
     protected Repositorio(){
-
+        // Constructor protejido para evitar instanciación de clases externas
     }
 
     public Tipo getObjeto(){
@@ -20,7 +22,7 @@ public class Repositorio <Tipo>{
         objeto = null;
     }
 
-    public boolean objetoNulo(){
+    public boolean esNulo(){
         if(objeto == null){
             return true;
         }
