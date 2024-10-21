@@ -1,67 +1,82 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import java.util.HashMap;
 import java.sql.SQLException;
 import android.content.Context;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Carrito;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCarrito;
 
-/*
-* Esta clase esta destinada a:
-* Insertar en la base de datos una nota de venta
-* Actualizar la nota de venta en la bd
-* Eliminar la nota de venta (carrito actual)
-*/
-
-public class ControladorCarrito extends Controlador<Carrito>{
+public class ControladorCarrito extends Controlador<Compras>{
 
     // No es necesario el uso de un repositorio local
     public ControladorCarrito(Context contexto){
-        super(contexto);
+        super(RepositorioCarrito.obtenerInstancia(), contexto);
         nameTable = "notaVenta";
     }
 
-    // Metodo para insertar un carrito en la base de datos pero el objeto ya debe tener valores
+    private static ControladorCarrito instancia;
+
+    public static ControladorCarrito obtenerInstancia(Context context) {
+        if (instancia == null) {
+            instancia = new ControladorCarrito(context);
+        }
+        return instancia;
+    }
+
+    // Metodo para insertar un Compras en la base de datos pero el objeto ya debe tener valores
     @Override
-    protected boolean insertObject(Carrito carrito) {
+    protected boolean insertObject(Compras compras) {
         String query = "INSERT INTO " + nameTable + " VALUES ("
                 + "0, "
-                + "'" + obtenerFecha() + "', "
-                + carrito.getSubtotal() + ", "
-                + carrito.getIva() + ", "
-                + carrito.getTotal() + ", "
-                + carrito.getIdCliente() + ","
+                + "'" + obtenerFecha() + "', " // Metodo heredado de la clase padre
+                + compras.getSubtotal() + ", "
+                + compras.getIva() + ", "
+                + compras.getPagoTotal() + ", "
+                + compras.getEstatus() + ", "
+                + compras.getNoCliente() + ","
                 + "1" + ");"; // 1 indica que la venta la realiza un cliente (compra)
         return ejecutarActualizacion(query);
     }
 
     @Override
     protected boolean deleteObject(int id) {
-        String query = "DELETE FROM " + nameTable + " WHERE idCarrito = " + id + ";";
+        String query = "DELETE FROM " + nameTable + " WHERE idNotaVenta = " + id + ";";
         return ejecutarActualizacion(query);
     }
 
-    // No se le permitira actualizar los siguientes atributos:
-    // idNotaVenta, noCliente, noEmpleado
+    // No se le permitirá actualizar al cliente ya que los cambios se haran automaticos
     @Override
-    protected boolean updateObject(Carrito carrito) {
-        String query = "UPDATE " + nameTable + " SET "
-                + "fecha = '" + obtenerFecha() + "', "
-                + "subtotal = " + carrito.getSubtotal() + ", "
-                + "iva = " + carrito.getIva() + ", "
-                + "pagoTotal = " + carrito.getTotal() + " "
-                + "WHERE idCarrito = " + carrito.getIdCarrito() + ";";
-        return ejecutarActualizacion(query);
+    protected boolean updateObject(Compras compras) {
+        // En la base de datos habra un disparador que actulice el Compras
+        return true;
     }
 
     @Override
-    protected Carrito getObject(int id) {
-        String query = "SELECT * FROM " + nameTable + " WHERE idCarrito = " + id + ";";
+    protected Compras getObject(int id) {
+        // Obtenemos el ultimo id ingresado de la nota venta
+        String q = "SELECT MAX(idNotaVenta) AS maxId FROM " + nameTable + ";";
+        conector.registro = ejecutarConsulta(q);
+        try {
+            if (conector.registro.next()) {
+                id = conector.registro.getInt(1);
+            }
+        } catch (SQLException ex) {
+            manejarExcepcion(ex);
+            return null;
+        }
+        String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal, " +
+                "nv.estatus, nv.noCliente, nv.noEmpleado, p.folio, v.cantidad " +
+                "FROM notaVenta nv " +
+                "JOIN venta v ON nv.idNotaVenta = v.idNotaVenta " +
+                "JOIN producto p ON v.folio = p.folio " +
+                "WHERE nv.idNotaVenta = " + id + ";";
         conector.registro = ejecutarConsulta(query);
         return BDToObject(conector);
     }
 
+    // Metodos no usables ya que no se usara esta clase para consulta del Compras de compras
     @Override
-    protected Carrito getObject(String campo) {
+    protected Compras getObject(String campo) {
         limpiarRepositorio();
         String query = "SELECT * FROM " + nameTable + " WHERE fechaApartado = '" + campo + "';";
         conector.registro = ejecutarConsulta(query);
@@ -70,29 +85,38 @@ public class ControladorCarrito extends Controlador<Carrito>{
     }
 
     @Override
-    protected Carrito getObject(String parametro, String campo) {
+    protected Compras getObject(String parametro, String campo) {
         return null;
     }
 
     @Override
-    protected Carrito BDToObject(Conector conector) {
-        if (conector.registro != null) {
-            try {
-                if (conector.registro.next()) {
-                    Carrito carrito = new Carrito();
-                    carrito.setIdCarrito(conector.registro.getInt("idNotaVenta"));
-                    carrito.setFechaCarrito(conector.registro.getDate("fecha"));
-                    carrito.setSubtotal(conector.registro.getFloat("subtotal"));
-                    carrito.setIva(conector.registro.getFloat("iva"));
-                    carrito.setTotal(conector.registro.getFloat("pagoTotal"));
-                    carrito.setIdCliente(conector.registro.getInt("noCliente"));
-                    return carrito;
+    protected Compras BDToObject(Conector conector) {
+        Compras compras = new Compras();
+        HashMap<Integer, Integer> productos = new HashMap<>();
+        boolean detallesGeneralesSeteados = false;  // Variable para controlar que los detalles generales se seteen una sola vez
+        try {
+            while (conector.registro.next()) {
+                // Solo se llena una vez, en la primera fila
+                if (!detallesGeneralesSeteados) {
+                    compras.setIdNotaVenta(conector.registro.getInt("idNotaVenta"));
+                    compras.setFecha(conector.registro.getDate("fecha"));
+                    compras.setSubtotal(conector.registro.getFloat("subtotal"));
+                    compras.setIva(conector.registro.getFloat("iva"));
+                    compras.setPagoTotal(conector.registro.getFloat("pagoTotal"));
+                    compras.setNoCliente(conector.registro.getInt("noCliente"));
+                    compras.setEstatus(conector.registro.getString("estatus"));
+                    detallesGeneralesSeteados = true;  // Marcamos que ya hemos seteado los detalles generales
                 }
-            } catch (SQLException ex) {
-                manejarExcepcion(ex);
+                // Llenamos el HashMap con el folio del producto y la cantidad
+                int folio = conector.registro.getInt("folio");
+                int cantidad = conector.registro.getInt("cantidad");
+                productos.put(folio, cantidad);
             }
+            compras.setProductos(productos);  // Asignamos el HashMap a la instancia de Compras
+        } catch (SQLException ex) {
+            manejarExcepcion(ex);
         }
-        return null;
+        return compras;
     }
 
 }

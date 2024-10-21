@@ -1,6 +1,9 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.net.Uri;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
 import com.example.sol.R;
 import java.util.HashMap;
 import android.os.Bundle;
@@ -16,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
-import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorCarrito;
@@ -32,7 +34,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private RecyclerView recyclerViewCarrito;
     private AdaptadorCarrito adaptadorCarrito;
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
-    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
+    private Controlador<Compras> controladorCarrito = ControladorCarrito.obtenerInstancia(context);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

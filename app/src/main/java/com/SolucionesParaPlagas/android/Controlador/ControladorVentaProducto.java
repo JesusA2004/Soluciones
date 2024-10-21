@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import android.content.Context;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 
+// Clase para manejar CRUD de venta de producto(una lista de ventas genera un carrito)
+
 public class ControladorVentaProducto extends Controlador<VentaProducto> {
 
     // Este controlador no necesita de un repositorio local
@@ -19,7 +21,7 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
                 + objeto.getCantidad() + ", "
                 + objeto.getTotal() + ", "
                 + objeto.getFolio() + ", "
-                + objeto.getIdCarrito() + ");";
+                + objeto.getIdNotaVenta() + ");";
         return ejecutarActualizacion(query);
     }
 
@@ -35,7 +37,7 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
                 + "cantidad = " + objeto.getCantidad() + ", "
                 + "total = " + objeto.getTotal() + ", "
                 + "folio = " + objeto.getFolio() + ", "
-                + "idNotaVenta = " + objeto.getIdCarrito() + " "
+                + "idNotaVenta = " + objeto.getIdNotaVenta() + " "
                 + "WHERE idVenta = " + objeto.getIdVenta() + ";";
         return ejecutarActualizacion(query);
     }
@@ -50,6 +52,7 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
     @Override
     protected VentaProducto getObject(String campo) {
         // Si necesitas obtener un objeto por un campo específico, implementa esta lógica
+        // Este metodo es para futuras actualizaciones
         return null;
     }
 
@@ -68,7 +71,7 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
                     ventaProducto.setCantidad(conector.registro.getInt("cantidad"));
                     ventaProducto.setTotal(conector.registro.getFloat("total"));
                     ventaProducto.setFolio(conector.registro.getInt("folio"));
-                    ventaProducto.setIdCarrito(conector.registro.getInt("idNotaVenta"));
+                    ventaProducto.setIdNotaVenta(conector.registro.getInt("idNotaVenta"));
                     return ventaProducto;
                 }
             } catch (SQLException ex) {
