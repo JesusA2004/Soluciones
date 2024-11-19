@@ -1,6 +1,8 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
+
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.example.sol.R;
 import android.view.View;
 import android.content.Intent;
@@ -16,7 +18,7 @@ public class EstadoCuenta extends AppCompatActivity {
     TextView txtTitulo, txtDiasCredito, txtMontoCredito;
     TextView txtMetodoP;
     ImageView btnMenu, btnCerrarSesion, btnProductos;
-    DetalleCliente clienteCompleto = new DetalleCliente();
+    Cliente clienteCompleto = new DetalleCliente();
     Validaciones validaciones = new Validaciones();
 
     @Override

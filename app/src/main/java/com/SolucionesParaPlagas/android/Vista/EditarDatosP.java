@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class EditarDatosP extends AppCompatActivity {
 
@@ -74,7 +75,7 @@ public class EditarDatosP extends AppCompatActivity {
     }
 
     private void irACerrarSesion(View v) {
-        Sesion sesion = new Sesion();
+        ControladorValidaciones sesion = new ControladorValidaciones();
         sesion.confirmarCerrarSesion(this);
     }
 

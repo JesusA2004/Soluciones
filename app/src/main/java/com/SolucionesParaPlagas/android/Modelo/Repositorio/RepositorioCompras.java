@@ -1,10 +1,10 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 
 // Clase para mostrar la lista de compras del cliente
 
-public class RepositorioCompras extends RepositorioLista<Compras>{
+public class RepositorioCompras extends RepositorioLista<Compra>{
 
     private static RepositorioCompras instancia;
 

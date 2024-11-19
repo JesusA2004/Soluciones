@@ -14,6 +14,15 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
         nameTable = "venta";
     }
 
+    private static ControladorVentaProducto instancia;
+
+    public static ControladorVentaProducto obtenerInstancia(Context context) {
+        if (instancia == null) {
+            instancia = new ControladorVentaProducto(context);
+        }
+        return instancia;
+    }
+
     @Override
     protected boolean insertObject(VentaProducto objeto) {
         String query = "INSERT INTO " + nameTable + " VALUES ("
@@ -40,6 +49,19 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
                 + "idNotaVenta = " + objeto.getIdNotaVenta() + " "
                 + "WHERE idVenta = " + objeto.getIdVenta() + ";";
         return ejecutarActualizacion(query);
+    }
+
+    public int obtenerUltimaNotaVenta() {
+        String query = "SELECT MAX(idNotaVenta) FROM venta;";
+        conector.registro = ejecutarConsulta(query);
+        try {
+            if (conector.registro != null && conector.registro.next()) {
+                return conector.registro.getInt(1);
+            }
+        } catch (SQLException e) {
+            manejarExcepcion(e);
+        }
+        return -1;  // Si no hay ventas, retorna -1
     }
 
     @Override

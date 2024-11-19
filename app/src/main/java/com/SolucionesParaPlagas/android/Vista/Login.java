@@ -1,7 +1,5 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
@@ -17,17 +15,19 @@ import android.widget.ProgressBar;
 import android.net.ConnectivityManager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class Login extends AppCompatActivity {
 
+    private ProgressBar iconoCarga;
     private ImageView botonRegresar;
+    private Button botonIniciarSesion;
     private EditText usuarioRFC, usuarioTelefono;
     private TextView txtMsjCargando, txtTitutlo, txtRFC, txtTelefono;
-    private Button botonIniciarSesion;
-    private ProgressBar iconoCarga;
-    private Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(this);
     private ControladorValidaciones validar = new ControladorValidaciones();
+    private Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,45 +119,37 @@ public class Login extends AppCompatActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             // Validar que el RFC y el campo del teléfono sean válidos
             if (validarCampos()) {
-                mostrarPantallaCarga(); // Mostrar pantalla de carga
-                new Thread(() -> {
-                    controladorCliente.objetoToRepositorio(usuarioRFC.getText().toString(), usuarioTelefono.getText().toString());
-                    try {
-                        Thread.sleep(3000); // Simulación del tiempo de espera
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                mostrarPantallaCarga();
+                // Hacemos la solicitud a la base de datos y mandamos los datos al repositorio local
+                controladorCliente.objetoToRepositorio(usuarioRFC.getText().toString(), usuarioTelefono.getText().toString());
+
+                // Obtenemos los datos del repositorio local
+                Cliente cliente = controladorCliente.obtenerObjeto();
+                ocultarPantallaCarga(); // Ocultar pantalla de carga
+
+                // Si llego el objeto al repositorio entonces existe en la base de datos
+                if (cliente != null) {
+                    if (cliente.getTelefonoC().equals(usuarioTelefono.getText().toString())) {
+                        irAMenu(v);
+                    } else {
+                        avisoUsuario("Error, el teléfono ingresado no corresponde al RFC");
                     }
-                    Cliente cliente = controladorCliente.obtenerObjeto();
-                    runOnUiThread(() -> {
-                        ocultarPantallaCarga(); // Ocultar pantalla de carga
-                        if (cliente != null) {
-                            if (!cliente.getTelefonoC().isEmpty()) {
-                                if (cliente.getTelefonoC().equals(usuarioTelefono.getText().toString())) {
-                                    irAMenu(v);
-                                } else {
-                                    Toast.makeText(Login.this, "Error, el teléfono ingresado no corresponde al RFC", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                if (usuarioTelefono.getText().toString().equals("7771111111")) {
-                                    irAMenu(v);
-                                } else {
-                                    Toast.makeText(Login.this, "Error, el teléfono no coincide con el RFC ingresado", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        } else {
-                            Toast.makeText(Login.this, "Error, el RFC ingresado no está registrado", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }).start();
+                } else {
+                    avisoUsuario("Error, cliente no registrado");
+                }
             }
         } else {
-            Toast.makeText(Login.this, "No tienes conexión a internet", Toast.LENGTH_SHORT).show();
+            avisoUsuario("No tienes conexión a internet");
         }
     }
 
     private void irAMenu(View v) {
         Intent intent = new Intent(Login.this, MenuPrincipal.class);
         startActivity(intent);
+    }
+
+    private void avisoUsuario(String mensaje){
+        Toast.makeText(Login.this,mensaje, Toast.LENGTH_SHORT).show();
     }
 
 }

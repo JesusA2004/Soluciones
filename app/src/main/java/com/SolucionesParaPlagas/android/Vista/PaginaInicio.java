@@ -5,19 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
-import com.SolucionesParaPlagas.android.Controlador.ControladorListas;
-import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 
 public class PaginaInicio extends AppCompatActivity {
 
     private Button botonIniciarSesion;
     private ImageView btnUbicacion, btnSitioWeb;
     private TextView ubicacion, botonCrearCuenta;
-    private ControladorListas<Producto> controladorProducto = ControladorProducto.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +21,6 @@ public class PaginaInicio extends AppCompatActivity {
         setContentView(R.layout.bienvenida);
         inicializarElementos();
         configurarBotones();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Para casos que se cierra sesion o similar no es necesario cargar los productos una vez mas
-        if(controladorProducto.obtenerRepositorio().isEmpty()){
-            cargarProductos();
-        }
-    }
-
-    private void cargarProductos(){
-        controladorProducto.obtenerLista();
     }
 
     // Metodos para configurar los elementos dentro de los layout y que se usaran por el usuario

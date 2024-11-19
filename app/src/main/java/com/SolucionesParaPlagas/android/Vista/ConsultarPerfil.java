@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import java.util.HashMap;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 import com.example.sol.R;
 import java.util.ArrayList;
 import android.widget.Toast;
@@ -15,19 +17,18 @@ import android.content.DialogInterface;
 import android.widget.ExpandableListView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
-import com.SolucionesParaPlagas.android.Controlador.ControladorDetalleCliente;
 
 public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfil.OnChildClickListener {
 
     private Button btnGuardarCambios;
     private ExpandableListView datosPersonales;
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
-    private DetalleCliente clienteCompleto = new DetalleCliente();
-    private DetalleCliente clienteCambios;
-    private ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
+    private Cliente clienteCompleto = new Cliente();
+    private Cliente clienteCambios;
+    private ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +81,10 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
 
     private void inicializarCliente() {
         // Obtenemos el cliente ya que es el único en el repositorio
-        clienteCompleto = controladorDetalleCliente.obtenerCliente();
-        clienteCambios = controladorDetalleCliente.obtenerCliente(1);
+        clienteCompleto = controladorCliente.obtenerObjeto();
         // Verificamos si ya existe un cliente en el repositorio con cambios
         if(clienteCambios == null){
-            clienteCambios = new DetalleCliente();
+            clienteCambios = new Cliente();
             clienteCambios.setCommercialName(clienteCompleto.getCommercialName());
             clienteCambios.setLegalName(clienteCompleto.getLegalName());
             clienteCambios.setEmail(clienteCompleto.getEmail());
@@ -111,55 +111,12 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
     }
 
     private void irACerrarSesion(View v) {
-        Sesion sesion = new Sesion();
+        ControladorValidaciones sesion = new ControladorValidaciones();
         sesion.confirmarCerrarSesion(this);
     }
 
     private void irAGuardarCambios(View v) {
         notificarUsuario();
-    }
-
-    private boolean mandarCorreoOWhatsapp(View v) {
-        // Construye el mensaje que se enviará por correo y WhatsApp
-        String mensaje = construirMensaje();
-        if (mensaje.isEmpty()) {
-            Toast.makeText(this, "No hay cambios en los datos.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        // Configura el Intent para enviar un correo electrónico
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@solucionesparaplagas.com"});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Cambio en los datos del Cliente en la APP");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
-        // Configura el Intent para enviar un mensaje por WhatsApp
-        Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
-        whatsappIntent.setPackage("com.whatsapp");
-        // Número de teléfono en formato internacional sin el "+"
-        String phoneNumber = "7771308184";
-        whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(mensaje)));
-        try {
-            // Crea un Intent chooser para permitir al usuario elegir entre correo electrónico y WhatsApp
-            Intent chooserIntent = Intent.createChooser(emailIntent, "Enviar registro...");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{whatsappIntent});
-            startActivity(chooserIntent);
-            // Ejecuta el código después de que el usuario haya elegido una opción
-            new Thread(() -> {
-                try {
-                    // Espera un momento para asegurar que la acción se complete
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                runOnUiThread(() -> {
-                    irAMenu(v);
-                });
-            }).start();
-            return true;
-        } catch (Exception e) {
-            Toast.makeText(this, "Ocurrió un error al enviar los datos. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
-            return false;
-        }
     }
 
     private void notificarUsuario(){
@@ -169,72 +126,10 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mandarCorreoOWhatsapp(null);
+                        // ACTUALIZAR LA BASE DE DATOS
                     }
                 })
                 .show();
-    }
-
-    private String construirMensaje(){
-        StringBuilder mensajeCorreo = new StringBuilder();
-        mensajeCorreo.append("El cliente: "+clienteCompleto.getCommercialName()+" con RFC: "+clienteCompleto.getRFC());
-        mensajeCorreo.append(" solicita realizar cambios en sus datos\n");
-        mensajeCorreo.append("------------------------------------------\n\n");
-        mensajeCorreo.append("Quiere realizar los siguientes cambios:\n\n");
-        boolean key = false;
-
-        if(!clienteCambios.getCommercialName().equals(clienteCompleto.getCommercialName())){
-            mensajeCorreo.append("El anterior nombre comercial era: "+clienteCompleto.getCommercialName()+"\n");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getCommercialName()+"\n\n");
-            key = true;
-        }
-
-        if(clienteCompleto.getLegalName() != null){
-            if(!clienteCambios.getLegalName().equals(clienteCompleto.getLegalName())){
-                mensajeCorreo.append("El anterior nombre legal era: "+clienteCompleto.getLegalName()+"\n");
-                mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getLegalName()+"\n\n");
-                key = true;
-            }
-        }else if(clienteCambios.getLegalName() != null){
-            mensajeCorreo.append("El cliente no contaba con un nombre legal");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getLegalName()+"\n\n");
-            key = true;
-        }
-
-        if(clienteCompleto.getEmail() != null){
-            if(!clienteCambios.getEmail().equals(clienteCompleto.getEmail())){
-                mensajeCorreo.append("El anterior email era: "+clienteCompleto.getEmail()+"\n");
-                mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getEmail()+"\n\n");
-                key = true;
-            }
-        }else if(clienteCambios.getEmail() != null){
-            mensajeCorreo.append("El cliente no contaba con un email");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getEmail()+"\n\n");
-            key = true;
-        }
-
-        if(!clienteCambios.getRFC().equals(clienteCompleto.getRFC())) {
-            mensajeCorreo.append("El anterior RFC era: "+clienteCompleto.getRFC()+"\n");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getRFC()+"\n\n");
-            key = true;
-        }
-
-        if(clienteCompleto.getTelephones() != null){
-            if(!clienteCambios.getTelephones().equals(clienteCompleto.getTelephones())){
-                mensajeCorreo.append("El anterior telefono era: "+clienteCompleto.getTelephones()+"\n");
-                mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getTelephones()+"\n\n");
-                key = true;
-            }
-        }else if(clienteCambios.getTelephones() != null){
-            mensajeCorreo.append("El cliente no contaba con un teléfono");
-            mensajeCorreo.append(" y ahora desea cambiarlo a: "+clienteCambios.getTelephones()+"\n\n");
-            key = true;
-        }
-
-        if(key){
-            return mensajeCorreo.toString();
-        }
-        return "";
     }
 
     private void configurarExpandableListViews() {
@@ -244,12 +139,12 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
 
         datosPersonalesTitles.add("Datos personales");
         List<String> basicInfo = new ArrayList<>();
-        basicInfo.add("Nombre Comercial: " + clienteCambios.getCommercialName());
-        basicInfo.add("Nombre Legal: " + clienteCambios.getLegalName());
+        basicInfo.add("Nombre: " + clienteCambios.getNombreC());
+        basicInfo.add("Nombre Legal: " + clienteCambios.getRazonSocial());
         basicInfo.add("Email: " + clienteCambios.getEmail());
-        basicInfo.add("RFC: " + clienteCambios.getRFC());
-        if (clienteCambios.getTelephones() != null) {
-            basicInfo.add("Telefono: " + clienteCambios.getTelephones());
+        basicInfo.add("RFC: " + clienteCambios.getClienteRFC());
+        if (clienteCambios.getTelefonoC() != null) {
+            basicInfo.add("Telefono: " + clienteCambios.getTelefonoC());
         } else {
             basicInfo.add("Telefono: Añadir telefono");
         }
@@ -263,10 +158,10 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
     @Override
     public void onChildClick(int groupPosition, int childPosition) {
         // Si el repositorio ya tiene el cliente con cambios, lo limpiamos
-        if(controladorDetalleCliente.obtenerRepositorio().size() == 2) {
-            controladorDetalleCliente.limpiarCliente();
+        if(controladorCliente.obtenerRepositorio().size() == 2) {
+            controladorCliente.limpiarCliente();
         }
-        controladorDetalleCliente.enviarDatoRepositorio(clienteCambios);
+        controladorCliente.enviarDatoRepositorio(clienteCambios);
         // Define las acciones para los clics en los hijos
         if (groupPosition == 0) { // Datos personales
             Intent intent = new Intent(ConsultarPerfil.this, EditarDatosP.class);

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCompras;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPedidos;
@@ -87,9 +87,9 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void cargarLista(){
-        List<Compras> listaPedidos = controladorCompras.obtenerRepositorio();
+        List<Compra> listaPedidos = controladorCompras.obtenerRepositorio();
         if (listaPedidos != null && !listaPedidos.isEmpty()) {
-            AdaptadorPedidos adaptador = new AdaptadorPedidos(listaPedidos);
+            AdaptadorPedidos adaptador = new AdaptadorPedidos(this);
             pedidos.setAdapter(adaptador);
         }
     }

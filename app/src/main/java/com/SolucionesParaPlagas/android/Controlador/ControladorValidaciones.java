@@ -14,6 +14,11 @@ public class ControladorValidaciones {
     private static final String RFCPersonaFisica = "^[A-ZÑ&]{4}\\d{6}[A-Z0-9]{3}$";
     private static final String RFCPersonaMoral = "^[A-ZÑ&]{3}\\d{6}$";
 
+    //Constructor
+    public ControladorValidaciones(){
+
+    }
+
     /**
      * Valida un RFC.
      *

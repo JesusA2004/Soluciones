@@ -3,7 +3,7 @@ package com.SolucionesParaPlagas.android.Vista;
 import android.net.Uri;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.example.sol.R;
 import java.util.HashMap;
 import android.os.Bundle;
@@ -34,7 +34,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private RecyclerView recyclerViewCarrito;
     private AdaptadorCarrito adaptadorCarrito;
     private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
-    private Controlador<Compras> controladorCarrito = ControladorCarrito.obtenerInstancia(context);
+    private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(context);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

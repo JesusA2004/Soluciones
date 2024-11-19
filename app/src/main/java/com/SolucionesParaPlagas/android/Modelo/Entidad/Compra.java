@@ -4,7 +4,7 @@ import lombok.Setter;
 import lombok.Getter;
 import java.util.Date;
 import java.util.HashMap;
-import lombok.NoArgsConstructor;
+
 import lombok.AllArgsConstructor;
 
 @Getter
@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 
 // Clase para mostrar las compras hechas
 
-public class Compras {
+public class Compra {
 
     private int idNotaVenta;
     private Date fecha;
@@ -26,8 +26,9 @@ public class Compras {
     // Key -> id del producto, Value -> cantidad de productos
     private HashMap<Integer, Integer> productos;
 
-    public Compras(){
+    public Compra(){
         productos = new HashMap<Integer, Integer>();
+        noEmpleado = 2; // Id asignado para las compras hechas en la app
     }
 
 }

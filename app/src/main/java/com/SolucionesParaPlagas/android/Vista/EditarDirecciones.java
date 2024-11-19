@@ -1,6 +1,10 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import java.util.List;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +22,7 @@ import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente.DetalleCliente;
 public class EditarDirecciones extends AppCompatActivity {
 
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
-    private DetalleCliente clienteCompleto = new DetalleCliente();
+    private Cliente clienteCompleto = new Cliente();
     private ExpandableListView direccionFiscal, direccionEnvio;
     private AdaptadorPerfil adaptadorFiscal, adaptadorEnvio;
 
@@ -42,8 +46,8 @@ public class EditarDirecciones extends AppCompatActivity {
 
     private void inicializarCliente() {
         // Obtenemos el cliente ya que es el único en el repositorio
-        ControladorDetalleCliente controladorDetalleCliente = ControladorDetalleCliente.obtenerInstancia();
-        clienteCompleto = controladorDetalleCliente.obtenerCliente();
+        ControladorCliente controladorDetalleCliente = ControladorCliente.obtenerInstancia(this);
+        clienteCompleto = controladorDetalleCliente.obtenerObjeto();
     }
 
     private void configurarBotones() {
@@ -63,7 +67,7 @@ public class EditarDirecciones extends AppCompatActivity {
     }
 
     private void irACerrarSesion(View v) {
-        Sesion sesion = new Sesion();
+        ControladorValidaciones sesion = new ControladorValidaciones();
         sesion.confirmarCerrarSesion(this);
     }
 
@@ -101,8 +105,8 @@ public class EditarDirecciones extends AppCompatActivity {
 
         direccionFiscalTitles.add("Dirección Fiscal");
         List<String> basicInfo = new ArrayList<>();
-        basicInfo.add("Estado: " + clienteCompleto.getState());
-        basicInfo.add("Ciudad: " + clienteCompleto.getCity());
+        basicInfo.add("Estado: " + clienteCompleto.getEstado());
+        basicInfo.add("Ciudad: " + clienteCompleto.getMunicipio());
         basicInfo.add("Agregar datos de la dirección fiscal");
         direccionFiscalData.put(direccionFiscalTitles.get(0), basicInfo);
 

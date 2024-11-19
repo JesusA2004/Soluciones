@@ -41,6 +41,15 @@ public abstract class Controlador<Tipo>{
         }
     }
 
+    public void registrarObjeto(Tipo objeto){
+        if(objeto != null){
+            insertObject(objeto);
+            avisoUsuario("Registro exitoso");
+        }else{
+            avisoUsuario("Error con el registro");
+        }
+    }
+
     // Si se cierran sesiones es necesario limpiar el repositorio local
     public void limpiarRepositorio(){
         repositorio.clearObjeto();

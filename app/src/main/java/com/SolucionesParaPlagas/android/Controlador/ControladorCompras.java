@@ -1,12 +1,11 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
 import java.util.List;
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.sql.SQLException;
 import android.content.Context;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCompras;
 
 /*
@@ -14,7 +13,7 @@ import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCompras;
 * Consulta de la lista de pedidos del cliente
 */
 
-public class ControladorCompras extends ControladorListas<Compras> {
+public class ControladorCompras extends ControladorListas<Compra> {
 
     public ControladorCompras(Context context) {
         super(RepositorioCompras.obtenerInstancia(), context);
@@ -32,22 +31,22 @@ public class ControladorCompras extends ControladorListas<Compras> {
 
     // No se permite insertar
     @Override
-    protected boolean insertObjects(Compras objeto) {
+    protected boolean insertObjects(Compra objeto) {
         return false;
     }
 
     @Override
-    protected Compras getObjeto(int id) {
+    protected Compra getObjeto(int id) {
         return null;
     }
 
     // Método para convertir el ResultSet en una lista de objetos Compras
     @Override
-    protected List<Compras> BDToObjects(Conector conector) {
-        List<Compras> listaCompras = new ArrayList<>();
+    protected List<Compra> BDToObjects(Conector conector) {
+        List<Compra> listaCompras = new ArrayList<>();
         if (conector.registro != null) {
             try {
-                Compras compraActual = null;
+                Compra compraActual = null;
                 int idNotaVentaActual = -1;
                 while (conector.registro.next()) {
                     int idNotaVenta = conector.registro.getInt("idNotaVenta");
@@ -56,7 +55,7 @@ public class ControladorCompras extends ControladorListas<Compras> {
                         if (compraActual != null) {
                             listaCompras.add(compraActual); // Agregamos la compra previa a la lista
                         }
-                        compraActual = new Compras();
+                        compraActual = new Compra();
                         compraActual.setIdNotaVenta(idNotaVenta);
                         compraActual.setFecha(conector.registro.getDate("fecha"));
                         compraActual.setSubtotal(conector.registro.getFloat("subtotal"));
@@ -85,9 +84,9 @@ public class ControladorCompras extends ControladorListas<Compras> {
     }
 
     @Override
-    protected List<Compras> getList() {
+    protected List<Compra> getList() {
         limpiarRepositorio(); // Limpiar los datos del repositorio previo
-        List<Compras> listaCompras = new ArrayList<>();
+        List<Compra> listaCompras = new ArrayList<>();
         // Consulta que une las notas de venta con las ventas y los productos
         String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal, " +
                 "nv.estatus, nv.noCliente, nv.noEmpleado, p.folio, v.cantidad " +
@@ -101,12 +100,12 @@ public class ControladorCompras extends ControladorListas<Compras> {
 
 
     @Override
-    protected List<Compras> getList(String parametro, String campo) {
+    protected List<Compra> getList(String parametro, String campo) {
         return Collections.emptyList();
     }
 
     @Override
-    protected List<Compras> getList(String parametro, int campo) {
+    protected List<Compra> getList(String parametro, int campo) {
         return Collections.emptyList();
     }
 

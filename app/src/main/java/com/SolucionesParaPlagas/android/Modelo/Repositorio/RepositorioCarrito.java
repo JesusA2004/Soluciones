@@ -1,10 +1,10 @@
 package com.SolucionesParaPlagas.android.Modelo.Repositorio;
 
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Compras;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 
 // Clase para mostrar el carrito de compras actual
 
-public class RepositorioCarrito extends Repositorio<Compras>{
+public class RepositorioCarrito extends Repositorio<Compra>{
 
     private static RepositorioCarrito instancia;
 

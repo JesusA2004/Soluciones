@@ -1,30 +1,35 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
+
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 import com.example.sol.R;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto.Producto;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class MostrarProducto extends AppCompatActivity {
 
-    private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
-    private TextView nombreProducto,descripcionProducto, pesoProducto;
+    private int cantidadPro;
     private EditText cantidadProducto;
     private Button botonAnadirCarrito;
     private Producto producto = new Producto();
-    private int cantidadPro;
     private ControladorImagenes controladorImagenes;
-    private Validaciones validaciones = new Validaciones();
-    private ControladorCarrito controladorCarrito = ControladorCarrito.obtenerInstancia();
+    private TextView nombreProducto,descripcionProducto, pesoProducto;
+    private ControladorValidaciones validaciones = new ControladorValidaciones();
+    private ControladorVentaProducto controladorCarrito = ControladorVentaProducto.obtenerInstancia(this);
+    private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +39,6 @@ public class MostrarProducto extends AppCompatActivity {
         inicializarElementos();
         // Obtenemos el producto elegido
         obtenerElementos();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         // Cargamos los datos del producto en la interfaz
         cargarDatosProducto();
         // Preparamos los botones para las acciones que se van a realizar
@@ -46,23 +46,23 @@ public class MostrarProducto extends AppCompatActivity {
     }
 
     private void cargarImagenProducto(){
-        String imageUrl = producto.getImageUrl();
+        String imageUrl = producto.getUrlImagen();
         controladorImagenes = new ControladorImagenes(this);
         controladorImagenes.cargarImagenDesdeUrl(imageUrl, imagenProducto);
     }
 
     private void cargarDatosProducto(){
         cargarImagenProducto();
-        nombreProducto.setText(producto.getTitle());
-        if(validaciones.validarStringNull(producto.getDescription())){
+        nombreProducto.setText(producto.getNombreProd());
+        if(validaciones.validarStringNull(producto.getDescripcion())){
             descripcionProducto.setText("Sin información adicional del producto.");
         }else{
-            descripcionProducto.setText("Descripcion: "+producto.getDescription());
+            descripcionProducto.setText("Descripcion: "+producto.getDescripcion());
         }
-        if(validaciones.validarStringNull(""+producto.getWeight())){
+        if(validaciones.validarStringNull(""+producto.getPeso())){
             pesoProducto.setText("");
         }else{
-            pesoProducto.setText(""+producto.getWeight()+" "+producto.getUnit());
+            pesoProducto.setText(""+producto.getPeso()+" "+producto.getUnidadM());
         }
     }
 
@@ -115,7 +115,7 @@ public class MostrarProducto extends AppCompatActivity {
     }
 
     private void irACerrarSesion(View v) {
-        Sesion sesion = new Sesion();
+        ControladorValidaciones sesion = new ControladorValidaciones();
         sesion.confirmarCerrarSesion(this);
     }
 
@@ -124,10 +124,11 @@ public class MostrarProducto extends AppCompatActivity {
         // Obtener la cantidad ingresada
         String cantidadStr = cantidadProducto.getText().toString();
         if (cantidadStr.isEmpty()) {
-            Toast.makeText(this, "Por favor, ingrese una cantidad", Toast.LENGTH_LONG).show();
+            avisoUsuario("Por favor, ingrese una cantidad");
             return;
         }
         cantidadPro = Integer.parseInt(cantidadStr);
+        controladorCarrito.obtenerUltimaNotaVenta();
         if(controladorCarrito.existeEnCarrito(producto.getID())){
             // Si el producto ya existe en el carrito, actualizar la cantidad
             int cantidadActual = controladorCarrito.obtenerCantidadProducto(producto.getID());
@@ -136,9 +137,11 @@ public class MostrarProducto extends AppCompatActivity {
             // Si no existe en el carrito solo se agrega
             controladorCarrito.agregarProducto(producto.getID(),cantidadPro);
         }
-        // Añadir estos valores a un hashmap que sera enviado a el carrito
-        // imprimirCarrito();
-        Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
+        avisoUsuario("Producto añadido al carrito");
+    }
+
+    private void avisoUsuario(String mensaje){
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
     }
 
 }
