@@ -76,6 +76,7 @@ public class ControladorProducto extends ControladorListas<Producto> {
     @Override
     protected List<Producto> getList(String parametro, String campo) {
         limpiarRepositorio();
+        // CAMBIAR QUERY POR SELECT
         String query = "call buscarApartados('"+parametro+"', '"+campo+"');";
         conector.registro = ejecutarConsulta(query);
         repositorioLista.setDatos(BDToObjects(conector));

@@ -1,7 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;

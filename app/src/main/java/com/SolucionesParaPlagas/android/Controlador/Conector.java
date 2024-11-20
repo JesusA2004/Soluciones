@@ -25,9 +25,9 @@ public class Conector {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Datos de la conexión con la base de datos
-            String servidor = "jdbc:mysql://https://danieltellez.net/:3306/danielt2_plagas2024";
-            String usuario = "danielt2_plagas";
-            String password = "SkRYCSNrepVu";
+            String servidor = "jdbc:mysql://https://sql5.freemysqlhosting.net/:3306/sql5745655";
+            String usuario = "sql5745655";
+            String password = "EXqaHS7lPY";
             // Crear la conexión
             conexion = DriverManager.getConnection(servidor, usuario, password);
             // Mostrar mensaje si la conexión fue exitosa

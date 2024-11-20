@@ -60,6 +60,10 @@ public abstract class Controlador<Tipo>{
         Toast.makeText(contexto, mensaje, Toast.LENGTH_SHORT).show();
     }
 
+    public void actualizarObjeto(Tipo objeto){
+        updateObject(objeto);
+    }
+
     protected void obtenerConexionSQL(){
         conector.conexion = conector.JavaToMySQL();
     }

@@ -1,15 +1,11 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import java.util.List;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import java.util.HashMap;
-
-import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 import com.example.sol.R;
 import java.util.ArrayList;
-import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.ImageView;
@@ -20,14 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorPerfil;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfil.OnChildClickListener {
 
     private Button btnGuardarCambios;
     private ExpandableListView datosPersonales;
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
-    private Cliente clienteCompleto = new Cliente();
-    private Cliente clienteCambios;
+    private Cliente cliente = new Cliente();
     private ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override
@@ -49,19 +45,19 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
             if (titulo != null) {
                 switch (titulo) {
                     case "Nombre Comercial":
-                        clienteCambios.setCommercialName(dato);
+                        cliente.setNombreC(dato);
                         break;
                     case "Nombre Legal":
-                        clienteCambios.setLegalName(dato);
+                        cliente.setRazonSocial(dato);
                         break;
                     case "Email":
-                        clienteCambios.setEmail(dato);
+                        cliente.setEmail(dato);
                         break;
                     case "RFC":
-                        clienteCambios.setRFC(dato);
+                        cliente.setClienteRFC(dato);
                         break;
                     case "Telefono":
-                        clienteCambios.setTelephones(dato);
+                        cliente.setTelefonoC(dato);
                         break;
                     default:
                         // Manejar otros casos o ignorar
@@ -80,17 +76,7 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
     }
 
     private void inicializarCliente() {
-        // Obtenemos el cliente ya que es el único en el repositorio
-        clienteCompleto = controladorCliente.obtenerObjeto();
-        // Verificamos si ya existe un cliente en el repositorio con cambios
-        if(clienteCambios == null){
-            clienteCambios = new Cliente();
-            clienteCambios.setCommercialName(clienteCompleto.getCommercialName());
-            clienteCambios.setLegalName(clienteCompleto.getLegalName());
-            clienteCambios.setEmail(clienteCompleto.getEmail());
-            clienteCambios.setRFC(clienteCompleto.getRFC());
-            clienteCambios.setTelephones(clienteCompleto.getTelephones());
-        }
+        cliente = controladorCliente.obtenerObjeto();
     }
 
     private void configurarBotones() {
@@ -116,35 +102,21 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
     }
 
     private void irAGuardarCambios(View v) {
-        notificarUsuario();
-    }
-
-    private void notificarUsuario(){
-        new AlertDialog.Builder(this)
-                .setTitle("Nota")
-                .setMessage("Te solicitamos confirmar tus datos personales antes del envio de los mismos.¡Gracias!.")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // ACTUALIZAR LA BASE DE DATOS
-                    }
-                })
-                .show();
+        controladorCliente.actualizarObjeto(cliente);
     }
 
     private void configurarExpandableListViews() {
         // Datos para el ExpandableListView de datos personales
         List<String> datosPersonalesTitles = new ArrayList<>();
         HashMap<String, List<String>> datosPersonalesData = new HashMap<>();
-
         datosPersonalesTitles.add("Datos personales");
         List<String> basicInfo = new ArrayList<>();
-        basicInfo.add("Nombre: " + clienteCambios.getNombreC());
-        basicInfo.add("Nombre Legal: " + clienteCambios.getRazonSocial());
-        basicInfo.add("Email: " + clienteCambios.getEmail());
-        basicInfo.add("RFC: " + clienteCambios.getClienteRFC());
-        if (clienteCambios.getTelefonoC() != null) {
-            basicInfo.add("Telefono: " + clienteCambios.getTelefonoC());
+        basicInfo.add("Nombre: " + cliente.getNombreC());
+        basicInfo.add("Nombre Legal: " + cliente.getRazonSocial());
+        basicInfo.add("Email: " + cliente.getEmail());
+        basicInfo.add("RFC: " + cliente.getClienteRFC());
+        if (cliente.getTelefonoC() != null) {
+            basicInfo.add("Telefono: " + cliente.getTelefonoC());
         } else {
             basicInfo.add("Telefono: Añadir telefono");
         }
@@ -157,11 +129,6 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
 
     @Override
     public void onChildClick(int groupPosition, int childPosition) {
-        // Si el repositorio ya tiene el cliente con cambios, lo limpiamos
-        if(controladorCliente.obtenerRepositorio().size() == 2) {
-            controladorCliente.limpiarCliente();
-        }
-        controladorCliente.enviarDatoRepositorio(clienteCambios);
         // Define las acciones para los clics en los hijos
         if (groupPosition == 0) { // Datos personales
             Intent intent = new Intent(ConsultarPerfil.this, EditarDatosP.class);
@@ -169,30 +136,30 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
                 case 0:
                     // Acción para "Nombre Comercial"
                     intent.putExtra("campo", "Nombre Comercial");
-                    intent.putExtra("dato", clienteCambios.getCommercialName());
+                    intent.putExtra("dato", cliente.getNombreC());
                     startActivity(intent);
                     break;
                 case 1:
                     // Acción para "Nombre Legal"
                     intent.putExtra("campo", "Nombre Legal");
-                    intent.putExtra("dato", clienteCambios.getLegalName());
+                    intent.putExtra("dato", cliente.getRazonSocial());
                     startActivity(intent);
                     break;
                 case 2:
                     // Acción para "Email"
                     intent.putExtra("campo", "Email");
-                    intent.putExtra("dato", clienteCambios.getEmail());
+                    intent.putExtra("dato", cliente.getEmail());
                     startActivity(intent);
                     break;
                 case 3:
                     // Acción para "RFC"
                     intent.putExtra("campo", "RFC");
-                    intent.putExtra("dato", clienteCambios.getRFC());
+                    intent.putExtra("dato", cliente.getClienteRFC());
                     startActivity(intent);
                     break;
                 case 4:
                     // Acción para "Telefono"
-                    String telefono = clienteCambios.getTelephones() != null ? clienteCambios.getTelephones() : "";
+                    String telefono = cliente.getTelefonoC();
                     intent.putExtra("campo", "Telefono");
                     intent.putExtra("dato", telefono);
                     startActivity(intent);

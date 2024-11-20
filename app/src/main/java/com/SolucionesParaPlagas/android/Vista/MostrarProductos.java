@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
+import com.SolucionesParaPlagas.android.Controlador.ControladorListas;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorProductos;
 import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
@@ -22,7 +23,7 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     private AdaptadorProductos adaptador;
     private List<Producto> listaProductosOriginal;
     private ImageView btnCerrarSesion, btnMenu, btnCarrito;
-    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia(this);
+    private ControladorListas<Producto> controladorProducto = ControladorProducto.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,7 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
     }
 
     private void cargarProductos() {
-        listaProductosOriginal = controladorProducto.obtenerRepositorio();
-        // Verificar si ya hay productos cargados en el repositorio
-        if (listaProductosOriginal == null || listaProductosOriginal.isEmpty()) {
-            listaProductosOriginal = controladorProducto.obtenerLista();
-        }
+        listaProductosOriginal = controladorProducto.obtenerLista();
         adaptador = new AdaptadorProductos(listaProductosOriginal, this,this);
         productos.setAdapter(adaptador);
     }
