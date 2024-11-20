@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,36 +20,32 @@ import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class MostrarPedidos extends AppCompatActivity {
 
-    private ImageView btnMenu, btnProductos, btnCerrarSesion;
-    private TextView txtMsjCargando, txtPedidosV;
     private Button btnCatalogo;
-    private ProgressBar iconoCarga;
     private RecyclerView pedidos;
+    private TextView txtPedidosV;
     private Cliente cliente = new Cliente();
+    private ImageView btnMenu, btnProductos, btnCerrarSesion;
     private ControladorCompras controladorCompras = ControladorCompras.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.mostrarpedidos);
-        inicializarElementos();
-        // Primero obtenemos los datos del repositorio de nuestro cliente para despues solicitar sus pedidos
-        inicializarCliente();
-        cargarPedidos(cliente.getNoCliente());
         configurarBotones();
+        inicializarCliente();
+        inicializarElementos();
+        super.onCreate(savedInstanceState);
+        cargarPedidos(cliente.getNoCliente());
+        setContentView(R.layout.mostrarpedidos);
     }
 
     private void inicializarElementos() {
-        btnMenu = findViewById(R.id.iconoMenu);
-        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
-        btnProductos = findViewById(R.id.iconoVerProductos);
-        iconoCarga = findViewById(R.id.iconoCarga);
-        txtMsjCargando = findViewById(R.id.txtMensajeEspera);
-        btnCatalogo = findViewById(R.id.btnPedido);
-        txtPedidosV = findViewById(R.id.txtPedidosV);
         btnCatalogo.setVisibility(View.GONE);
         txtPedidosV.setVisibility(View.GONE);
+        btnMenu = findViewById(R.id.iconoMenu);
         pedidos = findViewById(R.id.listaPedidos);
+        btnCatalogo = findViewById(R.id.btnPedido);
+        txtPedidosV = findViewById(R.id.txtPedidosV);
+        btnProductos = findViewById(R.id.iconoVerProductos);
+        btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         pedidos.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -68,27 +63,15 @@ public class MostrarPedidos extends AppCompatActivity {
     }
 
     private void cargarPedidos(int idCliente){
-        iconoCarga.setVisibility(View.VISIBLE); // Mostrar ProgressBar
-        txtMsjCargando.setVisibility(View.VISIBLE);
-        new Thread(() -> {
-            controladorCompras.obtenerLista("noCliente",idCliente);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            runOnUiThread(() -> {
-                iconoCarga.setVisibility(View.GONE); // Ocultar ProgressBar
-                txtMsjCargando.setVisibility(View.GONE);
-                cargarLista();
-                despertarElementos();
-            });
-        }).start();
+        // Hacemos la solicitud a la base de datos
+        controladorCompras.obtenerLista("noCliente",idCliente);
+        cargarLista();
+        despertarElementos();
     }
 
     private void cargarLista(){
         List<Compra> listaPedidos = controladorCompras.obtenerRepositorio();
-        if (listaPedidos != null && !listaPedidos.isEmpty()) {
+        if (listaPedidos != null) {
             AdaptadorPedidos adaptador = new AdaptadorPedidos(this);
             pedidos.setAdapter(adaptador);
         }

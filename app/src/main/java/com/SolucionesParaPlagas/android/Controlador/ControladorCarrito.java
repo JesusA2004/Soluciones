@@ -3,6 +3,7 @@ package com.SolucionesParaPlagas.android.Controlador;
 import java.util.HashMap;
 import java.sql.SQLException;
 import android.content.Context;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCarrito;
 
@@ -28,13 +29,13 @@ public class ControladorCarrito extends Controlador<Compra>{
     protected boolean insertObject(Compra compra) {
         String query = "INSERT INTO " + nameTable + " VALUES ("
                 + "0, "
-                + "'" + obtenerFecha() + "', " // Metodo heredado de la clase padre
+                + "'" + obtenerFecha() + "', "
                 + compra.getSubtotal() + ", "
                 + compra.getIva() + ", "
                 + compra.getPagoTotal() + ", "
                 + compra.getEstatus() + ", "
                 + compra.getNoCliente() + ","
-                + "1" + ");"; // 1 indica que la venta la realiza un cliente (compra)
+                + "2" + ");"; // 2 indica que la venta la realiza un cliente (compra)
         return ejecutarActualizacion(query);
     }
 
@@ -53,25 +54,61 @@ public class ControladorCarrito extends Controlador<Compra>{
 
     @Override
     protected Compra getObject(int id) {
-        // Obtenemos el ultimo id ingresado de la nota venta
+        // Consulta para obtener el último id de la nota de venta
         String q = "SELECT MAX(idNotaVenta) AS maxId FROM " + nameTable + ";";
         conector.registro = ejecutarConsulta(q);
+
         try {
             if (conector.registro.next()) {
-                id = conector.registro.getInt(1);
+                id = conector.registro.getInt("maxId");
+            } else {
+                // Si no hay registros, se debe crear una nueva nota de venta
+                return crearNuevaNotaVenta();
             }
         } catch (SQLException ex) {
             manejarExcepcion(ex);
             return null;
         }
+
+        // Consulta para verificar que el último ticket tenga noEmpleado == 2 y estatus "En compra"
         String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal, " +
-                "nv.estatus, nv.noCliente, nv.noEmpleado, p.folio, v.cantidad " +
+                "nv.estatus, nv.noCliente, nv.noEmpleado " +
                 "FROM notaVenta nv " +
-                "JOIN venta v ON nv.idNotaVenta = v.idNotaVenta " +
-                "JOIN producto p ON v.folio = p.folio " +
-                "WHERE nv.idNotaVenta = " + id + ";";
+                "WHERE nv.idNotaVenta = " + id + " AND nv.noEmpleado = 2 AND nv.estatus = 'En compra';";
+
         conector.registro = ejecutarConsulta(query);
-        return BDToObject(conector);
+        Compra compra = BDToObject(conector);
+
+        if (compra != null && compra.getIdNotaVenta() != 0) {
+            // Si se encontró la compra válida, se retorna
+            return compra;
+        } else {
+            // Si no se encontró una compra válida, se crea una nueva nota de venta
+            return crearNuevaNotaVenta();
+        }
+    }
+
+    // Método para crear una nueva nota de venta
+    private Compra crearNuevaNotaVenta() {
+        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
+        Cliente cliente = controladorCliente.obtenerObjeto();
+        Compra nuevaCompra = new Compra();
+        nuevaCompra.setFecha(obtenerFecha());
+        nuevaCompra.setSubtotal(0.0f);
+        nuevaCompra.setIva(0.0f);
+        nuevaCompra.setPagoTotal(0.0f);
+        nuevaCompra.setEstatus("En compra");
+        nuevaCompra.setNoCliente(cliente.getNoCliente());  // Ajustar según las necesidades de la aplicación
+        nuevaCompra.setNoEmpleado(2); // ID designado para compras en la app
+        nuevaCompra.setProductos(new HashMap<>());
+
+        // Insertar la nueva compra en la base de datos
+        if (insertObject(nuevaCompra)) {
+            // Retornar la compra recién creada
+            return nuevaCompra;
+        } else {
+            return null; // Retornar null si no se pudo insertar
+        }
     }
 
     // Metodos no usables ya que no se usara esta clase para consulta del Compras de compras
@@ -99,7 +136,7 @@ public class ControladorCarrito extends Controlador<Compra>{
                 // Solo se llena una vez, en la primera fila
                 if (!detallesGeneralesSeteados) {
                     compra.setIdNotaVenta(conector.registro.getInt("idNotaVenta"));
-                    compra.setFecha(conector.registro.getDate("fecha"));
+                    compra.setFecha(conector.registro.getString("fecha"));
                     compra.setSubtotal(conector.registro.getFloat("subtotal"));
                     compra.setIva(conector.registro.getFloat("iva"));
                     compra.setPagoTotal(conector.registro.getFloat("pagoTotal"));

@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 public class Compra {
 
     private int idNotaVenta;
-    private Date fecha;
+    private String fecha;
     private float subtotal;
     private float iva;
     private float pagoTotal;

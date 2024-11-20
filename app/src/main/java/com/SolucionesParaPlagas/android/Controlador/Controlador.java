@@ -41,6 +41,10 @@ public abstract class Controlador<Tipo>{
         }
     }
 
+    public Tipo obtenerObjetoBD(int id){
+        return getObject(id);
+    }
+
     public void registrarObjeto(Tipo objeto){
         if(objeto != null){
             insertObject(objeto);

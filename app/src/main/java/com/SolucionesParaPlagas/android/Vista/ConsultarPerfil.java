@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.ImageView;
-import android.content.DialogInterface;
 import android.widget.ExpandableListView;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
@@ -21,9 +19,9 @@ import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfil.OnChildClickListener {
 
     private Button btnGuardarCambios;
+    private Cliente cliente = new Cliente();
     private ExpandableListView datosPersonales;
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
-    private Cliente cliente = new Cliente();
     private ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override

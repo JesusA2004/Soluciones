@@ -71,33 +71,61 @@ public class EditarDirecciones extends AppCompatActivity {
     }
 
     private void configurarFiscal() {
-        // Datos para el ExpandableListView de dirección Fiscal
         List<String> direccionFiscalTitles = new ArrayList<>();
         HashMap<String, List<String>> direccionFiscalData = new HashMap<>();
 
         direccionFiscalTitles.add("Dirección Fiscal");
         List<String> basicInfo = new ArrayList<>();
         basicInfo.add("Estado: " + cliente.getEstado());
-        basicInfo.add("Ciudad: " + cliente.getMunicipio());
-        basicInfo.add("Agregar datos de la dirección fiscal");
+        basicInfo.add("Municipio: " + cliente.getMunicipio());
+        basicInfo.add("Código Postal: " + cliente.getClienteCP()); // Asegúrate de tener un método getClienteCP()
+        basicInfo.add("Calle: " + cliente.getCalle());
+        basicInfo.add("Colonia: " + cliente.getColonia());
+        basicInfo.add("Localidad: " + cliente.getLocalidad());
+        basicInfo.add("Editar un dato específico de la dirección fiscal");
         direccionFiscalData.put(direccionFiscalTitles.get(0), basicInfo);
 
-        // Configurar el primer ExpandableListView con el listener personalizado
         adaptadorFiscal = new AdaptadorPerfil(this, direccionFiscalTitles, direccionFiscalData, new AdaptadorPerfil.OnChildClickListener() {
             @Override
             public void onChildClick(int groupPosition, int childPosition) {
-                if (childPosition == 2) {
-                    agregarDireccionFiscal();
+                String campo = "", dato = "";
+                switch (childPosition) {
+                    case 0:
+                        campo = "estado";
+                        dato = cliente.getEstado();
+                        break;
+                    case 1:
+                        campo = "municipio";
+                        dato = cliente.getMunicipio();
+                        break;
+                    case 2:
+                        campo = "cp";
+                        dato = ""+cliente.getClienteCP();
+                        break;
+                    case 3:
+                        campo = "calle";
+                        dato = cliente.getCalle();
+                        break;
+                    case 4:
+                        campo = "colonia";
+                        dato = cliente.getColonia();
+                        break;
+                    case 5:
+                        campo = "localidad";
+                        dato = cliente.getLocalidad();
+                        break;
+                    default: return;
                 }
+                agregarDireccionFiscal(campo, dato);
             }
         });
         direccionFiscal.setAdapter(adaptadorFiscal);
     }
 
-    // Acción para "Agregar dirección fiscal"
-    private void agregarDireccionFiscal() {
+    private void agregarDireccionFiscal(String campo, String dato) {
         Intent intent = new Intent(EditarDirecciones.this, EditarDireccion.class);
-        intent.putExtra("tipoDireccion", "fiscal");
+        intent.putExtra("campo", campo); // Pasa el nombre del campo a editar
+        intent.putExtra("datoDireccion", dato); // Pasa el valor actual del campo
         startActivity(intent);
     }
 

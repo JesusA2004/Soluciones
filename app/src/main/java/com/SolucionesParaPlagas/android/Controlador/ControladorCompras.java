@@ -8,11 +8,6 @@ import android.content.Context;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCompras;
 
-/*
-* Esta clase unicamente se usara para consultas
-* Consulta de la lista de pedidos del cliente
-*/
-
 public class ControladorCompras extends ControladorListas<Compra> {
 
     public ControladorCompras(Context context) {
@@ -106,7 +101,11 @@ public class ControladorCompras extends ControladorListas<Compra> {
 
     @Override
     protected List<Compra> getList(String parametro, int campo) {
-        return Collections.emptyList();
+        limpiarRepositorio();
+        String query = "Select * from " + nameTable + " where noCliente = " + campo;
+        conector.registro = ejecutarConsulta(query);
+        repositorioLista.setDatos(BDToObjects(conector));
+        return repositorioLista.getDatos();
     }
 
     // Método para obtener datos para gráficos (ajustado)

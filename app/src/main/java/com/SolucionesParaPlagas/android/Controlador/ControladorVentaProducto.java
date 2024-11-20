@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import android.content.Context;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 
-// Clase para manejar CRUD de venta de producto(una lista de ventas genera un carrito)
-
 public class ControladorVentaProducto extends Controlador<VentaProducto> {
 
     // Este controlador no necesita de un repositorio local

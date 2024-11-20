@@ -1,32 +1,35 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.content.Intent;
+import com.example.sol.R;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.Button;
+import android.content.Intent;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
-import com.example.sol.R;
 
 public class EditarDireccion extends AppCompatActivity {
 
+    private TextView tit;
     private EditText campo;
     private String dato, titulo;
-    private TextView tit;
     private Button btnConfirmar;
     private ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
+    private Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.editardatocliente);
+        setContentView(R.layout.editardatodireccion);
         inicializarElementos();
-        recibirElementos(); // Llamar para recibir datos
+        recibirElementos();
         configurarBotones();
     }
 
@@ -43,27 +46,69 @@ public class EditarDireccion extends AppCompatActivity {
     private void recibirElementos() {
         Intent intent = getIntent();
         if (intent != null) {
-            dato = intent.getStringExtra("dato");
-            titulo = intent.getStringExtra("campo"); // Cambia esto si es necesario
-            campo.setText(dato);
-            // campo.setTextColor(Color.parseColor("#000000"));
-            tit.setText(titulo+": ");
+            titulo = intent.getStringExtra("campo");
+            dato = intent.getStringExtra("datoDireccion");
+            campo.setText(titulo);
+            tit.setText(titulo + ": ");
         }
     }
 
     private void configurarBotones() {
-        btnConfirmar.setOnClickListener(this::guardarCambios);
-        btnProductos.setOnClickListener(this::regresarAProductos);
         btnMenu.setOnClickListener(this::irAMenu);
-        btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
+        btnConfirmar.setOnClickListener(this::guardarCambios);
         btnAtras.setOnClickListener(this::regresarAEditarPerfil);
+        btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
+        btnProductos.setOnClickListener(this::regresarAProductos);
     }
 
     private void guardarCambios(View v) {
-        Intent intent = new Intent(EditarDireccion.this, ConsultarPerfil.class);
-        intent.putExtra("campo", campo.getText().toString());
-        intent.putExtra("titulo", titulo);
-        startActivity(intent);
+        Cliente cliente = controladorCliente.obtenerObjeto();
+
+        // Validar el campo de entrada y actualizar el objeto Cliente
+        String nuevoValor = dato;
+        if (nuevoValor.isEmpty()) {
+            avisoUsuario("El campo no puede estar vacío");
+            return;
+        }
+
+        try {
+            switch (titulo) {
+                case "estado":
+                    cliente.setEstado(nuevoValor);
+                    break;
+                case "municipio":
+                    cliente.setMunicipio(nuevoValor);
+                    break;
+                case "cp":
+                    cliente.setClienteCP(Integer.parseInt(nuevoValor));
+                    break;
+                case "calle":
+                    cliente.setCalle(nuevoValor);
+                    break;
+                case "colonia":
+                    cliente.setColonia(nuevoValor);
+                    break;
+                case "localidad":
+                    cliente.setLocalidad(nuevoValor);
+                    break;
+                default:
+                    avisoUsuario("Campo no válido");
+                    return;
+            }
+
+            // Actualizar en la base de datos y redirigir a la vista de perfil
+            controladorCliente.actualizarObjeto(cliente);
+            avisoUsuario("Datos actualizados correctamente");
+            Intent intent = new Intent(EditarDireccion.this, ConsultarPerfil.class);
+            startActivity(intent);
+
+        } catch (NumberFormatException e) {
+            avisoUsuario("Formato de código postal no válido");
+        }
+    }
+
+    private void avisoUsuario(String mensaje){
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
     private void regresarAProductos(View v) {

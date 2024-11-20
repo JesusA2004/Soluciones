@@ -18,7 +18,7 @@ public class RegistroDatos extends AppCompatActivity {
     private EditText usuarioRazonS;
     private EditText usuarioTelefono;
     private EditText usuarioCorreo;
-    private ControladorValidaciones validaciones; // Objeto para realizar las validaciones
+    private ControladorValidaciones validaciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

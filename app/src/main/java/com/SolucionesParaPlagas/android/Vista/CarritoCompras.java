@@ -1,9 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.net.Uri;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.example.sol.R;
 import java.util.HashMap;
 import android.os.Bundle;
@@ -18,23 +15,27 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
 import com.SolucionesParaPlagas.android.Vista.Adaptador.AdaptadorCarrito;
+import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrito.OnProductoCarritoClickListener{
 
-    private Button btnCotizacion, btnCatalogo;
-    private Producto productoSeleccionado = new Producto();
-    private TextView txtCantidad, txtMsjB, txtCarritoV;
-    private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private View modificarCantidad;
-    private ControladorImagenes controladorImagenes;
     private RecyclerView recyclerViewCarrito;
+    private Button btnCotizacion, btnCatalogo;
     private AdaptadorCarrito adaptadorCarrito;
-    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia();
-    private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(context);
+    private ControladorImagenes controladorImagenes;
+    private TextView txtCantidad, txtMsjB, txtCarritoV;
+    private Producto productoSeleccionado = new Producto();
+    private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
+    private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
+    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,7 +196,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void irACerrarSesion(View v) {
-        Sesion sesion = new Sesion();
+        ControladorValidaciones sesion = new ControladorValidaciones();
         sesion.confirmarCerrarSesion(this);
     }
 
@@ -229,6 +230,11 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         btnBajarCantidad.setOnClickListener(this::ocultarModificarCantidad);
     }
 
+    @Override
+    public void onProductoEliminarClick(int idProducto) {
+
+    }
+
     private void ocultarModificarCantidad(View v){
         ocultarVistaCantidad();
     }
@@ -247,7 +253,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         cantidad += 1;
         if(cantidad < 10000){
             txtCantidad.setText(String.valueOf(cantidad));
-            modificarCantidad(productoSeleccionado.getID(), cantidad);
+            modificarCantidad(""+productoSeleccionado.getFolio(), cantidad);
         }else{
             Toast.makeText(getApplicationContext(), "No puedes agregar más productos al carrito", Toast.LENGTH_LONG).show();
         }
@@ -258,7 +264,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         cantidad -= 1;
         if(cantidad >= 1){
             txtCantidad.setText(String.valueOf(cantidad));
-            modificarCantidad(productoSeleccionado.getID(), cantidad);
+            modificarCantidad(""+productoSeleccionado.getFolio(), cantidad);
         }
     }
 

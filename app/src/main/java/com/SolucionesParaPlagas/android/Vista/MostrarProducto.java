@@ -1,9 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-import com.SolucionesParaPlagas.android.Controlador.Controlador;
-import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 import com.example.sol.R;
 import android.view.View;
 import android.widget.Toast;
@@ -13,7 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
+import com.SolucionesParaPlagas.android.Controlador.Controlador;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
@@ -27,7 +26,7 @@ public class MostrarProducto extends AppCompatActivity {
     private ControladorImagenes controladorImagenes;
     private TextView nombreProducto,descripcionProducto, pesoProducto;
     private ControladorValidaciones validaciones = new ControladorValidaciones();
-    private ControladorVentaProducto controladorCarrito = ControladorVentaProducto.obtenerInstancia(this);
+    private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
     private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
 
     @Override
@@ -76,17 +75,17 @@ public class MostrarProducto extends AppCompatActivity {
     }
 
     private void inicializarElementos(){
+        botonMenu = findViewById(R.id.iconoMenu);
+        pesoProducto = findViewById(R.id.txtPeso);
+        botonRegresar = findViewById(R.id.flechaatras);
         imagenProducto = findViewById(R.id.imagenProducto);
+        cerrarSesion = findViewById(R.id.iconoCerrarSesion);
+        botonProductos = findViewById(R.id.iconoVerProductos);
         nombreProducto = findViewById(R.id.txtNombreProducto);
         cantidadProducto = findViewById(R.id.entradaCantidad);
         descripcionProducto = findViewById(R.id.txtDescripcion);
         botonAnadirCarrito = findViewById(R.id.btnAnadirCarrito);
-        pesoProducto = findViewById(R.id.txtPeso);
-        botonProductos = findViewById(R.id.iconoVerProductos);
         botonCarritoCompras = findViewById(R.id.iconoCarritoCompra);
-        botonMenu = findViewById(R.id.iconoMenu);
-        cerrarSesion = findViewById(R.id.iconoCerrarSesion);
-        botonRegresar = findViewById(R.id.flechaatras);
     }
 
     private void configurarBotones() {
@@ -126,16 +125,10 @@ public class MostrarProducto extends AppCompatActivity {
             avisoUsuario("Por favor, ingrese una cantidad");
             return;
         }
-        cantidadPro = Integer.parseInt(cantidadStr);
-        controladorCarrito.obtenerUltimaNotaVenta();
-        if(controladorCarrito.existeEnCarrito(producto.getID())){
-            // Si el producto ya existe en el carrito, actualizar la cantidad
-            int cantidadActual = controladorCarrito.obtenerCantidadProducto(producto.getID());
-            controladorCarrito.actualizarCantidad(producto.getID(), cantidadActual + cantidadPro);
-        }else{
-            // Si no existe en el carrito solo se agrega
-            controladorCarrito.agregarProducto(producto.getID(),cantidadPro);
-        }
+        // Verificar si ya tenemos un carrito en pendiente o creamos uno nuevo
+        Compra carrito = controladorCarrito.obtenerObjetoBD(0);
+
+        controladorCarrito.agregarProducto(producto.getFolio(),cantidadPro);
         avisoUsuario("Producto añadido al carrito");
     }
 
