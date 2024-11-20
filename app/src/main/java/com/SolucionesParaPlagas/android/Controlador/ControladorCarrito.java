@@ -54,51 +54,89 @@ public class ControladorCarrito extends Controlador<Compra>{
 
     @Override
     protected Compra getObject(int id) {
-        // Consulta para obtener el último id de la nota de venta
-        String q = "SELECT MAX(idNotaVenta) AS maxId FROM " + nameTable + ";";
-        conector.registro = ejecutarConsulta(q);
+        // Obtener el cliente actual del repositorio local
+        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
+        Cliente cliente = controladorCliente.obtenerObjeto();
 
-        try {
-            if (conector.registro.next()) {
-                id = conector.registro.getInt("maxId");
-            } else {
-                // Si no hay registros, se debe crear una nueva nota de venta
-                return crearNuevaNotaVenta();
-            }
-        } catch (SQLException ex) {
-            manejarExcepcion(ex);
-            return null;
-        }
-
-        // Consulta para verificar que el último ticket tenga noEmpleado == 2 y estatus "En compra"
-        String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal, " +
-                "nv.estatus, nv.noCliente, nv.noEmpleado " +
-                "FROM notaVenta nv " +
-                "WHERE nv.idNotaVenta = " + id + " AND nv.noEmpleado = 2 AND nv.estatus = 'En compra';";
+        // Query para buscar una nota de venta que cumpla las condiciones
+        String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal," +
+                " nv.estatus, nv.noCliente, nv.noEmpleado , v.folio,v.cantidad" +
+                " FROM notaVenta nv" +
+                " JOIN venta v on nv.idNotaVenta= v.idNotaVenta" +
+                " WHERE nv.noCliente = " + cliente.getNoCliente() +
+                " AND nv.idNotaVenta = " + id +
+                " AND nv.noEmpleado = 2" +
+                " AND nv.estatus = 'En Compra App';";
 
         conector.registro = ejecutarConsulta(query);
+
         Compra compra = BDToObject(conector);
 
         if (compra != null && compra.getIdNotaVenta() != 0) {
-            // Si se encontró la compra válida, se retorna
-            return compra;
+            // Si se encontró una compra válida, retornarla
+            repositorio.setObjeto(compra);
         } else {
-            // Si no se encontró una compra válida, se crea una nueva nota de venta
-            return crearNuevaNotaVenta();
+            // Si no se encontró una compra válida, crear una nueva nota de venta
+            repositorio.setObjeto(crearNuevaNotaVenta());
         }
+        return repositorio.getObjeto();
+    }
+
+    public Compra obtenerCarritoEnCompra(){
+        // Obtener el cliente actual del repositorio local
+        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
+        Cliente cliente = controladorCliente.obtenerObjeto();
+
+        // Query para buscar una nota de venta que cumpla las condiciones
+        String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal," +
+                " nv.estatus, nv.noCliente, nv.noEmpleado , v.folio,v.cantidad" +
+                " FROM notaVenta nv" +
+                " JOIN venta v on nv.idNotaVenta= v.idNotaVenta" +
+                " WHERE nv.noCliente = " + cliente.getNoCliente() +
+                " AND nv.noEmpleado = 2" +
+                " AND nv.estatus = 'En Compra App';";
+
+        conector.registro = ejecutarConsulta(query);
+
+        Compra compra = BDToObject(conector);
+
+        if (compra != null && compra.getIdNotaVenta() != 0) {
+            // Si se encontró una compra válida, retornarla
+            repositorio.setObjeto(compra);
+        } else {
+            // Si no se encontró una compra válida, crear una nueva nota de venta
+            repositorio.setObjeto(crearNuevaNotaVenta());
+        }
+        return repositorio.getObjeto();
+    }
+
+    public boolean finalizarCompra(int idTicket) {
+        // Query para actualizar el estado del ticket
+        String query = "UPDATE " + nameTable + " " +
+                "SET estatus = 'Compra hecha' " +
+                "WHERE idNotaVenta = " + idTicket + ";";
+
+        // Ejecutar la actualización en la base de datos
+        return ejecutarActualizacion(query);
     }
 
     // Método para crear una nueva nota de venta
     private Compra crearNuevaNotaVenta() {
         Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
         Cliente cliente = controladorCliente.obtenerObjeto();
+
+        if (cliente == null) {
+            // Manejar caso donde no se puede obtener el cliente
+            return null;
+        }
+
         Compra nuevaCompra = new Compra();
         nuevaCompra.setFecha(obtenerFecha());
         nuevaCompra.setSubtotal(0.0f);
         nuevaCompra.setIva(0.0f);
         nuevaCompra.setPagoTotal(0.0f);
         nuevaCompra.setEstatus("En compra");
-        nuevaCompra.setNoCliente(cliente.getNoCliente());  // Ajustar según las necesidades de la aplicación
+        nuevaCompra.setNoCliente(cliente.getNoCliente()); // ID del cliente autenticado
         nuevaCompra.setNoEmpleado(2); // ID designado para compras en la app
         nuevaCompra.setProductos(new HashMap<>());
 
@@ -107,7 +145,8 @@ public class ControladorCarrito extends Controlador<Compra>{
             // Retornar la compra recién creada
             return nuevaCompra;
         } else {
-            return null; // Retornar null si no se pudo insertar
+            // Retornar null si no se pudo insertar
+            return null;
         }
     }
 
@@ -141,6 +180,7 @@ public class ControladorCarrito extends Controlador<Compra>{
                     compra.setIva(conector.registro.getFloat("iva"));
                     compra.setPagoTotal(conector.registro.getFloat("pagoTotal"));
                     compra.setNoCliente(conector.registro.getInt("noCliente"));
+                    compra.setNoEmpleado(conector.registro.getInt("noEmpleado"));
                     compra.setEstatus(conector.registro.getString("estatus"));
                     detallesGeneralesSeteados = true;  // Marcamos que ya hemos seteado los detalles generales
                 }

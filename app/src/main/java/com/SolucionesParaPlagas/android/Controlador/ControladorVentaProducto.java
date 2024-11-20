@@ -34,7 +34,15 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
 
     @Override
     protected boolean deleteObject(int id) {
-        String query = "DELETE FROM " + nameTable + " WHERE idVenta = " + id + ";";
+        return true;
+    }
+
+    public boolean eliminarProducto(int id, int folio){
+        String query = "delete from " + nameTable +
+            " WHERE idNotaVenta = " + id +
+            "AND folio = " + folio + ";";
+
+        // Ejecutar la actualización en la base de datos
         return ejecutarActualizacion(query);
     }
 
@@ -49,6 +57,26 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
         return ejecutarActualizacion(query);
     }
 
+    public int obtenerCantidadProducto(int ticket, int folio) {
+        String query = "SELECT cantidad FROM " + nameTable +
+                " WHERE idNotaVenta = " + ticket +
+                "AND folio = " + folio + ";";
+        conector.registro = ejecutarConsulta(query);
+        try {
+            if (conector.registro.next()) {
+                // Retorna la cantidad obtenida
+                return conector.registro.getInt("cantidad");
+            } else {
+                // Si no se encontró el registro, retorna -1
+                return -1;
+            }
+        } catch (SQLException ex) {
+            manejarExcepcion(ex);
+            // En caso de error, retorna -1
+            return -1;
+        }
+    }
+
     public int obtenerUltimaNotaVenta() {
         String query = "SELECT MAX(idNotaVenta) FROM venta;";
         conector.registro = ejecutarConsulta(query);
@@ -60,6 +88,16 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
             manejarExcepcion(e);
         }
         return -1;  // Si no hay ventas, retorna -1
+    }
+
+    public boolean actualizarCantidad(int id, int cantidad, int folio) {
+        String query = "UPDATE " + nameTable + " " +
+                "SET cantidad = " + cantidad +
+                "WHERE idNotaVenta = " + id +
+                "AND folio = " + folio + ";";
+
+        // Ejecutar la actualización en la base de datos
+        return ejecutarActualizacion(query);
     }
 
     @Override

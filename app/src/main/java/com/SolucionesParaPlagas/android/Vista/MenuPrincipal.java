@@ -106,7 +106,6 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void configurarBotones() {
         btnProductos.setOnClickListener(this::irAConsultarProductos);
-        btnEstadoCuenta.setOnClickListener(this::irAEc);
         btnSitioWeb.setOnClickListener(this::irASitio);
         btnMiPerfil.setOnClickListener(this::irAMenuLateral);
         btnCerrarMenuL.setOnClickListener(new View.OnClickListener() {
@@ -127,11 +126,6 @@ public class MenuPrincipal extends AppCompatActivity {
         if (drawerLayout != null) {
             drawerLayout.openDrawer(GravityCompat.END);
         }
-    }
-
-    private void irAEc(View v) {
-        Intent intent = new Intent(MenuPrincipal.this, EstadoCuenta.class);
-        startActivity(intent);
     }
 
     private boolean irAMiPerfil(MenuItem item) {

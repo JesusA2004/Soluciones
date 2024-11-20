@@ -52,7 +52,7 @@ public class ControladorCompras extends ControladorListas<Compra> {
                         }
                         compraActual = new Compra();
                         compraActual.setIdNotaVenta(idNotaVenta);
-                        compraActual.setFecha(conector.registro.getDate("fecha"));
+                        compraActual.setFecha(conector.registro.getString("fecha"));
                         compraActual.setSubtotal(conector.registro.getFloat("subtotal"));
                         compraActual.setIva(conector.registro.getFloat("iva"));
                         compraActual.setPagoTotal(conector.registro.getFloat("pagoTotal"));

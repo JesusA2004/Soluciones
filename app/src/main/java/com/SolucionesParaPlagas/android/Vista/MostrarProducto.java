@@ -1,6 +1,11 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
+
+import com.SolucionesParaPlagas.android.Controlador.ControladorListas;
+import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
+import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 import com.example.sol.R;
 import android.view.View;
 import android.widget.Toast;
@@ -28,6 +33,7 @@ public class MostrarProducto extends AppCompatActivity {
     private ControladorValidaciones validaciones = new ControladorValidaciones();
     private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
     private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
+    private Controlador<VentaProducto> controladorVentaProducto = new ControladorVentaProducto(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +131,25 @@ public class MostrarProducto extends AppCompatActivity {
             avisoUsuario("Por favor, ingrese una cantidad");
             return;
         }
-        // Verificar si ya tenemos un carrito en pendiente o creamos uno nuevo
-        Compra carrito = controladorCarrito.obtenerObjetoBD(0);
+        try{
+            cantidadPro = Integer.parseInt(cantidadStr);
+            // Verificar si ya tenemos un carrito en pendiente o creamos uno nuevo
+            ControladorCarrito contC = new ControladorCarrito(this);
+            Compra carrito = contC.obtenerCarritoEnCompra();
 
-        controladorCarrito.agregarProducto(producto.getFolio(),cantidadPro);
-        avisoUsuario("Producto añadido al carrito");
+            VentaProducto venta = new VentaProducto();
+            venta.setIdVenta(0);
+            venta.setCantidad(cantidadPro);
+            venta.setFolio(producto.getFolio());
+            venta.setTotal(producto.getPrecio() * cantidadPro);
+            venta.setIdVenta(carrito.getIdNotaVenta());
+
+            controladorVentaProducto.registrarObjeto(venta);
+            avisoUsuario("Producto añadido al carrito");
+
+        }catch(NumberFormatException e){
+            avisoUsuario("Error, ingresa un numero");
+        }
     }
 
     private void avisoUsuario(String mensaje){

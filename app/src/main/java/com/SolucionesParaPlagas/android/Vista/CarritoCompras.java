@@ -1,8 +1,7 @@
 package com.SolucionesParaPlagas.android.Vista;
 
-import android.net.Uri;
+import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
 import com.example.sol.R;
-import java.util.HashMap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -10,8 +9,6 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ImageView;
-import android.content.DialogInterface;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +32,9 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private Producto productoSeleccionado = new Producto();
     private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
-    private ControladorProducto controladorProducto = ControladorProducto.obtenerInstancia(this);
+    private ControladorCarrito contC = new ControladorCarrito(this);
+    private Compra compra = contC.obtenerCarritoEnCompra();
+    private ControladorVentaProducto controladorVentaProducto = new ControladorVentaProducto(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void despertarElementos(){
-        if(controladorCarrito.obtenerCarrito().isEmpty()){
+        if(compra != null){
             btnCotizacion.setVisibility(View.GONE);
         }else{
             btnCatalogo.setVisibility(View.GONE);
@@ -75,7 +74,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void actualizarBotones(){
-        if(controladorCarrito.obtenerCarrito().isEmpty()){
+        if(compra != null){
             btnCotizacion.setVisibility(View.GONE);
             btnCatalogo.setVisibility(View.VISIBLE);
             txtCarritoV.setVisibility(View.VISIBLE);
@@ -95,7 +94,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void configurarRecyclerView() {
-        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerCarrito(), this,this);
+        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerObjetoBD(compra.getIdNotaVenta()), this,this);
         recyclerViewCarrito.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewCarrito.setAdapter(adaptadorCarrito);
     }
@@ -106,88 +105,10 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void cotizacion(View v) {
-        new Thread(() -> {
-            try {
-                if (mandarCorreoOWhatsapp()) {
-                    Thread.sleep(1500);
-                    runOnUiThread(() -> {
-                        controladorCarrito.vaciarCarrito();
-                        notificarUsuario();
-                    });
-                } else {
-                    runOnUiThread(() -> {
-                        Toast.makeText(this, "No se pudo enviar el correo. Inténtalo de nuevo.", Toast.LENGTH_LONG).show();
-                    });
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                runOnUiThread(() -> {
-                    Toast.makeText(this, "Ocurrió un error durante la espera. Inténtalo de nuevo.", Toast.LENGTH_LONG).show();
-                });
-            }
-        }).start();
-    }
-
-    private boolean mandarCorreoOWhatsapp() {
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@solucionesparaplagas.com"});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Cotización de Productos");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, construirMensaje());
-
-        // Números de teléfono en formato internacional sin el "+"
-        String[] phoneNumbers = {"7771308184", "7775647486"}; // Reemplaza con el segundo número deseado
-        String message = construirMensaje();
-
-        // Crear un Intent para enviar a ambos números
-        for (String phoneNumber : phoneNumbers) {
-            Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
-            whatsappIntent.setPackage("com.whatsapp");
-            whatsappIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message)));
-            try {
-                Intent chooserIntent = Intent.createChooser(emailIntent, "Enviar cotización...");
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{whatsappIntent});
-                startActivity(chooserIntent);
-                return true;
-            } catch (Exception e) {
-                Toast.makeText(this, "Ocurrió un error al enviar la cotización. Por favor, inténtalo nuevamente.", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        }
-        return false; // En caso de que no se pueda enviar a ningún número
-    }
-
-    private String construirMensaje(){
-        ControladorClienteIndividual controladorClienteIndividual = ControladorClienteIndividual.obtenerInstancia();
-        ClienteIndividual clienteIndividual = controladorClienteIndividual.obtenerCliente();
-        StringBuilder mensajeCorreo = new StringBuilder();
-        mensajeCorreo.append("Cotizacion para: "+clienteIndividual.getClientName()+",\n\n");
-        mensajeCorreo.append("A continuación se muestran los productos seleccionados:\n\n");
-        HashMap<String, Integer> carrito = controladorCarrito.obtenerCarrito();
-        for (String idProducto : carrito.keySet()) {
-            Producto producto = controladorProducto.obtenerProducto(idProducto);
-            if (producto != null) {
-                mensajeCorreo.append("Producto: ").append(producto.getTitle()).append("\n")
-                        .append("Cantidad: ").append(carrito.get(idProducto)).append("\n")
-                        .append("Peso: ").append(producto.getWeight()).append("\n")
-                        .append("Unidad: ").append(producto.getUnit()).append("\n")
-                        .append("-------------------------\n");
-            }
-        }
-        if(clienteIndividual.getPhone() != null && clienteIndividual.getEmail() != null){
-            mensajeCorreo.append("\nConfirmar cotizacion al correo: "+clienteIndividual.getEmail()+
-                    "\n\no al telefono: "+clienteIndividual.getPhone()+"\n\nSoluciones Para Plagas");
-        }else if(clienteIndividual.getEmail() != null && clienteIndividual.getPhone() == null){
-            mensajeCorreo.append("\nConfirmar cotizacion al correo: "
-                    +clienteIndividual.getEmail()+"\n\nSoluciones Para Plagas");
-        }else if(clienteIndividual.getEmail() == null && clienteIndividual.getPhone() != null){
-            mensajeCorreo.append("\nConfirmar cotizacion al telefono: "
-                    +clienteIndividual.getPhone()+"\n\nSoluciones Para Plagas");
-        }else{
-            mensajeCorreo.append("\nSe le confirmara la cotizacion al remitente de este correo: "
-                    +"\n\nSoluciones Para Plagas");
-        }
-        return mensajeCorreo.toString();
+        ControladorCarrito contC = new ControladorCarrito(this);
+        contC.finalizarCompra(compra.getIdNotaVenta());
+        compra = new Compra();
+        controladorCarrito.limpiarRepositorio();
     }
 
     private void irAMenu(View v){
@@ -200,20 +121,6 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         sesion.confirmarCerrarSesion(this);
     }
 
-    private void notificarUsuario(){
-        new AlertDialog.Builder(this)
-            .setTitle("Aviso")
-            .setMessage("¡Gracias por tu preferencia! Pronto, uno de nuestros asistentes te contactará con la cotización de tus productos solicitados.")
-            .setPositiveButton("OK",new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                Intent intent = new Intent(CarritoCompras.this, MenuPrincipal.class);
-                startActivity(intent);
-            }
-            })
-            .show();
-    }
-
     @Override
     public void onProductoClick(Producto producto){
         productoSeleccionado = producto;
@@ -223,7 +130,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         txtMsjB.setVisibility(View.VISIBLE);
         txtCantidad.setVisibility(View.VISIBLE);
         btnBajarCantidad.setVisibility(View.VISIBLE);
-        txtCantidad.setText(String.valueOf(controladorCarrito.obtenerCantidadProducto(producto.getID())));
+        txtCantidad.setText(String.valueOf(controladorVentaProducto.obtenerCantidadProducto(compra.getIdNotaVenta(),producto.getFolio())));
         // Listener para modificar cantidad
         btnMas.setOnClickListener(this::incrementarCantidad);
         btnMenos.setOnClickListener(this::decrementarCantidad);
@@ -232,7 +139,16 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
 
     @Override
     public void onProductoEliminarClick(int idProducto) {
-
+        controladorVentaProducto.eliminarProducto(compra.getIdNotaVenta(),idProducto);
+        // Actualizamos el recyclerview con el producto ya eliminado
+        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerObjetoBD(compra.getIdNotaVenta()), this,this);
+        recyclerViewCarrito.setAdapter(adaptadorCarrito);
+        modificarCantidad.setVisibility(View.GONE);
+        btnMenos.setVisibility(View.GONE);
+        btnMas.setVisibility(View.GONE);
+        txtMsjB.setVisibility(View.GONE);
+        txtCantidad.setVisibility(View.GONE);
+        actualizarBotones();
     }
 
     private void ocultarModificarCantidad(View v){
@@ -253,7 +169,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         cantidad += 1;
         if(cantidad < 10000){
             txtCantidad.setText(String.valueOf(cantidad));
-            modificarCantidad(""+productoSeleccionado.getFolio(), cantidad);
+            modificarCantidad(productoSeleccionado.getFolio(), cantidad);
         }else{
             Toast.makeText(getApplicationContext(), "No puedes agregar más productos al carrito", Toast.LENGTH_LONG).show();
         }
@@ -264,28 +180,14 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
         cantidad -= 1;
         if(cantidad >= 1){
             txtCantidad.setText(String.valueOf(cantidad));
-            modificarCantidad(""+productoSeleccionado.getFolio(), cantidad);
+            modificarCantidad(productoSeleccionado.getFolio(), cantidad);
         }
     }
 
-    private void modificarCantidad(String idProducto, int nuevaCantidad){
-        controladorCarrito.actualizarCantidad(idProducto, nuevaCantidad);
-        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerCarrito(), this,this);
+    private void modificarCantidad(int idProducto, int nuevaCantidad){
+        controladorVentaProducto.actualizarCantidad(compra.getIdNotaVenta(),nuevaCantidad, idProducto);
+        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerObjetoBD(compra.getIdNotaVenta()), this,this);
         recyclerViewCarrito.setAdapter(adaptadorCarrito);
-    }
-
-    @Override
-    public void onProductoEliminarClick(String idProducto) {
-        controladorCarrito.eliminarProducto(idProducto);
-        // Actualizamos el recyclerview con el producto ya eliminado
-        adaptadorCarrito = new AdaptadorCarrito(controladorCarrito.obtenerCarrito(), this,this);
-        recyclerViewCarrito.setAdapter(adaptadorCarrito);
-        modificarCantidad.setVisibility(View.GONE);
-        btnMenos.setVisibility(View.GONE);
-        btnMas.setVisibility(View.GONE);
-        txtMsjB.setVisibility(View.GONE);
-        txtCantidad.setVisibility(View.GONE);
-        actualizarBotones();
     }
 
 }
