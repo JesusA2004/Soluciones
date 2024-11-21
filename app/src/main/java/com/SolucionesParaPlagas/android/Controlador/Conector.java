@@ -1,11 +1,11 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import android.os.StrictMode;
+import java.sql.Connection;
 import android.widget.Toast;
+import android.os.StrictMode;
+import java.sql.DriverManager;
 import android.content.Context;
 
 public class Conector {
