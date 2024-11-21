@@ -16,9 +16,6 @@
         android:theme="@style/Theme.Sol"
         tools:targetApi="31">
         <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.AgregarDireccion"
-            android:exported="false" />
-        <activity
             android:name="com.SolucionesParaPlagas.android.Vista.EditarDirecciones"
             android:exported="false" />
         <activity
@@ -39,9 +36,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MenuPrincipal"
-            android:exported="false" />
-        <activity
-            android:name="com.SolucionesParaPlagas.android.Vista.EstadoCuenta"
             android:exported="false" />
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarProducto"

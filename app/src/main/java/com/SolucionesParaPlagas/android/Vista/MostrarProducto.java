@@ -1,11 +1,6 @@
 package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
-
-import com.SolucionesParaPlagas.android.Controlador.ControladorListas;
-import com.SolucionesParaPlagas.android.Controlador.ControladorProducto;
-import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
-import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 import com.example.sol.R;
 import android.view.View;
 import android.widget.Toast;
@@ -18,9 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 import com.SolucionesParaPlagas.android.Controlador.Controlador;
+import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCarrito;
 import com.SolucionesParaPlagas.android.Controlador.ControladorImagenes;
 import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
+import com.SolucionesParaPlagas.android.Controlador.ControladorVentaProducto;
 
 public class MostrarProducto extends AppCompatActivity {
 

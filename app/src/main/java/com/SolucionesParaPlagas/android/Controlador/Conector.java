@@ -1,44 +1,55 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
-import java.sql.Statement;
-import java.sql.ResultSet;
 import java.sql.Connection;
-import android.widget.Toast;
-import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import android.os.StrictMode;
+import android.widget.Toast;
 import android.content.Context;
 
 public class Conector {
 
+    public Context contexto;
     public Connection conexion = null;
     public Statement comando = null;
     public ResultSet registro;
-    // Necesitas pasar el contexto de la actividad o aplicación para usar Toast
-    private Context contexto;
 
-    // Constructor para inicializar el contexto
     public Conector(Context contexto) {
         this.contexto = contexto;
     }
 
     public Connection JavaToMySQL() {
+        String servidor = "jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5745655";
+        String usuario = "sql5745655";
+        String password = "EXqaHS7lPY";
+        // Permitir operaciones de red en el hilo principal
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Thread conexionHilo = new Thread(() -> {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                conexion = DriverManager.getConnection(servidor, usuario, password);
+                if (conexion != null) {
+                    ((android.app.Activity) contexto).runOnUiThread(() ->
+                            Toast.makeText(contexto, "Conexión exitosa con MySQL", Toast.LENGTH_SHORT).show()
+                    );
+                }
+            } catch (Exception e) {
+                ((android.app.Activity) contexto).runOnUiThread(() ->
+                        Toast.makeText(contexto, "Error en la conexión: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                );
+                e.printStackTrace();
+            }
+        });
+
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Datos de la conexión con la base de datos
-            String servidor = "jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5745655";
-            String usuario = "sql5745655";
-            String password = "EXqaHS7lPY";
-            // Crear la conexión
-            conexion = DriverManager.getConnection(servidor, usuario, password);
-            // Mostrar mensaje si la conexión fue exitosa
-            Toast.makeText(contexto, "Conexión exitosa", Toast.LENGTH_SHORT).show();
-        } catch (ClassNotFoundException ex) {
-            Toast.makeText(contexto, "No se pudo encontrar la clase Conexión", Toast.LENGTH_LONG).show();
-        } catch (SQLException ex) {
-            Toast.makeText(contexto, "No se pudo conectar a la base de datos", Toast.LENGTH_LONG).show();
-        } catch (Exception ex) {
-            Toast.makeText(contexto, "Error con la información gestionada en la aplicación", Toast.LENGTH_LONG).show();
+            conexionHilo.start();
+            conexionHilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
         return conexion;
     }
 
