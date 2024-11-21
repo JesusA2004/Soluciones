@@ -47,8 +47,9 @@ public abstract class Controlador<Tipo>{
 
     public void registrarObjeto(Tipo objeto){
         if(objeto != null){
-            insertObject(objeto);
-            avisoUsuario("Registro exitoso");
+            if(insertObject(objeto)){
+                avisoUsuario("Registro exitoso");
+            }
         }else{
             avisoUsuario("Error con el registro");
         }
