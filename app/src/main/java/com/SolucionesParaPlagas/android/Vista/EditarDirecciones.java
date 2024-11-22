@@ -43,6 +43,11 @@ public class EditarDirecciones extends AppCompatActivity {
 
     private void inicializarCliente() {
         cliente = controladorCliente.obtenerObjeto();
+        Cliente clienteE = new Cliente();
+        clienteE.setClienteRFC(cliente.getClienteRFC());
+        clienteE.setTelefonoC(cliente.getTelefonoC());
+        controladorCliente.limpiarRepositorio();
+        controladorCliente.objetoToRepositorio(clienteE.getClienteRFC(), clienteE.getTelefonoC());
     }
 
     private void configurarBotones() {

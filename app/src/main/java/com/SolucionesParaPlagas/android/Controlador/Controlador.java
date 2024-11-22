@@ -2,10 +2,15 @@ package com.SolucionesParaPlagas.android.Controlador;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+
+import android.util.Log;
 import android.widget.Toast;
 import java.sql.SQLException;
 import android.content.Context;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.Repositorio;
 
 public abstract class Controlador<Tipo>{
@@ -45,14 +50,8 @@ public abstract class Controlador<Tipo>{
         return getObject(id);
     }
 
-    public void registrarObjeto(Tipo objeto){
-        if(objeto != null){
-            if(insertObject(objeto)){
-                avisoUsuario("Registro exitoso");
-            }
-        }else{
-            avisoUsuario("Error con el registro");
-        }
+    public boolean registrarObjeto(Tipo objeto){
+        return insertObject(objeto);
     }
 
     // Si se cierran sesiones es necesario limpiar el repositorio local
@@ -74,11 +73,29 @@ public abstract class Controlador<Tipo>{
     }
 
     protected void manejarExcepcionSQL(SQLException ex) {
-        avisoUsuario("Error en la base de datos: "+ex.getMessage());
+        // Creamos el logger
+        Logger logger = Logger.getLogger(getClass().getName());
+
+        // Logueamos el error con el nivel de severidad SEVERE
+        logger.log(Level.SEVERE, "Error en la base de datos: " + ex.getMessage(), ex);
+
+        // Aquí podrías agregar más detalles si es necesario, como los valores de las variables
     }
 
     protected void manejarExcepcion(Exception e) {
-        avisoUsuario("Error: "+e.getMessage());
+        // Creamos el logger
+        Logger logger = Logger.getLogger(getClass().getName());
+
+        // Logueamos el error con el nivel de severidad SEVERE
+        logger.log(Level.SEVERE, "Error: " + e.getMessage(), e);
+
+        // También puedes agregar más detalles si lo deseas
+    }
+
+
+
+    public Tipo obtenerCarro(){
+        return obtenerCarrito();
     }
 
     public Tipo obtenerObjeto(){
@@ -139,4 +156,5 @@ public abstract class Controlador<Tipo>{
     // Metodos para convertir Base de Datos a Objetos de Java
     protected abstract Tipo BDToObject(Conector conector);
 
+    protected abstract Tipo obtenerCarrito();
 }

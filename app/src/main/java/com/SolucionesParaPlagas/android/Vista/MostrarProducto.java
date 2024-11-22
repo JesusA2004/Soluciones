@@ -30,7 +30,6 @@ public class MostrarProducto extends AppCompatActivity {
     private ControladorImagenes controladorImagenes;
     private TextView nombreProducto,descripcionProducto, pesoProducto;
     private ControladorValidaciones validaciones = new ControladorValidaciones();
-    private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
     private Controlador<VentaProducto> controladorVentaProducto = new ControladorVentaProducto(this);
     private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
 
@@ -134,19 +133,18 @@ public class MostrarProducto extends AppCompatActivity {
         try{
             cantidadPro = Integer.parseInt(cantidadStr);
             // Verificar si ya tenemos un carrito en pendiente o creamos uno nuevo
-            ControladorCarrito contC = new ControladorCarrito(this);
-            Compra carrito = contC.obtenerCarritoEnCompra(this);
+            Controlador<Compra> contC = ControladorCarrito.obtenerInstancia(this);
+            Compra carrito = contC.obtenerCarro();
 
             VentaProducto venta = new VentaProducto();
-            venta.setIdVenta(0);
             venta.setCantidad(cantidadPro);
             venta.setFolio(producto.getFolio());
             venta.setTotal(producto.getPrecio() * cantidadPro);
-            venta.setIdVenta(carrito.getIdNotaVenta());
+            venta.setIdNotaVenta(carrito.getIdNotaVenta());
 
-            controladorVentaProducto.registrarObjeto(venta);
-            avisoUsuario("Producto añadido al carrito");
-
+            if(controladorVentaProducto.registrarObjeto(venta)){
+                avisoUsuario("Producto añadido al carrito");
+            }
         }catch(NumberFormatException e){
             avisoUsuario("Error, ingresa un numero");
         }

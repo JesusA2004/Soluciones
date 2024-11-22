@@ -2,6 +2,8 @@ package com.SolucionesParaPlagas.android.Controlador;
 
 import java.sql.SQLException;
 import android.content.Context;
+import android.util.Log;
+
 import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 
 public class ControladorVentaProducto extends Controlador<VentaProducto> {
@@ -23,12 +25,13 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
 
     @Override
     protected boolean insertObject(VentaProducto objeto) {
-        String query = "INSERT INTO " + nameTable + " VALUES ("
-                + "0, "
+        String query = "INSERT INTO " + nameTable
+                + " (cantidad, total, folio, idNotaVenta) VALUES ("
                 + objeto.getCantidad() + ", "
                 + objeto.getTotal() + ", "
                 + objeto.getFolio() + ", "
                 + objeto.getIdNotaVenta() + ");";
+        // Ejecutar la actualización en la base de datos
         return ejecutarActualizacion(query);
     }
 
@@ -40,7 +43,7 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
     public boolean eliminarProducto(int id, int folio){
         String query = "delete from " + nameTable +
             " WHERE idNotaVenta = " + id +
-            "AND folio = " + folio + ";";
+            " AND folio = " + folio + ";";
 
         // Ejecutar la actualización en la base de datos
         return ejecutarActualizacion(query);
@@ -136,6 +139,11 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
                 manejarExcepcion(ex);
             }
         }
+        return null;
+    }
+
+    @Override
+    protected VentaProducto obtenerCarrito() {
         return null;
     }
 

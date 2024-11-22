@@ -21,6 +21,7 @@ public class EditarDireccion extends AppCompatActivity {
     private EditText campo;
     private String dato, titulo;
     private Button btnConfirmar;
+    private Cliente cliente = new Cliente();
     private ImageView btnMenu, btnCerrarSesion, btnProductos, btnAtras;
     private Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(this);
 
@@ -31,6 +32,7 @@ public class EditarDireccion extends AppCompatActivity {
         inicializarElementos();
         recibirElementos();
         configurarBotones();
+        inicializarCliente();
     }
 
     private void inicializarElementos() {
@@ -48,7 +50,7 @@ public class EditarDireccion extends AppCompatActivity {
         if (intent != null) {
             titulo = intent.getStringExtra("campo");
             dato = intent.getStringExtra("datoDireccion");
-            campo.setText(titulo);
+            campo.setText(dato);
             tit.setText(titulo + ": ");
         }
     }
@@ -61,11 +63,14 @@ public class EditarDireccion extends AppCompatActivity {
         btnProductos.setOnClickListener(this::regresarAProductos);
     }
 
+    private void inicializarCliente() {
+        cliente = controladorCliente.obtenerObjeto();
+    }
+
     private void guardarCambios(View v) {
-        Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Validar el campo de entrada y actualizar el objeto Cliente
-        String nuevoValor = dato;
+        String nuevoValor = campo.getText().toString();
         if (nuevoValor.isEmpty()) {
             avisoUsuario("El campo no puede estar vacío");
             return;
@@ -98,8 +103,7 @@ public class EditarDireccion extends AppCompatActivity {
 
             // Actualizar en la base de datos y redirigir a la vista de perfil
             controladorCliente.actualizarObjeto(cliente);
-            avisoUsuario("Datos actualizados correctamente");
-            Intent intent = new Intent(EditarDireccion.this, ConsultarPerfil.class);
+            Intent intent = new Intent(EditarDireccion.this, EditarDirecciones.class);
             startActivity(intent);
 
         } catch (NumberFormatException e) {
@@ -127,7 +131,7 @@ public class EditarDireccion extends AppCompatActivity {
     }
 
     private void regresarAEditarPerfil(View v) {
-        Intent intent = new Intent(EditarDireccion.this, ConsultarPerfil.class);
+        Intent intent = new Intent(EditarDireccion.this, EditarDirecciones.class);
         intent.putExtra("campo", campo.getText().toString());
         intent.putExtra("titulo", tit.getText().toString());
         startActivity(intent);

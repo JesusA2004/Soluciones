@@ -4,16 +4,20 @@ import java.util.HashMap;
 import java.sql.SQLException;
 import android.content.Context;
 import android.util.Log;
-
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCarrito;
 
 public class ControladorCarrito extends Controlador<Compra>{
 
+    private Controlador<Cliente> controladorCliente;
+    private Cliente cliente = new Cliente();
+
     // No es necesario el uso de un repositorio local
     public ControladorCarrito(Context contexto){
         super(RepositorioCarrito.obtenerInstancia(), contexto);
+        controladorCliente = ControladorCliente.obtenerInstancia(contexto);
+        cliente = controladorCliente.obtenerObjeto();
         nameTable = "notaVenta";
     }
 
@@ -29,15 +33,17 @@ public class ControladorCarrito extends Controlador<Compra>{
     // Metodo para insertar un Compras en la base de datos pero el objeto ya debe tener valores
     @Override
     protected boolean insertObject(Compra compra) {
-        String query = "INSERT INTO " + nameTable + " VALUES ("
-                + "0, "
+        // Modificamos la consulta para no incluir el campo AUTO_INCREMENT (idNotaVenta)
+        String query = "INSERT INTO " + nameTable + " (fecha, subtotal, iva, pagoTotal, estatus, noCliente, noEmpleado) VALUES ("
                 + "'" + compra.getFecha() + "', "
                 + compra.getSubtotal() + ", "
                 + compra.getIva() + ", "
                 + compra.getPagoTotal() + ", "
-                + compra.getEstatus() + ", "
-                + compra.getNoCliente() + ","
-                + "2" + ");"; // 2 indica que la venta la realiza un cliente (compra)
+                + "'" + compra.getEstatus() + "', "
+                + compra.getNoCliente() + ", "
+                + "2);"; // 2 indica que la venta la realiza un cliente (compra)
+
+        // Verificar que la consulta se ejecute correctamente
         return ejecutarActualizacion(query);
     }
 
@@ -56,9 +62,6 @@ public class ControladorCarrito extends Controlador<Compra>{
 
     @Override
     protected Compra getObject(int id) {
-        // Obtener el cliente actual del repositorio local
-        ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(null);
-        Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Query para buscar una nota de venta que cumpla las condiciones
         String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal," +
@@ -68,7 +71,7 @@ public class ControladorCarrito extends Controlador<Compra>{
                 " WHERE nv.noCliente = " + cliente.getNoCliente() +
                 " AND nv.idNotaVenta = " + id +
                 " AND nv.noEmpleado = 2" +
-                " AND nv.estatus = 'En Compra App';";
+                " AND nv.estatus = 'En compra';";
 
         conector.registro = ejecutarConsulta(query);
 
@@ -84,9 +87,9 @@ public class ControladorCarrito extends Controlador<Compra>{
         return repositorio.getObjeto();
     }
 
-    public Compra obtenerCarritoEnCompra(Context context){
+    @Override
+    protected Compra obtenerCarrito(){
         // Obtener el cliente actual del repositorio local
-        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(context);
         Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Query para buscar una nota de venta que cumpla las condiciones
@@ -96,13 +99,13 @@ public class ControladorCarrito extends Controlador<Compra>{
                 " JOIN venta v on nv.idNotaVenta= v.idNotaVenta" +
                 " WHERE nv.noCliente = " + cliente.getNoCliente() +
                 " AND nv.noEmpleado = 2" +
-                " AND nv.estatus = 'En Compra App';";
+                " AND nv.estatus = 'En compra';";
 
         conector.registro = ejecutarConsulta(query);
+        Compra compra = new Compra();
+        compra = BDToObject(conector);
 
-        Compra compra = BDToObject(conector);
-
-        if (compra != null && compra.getIdNotaVenta() != 0) {
+        if (compra != null) {
             // Si se encontró una compra válida, retornarla
             repositorio.setObjeto(compra);
         } else {
@@ -124,31 +127,22 @@ public class ControladorCarrito extends Controlador<Compra>{
 
     // Método para crear una nueva nota de venta
     private Compra crearNuevaNotaVenta() {
-        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
-        Cliente cliente = controladorCliente.obtenerObjeto();
-        Log.d("Cliente", "Cliente obtenido: " + cliente);
-
-        if (cliente == null) {
-            // Manejar caso donde no se puede obtener el cliente
-            return null;
-        }
-
         Compra nuevaCompra = new Compra();
         nuevaCompra.setFecha(obtenerFecha());
-        nuevaCompra.setSubtotal(0.0f);
-        nuevaCompra.setIva(0.0f);
-        nuevaCompra.setPagoTotal(0.0f);
+        nuevaCompra.setSubtotal(0);
+        nuevaCompra.setIva(0);
+        nuevaCompra.setPagoTotal(0);
         nuevaCompra.setEstatus("En compra");
         nuevaCompra.setNoCliente(cliente.getNoCliente()); // ID del cliente autenticado
         nuevaCompra.setNoEmpleado(2); // ID designado para compras en la app
-        nuevaCompra.setProductos(new HashMap<>());
 
-        // Insertar la nueva compra en la base de datos
-        if (insertObject(nuevaCompra)) {
-            // Retornar la compra recién creada
-            return nuevaCompra;
+        // Verificar si la compra se insertó correctamente
+        boolean insertada = insertObject(nuevaCompra);
+        if (insertada) {
+            return nuevaCompra; // Retornar la compra recién creada
         } else {
-            // Retornar null si no se pudo insertar
+            // Manejar el error y retornar null si la inserción falla
+            Log.d("ControladorCarrito", "Error al insertar nueva compra");
             return null;
         }
     }

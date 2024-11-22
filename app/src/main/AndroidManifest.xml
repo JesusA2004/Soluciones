@@ -18,6 +18,8 @@
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.EditarDirecciones"
             android:exported="false" />
+        <activity android:name="com.SolucionesParaPlagas.android.Vista.EditarDireccion"
+            android:exported="false"/>
         <activity
             android:name="com.SolucionesParaPlagas.android.Vista.MostrarPedidos"
             android:exported="false" />

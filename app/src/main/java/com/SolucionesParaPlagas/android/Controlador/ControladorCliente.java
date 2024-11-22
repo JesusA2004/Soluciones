@@ -23,8 +23,8 @@ public class ControladorCliente extends Controlador<Cliente>{
 
     @Override
     protected boolean insertObject(Cliente cliente) {
-        String query = "INSERT INTO " + nameTable + " VALUES ("
-                + "0, " // Id con zerofill y auto increment
+        String query = "INSERT INTO " + nameTable + " (clienteRFC, nombreC, razonSocial, email, telefonoC, calle, colonia, localidad, municipio, estado, clienteCP) "
+                + "VALUES ("
                 + "'" + cliente.getClienteRFC() + "', "
                 + "'" + cliente.getNombreC() + "', "
                 + "'" + cliente.getRazonSocial() + "', "
@@ -35,7 +35,7 @@ public class ControladorCliente extends Controlador<Cliente>{
                 + "'" + cliente.getLocalidad() + "', "
                 + "'" + cliente.getMunicipio() + "', "
                 + "'" + cliente.getEstado() + "', "
-                + cliente.getClienteCP() + "');";
+                + cliente.getClienteCP() + ");";
         return ejecutarActualizacion(query);
     }
 
@@ -59,7 +59,7 @@ public class ControladorCliente extends Controlador<Cliente>{
                 + "municipio = '" + cliente.getMunicipio() + "', "
                 + "estado = '" + cliente.getEstado() + "', "
                 + "clienteCP = " + cliente.getClienteCP()
-                + "WHERE noCliente = " + cliente.getNoCliente() + ";";
+                + " WHERE noCliente = " + cliente.getNoCliente() + ";";
         return ejecutarActualizacion(query);
     }
 
@@ -113,6 +113,11 @@ public class ControladorCliente extends Controlador<Cliente>{
                 manejarExcepcion(ex);
             }
         }
+        return null;
+    }
+
+    @Override
+    protected Cliente obtenerCarrito() {
         return null;
     }
 
