@@ -77,7 +77,8 @@ public class MostrarProductos extends AppCompatActivity implements AdaptadorProd
 
     private void filtrarProductos(String query) {
         // Utiliza el método productosParcial del controlador para realizar la búsqueda
-        List<Producto> listaFiltrada = controladorProducto.obtenerLista("nombreProd",query);
+        ControladorProducto contP = new ControladorProducto(this);
+        List<Producto> listaFiltrada = contP.filtrarRepositorio(query);
         adaptador = new AdaptadorProductos(listaFiltrada, this,this);
         productos.setAdapter(adaptador);
     }

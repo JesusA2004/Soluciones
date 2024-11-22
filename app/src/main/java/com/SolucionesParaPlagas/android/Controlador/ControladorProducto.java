@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.sql.SQLException;
 import android.content.Context;
+
+import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Producto;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioProducto;
 
@@ -69,6 +71,7 @@ public class ControladorProducto extends ControladorListas<Producto> {
     protected List<Producto> getList() {
         limpiarRepositorio();
         String query = "Select * from " + nameTable;
+        conector.registro = ejecutarConsulta(query);
         repositorioLista.setDatos(BDToObjects(conector));
         return repositorioLista.getDatos();
     }
@@ -76,11 +79,21 @@ public class ControladorProducto extends ControladorListas<Producto> {
     @Override
     protected List<Producto> getList(String parametro, String campo) {
         limpiarRepositorio();
-        // CAMBIAR QUERY POR SELECT
-        String query = "call buscarApartados('"+parametro+"', '"+campo+"');";
+        // Cambiar el query para buscar siempre por "nombreProd" y usar el operador LIKE para buscar por prefijo
+        String query = "SELECT * FROM " + nameTable + " WHERE " + parametro + " LIKE '" + campo + "%';";
         conector.registro = ejecutarConsulta(query);
         repositorioLista.setDatos(BDToObjects(conector));
         return repositorioLista.getDatos();
+    }
+
+    public List<Producto> filtrarRepositorio(String campo){
+        List<Producto> listaFiltrada = new ArrayList<>();
+        for(Producto producto : repositorioLista.getDatos()){
+            if(producto.getNombreProd().toLowerCase().startsWith(campo.toLowerCase())){
+                listaFiltrada.add(producto);
+            }
+        }
+        return listaFiltrada;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.SolucionesParaPlagas.android.Controlador;
 import java.util.HashMap;
 import java.sql.SQLException;
 import android.content.Context;
+import android.util.Log;
+
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Compra;
 import com.SolucionesParaPlagas.android.Modelo.Repositorio.RepositorioCarrito;
@@ -29,7 +31,7 @@ public class ControladorCarrito extends Controlador<Compra>{
     protected boolean insertObject(Compra compra) {
         String query = "INSERT INTO " + nameTable + " VALUES ("
                 + "0, "
-                + "'" + obtenerFecha() + "', "
+                + "'" + compra.getFecha() + "', "
                 + compra.getSubtotal() + ", "
                 + compra.getIva() + ", "
                 + compra.getPagoTotal() + ", "
@@ -55,7 +57,7 @@ public class ControladorCarrito extends Controlador<Compra>{
     @Override
     protected Compra getObject(int id) {
         // Obtener el cliente actual del repositorio local
-        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
+        ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(null);
         Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Query para buscar una nota de venta que cumpla las condiciones
@@ -82,9 +84,9 @@ public class ControladorCarrito extends Controlador<Compra>{
         return repositorio.getObjeto();
     }
 
-    public Compra obtenerCarritoEnCompra(){
+    public Compra obtenerCarritoEnCompra(Context context){
         // Obtener el cliente actual del repositorio local
-        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
+        Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(context);
         Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Query para buscar una nota de venta que cumpla las condiciones
@@ -124,6 +126,7 @@ public class ControladorCarrito extends Controlador<Compra>{
     private Compra crearNuevaNotaVenta() {
         Controlador<Cliente> controladorCliente = ControladorCliente.obtenerInstancia(null);
         Cliente cliente = controladorCliente.obtenerObjeto();
+        Log.d("Cliente", "Cliente obtenido: " + cliente);
 
         if (cliente == null) {
             // Manejar caso donde no se puede obtener el cliente

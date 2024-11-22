@@ -2,6 +2,8 @@ package com.SolucionesParaPlagas.android.Vista;
 
 import android.os.Bundle;
 import com.example.sol.R;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
@@ -29,8 +31,8 @@ public class MostrarProducto extends AppCompatActivity {
     private TextView nombreProducto,descripcionProducto, pesoProducto;
     private ControladorValidaciones validaciones = new ControladorValidaciones();
     private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
-    private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
     private Controlador<VentaProducto> controladorVentaProducto = new ControladorVentaProducto(this);
+    private ImageView imagenProducto, botonProductos, botonCarritoCompras, botonMenu, cerrarSesion, botonRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +49,9 @@ public class MostrarProducto extends AppCompatActivity {
     }
 
     private void cargarImagenProducto(){
-        String imageUrl = producto.getUrlImagen();
+        /*String imageUrl = producto.getUrlImagen();*/
         controladorImagenes = new ControladorImagenes(this);
-        controladorImagenes.cargarImagenDesdeUrl(imageUrl, imagenProducto);
+        /*controladorImagenes.cargarImagenDesdeUrl(imageUrl, imagenProducto);*/
     }
 
     private void cargarDatosProducto(){
@@ -72,7 +74,8 @@ public class MostrarProducto extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null){
             if(intent.hasExtra("producto")){
-                producto = intent.getParcelableExtra("producto");
+                producto = (Producto) intent.getSerializableExtra("producto");
+                Log.d("Producto", "Producto recibido: " + producto.getNombreProd());
             }
         }
     }
@@ -132,7 +135,7 @@ public class MostrarProducto extends AppCompatActivity {
             cantidadPro = Integer.parseInt(cantidadStr);
             // Verificar si ya tenemos un carrito en pendiente o creamos uno nuevo
             ControladorCarrito contC = new ControladorCarrito(this);
-            Compra carrito = contC.obtenerCarritoEnCompra();
+            Compra carrito = contC.obtenerCarritoEnCompra(this);
 
             VentaProducto venta = new VentaProducto();
             venta.setIdVenta(0);

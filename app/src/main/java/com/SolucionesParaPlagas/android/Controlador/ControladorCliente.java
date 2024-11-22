@@ -67,7 +67,8 @@ public class ControladorCliente extends Controlador<Cliente>{
     protected Cliente getObject(int id) {
         String query = "SELECT * FROM " + nameTable + " WHERE noCliente = " + id + ";";
         conector.registro = ejecutarConsulta(query);
-        return BDToObject(conector);
+        repositorio.setObjeto(BDToObject(conector));
+        return repositorio.getObjeto();
     }
 
     // Metodo para obtener un cliente por un campo especifio
@@ -75,7 +76,8 @@ public class ControladorCliente extends Controlador<Cliente>{
     protected Cliente getObject(String campo) {
         String query = "SELECT * FROM " + nameTable + " WHERE clienteRFC = " + campo + ";";
         conector.registro = ejecutarConsulta(query);
-        return BDToObject(conector);
+        repositorio.setObjeto(BDToObject(conector));
+        return repositorio.getObjeto();
     }
 
     @Override

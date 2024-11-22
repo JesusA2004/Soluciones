@@ -33,7 +33,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
     private ControladorCarrito contC = new ControladorCarrito(this);
-    private Compra compra = contC.obtenerCarritoEnCompra();
+    private Compra compra = contC.obtenerCarritoEnCompra(this);
     private ControladorVentaProducto controladorVentaProducto = new ControladorVentaProducto(this);
 
     @Override
