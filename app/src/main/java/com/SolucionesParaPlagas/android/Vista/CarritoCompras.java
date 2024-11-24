@@ -31,7 +31,7 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     private Producto productoSeleccionado = new Producto();
     private ImageView btnVerProductos, btnMenu, btnCerrarSesion, btnMenos, btnMas, btnBajarCantidad;
     private Controlador<Compra> controladorCarrito = ControladorCarrito.obtenerInstancia(this);
-    private Compra compra = controladorCarrito.obtenerCarro();
+    private Compra compra = controladorCarrito.obtenerCarroSinDetalles();
     private ControladorVentaProducto controladorVentaProducto = new ControladorVentaProducto(this);
 
     @Override
@@ -105,11 +105,11 @@ public class CarritoCompras extends AppCompatActivity implements AdaptadorCarrit
     }
 
     private void cotizacion(View v) {
-        ControladorCarrito contC = new ControladorCarrito(this);
-        contC.finalizarCompra(compra.getIdNotaVenta());
+        controladorCarrito.finalizarCom(compra.getIdNotaVenta());
         compra = new Compra();
         controladorCarrito.limpiarRepositorio();
-
+        Toast.makeText(getApplicationContext(), "Puedes pasar a tienda\npor tu pedido", Toast.LENGTH_LONG).show();
+        irAMenu(v);
     }
 
     private void irAMenu(View v) {

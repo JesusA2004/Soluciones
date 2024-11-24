@@ -13,7 +13,6 @@ public class ControladorCarrito extends Controlador<Compra>{
     private Controlador<Cliente> controladorCliente;
     private Cliente cliente = new Cliente();
 
-    // No es necesario el uso de un repositorio local
     public ControladorCarrito(Context contexto){
         super(RepositorioCarrito.obtenerInstancia(), contexto);
         controladorCliente = ControladorCliente.obtenerInstancia(contexto);
@@ -89,8 +88,6 @@ public class ControladorCarrito extends Controlador<Compra>{
 
     @Override
     protected Compra obtenerCarrito(){
-        // Obtener el cliente actual del repositorio local
-        Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Query para buscar una nota de venta que cumpla las condiciones
         String query = "SELECT nv.idNotaVenta, nv.fecha, nv.subtotal, nv.iva, nv.pagoTotal," +
@@ -104,34 +101,37 @@ public class ControladorCarrito extends Controlador<Compra>{
         conector.registro = ejecutarConsulta(query);
         Compra compra = new Compra();
         compra = BDToObject(conector);
-
-        if (compra != null) {
-            // Si se encontró una compra válida, retornarla
-            repositorio.setObjeto(compra);
-        } else {
-            // Si no se encontró una compra válida, crear una nueva nota de venta
-            repositorio.setObjeto(crearNuevaNotaVenta());
-        }
-        return repositorio.getObjeto();
+        return compra;
     }
 
     @Override
     protected Compra obtenerCarritoSinDetalles() {
-        Cliente cliente = controladorCliente.obtenerObjeto();
 
         // Query para buscar una nota de venta que cumpla las condiciones
         String query = "SELECT * FROM notaVenta " +
-                " WHERE noCliente = " + cliente.getNoCliente() +
+                "WHERE noCliente = " + cliente.getNoCliente() +
                 " AND noEmpleado = 2" +
                 " AND estatus = 'En compra' limit 1;";
 
         conector.registro = ejecutarConsulta(query);
+        Log.d("ControladorCarrito", "Ejecutando query: " + query);
+
         Compra compra = new Compra();
         compra = BDSinDetalles(conector);
 
-        if (compra != null) {
-            // Si se encontró una compra válida, retornarla
-            repositorio.setObjeto(compra);
+        if (compra != null && compra.getIdNotaVenta() != 0) {
+            Log.d("ControladorCarrito", "Compra encontrada: " + compra.getIdNotaVenta());
+
+            Compra compraConDetalles = new Compra();
+            compraConDetalles = obtenerCarro();
+
+            if(compraConDetalles != null &&compraConDetalles.getIdNotaVenta() != 0){
+
+                repositorio.setObjeto(compraConDetalles);
+            }else{
+                // Si se encontró una compra válida, retornarla
+                repositorio.setObjeto(compra);
+            }
         } else {
             // Si no se encontró una compra válida, crear una nueva nota de venta
             repositorio.setObjeto(crearNuevaNotaVenta());
@@ -159,14 +159,15 @@ public class ControladorCarrito extends Controlador<Compra>{
         return compra;
     }
 
-    public boolean finalizarCompra(int idTicket) {
+    @Override
+    protected void finalizarCompra(int idTicket) {
         // Query para actualizar el estado del ticket
-        String query = "UPDATE " + nameTable + " " +
-                "SET estatus = 'Compra hecha' " +
+        String query = "UPDATE " + nameTable +
+                " SET estatus = 'Compra hecha' " +
                 "WHERE idNotaVenta = " + idTicket + ";";
 
         // Ejecutar la actualización en la base de datos
-        return ejecutarActualizacion(query);
+        ejecutarActualizacion(query);
     }
 
     // Método para crear una nueva nota de venta
@@ -183,6 +184,8 @@ public class ControladorCarrito extends Controlador<Compra>{
         // Verificar si la compra se insertó correctamente
         boolean insertada = insertObject(nuevaCompra);
         if (insertada) {
+            Log.d("ControladorCarrito", "Nueva compra creada con éxito.");
+
             return nuevaCompra; // Retornar la compra recién creada
         } else {
             // Manejar el error y retornar null si la inserción falla

@@ -2,8 +2,6 @@ package com.SolucionesParaPlagas.android.Controlador;
 
 import java.sql.SQLException;
 import android.content.Context;
-import android.util.Log;
-
 import com.SolucionesParaPlagas.android.Modelo.Entidad.VentaProducto;
 
 public class ControladorVentaProducto extends Controlador<VentaProducto> {
@@ -63,7 +61,7 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
     public int obtenerCantidadProducto(int ticket, int folio) {
         String query = "SELECT cantidad FROM " + nameTable +
                 " WHERE idNotaVenta = " + ticket +
-                "AND folio = " + folio + ";";
+                " AND folio = " + folio + ";";
         conector.registro = ejecutarConsulta(query);
         try {
             if (conector.registro.next()) {
@@ -94,10 +92,10 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
     }
 
     public boolean actualizarCantidad(int id, int cantidad, int folio) {
-        String query = "UPDATE " + nameTable + " " +
-                "SET cantidad = " + cantidad +
-                "WHERE idNotaVenta = " + id +
-                "AND folio = " + folio + ";";
+        String query = "UPDATE " + nameTable +
+                " SET cantidad = " + cantidad +
+                " WHERE idNotaVenta = " + id +
+                " AND folio = " + folio + ";";
 
         // Ejecutar la actualización en la base de datos
         return ejecutarActualizacion(query);
@@ -150,6 +148,11 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
     @Override
     protected VentaProducto obtenerCarritoSinDetalles() {
         return null;
+    }
+
+    @Override
+    protected void finalizarCompra(int idTicket) {
+
     }
 
 }

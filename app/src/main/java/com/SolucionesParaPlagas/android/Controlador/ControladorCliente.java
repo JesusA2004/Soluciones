@@ -126,4 +126,9 @@ public class ControladorCliente extends Controlador<Cliente>{
         return null;
     }
 
+    @Override
+    protected void finalizarCompra(int idTicket) {
+
+    }
+
 }
