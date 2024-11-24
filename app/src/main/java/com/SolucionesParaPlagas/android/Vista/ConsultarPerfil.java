@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.SolucionesParaPlagas.android.Modelo.Entidad.Cliente;
 import com.SolucionesParaPlagas.android.Controlador.ControladorCliente;
@@ -18,7 +20,7 @@ import com.SolucionesParaPlagas.android.Controlador.ControladorValidaciones;
 
 public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfil.OnChildClickListener {
 
-    private Button btnGuardarCambios;
+    private Button btnGuardarCambios, btnEliminarCuenta;
     private Cliente cliente = new Cliente();
     private ExpandableListView datosPersonales;
     private ImageView btnProductos, btnMenu, btnCerrarSesion;
@@ -70,6 +72,7 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
         btnMenu = findViewById(R.id.iconoMenu);
         btnCerrarSesion = findViewById(R.id.iconoCerrarSesion);
         btnGuardarCambios = findViewById(R.id.btnSubirCambios);
+        btnEliminarCuenta = findViewById(R.id.btnEliminarCuenta);
         datosPersonales = findViewById(R.id.datosPersonales);
     }
 
@@ -82,6 +85,7 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
         btnMenu.setOnClickListener(this::irAMenu);
         btnGuardarCambios.setOnClickListener(this::irAGuardarCambios);
         btnCerrarSesion.setOnClickListener(this::irACerrarSesion);
+        btnEliminarCuenta.setOnClickListener(this::eliminarCuenta);
     }
 
     private void regresarAProductos(View v) {
@@ -101,6 +105,16 @@ public class ConsultarPerfil extends AppCompatActivity implements AdaptadorPerfi
 
     private void irAGuardarCambios(View v) {
         controladorCliente.actualizarObjeto(cliente);
+    }
+
+    private void eliminarCuenta(View v){
+        controladorCliente.eliminarObjeto(cliente.getNoCliente());
+        cliente = new Cliente();
+        ControladorValidaciones contV = new ControladorValidaciones();
+        contV.limpiarRepositorios(this);
+        Toast.makeText(this, "Cuenta eliminada", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ConsultarPerfil.this, Login.class);
+        startActivity(intent);
     }
 
     private void configurarExpandableListViews() {

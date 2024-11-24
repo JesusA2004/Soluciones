@@ -147,4 +147,9 @@ public class ControladorVentaProducto extends Controlador<VentaProducto> {
         return null;
     }
 
+    @Override
+    protected VentaProducto obtenerCarritoSinDetalles() {
+        return null;
+    }
+
 }

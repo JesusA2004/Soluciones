@@ -92,10 +92,12 @@ public abstract class Controlador<Tipo>{
         // También puedes agregar más detalles si lo deseas
     }
 
-
-
     public Tipo obtenerCarro(){
         return obtenerCarrito();
+    }
+
+    public Tipo obtenerCarroSinDetalles(){
+        return obtenerCarritoSinDetalles();
     }
 
     public Tipo obtenerObjeto(){
@@ -145,6 +147,10 @@ public abstract class Controlador<Tipo>{
         }
     }
 
+    public void eliminarObjeto(int id){
+        deleteObject(id);
+    }
+
     // Métodos abstractos para manejar CRUD
     protected abstract boolean insertObject(Tipo objeto);
     protected abstract boolean deleteObject(int id);
@@ -157,4 +163,6 @@ public abstract class Controlador<Tipo>{
     protected abstract Tipo BDToObject(Conector conector);
 
     protected abstract Tipo obtenerCarrito();
+    protected abstract Tipo obtenerCarritoSinDetalles();
+
 }

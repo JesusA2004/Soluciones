@@ -102,23 +102,10 @@
             android:src="@drawable/iconomiperfil"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.910"
+            app:layout_constraintHorizontal_bias="0.737"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.955" />
-
-        <ImageView
-            android:id="@+id/iconoestadocuenta"
-            android:layout_width="43dp"
-            android:layout_height="37dp"
-            android:contentDescription="iconoestadocuenta"
-            android:src="@drawable/iconoestadocuenta"
-            app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.418"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.956" />
+            app:layout_constraintVertical_bias="0.954" />
 
         <ImageView
             android:id="@+id/iconolistaproductos"
@@ -128,10 +115,10 @@
             android:src="@drawable/iconolistaproductos"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.139"
+            app:layout_constraintHorizontal_bias="0.259"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.960" />
+            app:layout_constraintVertical_bias="0.957" />
 
         <ImageView
             android:id="@+id/logotipsinfondo"
@@ -141,10 +128,10 @@
             android:src="@drawable/logotipsinfondo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.680"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.960" />
+            app:layout_constraintVertical_bias="0.958" />
 
         <TextView
             android:id="@+id/opcProductos"
@@ -156,25 +143,10 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.084"
+            app:layout_constraintHorizontal_bias="0.232"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/encabezadomenu"
-            app:layout_constraintVertical_bias="0.98" />
-
-        <TextView
-            android:id="@+id/opcEstadoCuenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/libre_franklin_semibold"
-            android:text="Estado de Cuenta"
-            android:textColor="#FFFCFC"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iconosopciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.416"
-            app:layout_constraintStart_toStartOf="@+id/iconosopciones"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98" />
+            app:layout_constraintVertical_bias="0.977" />
 
         <TextView
             android:id="@+id/opcSitioWeb"
@@ -186,10 +158,10 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.704"
+            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98" />
+            app:layout_constraintVertical_bias="0.975" />
 
         <TextView
             android:id="@+id/opcMiPerfil"
@@ -201,10 +173,10 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.922"
+            app:layout_constraintHorizontal_bias="0.749"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98" />
+            app:layout_constraintVertical_bias="0.976" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

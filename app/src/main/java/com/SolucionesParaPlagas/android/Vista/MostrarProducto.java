@@ -134,7 +134,7 @@ public class MostrarProducto extends AppCompatActivity {
             cantidadPro = Integer.parseInt(cantidadStr);
             // Verificar si ya tenemos un carrito en pendiente o creamos uno nuevo
             Controlador<Compra> contC = ControladorCarrito.obtenerInstancia(this);
-            Compra carrito = contC.obtenerCarro();
+            Compra carrito = contC.obtenerCarroSinDetalles();
 
             VentaProducto venta = new VentaProducto();
             venta.setCantidad(cantidadPro);

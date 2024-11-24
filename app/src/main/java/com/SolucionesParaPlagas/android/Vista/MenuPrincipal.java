@@ -28,7 +28,7 @@ public class MenuPrincipal extends AppCompatActivity {
     private Cliente cliente = new Cliente();
     private TextView txtBienvenida,txtPerfil;
     private ControladorValidaciones validaciones = new ControladorValidaciones();
-    private ImageView btnProductos, btnEstadoCuenta, btnSitioWeb, btnMiPerfil, btnCerrarMenuL;
+    private ImageView btnProductos, btnSitioWeb, btnMiPerfil, btnCerrarMenuL;
     private ControladorCliente controladorCliente = ControladorCliente.obtenerInstancia(this);
 
     @Override
@@ -48,7 +48,6 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void inicializarElementos() {
         btnProductos = findViewById(R.id.iconolistaproductos);
-        btnEstadoCuenta = findViewById(R.id.iconoestadocuenta);
         btnSitioWeb = findViewById(R.id.logotipsinfondo);
         btnMiPerfil = findViewById(R.id.iconomiperfil);
         txtBienvenida = findViewById(R.id.bienvenidaNombre);

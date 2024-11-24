@@ -121,4 +121,9 @@ public class ControladorCliente extends Controlador<Cliente>{
         return null;
     }
 
+    @Override
+    protected Cliente obtenerCarritoSinDetalles() {
+        return null;
+    }
+
 }

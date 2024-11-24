@@ -142,6 +142,10 @@ public class ControladorValidaciones {
         controladorProducto.limpiarRepositorio();
     }
 
+    public void limpiarRepositorios(Context contexto){
+        cerrarSesion(contexto);
+    }
+
     // Redirigir al login
     private void irALogin(Context context) {
         Intent intent = new Intent(context, PaginaInicio.class);

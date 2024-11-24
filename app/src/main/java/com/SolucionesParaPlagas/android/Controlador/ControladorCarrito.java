@@ -115,6 +115,50 @@ public class ControladorCarrito extends Controlador<Compra>{
         return repositorio.getObjeto();
     }
 
+    @Override
+    protected Compra obtenerCarritoSinDetalles() {
+        Cliente cliente = controladorCliente.obtenerObjeto();
+
+        // Query para buscar una nota de venta que cumpla las condiciones
+        String query = "SELECT * FROM notaVenta " +
+                " WHERE noCliente = " + cliente.getNoCliente() +
+                " AND noEmpleado = 2" +
+                " AND estatus = 'En compra' limit 1;";
+
+        conector.registro = ejecutarConsulta(query);
+        Compra compra = new Compra();
+        compra = BDSinDetalles(conector);
+
+        if (compra != null) {
+            // Si se encontró una compra válida, retornarla
+            repositorio.setObjeto(compra);
+        } else {
+            // Si no se encontró una compra válida, crear una nueva nota de venta
+            repositorio.setObjeto(crearNuevaNotaVenta());
+        }
+        return repositorio.getObjeto();
+    }
+
+    private Compra BDSinDetalles(Conector conector) {
+        Compra compra = new Compra();
+        try {
+            while (conector.registro.next()) {
+                // Solo se llena una vez, en la primera fila
+                compra.setIdNotaVenta(conector.registro.getInt("idNotaVenta"));
+                compra.setFecha(conector.registro.getString("fecha"));
+                compra.setSubtotal(conector.registro.getFloat("subtotal"));
+                compra.setIva(conector.registro.getFloat("iva"));
+                compra.setPagoTotal(conector.registro.getFloat("pagoTotal"));
+                compra.setNoCliente(conector.registro.getInt("noCliente"));
+                compra.setNoEmpleado(conector.registro.getInt("noEmpleado"));
+                compra.setEstatus(conector.registro.getString("estatus"));
+            }
+        } catch (SQLException ex) {
+            manejarExcepcion(ex);
+        }
+        return compra;
+    }
+
     public boolean finalizarCompra(int idTicket) {
         // Query para actualizar el estado del ticket
         String query = "UPDATE " + nameTable + " " +
