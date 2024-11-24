@@ -98,7 +98,7 @@ public class RegistroDireccion extends AppCompatActivity {
             cliente.setCalle(usuarioCalle.getText().toString());
             cliente.setColonia(usuarioColonia.getText().toString());
             cliente.setLocalidad(usuarioLocalidad.getText().toString());
-            cliente.setEstado(usuarioEstado.toString());
+            cliente.setEstado(usuarioEstado.getSelectedItem().toString());
             int cp = Integer.parseInt(usuarioCP.getText().toString());
             cliente.setClienteCP(cp);
             cliente.setMunicipio(usuarioMunicipio.getText().toString());
