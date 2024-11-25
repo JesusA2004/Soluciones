@@ -1,12 +1,14 @@
 package com.SolucionesParaPlagas.android.Controlador;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Connection;
-import android.widget.Toast;
-import android.os.StrictMode;
-import java.sql.DriverManager;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.StrictMode;
+import android.widget.Toast;
 
 public class Conector {
 
@@ -26,20 +28,17 @@ public class Conector {
         // Permitir operaciones de red en el hilo principal
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         Thread conexionHilo = new Thread(() -> {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 conexion = DriverManager.getConnection(servidor, usuario, password);
-                if (conexion != null) {
-                    ((android.app.Activity) contexto).runOnUiThread(() ->
-                            Toast.makeText(contexto, "Conexión exitosa con MySQL", Toast.LENGTH_SHORT).show()
-                    );
-                }
             } catch (Exception e) {
-                ((android.app.Activity) contexto).runOnUiThread(() ->
-                        Toast.makeText(contexto, "Error en la conexión: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                );
                 e.printStackTrace();
+                // Mostrar mensaje al usuario en el hilo principal
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(contexto, "No se pudo conectar a la base de datos: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                );
             }
         });
 
@@ -48,6 +47,10 @@ public class Conector {
             conexionHilo.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            // Mostrar mensaje de error en el hilo principal
+            new Handler(Looper.getMainLooper()).post(() ->
+                    Toast.makeText(contexto, "Error al intentar conectar en un hilo: " + e.getMessage(), Toast.LENGTH_LONG).show()
+            );
         }
 
         return conexion;

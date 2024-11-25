@@ -96,6 +96,10 @@ public abstract class Controlador<Tipo>{
         return obtenerCarrito();
     }
 
+    public void finalizarCom(int idT){
+        finalizarCompra(idT);
+    }
+
     public Tipo obtenerCarroSinDetalles(){
         return obtenerCarritoSinDetalles();
     }
@@ -164,5 +168,6 @@ public abstract class Controlador<Tipo>{
 
     protected abstract Tipo obtenerCarrito();
     protected abstract Tipo obtenerCarritoSinDetalles();
+    protected abstract void finalizarCompra(int idTicket);
 
 }
