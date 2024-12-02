@@ -73,13 +73,9 @@ public class MenuPrincipal extends AppCompatActivity {
                 // Configura los ítems del menú lateral
                 MenuItem btnConsultarPerfil = menu.findItem(R.id.iconoDatosP);
                 MenuItem btnDirecciones = menu.findItem(R.id.direcciones);
-                MenuItem btnPedidos = menu.findItem(R.id.nav_orders);
                 MenuItem btnCerrarSesion = menu.findItem(R.id.nav_logout);
                 if (btnConsultarPerfil != null) {
                     btnConsultarPerfil.setOnMenuItemClickListener(this::irAMiPerfil);
-                }
-                if (btnPedidos != null) {
-                    btnPedidos.setOnMenuItemClickListener(this::irAPedidos);
                 }
                 if (btnCerrarSesion != null) {
                     btnCerrarSesion.setOnMenuItemClickListener(this::cerrarSesion);

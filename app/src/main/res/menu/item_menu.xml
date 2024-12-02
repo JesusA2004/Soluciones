@@ -9,10 +9,6 @@
         android:icon="@drawable/iconodatospersonales_1"
         android:title="Mis Direcciones" />
     <item
-        android:id="@+id/nav_orders"
-        android:icon="@drawable/iconomispedidos_1"
-        android:title="Mis Pedidos" />
-    <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/iconocerrarsesion__1"
         android:title="Cerrar Sesión" />
